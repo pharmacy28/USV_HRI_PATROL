@@ -17,7 +17,7 @@ WITH_PAD=true
 WITH_MUX=true
 WITH_OVERVIEW=true
 WITH_CONSOLE=true
-WITH_VOICE=false
+WITH_VOICE=true
 BRIDGE_ALL_PAYLOAD_CAMERAS=false
 
 TARGET_NAMES="['wamv_01','wamv_02','wamv_03','wamv_04','wamv_05','wamv_06','wamv_07','wamv_08','wamv_09','wamv_10']"
@@ -78,6 +78,7 @@ Options:
   --no-overview      Do not start usv_overview nodes.
   --no-console       Do not start operator_console.
   --voice            Start local Whisper ASR and voice command bridge.
+  --no-voice         Disable local Whisper ASR and voice command bridge.
   --voice-model NAME Whisper model name. Default: base.
   --voice-model-dir PATH
                      Whisper model cache directory. Default: ~/vrx_ws/bin/voice_models.
@@ -570,6 +571,9 @@ while [ "$#" -gt 0 ]; do
       ;;
     --voice)
       WITH_VOICE=true
+      ;;
+    --no-voice)
+      WITH_VOICE=false
       ;;
     --voice-model)
       VOICE_MODEL="$2"
