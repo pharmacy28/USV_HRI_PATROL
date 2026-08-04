@@ -17,10 +17,30 @@ def emit(payload: dict[str, Any]) -> None:
 
 
 def list_devices() -> int:
-    import sounddevice as sd
+    pactl = shutil.which("pactl")
+    if pactl:
+        try:
+            default_source = subprocess.check_output(
+                [pactl, "get-default-source"], text=True, stderr=subprocess.STDOUT
+            ).strip()
+            print(f"PulseAudio default source: {default_source}")
+            sources = subprocess.check_output(
+                [pactl, "list", "sources", "short"], text=True, stderr=subprocess.STDOUT
+            ).strip()
+            if sources:
+                print("PulseAudio sources:")
+                print(sources)
+        except (OSError, subprocess.CalledProcessError) as exc:
+            print(f"PulseAudio query failed: {exc}")
 
-    devices = sd.query_devices()
-    print(devices)
+    try:
+        import sounddevice as sd
+    except ImportError as exc:
+        print(f"sounddevice unavailable: {exc}")
+        return 0
+
+    print("sounddevice devices:")
+    print(sd.query_devices())
     return 0
 
 
@@ -87,6 +107,11 @@ def select_audio_backend(backend: str, audio_device_value: str) -> str:
         return backend
     if audio_device_value.startswith("pulse:"):
         return "pulse"
+    # PulseAudio is the most reliable path for Linux headsets: it follows the
+    # desktop's selected source and does not require sounddevice/PortAudio in
+    # the Whisper environment. Fall back to sounddevice on minimal systems.
+    if shutil.which("pactl") and shutil.which("parec"):
+        return "pulse"
     return "sounddevice"
 
 
@@ -125,8 +150,10 @@ def record_pulse_chunk(args: argparse.Namespace, duration_sec: float | None = No
         parec,
         "--record",
         "--format=s16le",
+        "--raw",
         f"--rate={args.sample_rate}",
         "--channels=1",
+        "--latency-msec=50",
     ]
     source_name = pulse_source_name(args.audio_device)
     if source_name:

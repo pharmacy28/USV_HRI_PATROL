@@ -27,11 +27,18 @@ MIN_MAP_SPAN_M="800.0"
 GRID_SIZE_M="10.0"
 CAMERA_RESOLUTION="640x360"
 VOICE_MODEL="base"
-VOICE_MODEL_DIR="$WS/bin/voice_models"
-VOICE_PYTHON="${VRX_VOICE_PYTHON:-$(command -v python3)}"
+VOICE_MODEL_DIR="${VRX_VOICE_MODEL_DIR:-$WS/bin/voice_models}"
+VOICE_PYTHON="${VRX_VOICE_PYTHON:-}"
+if [ -z "$VOICE_PYTHON" ]; then
+  if [ -x "$HOME/miniconda3/envs/voice/bin/python" ]; then
+    VOICE_PYTHON="$HOME/miniconda3/envs/voice/bin/python"
+  else
+    VOICE_PYTHON="$(command -v python3)"
+  fi
+fi
 VOICE_LANGUAGE="zh"
-VOICE_AUDIO_BACKEND="auto"
-VOICE_AUDIO_DEVICE=""
+VOICE_AUDIO_BACKEND="${VRX_VOICE_BACKEND:-auto}"
+VOICE_AUDIO_DEVICE="${VRX_VOICE_DEVICE:-}"
 VOICE_UDP_BIND="0.0.0.0"
 VOICE_UDP_PORT=15556
 VOICE_UDP_SOURCE_IP=""
@@ -73,7 +80,7 @@ Options:
   --voice            Start local Whisper ASR and voice command bridge.
   --voice-model NAME Whisper model name. Default: base.
   --voice-model-dir PATH
-                     Whisper model cache directory. Default: platform/bin/voice_models.
+                     Whisper model cache directory. Default: ~/vrx_ws/bin/voice_models.
   --voice-device ID  sounddevice input device index/name.
   --voice-backend NAME
                      Audio backend: auto, sounddevice, pulse, udp. Default: auto.
@@ -100,7 +107,7 @@ Options:
   --bridge-all-cameras
                      Bridge every WAM-V camera stream. Default: selected camera only.
   --world NAME       Default: air_crash_sar.
-  --config PATH      Default: platform/config/multi_wamv_10.yaml.
+  --config PATH      Default: ~/vrx_ws/config/multi_wamv_10.yaml.
   --joy-dev PATH     Default: /dev/input/js0.
   --overview-span M  Minimum overview map span in meters. Default: 800.0.
   --overview-padding M
@@ -115,11 +122,11 @@ Options:
                      Y button index for overview grid toggle. Default: 3.
 
 Logs:
-  platform/log/vrx_debug/*.log
+  ~/vrx_ws/log/vrx_debug/*.log
 
 Current defaults:
   world: air_crash_sar
-  config: platform/config/multi_wamv_10.yaml
+  config: ~/vrx_ws/config/multi_wamv_10.yaml
   WAM-V fleet: 10 identical camera-only boats from custom_wamv/generated/*.urdf
   camera bridge: selected camera only unless --bridge-all-cameras is used
 EOF
@@ -407,6 +414,9 @@ start_all() {
         local source_name="$VOICE_AUDIO_DEVICE"
         if [ -z "$source_name" ]; then
           source_name="$(pactl get-default-source 2>/dev/null || true)"
+          if [ -n "$source_name" ]; then
+            VOICE_AUDIO_DEVICE="pulse:$source_name"
+          fi
         elif [[ "$source_name" == pulse:* ]]; then
           source_name="${source_name#pulse:}"
         fi

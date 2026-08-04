@@ -55,14 +55,14 @@ source install/setup.bash
 
 ### 语音
 
-语音进程所用 Python 可通过 `VRX_VOICE_PYTHON` 指定；默认使用当前 `python3`。该环境需安装本地 Whisper、NumPy 和选用音频后端所需依赖：
+语音进程所用 Python 可通过 `VRX_VOICE_PYTHON` 指定；默认自动使用 `~/miniconda3/envs/voice/bin/python`（若存在）。音频后端 `auto` 在 Linux 上优先使用 PulseAudio，并自动绑定系统默认输入源；也可手动指定：
 
 ```bash
 export VRX_VOICE_PYTHON=/path/to/voice-env/bin/python
 ./run_vrx.sh --voice --voice-backend pulse --voice-device SOURCE_NAME
 ```
 
-Whisper 模型首次使用时自动下载到 `bin/voice_models/`，权重不进入 Git。Windows 麦克风也可通过 `src/voicebridge/windows_audio_udp_sender.py` 发送 16 kHz 单声道 PCM 音频到默认 UDP 15556 端口。
+Whisper 模型位于 `bin/voice_models/`，首次使用时自动下载缺失权重。Windows 麦克风也可通过 `src/voicebridge/windows_audio_udp_sender.py` 发送 16 kHz 单声道 PCM 音频到默认 UDP 15556 端口。
 
 ### 眼动
 
