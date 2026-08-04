@@ -9,7 +9,7 @@ CONFIG_FILE="$WS/config/multi_wamv_10.yaml"
 LOG_DIR="${VRX_LOG_DIR:-$WS/log/vrx_debug}"
 JOY_DEV="/dev/input/js0"
 
-HEADLESS=false
+HEADLESS=true
 CLEAN=true
 WITH_SIM=true
 WITH_JOY=true
@@ -70,6 +70,7 @@ Usage:
 
 Options:
   --headless          Start Gazebo without GUI.
+  --gui               Start Gazebo with GUI.
   --no-clean         Do not kill old VRX/debug processes before start.
   --no-sim           Do not start Gazebo simulation.
   --no-joy           Do not start joy_node.
@@ -547,6 +548,9 @@ while [ "$#" -gt 0 ]; do
   case "$1" in
     --headless)
       HEADLESS=true
+      ;;
+    --gui)
+      HEADLESS=false
       ;;
     --no-clean)
       CLEAN=false
