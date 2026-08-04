@@ -1,0 +1,32 @@
+# ROS / colcon outputs
+build/
+install/
+log/
+
+# Python caches and local environments
+.TobiiBridge/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Runtime data and heavyweight models (Whisper downloads these on demand)
+bin/voice_models/*.pt
+*.log
+*.pid
+
+# Local Unity archive and generated caches
+src/eyetrackerbridge/EyeTrackerBridge.zip
+**/Library/
+**/Temp/
+**/Obj/
+**/UserSettings/
+
+# Editor / OS files
+.DS_Store
+.idea/
+.vscode/

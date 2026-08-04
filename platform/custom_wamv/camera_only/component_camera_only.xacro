@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="wam-v-components">
+  <xacro:macro name="yaml_components">
+    <!-- === wamv_camera === -->
+      <xacro:wamv_camera name="front_camera" x="0.75" y="0.0" P="${radians(15)}" />
+
+  </xacro:macro>
+</robot>

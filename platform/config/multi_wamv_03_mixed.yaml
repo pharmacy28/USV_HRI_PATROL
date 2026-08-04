@@ -1,0 +1,20 @@
+- model_name: wamv_01
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_01.urdf
+  position:
+    xyz: [-532, 162, 0]
+    rpy: [0, 0, 1.0]
+
+- model_name: wamv_02
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_02.urdf
+  position:
+    xyz: [-522, 162, 0]
+    rpy: [0, 0, 1.0]
+
+- model_name: wamv_03
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_03.urdf
+  position:
+    xyz: [-512, 162, 0]
+    rpy: [0, 0, 1.0]

@@ -1,0 +1,90 @@
+digraph vrx_current_ros_graph {
+  rankdir=LR;
+  graph [fontname="DejaVu Sans", fontsize=10, labelloc=t, label="Current VRX operator-station ROS graph, inferred from source + latest runtime logs"];
+  node [fontname="DejaVu Sans", fontsize=10, shape=box, style="rounded,filled", fillcolor="#eef6ff", color="#4a6a88"];
+  edge [fontname="DejaVu Sans", fontsize=9, color="#3f5870"];
+
+  subgraph cluster_operator_inputs {
+    label="Operator inputs";
+    color="#778899";
+    joy_node [label="joy_node"];
+    eightbitdo_pad [label="pad_ctrl/eightbitdo_pad"];
+    gaze_bridge [label="eyetrackerbridge/gaze_lsl_bridge.py\nUDP -> LSL", fillcolor="#fff7e8"];
+    gaze_receiver [label="eyetrackerbridge/gaze_receiver.py\nLSL -> ROS", fillcolor="#fff7e8"];
+  }
+
+  subgraph cluster_hri {
+    label="HRI / operator station display";
+    color="#778899";
+    operator_console [label="usv_console/operator_console\ncurrent UI + local heatmap"];
+  }
+
+  subgraph cluster_overview {
+    label="usv_overview";
+    color="#778899";
+    overview_server [label="overview_server\nworld scan -> map metadata"];
+    fleet_state_node [label="fleet_state_node\nodometry aggregation"];
+    attention_heatmap_node [label="attention_heatmap_node\noptional gaze heatmap", fillcolor="#fff7e8"];
+  }
+
+  subgraph cluster_control {
+    label="Manual control";
+    color="#778899";
+    manual_mux [label="usv_ctrl/manual_mux\nselected USV -> thruster cmds"];
+  }
+
+  subgraph cluster_vrx {
+    label="VRX / Gazebo / per-WAM-V bridges";
+    color="#778899";
+    gz_sim [label="Gazebo Sim\n10 WAM-V camera-only models", fillcolor="#f3fff0"];
+    bridge_i [label="wamv_i/ros_gz_bridge\nfor i = 01..10", fillcolor="#f3fff0"];
+    optical_i [label="wamv_i/optical_frame_publisher_front_camera_sensor", fillcolor="#f3fff0"];
+    rsp_i [label="wamv_i/robot_state_publisher", fillcolor="#f3fff0"];
+  }
+
+  joy_topic [label="/joy", shape=ellipse, fillcolor="#ffffff"];
+  manual_cmd [label="/operator/manual_cmd", shape=ellipse, fillcolor="#ffffff"];
+  manual_target [label="/fleet/manual_target", shape=ellipse, fillcolor="#ffffff"];
+  manual_target_state [label="/fleet/manual_target_state", shape=ellipse, fillcolor="#ffffff"];
+  ui_view_target [label="/ui/view_target", shape=ellipse, fillcolor="#ffffff"];
+  ui_view_sensor [label="/ui/view_sensor", shape=ellipse, fillcolor="#ffffff"];
+  ui_view_page [label="/ui/view_page", shape=ellipse, fillcolor="#ffffff"];
+  ui_toggle_grid [label="/ui/toggle_grid", shape=ellipse, fillcolor="#ffffff"];
+  overview_metadata [label="/overview/metadata", shape=ellipse, fillcolor="#ffffff"];
+  overview_fleet [label="/overview/fleet_state", shape=ellipse, fillcolor="#ffffff"];
+  overview_heatmap [label="/overview/attention_heatmap", shape=ellipse, fillcolor="#ffffff"];
+  tobii_gaze [label="/tobii/gaze", shape=ellipse, fillcolor="#ffffff"];
+  wamv_odom [label="/wamv_i/odometry", shape=ellipse, fillcolor="#ffffff"];
+  wamv_pose [label="/wamv_i/pose, /pose_static", shape=ellipse, fillcolor="#ffffff"];
+  wamv_camera_raw [label="/wamv_i/sensors/cameras/front_camera_sensor/image_raw\n1280x720 @ 30 Hz configured", shape=ellipse, fillcolor="#ffffff"];
+  wamv_camera_info [label="/wamv_i/sensors/cameras/front_camera_sensor/camera_info", shape=ellipse, fillcolor="#ffffff"];
+  wamv_camera_optical [label="/wamv_i/sensors/cameras/front_camera_sensor/optical/image_raw", shape=ellipse, fillcolor="#ffffff"];
+  wamv_joint_states [label="/wamv_i/joint_states", shape=ellipse, fillcolor="#ffffff"];
+  thruster_cmds [label="/wamv_i/thrusters/{left,right}/{thrust,pos}", shape=ellipse, fillcolor="#ffffff"];
+
+  joy_node -> joy_topic -> eightbitdo_pad;
+  eightbitdo_pad -> manual_cmd -> manual_mux;
+  eightbitdo_pad -> manual_target -> manual_mux;
+  eightbitdo_pad -> ui_view_sensor -> operator_console;
+  eightbitdo_pad -> ui_view_page -> operator_console;
+  eightbitdo_pad -> ui_toggle_grid -> operator_console;
+  manual_mux -> manual_target_state -> operator_console;
+  operator_console -> manual_target;
+  operator_console -> ui_view_target;
+
+  manual_mux -> thruster_cmds -> bridge_i -> gz_sim;
+  gz_sim -> bridge_i;
+  bridge_i -> wamv_odom -> fleet_state_node;
+  bridge_i -> wamv_odom -> operator_console;
+  bridge_i -> wamv_pose -> operator_console;
+  bridge_i -> wamv_camera_raw -> operator_console;
+  bridge_i -> wamv_camera_raw -> optical_i -> wamv_camera_optical;
+  bridge_i -> wamv_camera_info -> operator_console;
+  bridge_i -> wamv_joint_states -> rsp_i;
+
+  overview_server -> overview_metadata -> operator_console;
+  fleet_state_node -> overview_fleet -> operator_console;
+
+  gaze_bridge -> gaze_receiver -> tobii_gaze -> operator_console;
+  tobii_gaze -> attention_heatmap_node -> overview_heatmap -> operator_console;
+}

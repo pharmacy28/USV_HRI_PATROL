@@ -1,0 +1,199 @@
+diff --git a/vrx_gz/launch/competition.launch.py b/vrx_gz/launch/competition.launch.py
+index 4b8f230..03f0360 100644
+--- a/vrx_gz/launch/competition.launch.py
++++ b/vrx_gz/launch/competition.launch.py
+@@ -18,6 +18,7 @@ from launch.actions import DeclareLaunchArgument
+ from launch.actions import OpaqueFunction
+ from launch.substitutions import LaunchConfiguration
+ import os
++import yaml
+ 
+ import vrx_gz.launch
+ from vrx_gz.model import Model
+@@ -40,13 +41,27 @@ def launch(context, *args, **kwargs):
+ 
+     models = []
+     if config_file and config_file != '':
++        with open(config_file, 'r') as stream:
++            config_data = yaml.safe_load(stream)
++
+         with open(config_file, 'r') as stream:
+             models = Model.FromConfig(stream)
++
++        for model, entry in zip(models, config_data):
++            model_urdf = entry.get('urdf', robot_urdf)
++
++            if model_urdf and model_urdf != '':
++                model_urdf = os.path.expandvars(os.path.expanduser(model_urdf))
++                model.set_urdf(model_urdf)
++
+     else:
+-      m = Model('wamv', 'wam-v', [-532, 162, 0, 0, 0, 1])
+-      if robot_urdf and robot_urdf != '':
+-          m.set_urdf(robot_urdf)
+-      models.append(m)
++        m = Model('wamv', 'wam-v')
++
++        if robot_urdf and robot_urdf != '':
++            robot_urdf = os.path.expandvars(os.path.expanduser(robot_urdf))
++            m.set_urdf(robot_urdf)
++
++        models = [m]
+ 
+     world_name, ext = os.path.splitext(world_name)
+     launch_processes.extend(vrx_gz.launch.simulation(world_name, headless, 
+diff --git a/vrx_gz/src/vrx_gz/bridges.py b/vrx_gz/src/vrx_gz/bridges.py
+index 16a2738..72a00f8 100644
+--- a/vrx_gz/src/vrx_gz/bridges.py
++++ b/vrx_gz/src/vrx_gz/bridges.py
+@@ -38,6 +38,14 @@ def pose_static(model_name):
+         ros_type='tf2_msgs/msg/TFMessage',
+         direction=BridgeDirection.GZ_TO_ROS)
+ 
++def odometry(model_name):
++    return Bridge(
++        gz_topic=f'/model/{model_name}/odometry',
++        ros_topic='odometry',
++        gz_type='ignition.msgs.Odometry',
++        ros_type='nav_msgs/msg/Odometry',
++        direction=BridgeDirection.GZ_TO_ROS)
++
+ def joint_states(world_name, model_name):
+     return Bridge(
+         gz_topic=f'/world/{world_name}/model/{model_name}/joint_state',
+@@ -212,4 +220,4 @@ def usv_wind_direction():
+         ros_topic=f'/vrx/debug/wind/direction',
+         gz_type='ignition.msgs.Float',
+         ros_type='std_msgs/msg/Float32',
+-        direction=BridgeDirection.GZ_TO_ROS)
+\ No newline at end of file
++        direction=BridgeDirection.GZ_TO_ROS)
+diff --git a/vrx_gz/src/vrx_gz/launch.py b/vrx_gz/src/vrx_gz/launch.py
+index 098a1c6..26486d6 100644
+--- a/vrx_gz/src/vrx_gz/launch.py
++++ b/vrx_gz/src/vrx_gz/launch.py
+@@ -285,17 +285,23 @@ def spawn(sim_mode, world_name, models, robot=None):
+                 output='screen',
+             ))
+ 
+-            # robot_state_publisher (tf for wamv)
+-            model_dir = os.path.join(get_package_share_directory('vrx_gazebo'), 'models/wamv/tmp')
++            # robot_state_publisher (tf for this WAM-V instance)
++            model_dir = os.path.join(
++                get_package_share_directory('vrx_gazebo'), 'models',
++                model.model_name, 'tmp')
+             urdf_file = os.path.join(model_dir, 'model.urdf')
++            if not os.path.exists(urdf_file):
++                model_dir = os.path.join(
++                    get_package_share_directory('vrx_gazebo'), 'models',
++                    'wamv', 'tmp')
++                urdf_file = os.path.join(model_dir, 'model.urdf')
+             with open(urdf_file, 'r') as infp:
+                 robot_desc = infp.read()
+             params = {'use_sim_time': use_sim_time, 'frame_prefix': 'wamv/', 'robot_description': robot_desc}
+             nodes.append(Node(package='robot_state_publisher',
+                                   executable='robot_state_publisher',
+                                   output='both',
+-                                  parameters=[params],
+-                                  remappings=[('/joint_states', '/wamv/joint_states')]))
++                                  parameters=[params]))
+ 
+             group_action = GroupAction([
+                 PushRosNamespace(model.model_name),
+diff --git a/vrx_gz/src/vrx_gz/model.py b/vrx_gz/src/vrx_gz/model.py
+index 0a86111..529d130 100644
+--- a/vrx_gz/src/vrx_gz/model.py
++++ b/vrx_gz/src/vrx_gz/model.py
+@@ -72,6 +72,8 @@ class Model:
+             vrx_gz.bridges.pose_static(self.model_name),
+             # joint states
+             vrx_gz.bridges.joint_states(world_name, self.model_name),
++            # odometry
++            vrx_gz.bridges.odometry(self.model_name),
+             # comms tx
+             # vrx_gz.bridges.comms_tx(self.model_name),
+             # comms rx
+@@ -105,10 +107,21 @@ class Model:
+         bridges = []
+         nodes = []
+         payload_launches = []
++        bridge_all_payload_cameras = (
++            os.environ.get('VRX_BRIDGE_ALL_PAYLOAD_CAMERAS', 'true').lower()
++            in ('1', 'true', 'yes', 'on')
++        )
+         for sensor_name, value in payloads.items():
+             link_name = value[0]
+             sensor_type = value[1]
+ 
++            if sensor_type in (sdf.Sensortype.CAMERA, sdf.Sensortype.RGBD_CAMERA) and not bridge_all_payload_cameras:
++                bridges.extend([
++                    vrx_gz.payload_bridges.camera_info(
++                        world_name, self.model_name, link_name, sensor_name)
++                ])
++                continue
++
+             bridges.extend(
+                 vrx_gz.payload_bridges.payload_bridges(
+                     world_name, self.model_name, link_name, sensor_name, sensor_type))
+@@ -118,6 +131,7 @@ class Model:
+                 nodes.append(Node(
+                     package='vrx_ros',
+                     executable='optical_frame_publisher',
++                    name=f'optical_frame_publisher_{sensor_name}',
+                     arguments=['1'],
+                     remappings=[('input/image', f'{ros_sensor_prefix}/image_raw'),
+                                 ('output/image', f'{ros_sensor_prefix}/optical/image_raw'),
+@@ -129,6 +143,7 @@ class Model:
+                 nodes.append(Node(
+                     package='vrx_ros',
+                     executable='optical_frame_publisher',
++                    name=f'optical_frame_publisher_{sensor_name}',
+                     arguments=['1'],
+                     remappings=[('input/image', f'{ros_sensor_prefix}/image_raw'),
+                                 ('output/image', f'{ros_sensor_prefix}/optical/image_raw'),
+@@ -138,6 +153,7 @@ class Model:
+                 nodes.append(Node(
+                     package='vrx_ros',
+                     executable='optical_frame_publisher',
++                    name=f'optical_frame_publisher_{sensor_name}_depth',
+                     arguments=['1'],
+                     remappings=[('input/image', f'{ros_sensor_prefix}/depth'),
+                                 ('output/image', f'{ros_sensor_prefix}/optical/depth')]))
+diff --git a/vrx_gz/src/vrx_gz/payload_bridges.py b/vrx_gz/src/vrx_gz/payload_bridges.py
+index c21f5ec..5af5e29 100644
+--- a/vrx_gz/src/vrx_gz/payload_bridges.py
++++ b/vrx_gz/src/vrx_gz/payload_bridges.py
+@@ -11,6 +11,15 @@ def ros_prefix(sensor_name, sensor_type):
+     return f'sensors/{sensor_type}/{sensor_name}'
+ 
+ 
++def scan_ros_prefix(sensor_name):
++    lower_name = sensor_name.lower()
++    if 'sonar' in lower_name:
++        return ros_prefix(sensor_name, 'sonars')
++    if 'radar' in lower_name:
++        return ros_prefix(sensor_name, 'radars')
++    return ros_prefix(sensor_name, 'lidars')
++
++
+ def image(world_name, model_name, link_name, sensor_name):
+     gz_sensor_prefix = gz_prefix(world_name, model_name, link_name, sensor_name)
+     ros_sensor_prefix = ros_prefix(sensor_name, 'cameras')
+@@ -46,7 +55,7 @@ def camera_info(world_name, model_name, link_name, sensor_name):
+ 
+ def lidar_scan(world_name, model_name, link_name, sensor_name):
+     gz_sensor_prefix = gz_prefix(world_name, model_name, link_name, sensor_name)
+-    ros_sensor_prefix = ros_prefix(sensor_name, 'lidars')
++    ros_sensor_prefix = scan_ros_prefix(sensor_name)
+     return Bridge(
+         gz_topic=f'{gz_sensor_prefix}/scan',
+         ros_topic=f'{ros_sensor_prefix}/scan',
+@@ -57,7 +66,7 @@ def lidar_scan(world_name, model_name, link_name, sensor_name):
+ 
+ def lidar_points(world_name, model_name, link_name, sensor_name):
+     gz_sensor_prefix = gz_prefix(world_name, model_name, link_name, sensor_name)
+-    ros_sensor_prefix = ros_prefix(sensor_name, 'lidars')
++    ros_sensor_prefix = scan_ros_prefix(sensor_name)
+     return Bridge(
+         gz_topic=f'{gz_sensor_prefix}/scan/points',
+         ros_topic=f'{ros_sensor_prefix}/points',

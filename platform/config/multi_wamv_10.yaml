@@ -1,0 +1,49 @@
+- model_name: wamv_01
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_01.urdf
+  position: {xyz: [-532, 162, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_02
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_02.urdf
+  position: {xyz: [-522, 162, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_03
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_03.urdf
+  position: {xyz: [-512, 162, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_04
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_04.urdf
+  position: {xyz: [-502, 162, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_05
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_05.urdf
+  position: {xyz: [-492, 162, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_06
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_06.urdf
+  position: {xyz: [-532, 172, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_07
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_07.urdf
+  position: {xyz: [-522, 172, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_08
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_08.urdf
+  position: {xyz: [-512, 172, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_09
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_09.urdf
+  position: {xyz: [-502, 172, 0], rpy: [0, 0, 1.0]}
+
+- model_name: wamv_10
+  model_type: wam-v
+  urdf: ${VRX_WS}/custom_wamv/generated/wamv_10.urdf
+  position: {xyz: [-492, 172, 0], rpy: [0, 0, 1.0]}

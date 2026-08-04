@@ -1,0 +1,17 @@
+- model_name: wamv_01
+  model_type: wam-v
+  position:
+    xyz: [-532, 162, 0]
+    rpy: [0, 0, 1.0]
+
+- model_name: wamv_02
+  model_type: wam-v
+  position:
+    xyz: [-522, 162, 0]
+    rpy: [0, 0, 1.0]
+
+- model_name: wamv_03
+  model_type: wam-v
+  position:
+    xyz: [-512, 162, 0]
+    rpy: [0, 0, 1.0]

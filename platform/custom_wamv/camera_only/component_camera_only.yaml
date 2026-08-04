@@ -1,0 +1,5 @@
+wamv_camera:
+  - name: front_camera
+    x: 0.75
+    y: 0.0
+    P: ${radians(15)}

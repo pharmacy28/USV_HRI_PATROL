@@ -1,0 +1,66 @@
+digraph vrx_target_operator_station_graph {
+  rankdir=LR;
+  graph [fontname="DejaVu Sans", fontsize=10, labelloc=t, label="Target operator-station architecture: communication gateway + task dispatch boundary"];
+  node [fontname="DejaVu Sans", fontsize=10, shape=box, style="rounded,filled", fillcolor="#eef6ff", color="#4a6a88"];
+  edge [fontname="DejaVu Sans", fontsize=9, color="#3f5870"];
+
+  subgraph cluster_inputs {
+    label="Multimodal human inputs";
+    color="#778899";
+    gamepad [label="gamepad adapter\n/pad_ctrl"];
+    waypoint_pub [label="manual waypoint publisher script\nfuture: bin or scripts tool\nclick/map/file -> waypoints"];
+    voice [label="voice / LLM command input\nfuture"];
+    gaze [label="gaze input\n/eyetrackerbridge"];
+  }
+
+  subgraph cluster_operator_station {
+    label="usv_overview as operator-station communication layer";
+    color="#22dd77";
+    comm_gateway [label="fleet_comm_gateway\nsubscribes all telemetry + sensor health\npublishes normalized fleet state"];
+    command_router [label="command_router\nmanual/autonomy arbitration\nselected target + command mode"];
+    mission_planner [label="mission_planner interface\nvoice/gaze/map/manual script -> task/waypoints", fillcolor="#fff7e8"];
+    health_monitor [label="sensor_link_monitor\ncamera/sonar/IR/radar health for every WAM-V"];
+  }
+
+  subgraph cluster_hri {
+    label="usv_console as HRI/operator display";
+    color="#778899";
+    hri_console [label="operator_console\nrenders fleet state, sensor health,\nvideo, map, alerts"];
+  }
+
+  subgraph cluster_vehicle {
+    label="Each WAM-V namespace";
+    color="#778899";
+    vehicle_gateway [label="wamv_i command receiver\nmanual cmd or waypoint cmd"];
+    low_level_control [label="wamv_i low-level controller\nthruster allocation / tracking"];
+    sensors [label="wamv_i sensors\ncamera / sonar / IR / radar when installed"];
+    sim_or_robot [label="Gazebo or real WAM-V"];
+  }
+
+  raw_joy [label="/joy", shape=ellipse, fillcolor="#ffffff"];
+  human_cmd [label="/operator/human_cmd", shape=ellipse, fillcolor="#ffffff"];
+  gaze_topic [label="/tobii/gaze", shape=ellipse, fillcolor="#ffffff"];
+  mission_cmd [label="/operator/mission_cmd", shape=ellipse, fillcolor="#ffffff"];
+  manual_waypoints [label="/operator/manual_waypoints\nor /wamv_i/cmd/waypoints", shape=ellipse, fillcolor="#ffffff"];
+  fleet_state [label="/overview/fleet_state", shape=ellipse, fillcolor="#ffffff"];
+  sensor_health [label="/overview/sensor_health", shape=ellipse, fillcolor="#ffffff"];
+  selected_target [label="/fleet/selected_target", shape=ellipse, fillcolor="#ffffff"];
+  vehicle_cmd [label="/wamv_i/cmd/manual or /wamv_i/cmd/waypoints", shape=ellipse, fillcolor="#ffffff"];
+  telemetry [label="/wamv_i/odometry, pose, joint_states", shape=ellipse, fillcolor="#ffffff"];
+  sensor_topics [label="/wamv_i/sensors/*", shape=ellipse, fillcolor="#ffffff"];
+
+  gamepad -> raw_joy -> command_router;
+  gamepad -> human_cmd -> command_router;
+  voice -> mission_cmd -> mission_planner;
+  waypoint_pub -> manual_waypoints -> mission_planner;
+  gaze -> gaze_topic -> mission_planner;
+  hri_console -> selected_target -> command_router;
+
+  command_router -> vehicle_cmd -> vehicle_gateway -> low_level_control -> sim_or_robot;
+  mission_planner -> vehicle_cmd;
+
+  sim_or_robot -> telemetry -> comm_gateway -> fleet_state -> hri_console;
+  sensors -> sensor_topics -> health_monitor -> sensor_health -> hri_console;
+  sensor_topics -> hri_console [label="selected video stream only"];
+  health_monitor -> comm_gateway;
+}
