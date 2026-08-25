@@ -75,6 +75,9 @@ python src/eyetrackerbridge/gaze_receiver.py --reconnect --publish-invalid
 
 完整操作、话题核查与故障定位见 [`docs/操作与调试笔记.md`](docs/操作与调试笔记.md)。
 
+当前本地工作区、Git 分层和网页端 GPT/Codex 的同步边界见
+[`docs/工作环境交接说明.md`](docs/工作环境交接说明.md)。
+
 ## 5. 上游与许可证
 
 VRX 子模块来源于 [osrf/vrx](https://github.com/osrf/vrx)，固定提交为 `dc30ed8d17aa1083fd872edad9c77c69896d2b07`，其文件继续受 VRX 自带的 Apache-2.0 许可证约束。Tobii、Unity、Whisper 及其他第三方组件需按各自条款安装和使用。
