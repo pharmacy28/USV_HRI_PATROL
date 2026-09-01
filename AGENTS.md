@@ -8,6 +8,7 @@ These rules apply to the entire repository.
 - `platform/` is the reproducible ROS 2 / Gazebo / VRX platform representation.
 - `idea/` contains research notes, mathematical frameworks, candidate designs, and research-state documentation.
 - `paper/` contains formal paper material.
+- `algo/` contains the Unity-implementation coverage path planning algorithm package (specification docs + Unity-free reference code). It documents the current implementation, including its known differences from CONFIRMED decisions.
 - `/home/cyz/vrx_ws` is the authoritative currently runnable ROS 2 / Gazebo / VRX workspace.
 
 The two roots have an explicit mapping, but they are not the same Git working tree. Never treat `/home/cyz/vrx_ws` as the GitHub repository root. Map runtime `run_vrx.sh`, `config/`, `custom_wamv/`, `src/`, and `bin/` to their counterparts under `platform/`. Do not synchronize generated or local runtime artifacts such as `build/`, `install/`, `log/`, `.TobiiBridge/`, Whisper model weights, Unity archives, or caches.
