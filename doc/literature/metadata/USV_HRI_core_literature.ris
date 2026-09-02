@@ -1,0 +1,601 @@
+TY  - CPAPER
+TI  - Anticipatory Planning and Dynamic Lost Person Models for Human-Robot Search and Rescue
+AU  - Heintzman, L.
+AU  - Hashimoto, A.
+AU  - Abaid, N.
+AU  - Williams, R. K.
+PY  - 2021
+T2  - 2021 IEEE International Conference on Robotics and Automation (ICRA)
+SP  - 8252
+EP  - 8258
+DO  - 10.1109/ICRA48506.2021.9562070
+UR  - https://doi.org/10.1109/ICRA48506.2021.9562070
+KW  - ICRA_USV_HRI
+KW  - closest_prior_art
+KW  - human_search_prediction
+KW  - search_and_rescue
+KW  - FULLY_READ
+N1  - Category: Closest anticipatory human–robot search
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Anticipates independent human ground-searcher paths and combines them with a dynamic lost-person model and GP-based risk to optimize UAV search trajectories.
+N1  - Safe contrast: Humans are independent searchers rather than operators dynamically taking over a robot in the same fleet; no explicit fleet-level responsibility partition.
+ER  - 
+
+TY  - GEN
+TI  - Anticipatory Human-Robot Path Planning for Search and Rescue
+AU  - Cangan, B. G.
+AU  - Heintzman, L.
+AU  - Hashimoto, A.
+AU  - Abaid, N.
+AU  - Williams, R. K.
+PY  - 2020
+T2  - arXiv preprint arXiv:2009.03976
+DO  - 10.48550/arXiv.2009.03976
+UR  - https://doi.org/10.48550/arXiv.2009.03976
+KW  - ICRA_USV_HRI
+KW  - closest_prior_art
+KW  - human_search_prediction
+KW  - workshop_lineage
+KW  - FULLY_READ
+N1  - Category: Closest anticipatory human–robot search
+N1  - Novelty threat: HIGH
+N1  - Summary: Preliminary lineage to Heintzman et al. 2021: anticipated human searcher trajectories plus lost-person heatmaps drive complementary UAV path planning.
+N1  - Safe contrast: Preliminary workshop/preprint lineage; no dynamic same-fleet human takeover or explicit responsibility repartition.
+ER  - 
+
+TY  - CPAPER
+TI  - Intention-Based Coordination and Interface Design for Human-Robot Cooperative Search
+AU  - Xie, D.
+AU  - Lin, Y.
+AU  - Grupen, R. A.
+AU  - Hanson, A. R.
+PY  - 2011
+T2  - 2011 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+SP  - 3349
+EP  - 3354
+DO  - 10.1109/IROS.2011.6094688
+UR  - https://doi.org/10.1109/IROS.2011.6094688
+KW  - ICRA_USV_HRI
+KW  - closest_prior_art
+KW  - human_intention
+KW  - bayesian_search
+KW  - predictive_inhibition
+KW  - FULLY_READ
+N1  - Category: Closest anticipatory human–robot search
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Uses an HMM of human search activity to predict the human's next search location and sends an inhibition message so the robot searches elsewhere; includes a stochastic human observation model.
+N1  - Safe contrast: Prediction is used as local search inhibition/complementarity. The proposed USV method instead uses the future state of a human-controlled fleet member as an explicit prospective responsibility generator for global repartition.
+ER  - 
+
+TY  - JOUR
+TI  - Information-Based Control of Robots in Search-and-Rescue Missions With Human Prior Knowledge
+AU  - Krzysiak, R.
+AU  - Butail, S.
+PY  - 2022
+JO  - IEEE Transactions on Human-Machine Systems
+VL  - 52
+IS  - 1
+SP  - 52
+EP  - 63
+DO  - 10.1109/THMS.2021.3113642
+UR  - https://doi.org/10.1109/THMS.2021.3113642
+KW  - ICRA_USV_HRI
+KW  - closest_prior_art
+KW  - teleoperation
+KW  - human_prior_knowledge
+KW  - information_control
+KW  - FULLY_READ
+N1  - Category: Closest same-team teleoperation/search
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: A human teleoperates a reference robot in a search team while autonomous robots blend independent target search with assistance around the reference robot using mutual-information control.
+N1  - Safe contrast: No explicit global search-responsibility partition; human motion is tied to target-relevant operator knowledge and assistance weighting rather than a prospective responsibility generator.
+ER  - 
+
+TY  - JOUR
+TI  - Human Prior Knowledge Estimation from Movement Cues for Information-Based Control of Mobile Robots during Search
+AU  - Krzysiak, R.
+AU  - Butail, S.
+PY  - 2025
+JO  - ACM Transactions on Human-Robot Interaction
+VL  - 14
+IS  - 2
+SP  - 1
+EP  - 29
+DO  - 10.1145/3706065
+UR  - https://doi.org/10.1145/3706065
+KW  - ICRA_USV_HRI
+KW  - closest_prior_art
+KW  - teleoperation
+KW  - movement_cues
+KW  - human_prior_knowledge
+KW  - trajectory_replay
+KW  - FULLY_READ
+N1  - Category: Closest same-team teleoperation/search
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Infers operator prior knowledge from movement cues recorded in human-subject teleoperation and adapts autonomous search assistance online; uses participant-level validation and replayed human trajectories.
+N1  - Safe contrast: Inference controls search/assistance blending rather than generating a full fleet responsibility partition from a fixed-horizon future vehicle state.
+ER  - 
+
+TY  - CPAPER
+TI  - Enhancing Human-Robot Collaborative Object Search through Human Behavior Observation and Dialog
+AU  - Ishii, T.
+AU  - Miura, J.
+AU  - Hayashi, K.
+PY  - 2023
+T2  - 2023 IEEE/CVF International Conference on Computer Vision Workshops (ICCVW)
+SP  - 1841
+EP  - 1848
+DO  - 10.1109/ICCVW60793.2023.00199
+UR  - https://doi.org/10.1109/ICCVW60793.2023.00199
+KW  - ICRA_USV_HRI
+KW  - closest_prior_art
+KW  - human_search_prediction
+KW  - space_sharing
+KW  - dialog
+KW  - FULLY_READ
+N1  - Category: Human–robot collaborative search and space sharing
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Estimates regions already searched by a human, predicts future human search regions, and chooses complementary robot search behavior; dialog resolves ambiguous human behavior.
+N1  - Safe contrast: Human is an independent searcher, not an operator dynamically taking over one member of a multi-robot search fleet; no posterior-weighted fleet-wide responsibility-generator reconfiguration.
+ER  - 
+
+TY  - CHAP
+TI  - Enhancing Human-Robot Collaborative Search Through Efficient Space Sharing with On-Demand Bidirectional Interaction
+AU  - Lim Hong Da, N.
+AU  - Miura, J.
+AU  - Hayashi, K.
+PY  - 2025
+T2  - Computer Vision – ECCV 2024 Workshops
+SP  - 20
+EP  - 35
+DO  - 10.1007/978-3-031-92591-7_2
+UR  - https://doi.org/10.1007/978-3-031-92591-7_2
+KW  - ICRA_USV_HRI
+KW  - closest_prior_art
+KW  - space_sharing
+KW  - bidirectional_interaction
+KW  - METADATA_VERIFIED
+N1  - Category: Human–robot collaborative search and space sharing
+N1  - Novelty threat: HIGH
+N1  - Summary: Extends collaborative search-space sharing with on-demand bidirectional communication about searched and planned-to-search regions.
+N1  - Safe contrast: Workshop-proceedings work centered on explicit space-sharing interaction; does not establish the same-fleet dynamic-takeover/global responsibility-generator mechanism.
+ER  - 
+
+TY  - CPAPER
+TI  - Bayesian Intention Inference for Trajectory Prediction with an Unknown Goal Destination
+AU  - Best, G.
+AU  - Fitch, R.
+PY  - 2015
+T2  - 2015 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+SP  - 5817
+EP  - 5823
+DO  - 10.1109/IROS.2015.7354203
+UR  - https://doi.org/10.1109/IROS.2015.7354203
+KW  - ICRA_USV_HRI
+KW  - human_prediction
+KW  - bayesian_intention
+KW  - trajectory_prediction
+KW  - FULLY_READ
+N1  - Category: Human/agent future-state prediction
+N1  - Novelty threat: MEDIUM
+N1  - Summary: Infers a posterior over finite candidate goals and generates multimodal future trajectory distributions in obstacle-constrained environments.
+N1  - Safe contrast: Prediction itself is the contribution there; our predictor is a replaceable module and its planner-level role is the focus.
+ER  - 
+
+TY  - CPAPER
+TI  - Scaled Autonomy: Enabling Human Operators to Control Robot Fleets
+AU  - Swamy, G.
+AU  - Reddy, S.
+AU  - Levine, S.
+AU  - Dragan, A.
+PY  - 2020
+T2  - 2020 IEEE International Conference on Robotics and Automation (ICRA)
+SP  - 5942
+EP  - 5948
+DO  - 10.1109/ICRA40945.2020.9196792
+UR  - https://doi.org/10.1109/ICRA40945.2020.9196792
+KW  - ICRA_USV_HRI
+KW  - fleet_control
+KW  - human_intervention
+KW  - shared_autonomy
+KW  - FULLY_READ
+N1  - Category: Human–fleet intervention and allocation
+N1  - Novelty threat: HIGH
+N1  - Summary: Learns which fleet member a human would prefer to intervene on and allocates scarce human attention across a robot fleet.
+N1  - Safe contrast: Addresses which robot receives human control, not how the remaining shared-search fleet redistributes spatial responsibility after intervention.
+ER  - 
+
+TY  - CPAPER
+TI  - A Task Allocation Framework for Human Multi-Robot Collaborative Settings
+AU  - Lippi, M.
+AU  - Di Lillo, P.
+AU  - Marino, A.
+PY  - 2023
+T2  - 2023 IEEE International Conference on Robotics and Automation (ICRA)
+SP  - 7614
+EP  - 7620
+DO  - 10.1109/ICRA48891.2023.10161458
+UR  - https://doi.org/10.1109/ICRA48891.2023.10161458
+KW  - ICRA_USV_HRI
+KW  - human_multi_robot
+KW  - task_allocation
+KW  - MRTA
+KW  - FULLY_READ
+N1  - Category: Human-aware task allocation
+N1  - Novelty threat: MEDIUM
+N1  - Summary: MILP-based assignment/scheduling of a predefined discrete task set among humans and robots with online reactive reallocation.
+N1  - Safe contrast: Tasks are predefined; our search responsibilities are regenerated from the evolving target posterior and human prospective anchor before assignment.
+ER  - 
+
+TY  - CPAPER
+TI  - Multi-Robot Coordination in Dynamic Environments Shared with Humans
+AU  - Talebpour, Z.
+AU  - Martinoli, A.
+PY  - 2018
+T2  - 2018 IEEE International Conference on Robotics and Automation (ICRA)
+SP  - 4593
+EP  - 4600
+DO  - 10.1109/ICRA.2018.8460978
+UR  - https://doi.org/10.1109/ICRA.2018.8460978
+KW  - ICRA_USV_HRI
+KW  - human_aware
+KW  - multi_robot_coordination
+KW  - MRTA
+KW  - METADATA_VERIFIED
+N1  - Category: Human-aware multi-robot coordination
+N1  - Novelty threat: HIGH
+N1  - Summary: Introduces social human-aware multi-robot coordination/task allocation in shared dynamic environments.
+N1  - Safe contrast: Humans are external dynamic agents; human motion affects social/navigation cost rather than shared search responsibility.
+ER  - 
+
+TY  - CPAPER
+TI  - Risk-Based Human-Aware Multi-Robot Coordination in Dynamic Environments Shared with Humans
+AU  - Talebpour, Z.
+AU  - Martinoli, A.
+PY  - 2018
+T2  - 2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+SP  - 3365
+EP  - 3372
+DO  - 10.1109/IROS.2018.8593586
+UR  - https://doi.org/10.1109/IROS.2018.8593586
+KW  - ICRA_USV_HRI
+KW  - human_prediction
+KW  - risk_aware
+KW  - MRTA
+KW  - prediction_error
+KW  - FULLY_READ
+N1  - Category: Prediction-aware multi-robot allocation
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Propagates uncertain human trajectory predictions into risk-aware task-allocation bids and studies prediction error.
+N1  - Safe contrast: Prediction changes social-risk task cost for predefined tasks, not the upstream generation of probabilistic search responsibilities.
+ER  - 
+
+TY  - JOUR
+TI  - Adaptive Risk-Based Replanning for Human-Aware Multi-Robot Task Allocation With Local Perception
+AU  - Talebpour, Z.
+AU  - Martinoli, A.
+PY  - 2019
+JO  - IEEE Robotics and Automation Letters
+VL  - 4
+IS  - 4
+SP  - 3790
+EP  - 3797
+DO  - 10.1109/LRA.2019.2926966
+UR  - https://doi.org/10.1109/LRA.2019.2926966
+KW  - ICRA_USV_HRI
+KW  - human_prediction
+KW  - event_replanning
+KW  - MRTA
+KW  - METADATA_VERIFIED
+N1  - Category: Prediction-aware multi-robot allocation
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Uses changes in social risk and human-motion prediction uncertainty to trigger adaptive replanning under local perception.
+N1  - Safe contrast: Shows prediction-driven replanning is prior art; our event logic must be tied specifically to responsibility-consistency changes.
+ER  - 
+
+TY  - CPAPER
+TI  - HMPCC: Human-Aware Model Predictive Coverage Control
+AU  - Catellani, M.
+AU  - Gabbi, M.
+AU  - Sabattini, L.
+PY  - 2025
+T2  - 2025 IEEE International Symposium on Multi-Robot and Multi-Agent Systems (MRS)
+SP  - 1
+EP  - 7
+DO  - 10.48550/arXiv.2512.12717
+UR  - https://doi.org/10.48550/arXiv.2512.12717
+KW  - ICRA_USV_HRI
+KW  - human_prediction
+KW  - coverage_control
+KW  - MPC
+KW  - safety
+KW  - MRS2025
+KW  - METADATA_VERIFIED
+N1  - Category: Human-aware predictive coverage
+N1  - Novelty threat: MEDIUM
+N1  - Summary: Integrates probabilistic human trajectory forecasts into decentralized MPC coverage primarily as human-avoidance/safety constraints.
+N1  - Safe contrast: Predicted humans are non-cooperative dynamic agents; forecasts do not represent a searching fleet member's future responsibility.
+ER  - 
+
+TY  - CPAPER
+TI  - Spatial Intention Maps for Multi-Agent Mobile Manipulation
+AU  - Wu, J.
+AU  - Sun, X.
+AU  - Zeng, A.
+AU  - Song, S.
+AU  - Rusinkiewicz, S.
+AU  - Funkhouser, T.
+PY  - 2021
+T2  - 2021 IEEE International Conference on Robotics and Automation (ICRA)
+SP  - 8749
+EP  - 8756
+DO  - 10.1109/ICRA48506.2021.9561359
+UR  - https://doi.org/10.1109/ICRA48506.2021.9561359
+KW  - ICRA_USV_HRI
+KW  - spatial_intention
+KW  - multi_agent
+KW  - FULLY_READ
+N1  - Category: Spatial intention representation
+N1  - Novelty threat: MEDIUM
+N1  - Summary: Rasterizes communicated, currently executing autonomous paths as spatial intention maps used by decentralized reinforcement-learning policies.
+N1  - Safe contrast: Known autonomous plans are communicated; no human-controlled future-state prediction or probabilistic search-responsibility generation.
+ER  - 
+
+TY  - CPAPER
+TI  - Coordinated Decentralized Search for a Lost Target in a Bayesian World
+AU  - Bourgault, F.
+AU  - Furukawa, T.
+AU  - Durrant-Whyte, H. F.
+PY  - 2003
+T2  - 2003 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+DO  - 10.1109/IROS.2003.1250604
+UR  - https://doi.org/10.1109/IROS.2003.1250604
+KW  - ICRA_USV_HRI
+KW  - bayesian_search
+KW  - negative_evidence
+KW  - decentralized_search
+KW  - FULLY_READ
+N1  - Category: Classical Bayesian multi-robot search
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Classical multi-platform Bayesian lost-target search with no-detection likelihoods and cumulative probability of nondetection/detection.
+N1  - Safe contrast: Establishes that Bayesian missed-detection reasoning is classical; our potential contribution is empirical sensing-model identification/validation, not the Bayesian equations.
+ER  - 
+
+TY  - JOUR
+TI  - Efficient Multi-Robot Search for a Moving Target
+AU  - Hollinger, G. A.
+AU  - Singh, S.
+AU  - Djugash, J.
+AU  - Kehagias, A.
+PY  - 2009
+JO  - The International Journal of Robotics Research
+VL  - 28
+IS  - 2
+SP  - 201
+EP  - 219
+DO  - 10.1177/0278364908099853
+UR  - https://doi.org/10.1177/0278364908099853
+KW  - ICRA_USV_HRI
+KW  - bayesian_search
+KW  - submodular_search
+KW  - capture_probability
+KW  - FULLY_READ
+N1  - Category: Classical probabilistic search planning
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Formulates multi-robot efficient search path planning with discounted expected capture probability, proves submodularity, and uses sequential allocation.
+N1  - Safe contrast: A strong sensor/search-aware planning baseline ancestor; no HRI prospective responsibility.
+ER  - 
+
+TY  - CPAPER
+TI  - Distributed Coordination and Data Fusion for Underwater Search
+AU  - Hollinger, G. A.
+AU  - Yerramalli, S.
+AU  - Singh, S.
+AU  - Mitra, U.
+AU  - Sukhatme, G. S.
+PY  - 2011
+T2  - 2011 IEEE International Conference on Robotics and Automation (ICRA)
+SP  - 349
+EP  - 355
+DO  - 10.1109/ICRA.2011.5979685
+UR  - https://doi.org/10.1109/ICRA.2011.5979685
+KW  - ICRA_USV_HRI
+KW  - underwater_search
+KW  - distributed_fusion
+KW  - maritime_search
+KW  - FULLY_READ
+N1  - Category: Marine probabilistic multi-robot search
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Distributed AUV target search under intermittent acoustic communication with probabilistic data fusion and search planning.
+N1  - Safe contrast: Maritime probabilistic multi-robot search is prior art; sensing is more abstract than the proposed calibrated directional detector pipeline.
+ER  - 
+
+TY  - JOUR
+TI  - Distributed Data Fusion for Multirobot Search
+AU  - Hollinger, G. A.
+AU  - Yerramalli, S.
+AU  - Singh, S.
+AU  - Mitra, U.
+AU  - Sukhatme, G. S.
+PY  - 2015
+JO  - IEEE Transactions on Robotics
+VL  - 31
+IS  - 1
+SP  - 55
+EP  - 66
+DO  - 10.1109/TRO.2014.2378411
+UR  - https://doi.org/10.1109/TRO.2014.2378411
+KW  - ICRA_USV_HRI
+KW  - bayesian_search
+KW  - distributed_fusion
+KW  - capture_probability
+KW  - FULLY_READ
+N1  - Category: Classical Bayesian multi-robot search
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Extends conservative distributed Bayesian fusion and multi-robot search; uses an augmented capture-state representation.
+N1  - Safe contrast: Further confirms residual nondetection/capture probability is not novel; useful as theory/representation precedent.
+ER  - 
+
+TY  - JOUR
+TI  - Decentralized Multi-Robot Cooperation with Auctioned POMDPs
+AU  - Capitán, J.
+AU  - Spaan, M. T. J.
+AU  - Merino, L.
+AU  - Ollero, A.
+PY  - 2013
+JO  - The International Journal of Robotics Research
+VL  - 32
+IS  - 6
+DO  - 10.1177/0278364913483345
+UR  - https://doi.org/10.1177/0278364913483345
+KW  - ICRA_USV_HRI
+KW  - POMDP
+KW  - belief_coordination
+KW  - auction
+KW  - FULLY_READ_PRECURSOR
+N1  - Category: Belief-space multi-robot coordination
+N1  - Novelty threat: HIGH
+N1  - Summary: Coordinates single-robot POMDP policies through auctions/Hungarian-style assignment and shared beliefs; precursor experiments include directional detection assumptions.
+N1  - Safe contrast: Responsibilities/behaviors are pre-specified POMDP policies; does not generate a global posterior-weighted responsibility geometry from human takeover.
+ER  - 
+
+TY  - JOUR
+TI  - Coverage Control for Mobile Sensing Networks
+AU  - Cortés, J.
+AU  - Martínez, S.
+AU  - Karatas, T.
+AU  - Bullo, F.
+PY  - 2004
+JO  - IEEE Transactions on Robotics and Automation
+VL  - 20
+IS  - 2
+SP  - 243
+EP  - 255
+DO  - 10.1109/TRA.2004.824698
+UR  - https://doi.org/10.1109/TRA.2004.824698
+KW  - ICRA_USV_HRI
+KW  - coverage_control
+KW  - CVT
+KW  - Voronoi
+KW  - Lloyd
+KW  - FULLY_READ
+N1  - Category: Classical coverage/responsibility
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Classical locational optimization, weighted Voronoi/CVT, and Lloyd-style distributed coverage control.
+N1  - Safe contrast: Our posterior-weighted squared-distance center objective is an instantiation of this classical family, not a contribution.
+ER  - 
+
+TY  - CPAPER
+TI  - Local Voronoi Decomposition for Multi-Agent Task Allocation
+AU  - Fu, J. G. M.
+AU  - Bandyopadhyay, T.
+AU  - Ang, M. H.
+PY  - 2009
+T2  - 2009 IEEE International Conference on Robotics and Automation (ICRA)
+SP  - 1935
+EP  - 1940
+DO  - 10.1109/ROBOT.2009.5152829
+UR  - https://doi.org/10.1109/ROBOT.2009.5152829
+KW  - ICRA_USV_HRI
+KW  - Voronoi
+KW  - task_allocation
+KW  - spatial_responsibility
+KW  - overlap
+KW  - FULLY_READ
+N1  - Category: Classical spatial task decomposition
+N1  - Novelty threat: VERY HIGH
+N1  - Summary: Uses local current-position Voronoi decomposition for online spatial task allocation and reduced overlapping exploration.
+N1  - Safe contrast: Current positions are responsibility generators; no prospective human-controlled fleet state or posterior-weighted global generator reconfiguration.
+ER  - 
+
+TY  - CPAPER
+TI  - Distributed Coverage Optimization in a Network of Static and Mobile Sensors
+AU  - Mahboubi, H.
+AU  - Habibi, J.
+AU  - Aghdam, A. G.
+AU  - Sayrafian-Pour, K.
+PY  - 2013
+T2  - 2013 American Control Conference (ACC)
+DO  - 10.1109/ACC.2013.6580919
+UR  - https://doi.org/10.1109/ACC.2013.6580919
+KW  - ICRA_USV_HRI
+KW  - coverage_control
+KW  - static_mobile_sensors
+KW  - weighted_Voronoi
+KW  - FULLY_READ
+N1  - Category: Fixed/static resource coverage precedent
+N1  - Novelty threat: HIGH
+N1  - Summary: Static sensors influence redistribution of mobile sensors using multiplicatively weighted Voronoi coverage-hole reasoning.
+N1  - Safe contrast: Shows fixed resources influencing mobile redistribution is old; static sensors are realized coverage resources, not uncertain future human-controlled fleet responsibility.
+ER  - 
+
+TY  - JOUR
+TI  - Bidding Protocols for Deploying Mobile Sensors
+AU  - Wang, G.
+AU  - Cao, G.
+AU  - Berman, P.
+AU  - La Porta, T. F.
+PY  - 2007
+JO  - IEEE Transactions on Mobile Computing
+VL  - 6
+IS  - 5
+SP  - 563
+EP  - 576
+DO  - 10.1109/TMC.2007.1022
+UR  - https://doi.org/10.1109/TMC.2007.1022
+KW  - ICRA_USV_HRI
+KW  - mobile_sensors
+KW  - coverage_holes
+KW  - bidding
+KW  - METADATA_VERIFIED
+N1  - Category: Fixed/static resource coverage precedent
+N1  - Novelty threat: HIGH
+N1  - Summary: Static sensors detect coverage holes with Voronoi geometry and bid mobile sensors to redeploy.
+N1  - Safe contrast: Another clear precedent that fixed/static spatial resources can drive mobile redistribution.
+ER  - 
+
+TY  - JOUR
+TI  - Constrained Centroidal Voronoi Tessellations for Surfaces
+AU  - Du, Q.
+AU  - Gunzburger, M. D.
+AU  - Ju, L.
+PY  - 2003
+JO  - SIAM Journal on Scientific Computing
+VL  - 24
+IS  - 5
+SP  - 1488
+EP  - 1506
+DO  - 10.1137/S1064827501391576
+UR  - https://doi.org/10.1137/S1064827501391576
+KW  - ICRA_USV_HRI
+KW  - CVT
+KW  - constrained_CVT
+KW  - terminology
+KW  - FULLY_READ
+N1  - Category: Coverage terminology/background
+N1  - Novelty threat: LOW
+N1  - Summary: Defines constrained CVTs where generators are constrained to surfaces/manifolds.
+N1  - Safe contrast: Terminology warning: this is not the same as freezing a subset of generators during re-clustering.
+ER  - 
+
+TY  - JOUR
+TI  - Coordinated Informative Path Planning for Multi-Robot Search in Open Fields
+AU  - Kim, K.
+AU  - Kim, J.
+PY  - 2025
+JO  - Journal of Intelligent & Robotic Systems
+VL  - 111
+SP  - Article 65
+DO  - 10.1007/s10846-025-02270-z
+UR  - https://doi.org/10.1007/s10846-025-02270-z
+KW  - ICRA_USV_HRI
+KW  - maritime_search
+KW  - open_field_search
+KW  - weighted_Voronoi
+KW  - informative_path
+KW  - FULLY_READ
+N1  - Category: Modern maritime/open-field search
+N1  - Novelty threat: HIGH
+N1  - Summary: Combines weighted Voronoi area division, TSP coverage, and post-detection informative localization in large open-field/ocean-motivated multi-robot search.
+N1  - Safe contrast: No normalized single-target Bayesian search posterior or missed-detection update; no human intervention.
+ER  - 

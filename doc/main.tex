@@ -1,0 +1,597 @@
+\documentclass[letterpaper, 10pt, conference]{ieeeconf}
+
+\overrideIEEEmargins
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{Predictive Spatial Responsibility Redistribution for\\
+Multimodal Human--Multi-USV Collaborative Probabilistic Search}
+
+\author{Anonymous Authors}
+
+% FIGURE POLICY:
+% Prefer ~5 high-information figures over many algorithm-component figures.
+% Do not create standalone figures for standard A*, Hungarian assignment,
+% or software architecture unless later reviewer clarity requires them.
+% Final figure placement must be reconsidered together with the ICRA page budget.
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This is a placeholder abstract for the anonymous initial draft.
+\end{abstract}
+
+\section{Introduction}
+
+% TODO(citation): multi-robot probabilistic search background.
+% TODO(citation): human-robot collaborative search / mixed-initiative planning.
+Coordinated multi-USV search in a known planar maritime environment combines persistent autonomous inference with opportunities for human intervention. In the setting considered here, exactly one stationary target occupies an unknown free-space location, while the autonomous system maintains a probabilistic search state over that location. An operator may intervene in or directly control one USV through an available multimodal interaction framework. The human and autonomous roles are complementary: the human can provide higher-level spatial or contextual judgment, whereas autonomy maintains probabilistic inference, repeated planning, and fleet-wide computation. The resulting question is how the remaining autonomous fleet should adapt its search responsibilities when one vehicle is affected by human intervention, so that human and autonomy cooperate rather than duplicate future search effort.
+
+Human control changes not only the team's current configuration but also its likely future spatial search responsibility. If autonomous planning reacts only to the current human-USV position, other vehicles can retain responsibility for locations that the human-controlled USV is likely to inspect in the near future. We refer to this possibility as potential future search redundancy. This motivates the central research question of whether the autonomous fleet can anticipate the future spatial consequence of human intervention and proactively redistribute its own responsibilities.
+
+% TODO(citation): intent/future-motion-aware multi-robot coordination.
+Target-location uncertainty and human-motion information have distinct semantics. The target posterior, \(b_i^t=P(X=x_i\mid Z_{1:t})\), is updated only from probabilistically modeled sensor evidence. A human future-position estimate at horizon \(H\), \(\hat{\mathbf{p}}_h(t+H)\), is not target evidence and therefore does not directly change that posterior. Instead, when human spatial information is available, it is introduced at the planning layer as a prospective fixed responsibility anchor.
+
+We formulate this mechanism as \emph{predictive spatial responsibility redistribution}. The system maintains a calibrated Bayesian target belief and generates belief-aware search responsibility anchors. Current, predicted, oracle, or explicit-command spatial information can be represented through fixed responsibility anchors when appropriate. All searchable free cells then participate again in global re-clustering: fixed anchors remain fixed while only autonomous centers update. Search-center generation is followed by a separate obstacle-aware, path-dependent vehicle--center assignment stage. The resulting motions are executed, sensed, used to update the posterior, and replanned on justified events. In particular, a predicted human position neither commands the human-controlled USV nor directly modifies the Bayesian belief.
+
+Our hypothesis is that predicting the future spatial consequence of human intervention and reserving that location during responsibility generation may allow the remaining autonomous fleet to redistribute responsibility earlier, reduce redundant future search, and improve target-search performance. The evaluation is designed to distinguish no human spatial information, current human position, predicted future human position, and oracle future position. The H2 current-position versus H3 predictive comparison tests the value of prediction beyond reactive awareness, while the H3 versus H4 comparison separates predictor limitations from the mechanism's potential. These are hypotheses to be tested, not observed results.
+
+The contributions of this work are:
+\begin{itemize}
+  \item A predictive spatial-responsibility redistribution mechanism that represents predicted future human spatial information as a fixed planning anchor and globally redistributes the remaining autonomous responsibilities without directly modifying the target posterior.
+  \item A probabilistically explicit closed-loop search formulation coupling calibrated sensing and evidence updates with belief-aware responsibility generation, path-dependent assignment, and event-driven replanning.
+  \item A controlled paired evaluation methodology separating current-position, predicted-future, and oracle-future human information, with prediction-quality and mechanism analyses intended to test the causal chain from prediction quality to responsibility redistribution, redundant search, and mission performance.
+\end{itemize}
+% TODO(page budget): compress Introduction together with Related Work
+% after references and final figures are inserted.
+
+\section{Related Work}
+% TODO: Add related work.
+
+\section{Problem Formulation}
+\subsection{Known Maritime Search Environment}
+
+Consider a bounded two-dimensional maritime region \(\Omega \subset \mathbb{R}^2\) with a coarse, known obstacle region \(\mathcal{O}\). The planner uses \(\mathcal{M}\), a known discrete map representation of \(\mathcal{O}\) obtained from preliminary reconnaissance. The searchable free space is
+\begin{equation}
+  \mathcal{F} = \Omega \setminus \mathcal{O}.
+  \label{eq:free_space}
+\end{equation}
+Thus, \(\mathcal{O}\) denotes the obstacle region, \(\mathcal{F}\) denotes the free space, and \(\mathcal{M}\) denotes the discrete map representation used by the planner. The planner does not solve SLAM. There exists exactly one stationary target with unknown location \(x^\star \in \mathcal{F}\). Its ground-truth location is unavailable to the planner.
+
+\subsection{Target Belief and Probabilistic Search State}
+
+Let \(\mathcal{X} = \{x_1, \ldots, x_N\}\) denote the set of free grid cells obtained by discretizing \(\mathcal{F}\); obstacle cells are excluded. Let the random variable \(X\) denote the free cell containing the unique target. Given the observation history \(Z_{1:t}\), the search state is represented by the normalized Bayesian belief
+\begin{equation}
+  b_i^t = P(X = x_i \mid Z_{1:t}).
+  \label{eq:target_belief}
+\end{equation}
+It satisfies
+\begin{equation}
+  \sum_i b_i^t = 1
+  \label{eq:belief_normalization}
+\end{equation}
+and, in the absence of prior information, is initialized as
+\begin{equation}
+  b_i^0 = \frac{1}{N}.
+  \label{eq:uniform_prior}
+\end{equation}
+Thus, the belief expresses the conditional probability that the target is at each free cell; it is neither a coverage percentage nor a detection-probability map.
+
+\subsection{Human--Multi-USV Team}
+
+Let the fleet be indexed by
+\begin{equation}
+  \mathcal{R} = \{1, \ldots, R\},
+  \label{eq:fleet}
+\end{equation}
+where the position of USV \(r \in \mathcal{R}\) is
+\begin{equation}
+  \mathbf{p}_r(t) = [x_r(t), y_r(t)]^\mathsf{T}.
+  \label{eq:usv_position}
+\end{equation}
+The current implementation uses \(R=10\) WAM-Vs, while the formulation remains general in \(R\). During active direct human control, the operator controls at most one vehicle \(h(t) \in \mathcal{R}\) and may switch the controlled vehicle during the mission. The remaining autonomous fleet is
+\begin{equation}
+  \mathcal{R}_{\mathrm{A}}(t) =
+  \begin{cases}
+    \mathcal{R} \setminus \{h(t)\}, & \text{if direct control is active}, \\
+    \mathcal{R}, & \text{otherwise}.
+  \end{cases}
+  \label{eq:autonomous_fleet}
+\end{equation}
+When the human interface provides an explicit structured vehicle--goal command \((r,g_{\mathrm{cmd}})\), the pair is treated as locked during its active interval; command-handling details are outside the present formulation. Human input affects planning responsibility only and does not directly modify the target belief.
+
+\subsection{Spatial Search Responsibility}
+
+Let the search-center set at time \(t\) be
+\begin{equation}
+  \mathcal{C}^t = \{c_1^t, \ldots, c_K^t\}.
+  \label{eq:search_centers}
+\end{equation}
+A search center is not, by itself, complete search responsibility. Rather, it is a compact spatial anchor that induces a partition of free cells. Specifically, the point-anchored spatial responsibility associated with center \(c_j^t\) is
+\begin{equation}
+  \mathcal{V}_j^t = \left\{x_i \in \mathcal{X} :
+  j = \operatorname*{arg\,min}_{k \in \{1,\ldots,K\}}
+  \lVert x_i - c_k^t \rVert_2\right\}.
+  \label{eq:responsibility_partition}
+\end{equation}
+Distance ties are resolved by a deterministic tie-breaking rule; under this rule, the responsibility cells form a disjoint partition of the searchable cell set \(\mathcal{X}\). Each \(\mathcal{V}_j^t\) represents planned, team-level spatial search responsibility rather than actual executed sensor coverage. This work uses this center-induced, Voronoi-like spatial partition and does not claim to solve trajectory-level responsibility allocation. A predicted future human position may subsequently be used as a fixed responsibility anchor, not as a target observation or a control command for the human-controlled USV.
+
+\subsection{Research Objective}
+
+The primary mission outcome is the time to first effective correct target detection, denoted \(T_{\mathrm{FD}}\).
+The central research question is whether predicted future spatial responsibility of a human-controlled USV can allow the remaining autonomous fleet to proactively redistribute search responsibility, reduce redundant future search, and improve target-detection performance relative to strategies using no human spatial information or only the current human-USV position. Any improvement due to prediction is a hypothesis to be tested experimentally.
+
+\section{Proposed Method}
+% TODO(page budget): after the full first draft is complete, audit
+% display equations and demote nonessential definition-only equations
+% to inline prose to satisfy the final ICRA page limit.
+% TODO(figure-1): two-column system overview.
+% Show sensor observations -> Bayesian belief -> responsibility generation
+% -> human-constrained re-clustering -> pairwise A* -> assignment
+% -> execution -> sensing.
+% Show joystick/voice/gaze as communication modalities entering a separate
+% human spatial-information branch.
+% Do NOT draw human input directly updating target belief.
+% Suggested future label: fig:system_overview
+
+\subsection{End-to-End Search Cycle}
+
+An experimental trial begins at an explicit search-start event and contains many sensing, update, planning, and execution cycles. Let \([t_k,t_{k+1}]\) denote one Bayesian update interval. Within each interval, the current belief informs a generic planning stage, the resulting motions are executed while sensing occurs over \([t_k,t_{k+1}]\), and the resulting evidence produces a new belief for subsequent planning. The planning stage is left generic here; its responsibility-generation and motion-planning details are introduced separately.
+
+One Bayesian update interval is not an experimental trial. A planning or replanning cycle may accompany an update interval, whereas a discovery is an evaluation event associated with first effective correct detection. A positive observation is a sensor event and does not by itself imply discovery or a successful terminal state. A complete trial contains many updates and replans, and terminates only when a mission terminal state is reached.
+
+\subsection{Spatial Detection Model}
+
+For candidate target cell \(x_i=[x_i,y_i]^\mathsf{T}\) and USV \(r\), the sensing range is
+\begin{equation}
+  d_{ri}(t) = \lVert x_i - \mathbf{p}_r(t) \rVert_2.
+  \label{eq:sensing_range}
+\end{equation}
+Let \(\psi_r(t)\) be the vehicle heading. The relative bearing from USV \(r\) to cell \(x_i\) is
+\begin{equation}
+  \beta_{ri}(t) = \operatorname{wrap}\!\left(
+  \operatorname{atan2}\!\bigl(y_i-y_r(t),x_i-x_r(t)\bigr)-\psi_r(t)\right).
+  \label{eq:relative_bearing}
+\end{equation}
+The current interpretable candidate sensor model is
+\begin{equation}
+  \begin{aligned}
+    P_D(d,\beta) ={}& \mathbb{I}\!\left\{\lvert\beta\rvert \leq \frac{\theta_{\mathrm{FOV}}}{2}\right\}
+    \mathbb{I}\!\left\{d \leq R_{\mathrm{cal}}\right\} \\
+    &\times \frac{p_{\max}}{1+\exp\!\left((d-d_{50})/s\right)}.
+  \end{aligned}
+  \label{eq:spatial_detection_model}
+\end{equation}
+Here, \(p_{\max}\), \(d_{50}\), \(s\), and \(R_{\mathrm{cal}}\) are obtained from an independent detector Monte Carlo calibration experiment. Thus, \(P_D\) is the end-to-end correct-detection probability for one statistically effective observation opportunity under the specified geometry. A camera far clipping distance is not treated as a calibrated detection range.
+
+\subsection{Effective Observation Hazard}
+
+Native video frames are temporally correlated and cannot all be treated as independent Bernoulli observations. Let \(\nu_{\mathrm{eff}}\) denote the empirically estimated rate of statistically effective independent observation opportunities. The corresponding hazard rate is
+\begin{equation}
+  h_{ri}(t) = -\nu_{\mathrm{eff}}\ln\!\left[1-P_D\!\left(d_{ri}(t),\beta_{ri}(t)\right)\right].
+  \label{eq:effective_hazard}
+\end{equation}
+The quantity \(h_{ri}(t)\) has units of inverse time and is not itself a probability. Equation~\eqref{eq:effective_hazard} is the Bernoulli-opportunity-equivalent hazard mapping: it preserves the survival probability implied by an equivalent rate of statistically independent Bernoulli observation opportunities. The rate \(\nu_{\mathrm{eff}}\) is obtained through temporal-correlation or first-detection waiting-time calibration, and the final adequacy of this mapping must be validated against empirical first-detection waiting-time data. Because \(P_D\) already represents an end-to-end correct-detection probability, it must not be double-counted through an additional classifier-quality factor.
+% TODO(calibration): validate Bernoulli-equivalent PD-to-hazard mapping
+% against empirical first-detection waiting-time distributions.
+
+For one update interval, the accumulated hazard for cell \(x_i\) is
+\begin{equation}
+  \Delta\Lambda_i^{(k)} =
+  \sum_{r\in\mathcal{R}}\int_{t_k}^{t_{k+1}} h_{ri}(\tau)\,d\tau.
+  \label{eq:interval_hazard}
+\end{equation}
+This baseline sensing model assumes conditional independence across USVs given the target cell; the assumption is retained as a modeling approximation rather than an overclaim about all sensing dependencies.
+
+\subsection{Bayesian Update from Negative Evidence}
+
+For an interval with no effective positive target detection, the missed-detection likelihood is
+\begin{equation}
+  S_i^{(k)} = \exp\!\left[-\Delta\Lambda_i^{(k)}\right].
+  \label{eq:miss_likelihood}
+\end{equation}
+Its probabilistic meaning over interval \([t_k,t_{k+1}]\) is
+\begin{equation}
+  S_i^{(k)} = P\!\left(\text{no effective detection in interval }k\mid X=x_i\right).
+  \label{eq:miss_likelihood_meaning}
+\end{equation}
+The belief update is then
+\begin{equation}
+  b_i^{k+1} =
+  \frac{b_i^k S_i^{(k)}}{\sum_j b_j^k S_j^{(k)}}.
+  \label{eq:negative_bayes}
+\end{equation}
+A cell that should very likely have produced a detection but did not receives strong negative evidence, whereas an effectively unobserved cell receives little direct negative evidence. Posterior probability can increase in an unobserved cell only because competing probability mass is reduced elsewhere and the posterior is normalized. This update is not a binary visited--unvisited coverage rule.
+
+If a positive detector event occurs at time \(\tau\in[t_k,t_{k+1}]\), the negative evidence accumulated over \([t_k,\tau)\) is first applied to obtain the pre-event belief \(b^-\), after which the positive-event likelihood is applied at \(\tau\) to obtain \(b^+\). The event itself is not also counted as missed detection evidence, thereby retaining pre-event negative evidence without double counting.
+
+\subsection{Positive Observation and Target Confirmation}
+
+A positive observation requires a positive-event likelihood rather than the missed-detection likelihood. For measurement \(z\), a general form is
+\begin{equation}
+  L_i^+(z) = P\!\left(D=1,z\mid X=x_i,s_r\right),
+  \label{eq:positive_likelihood}
+\end{equation}
+where \(s_r\) denotes the relevant sensor state and geometry of USV \(r\). The positive-evidence update is
+\begin{equation}
+  b_i^+ = \frac{b_i^- L_i^+(z)}{\sum_j b_j^- L_j^+(z)}.
+  \label{eq:positive_bayes}
+\end{equation}
+If false alarms are negligible, one candidate calibrated form is
+\begin{equation}
+  L_i^+(z) = P_D(d_{ri},\beta_{ri})\,\mathcal{N}(z;x_i,\Sigma_z).
+  \label{eq:positive_likelihood_negligible_fa}
+\end{equation}
+If false alarms are non-negligible, the likelihood must instead include an explicit false-alarm component involving \(\pi_{\mathrm{FA}}\) and \(g_{\mathrm{FA}}(z)\).
+
+A positive observation is not automatically equivalent to \emph{FOUND}. A first effective correct detection may record a discovery event and \(T_{\mathrm{FD}}\), while the mission continues until a calibrated target-confirmation rule is satisfied. The final \emph{FOUND} rule must be derived from independent target-present and target-absent calibration data under a predeclared acceptable false-confirmation risk. The quantity \(T_{\mathrm{FD}}\) is a primary experimental evaluation quantity: whether a detector event is correct may be determined using simulator ground truth only in the evaluation and logging layer. The target ground truth \(x^\star\) is never supplied to the planner, Bayesian filter, human-facing alert logic, or confirmation decision. Thus, discovery is evaluation/logging semantics, not privileged evidence injected into the planner; runtime confirmation depends only on calibrated detector observations and the confirmation model.
+% TODO(calibration): freeze FOUND confirmation rule after
+% target-present/target-absent calibration.
+
+\subsection{Residual Missed-Detection Risk and Trial Termination}
+
+From search start \(t_s\), define the cumulative hazard for cell \(x_i\) as
+\begin{equation}
+  \Lambda_i(t) =
+  \sum_{r\in\mathcal{R}}\int_{t_s}^{t} h_{ri}(\tau)\,d\tau.
+  \label{eq:cumulative_hazard}
+\end{equation}
+The prior-weighted residual probability that the target has escaped all effective observations is
+\begin{equation}
+  R_{\mathrm{miss}}(t) = \sum_i b_i^0\exp\!\left[-\Lambda_i(t)\right].
+  \label{eq:residual_miss_risk}
+\end{equation}
+The normalized posterior \(b_i^t\) answers where the target is relatively likely to be given all observations so far. In contrast, \(R_{\mathrm{miss}}(t)\) quantifies the prior-weighted residual probability that the target has remained undetected since search start; consequently, \(b_i^t\) is not substituted for \(b_i^0\) in \eqref{eq:residual_miss_risk}.
+
+The baseline mission terminal states are as follows:
+\begin{enumerate}
+  \item \emph{FOUND}: the calibrated confirmation rule is satisfied.
+  \item \emph{SEARCH\_EXHAUSTED}: \(R_{\mathrm{miss}}(t)\leq\epsilon_{\mathrm{miss}}\) without confirmed detection.
+  \item \emph{BUDGET\_EXPIRED}: an explicit experiment or mission budget is reached before either of the preceding states.
+  \item \emph{STOPPED}: an administrative, operator, or system stop; this is an aborted termination rather than successful discovery.
+\end{enumerate}
+The value \(\epsilon_{\mathrm{miss}}\) is not an arbitrary heatmap threshold: its final choice must follow an acceptable mission-level residual miss risk and sensitivity analysis. Likewise, the \emph{FOUND} confirmation rule is a calibration-derived decision rule, not an arbitrary implementation constant.
+The precedence between an unresolved positive candidate and \emph{SEARCH\_EXHAUSTED} is finalized together with the calibrated target-confirmation protocol.
+% TODO(calibration): freeze terminal-state precedence for unresolved
+% positive candidates versus SEARCH_EXHAUSTED.
+
+\subsection{Belief-Aware Search-Center Generation}
+
+Given the target belief over \(\mathcal{X}\), the belief-weighted search-center objective is
+\begin{equation}
+  J(\mathcal{C}^t;b^t) =
+  \sum_{i=1}^{N} b_i^t
+  \min_{c\in\mathcal{C}^t}\lVert x_i-c\rVert_2^2.
+  \label{eq:belief_center_objective}
+\end{equation}
+The target posterior acts as the cell weight, so high-belief probability mass contributes more strongly to center placement. For fixed centers, cell membership remains induced by nearest-center geometry as in \eqref{eq:responsibility_partition}; the belief weights affect the center objective and updates, not the definition of sensor coverage.
+
+For responsibility cell \(\mathcal{V}_j^t\), the continuous belief-weighted centroid candidate is
+\begin{equation}
+  \bar{c}_j^t =
+  \frac{\sum_{x_i\in\mathcal{V}_j^t} b_i^t x_i}
+  {\sum_{x_i\in\mathcal{V}_j^t} b_i^t}.
+  \label{eq:belief_weighted_centroid}
+\end{equation}
+The center is then realized at a feasible searchable location through a realization operator,
+\begin{equation}
+  c_j^t = \Pi_{\mathcal{X}}\!\left(\bar{c}_j^t\right).
+  \label{eq:feasible_center_realization}
+\end{equation}
+The exact projection or medoid-like realization policy is not specified here.
+% TODO(implementation): verify exact feasible-center realization and
+% empty/zero-weight cluster handling against the current planner code.
+
+Search centers are target points for planning, not hard boundaries that permanently remove cells from later search. After a valid re-clustering event, all searchable free cells participate again.
+
+\subsection{Human Spatial Information as Fixed Responsibility Anchors}
+
+Partition the center set into fixed human-related responsibility anchors and autonomous, updatable search centers:
+\begin{equation}
+  \mathcal{C}^t = \mathcal{C}_{\mathrm{F}}^t \cup \mathcal{C}_{\mathrm{A}}^t.
+  \label{eq:center_role_partition}
+\end{equation}
+The sets \(\mathcal{C}_{\mathrm{F}}^t\) and \(\mathcal{C}_{\mathrm{A}}^t\) are treated as distinct center roles. Interaction modalities, including joystick, voice, and gaze, are communication channels; planner-level spatial semantics are represented separately. These semantics may include controlled-USV selection or state, direct control, and point, region, or direction information when supported by the interface. A fixed responsibility anchor may originate from: the current human-controlled USV position \(\mathbf{p}_h(t)\) during active direct control; a predicted future human position \(\hat{\mathbf{p}}_h(t+H)\); the oracle future position \(\mathbf{p}_h(t+H)\) used only for controlled evaluation; or an explicit commanded destination \(g_{\mathrm{cmd}}\).
+
+These quantities constrain planning responsibility and do not directly modify \(b_i^t\). In particular, a predicted anchor does not command the human-controlled USV: it reserves likely future human search responsibility. When an explicit structured vehicle--goal command \((r,g_{\mathrm{cmd}})\) is provided, the commanded destination acts as a fixed responsibility anchor, while the corresponding vehicle--goal pair remains locked for later assignment handling. No interaction modality is assumed to provide any particular planner-level semantic. A fixed responsibility anchor must correspond to a feasible searchable location; invalid anchors are handled by an explicit planner feasibility policy specified in the implementation section.
+% TODO(implementation): document the exact feasibility policy for
+% infeasible predicted or commanded responsibility anchors.
+% TODO(multimodal semantics): document and validate the exact
+% planner-level intents supported by each interaction modality.
+
+\subsection{Predicting the Future Human-Controlled Position}
+
+Let \(\mathcal{H}_t\) denote a recent history of available human-control and USV-state features. The predicted future position at horizon \(H\) is
+\begin{equation}
+  \hat{\mathbf{p}}_h(t+H) = f_\theta(\mathcal{H}_t).
+  \label{eq:human_destination_prediction}
+\end{equation}
+Random Forest is one candidate realization of \(f_\theta\), rather than a primary contribution, and the predictor architecture is not frozen by the theoretical formulation. The horizon \(H\) must be selected through a prediction-accuracy versus useful-lead-time validation tradeoff, rather than final HRI performance tuning.
+
+A transparent constant-velocity baseline is
+\begin{equation}
+  \hat{\mathbf{p}}_h^{\mathrm{CV}}(t+H) =
+  \mathbf{p}_h(t) + H\mathbf{v}_h(t).
+  \label{eq:constant_velocity_prediction}
+\end{equation}
+The oracle evaluation reference is the actual future position \(\mathbf{p}_h(t+H)\). It is unavailable to the runtime planner and is used only for controlled evaluation or replay.
+% TODO(prediction): freeze predictor features, horizon H, and model
+% after independent validation.
+% TODO(prediction semantics): freeze whether the predictor target is
+% fixed-horizon future position or intended destination endpoint.
+
+\subsection{Fixed-Center Human-Constrained Re-Clustering}
+
+% TODO(figure-2): core predictive spatial responsibility redistribution figure.
+% Prefer three panels:
+% (a) current-position responsibility anchor,
+% (b) predicted future-position anchor,
+% (c) oracle future-position anchor.
+% Show belief heatmap, obstacles, human-controlled USV, anchors,
+% autonomous centers, and induced responsibility partitions.
+% This figure should visually explain H2/H3/H4 later.
+% Suggested future label: fig:predictive_responsibility
+
+Let \(K_{\mathrm{F}}(t)=|\mathcal{C}_{\mathrm{F}}^t|\) and \(K_{\mathrm{A}}(t)=|\mathcal{C}_{\mathrm{A}}^t|\). The total active responsibility-anchor count is
+\begin{equation}
+  K(t) = K_{\mathrm{F}}(t) + K_{\mathrm{A}}(t).
+  \label{eq:responsibility_anchor_count}
+\end{equation}
+The experimental modes instantiate these counts consistently with the active human and command configuration; the theoretical method does not impose a fixed value for either count.
+
+When \(\mathcal{C}_{\mathrm{F}}^t\) is nonempty, the constrained belief-weighted objective is
+\begin{equation}
+  \begin{aligned}
+    J(\mathcal{C}_{\mathrm{F}}^t,\mathcal{C}_{\mathrm{A}}^t;b^t)
+    ={}& \sum_{i=1}^{N} b_i^t
+    \min\!\Bigg\{
+    \min_{f\in\mathcal{C}_{\mathrm{F}}^t}\lVert x_i-f\rVert_2^2,\\
+    &\hspace{18mm}\min_{c\in\mathcal{C}_{\mathrm{A}}^t}\lVert x_i-c\rVert_2^2
+    \Bigg\}.
+  \end{aligned}
+  \label{eq:fixed_center_objective}
+\end{equation}
+If \(\mathcal{C}_{\mathrm{F}}^t\) is empty, the objective reduces to \eqref{eq:belief_center_objective} with \(\mathcal{C}^t=\mathcal{C}_{\mathrm{A}}^t\), avoiding a minimum over an empty set.
+
+The iterative semantics are as follows: all \(x_i\in\mathcal{X}\) are reassigned using the complete current center set; centers in \(\mathcal{C}_{\mathrm{F}}^t\) remain fixed; only centers in \(\mathcal{C}_{\mathrm{A}}^t\) are updated from their currently assigned belief-weighted cells and realized at feasible searchable locations; and the process repeats until the planner's clustering convergence criterion is met. Thus, all non-obstacle searchable free cells participate again in re-clustering. The procedure neither manually deletes a predicted human region nor removes residual search regions from the state space, and it does not move a fixed human center during autonomous Lloyd updates.
+
+The mechanism under test is the chain
+\begin{equation}
+  \begin{aligned}
+    \hat{\mathbf{p}}_h(t+H)
+    &\;\longrightarrow\; \text{fixed responsibility anchor} \\
+    &\;\longrightarrow\; \text{global free-cell re-clustering} \\
+    &\;\longrightarrow\; \text{redistributed autonomous responsibilities}.
+  \end{aligned}
+  \label{eq:predictive_responsibility_chain}
+\end{equation}
+Prediction reserves likely future human responsibility; it does not force the human-controlled USV to execute the predicted trajectory. This predictive spatial responsibility redistribution is evaluated as a mechanism, without claiming that clustering, Random Forest, or fixed-center Lloyd iterations alone constitute novel algorithms.
+
+\subsection{Path-Dependent Vehicle--Center Cost}
+
+Search-center generation and vehicle--center assignment are separate stages. The former determines where search responsibilities are located, whereas the latter determines which available autonomous USV executes each autonomous responsibility. After excluding vehicles and goals belonging to active locked vehicle--goal pairs, let \(\mathcal{R}_{\mathrm{avail}}(t)\) and \(\mathcal{C}_{\mathrm{avail}}^t\) denote the remaining available autonomous vehicle and center sets, respectively.
+
+For each available vehicle--center pair \((r,j)\), an obstacle-aware path is computed before assignment:
+\begin{equation}
+  \mathcal{P}_{rj} = A^\ast\!\left(\mathbf{p}_r(t),c_j^t;\mathcal{M}\right).
+  \label{eq:vehicle_center_path}
+\end{equation}
+The baseline uses 8-neighbor free-cell A\(^\ast\) motion on the known map \(\mathcal{M}\). Let \(\Delta\) be the grid-cell edge length. Horizontal and vertical steps cost \(\Delta\), diagonal steps cost \(\sqrt{2}\Delta\), and diagonal corner cutting is forbidden when either required adjacent orthogonal cell is occupied. If no path exists, the pair is infeasible.
+
+For \(\mathcal{P}_{rj}=(p_0,\ldots,p_{n-1})\), its length is
+\begin{equation}
+  L(\mathcal{P}_{rj}) =
+  \sum_{k=0}^{n-2}\lVert p_{k+1}-p_k\rVert_2.
+  \label{eq:path_length}
+\end{equation}
+The baseline assignment cost is
+\begin{equation}
+  C_{rj} =
+  \begin{cases}
+    L(\mathcal{P}_{rj}), & \text{if } \mathcal{P}_{rj} \text{ exists}, \\
+    +\infty, & \text{otherwise}.
+  \end{cases}
+  \label{eq:path_dependent_cost}
+\end{equation}
+Thus, path length is the simplest path-dependent baseline; estimated travel time may replace it only if later evidence justifies accounting for speed, curvature, or current effects. Assignment is based on planned paths, not Euclidean start-to-center distance, and no complex weighted cost is introduced here.
+
+An explicit structured command \((r,g_{\mathrm{cmd}})\) has two distinct roles: \(g_{\mathrm{cmd}}\) may act as a fixed responsibility anchor during responsibility generation, while \((r,g_{\mathrm{cmd}})\) is a locked vehicle--goal pair during its active interval. The latter vehicle and its corresponding locked goal do not enter the remaining autonomous matching problem. Thus, a fixed responsibility anchor is not the same as a locked pair; the formulation permits multiple active locked pairs.
+
+Current responsibility generation uses Euclidean cell-to-center geometry, whereas vehicle--center assignment uses obstacle-aware A\(^\ast\) path cost. This is a deliberate stage separation and does not claim that the current clustering is obstacle-aware or path-aware.
+% TODO(ablation): evaluate path-aware clustering only as a separate
+% extension or benchmark after the core predictive-responsibility
+% hypothesis is tested.
+
+\subsection{Feasible Minimum-Cost Assignment}
+
+Before running the assignment solver, the finite pairwise A\(^\ast\) graph is checked for a complete finite one-to-one matching. A single infeasible pair does not make the overall problem infeasible; only the absence of a complete finite matching returns an explicit planning-failed state. The planner does not fall back to Euclidean, straight-line, random, or other hidden assignment rules.
+
+When a complete matching exists, the assignment is
+\begin{equation}
+  a^\ast = \operatorname*{arg\,min}_{a}
+  \sum_{r\in\mathcal{R}_{\mathrm{avail}}(t)} C_{r,a(r)},
+  \label{eq:minimum_cost_assignment}
+\end{equation}
+subject to a one-to-one mapping from \(\mathcal{R}_{\mathrm{avail}}(t)\) to \(\mathcal{C}_{\mathrm{avail}}^t\). An optimal linear-assignment solver, such as Hungarian algorithm, obtains this solution. The pipeline forms final centers, computes all pairwise A\(^\ast\) paths and the path-cost matrix, checks finite-matching feasibility, and then executes the Hungarian assignment using cached paths. Execution directly reuses \(\mathcal{P}_{r,a^\ast(r)}\) from the cost matrix; a new path is produced only after a formal path-invalidation or replanning event.
+
+\subsection{Event-Driven Replanning}
+
+Bayesian belief may update frequently. Full re-clustering and all pairwise A\(^\ast\) computations need not run after every update. Replanning distinguishes forced task events, ordinary belief-driven center changes, and predicted-anchor changes. Forced task events include search start; mission stop or terminal transition; controlled-USV changes; explicit-command creation, change, or cancellation; locked-command arrival when it changes allocation state; active path invalidation; and allocation infeasibility requiring recovery or replanning.
+
+After an ordinary belief update, let \(\mathcal{C}_{\mathrm{new}}\) be the newly generated unordered center set and \(\mathcal{C}_{\mathrm{old}}\) the center set used by the current plan. To remove center-label permutation, a correspondence matching is first computed as
+\begin{equation}
+  \pi^\ast = \operatorname*{arg\,min}_{\pi}
+  \sum_j \lVert c_j^{\mathrm{new}}-c_{\pi(j)}^{\mathrm{old}}\rVert_2.
+  \label{eq:center_correspondence}
+\end{equation}
+This correspondence matching is only for center-set correspondence; it is not vehicle assignment. The maximum matched center displacement is
+\begin{equation}
+  D_{\mathrm{center}} =
+  \max_j\lVert c_j^{\mathrm{new}}-c_{\pi^\ast(j)}^{\mathrm{old}}\rVert_2.
+  \label{eq:center_displacement}
+\end{equation}
+The belief-only baseline triggers a full replan when
+\begin{equation}
+  D_{\mathrm{center}} \geq \delta_C.
+  \label{eq:belief_replan_gate}
+\end{equation}
+The current baseline uses \(\delta_C=\Delta\). A full replan also occurs when an active path is invalid. Because \(\Delta\) is the current grid/map representation scale, a shift below one cell scale need not represent a new discrete search target. This baseline is subject to sensitivity analysis rather than treated as a universal fixed constant.
+
+Predicted future spatial responsibility-anchor changes use an independent threshold \(\delta_{\mathrm{pred}}\), rather than \(\delta_C\). Let \(E_H\) denote the held-out prediction error or jitter distribution at horizon \(H\) under stable human intent. A candidate empirical rule is
+\begin{equation}
+  \delta_{\mathrm{pred}} = Q_{1-\alpha}(E_H).
+  \label{eq:prediction_replan_gate}
+\end{equation}
+The quantile level is not frozen. The threshold is determined from independent predictor validation, so fluctuations smaller than typical predictor uncertainty can be treated as jitter rather than new human spatial intent; the final rule requires sensitivity analysis.
+% TODO(prediction): freeze delta_pred from held-out prediction
+% error/jitter statistics and report sensitivity.
+
+\section{Experimental Methodology}
+
+\subsection{Parameter Provenance and Data Separation}
+
+% TODO(table): compress parameter provenance into a compact table in the
+% final manuscript if it saves space.
+% Columns: quantity, role, provenance.
+% Do not add the table yet.
+
+Calibration and validation data are separated from the final human--multi-USV evaluation trials. All method parameters are frozen before the final HRI evaluation; final HRI test performance is not used to select sensor parameters, the prediction horizon, the confirmation rule, or replanning thresholds. Calibration identifies or estimates model quantities from dedicated data, validation selects among supported alternatives using held-out data, and final evaluation measures the resulting system without revising those choices.
+
+The method uses several conceptually distinct parameter classes. Sensor and model-identification quantities include \(p_{\max}\), \(d_{50}\), \(s\), \(R_{\mathrm{cal}}\), \(\nu_{\mathrm{eff}}\), \(\Sigma_z\), and \(\pi_{\mathrm{FA}}\) or an appropriate false-alarm model. Predictor-validation quantities include the predictor, \(H\), and \(\delta_{\mathrm{pred}}\). The map-derived representation parameters are \(\Delta\) and the baseline \(\delta_C\). The \emph{FOUND} rule, \(\epsilon_{\mathrm{miss}}\), and mission budget are mission-risk or task-design decisions. Path length is the baseline assignment-cost choice, not a fitted hyperparameter. Thus, these quantities are not collectively treated as fitted hyperparameters.
+
+\subsection{Spatial Detector Calibration}
+
+% TODO(figure-3): sensor calibration figure.
+% Candidate panels:
+% empirical P_D(d,beta) heatmap;
+% empirical range-bin probabilities with confidence intervals + fitted model;
+% empirical versus modeled first-detection survival.
+% This figure should validate both the spatial detector model and the
+% P_D-to-hazard mapping.
+% Suggested future label: fig:sensor_calibration
+
+Spatial detector calibration asks: at known range \(d\) and relative bearing \(\beta\), what is the probability that one statistically effective observation opportunity produces a correct target detection? The stationary target is placed under controlled \((d,\beta)\) conditions spanning near range, the candidate logistic transition region, far range, and conditions near the horizontal field-of-view boundary. Randomized independent trials retain the detector and rendering configuration used in later mission experiments. Each trial records the binary correct-detection outcome and retains confidence, localization, and error information for later analysis. The sample size is selected from the desired uncertainty or confidence-interval precision rather than fixed here.
+
+At each condition, empirical binomial detection probabilities and confidence intervals are estimated. Candidate range parameters \(p_{\max}\), \(d_{50}\), \(s\), and \(R_{\mathrm{cal}}\) are fit using binomial likelihood or an equivalent statistically defensible procedure. Held-out goodness-of-fit, deviance, and probability-calibration analyses assess the model, while the angular support is validated rather than assumed. The logistic form is a candidate low-parameter sensing model: the experiment tests its adequacy and is not designed merely to force the data to match it. The outputs are the identified range parameters and a determination of whether the angular model requires revision.
+
+\subsection{Temporal Observation-Rate Identification}
+
+Temporal observation-rate identification asks how many statistically effective observation opportunities per second are represented by temporally correlated detector outputs. For several representative \((d,\beta)\) conditions spanning low, medium, and high empirical detection probability, USV and target geometry are fixed while long detector-output time series are collected at the native output rate. Independent seeds or trials are repeated for each condition.
+
+Analysis assesses temporal autocorrelation and block dependence, and also examines empirical first-detection waiting-time distributions. The purpose is not merely to estimate a generic effective sample size, but to validate the runtime survival model in \eqref{eq:effective_hazard}. In particular, the Bernoulli-opportunity-equivalent mapping \(h=-\nu_{\mathrm{eff}}\ln[1-P_D]\) is tested for its ability to reproduce empirical first-detection survival across representative geometries. The baseline remains this mapping, rather than a competing \(h=\nu_{\mathrm{eff}}P_D\) runtime model. The outputs are \(\nu_{\mathrm{eff}}\) and evidence supporting or rejecting the current \(P_D\)-to-hazard mapping.
+
+\subsection{Positive-Event and Target-Confirmation Calibration}
+
+Positive-event and target-confirmation calibration includes both target-present trials and target-absent or distractor trials. Target-present data retain positive-detection behavior, target-localization residuals, detector confidence when available, and temporal sequence information. Target-absent data characterize false-positive frequency or rate, false-positive confidence, and false-alarm spatial behavior when relevant. These data support estimation of \(\Sigma_z\) and \(\pi_{\mathrm{FA}}\), or an appropriate false-alarm model. Detector confidence is not assumed to be a calibrated probability and enters the Bayesian likelihood only if independently shown to be calibrated.
+
+The detector-level positive threshold is distinct from the mission-level \emph{FOUND} confirmation rule. The latter is frozen from independent calibration and validation data under a predeclared acceptable false-confirmation risk; candidate confirmation forms remain unresolved until supported by data. The terminal-state precedence between an unresolved positive candidate and \emph{SEARCH\_EXHAUSTED} is frozen together with that protocol. The outputs are \(\Sigma_z\), a false-alarm model, the positive-event likelihood, and the \emph{FOUND} confirmation protocol.
+
+\subsection{Prediction and Replanning-Threshold Validation}
+
+% TODO(figure-4): prediction validation figure.
+% Plot prediction error versus horizon H for current-position,
+% constant-velocity, and candidate predictor.
+% Include useful lead-time / jitter information if readable.
+% The purpose is to justify H and delta_pred, not advertise Random Forest.
+% Suggested future label: fig:prediction_validation
+
+Prediction validation uses synchronized human-controlled USV trajectories and the available human-control and USV-state history. Data are split by independent run and, where appropriate for later human-subject experiments, by participant; adjacent frames from the same trajectory are not randomly split across training and test sets. The baselines are the current-position predictor \(\mathbf{p}_h(t)\), constant velocity, and a Random Forest candidate. The oracle future position is an evaluation reference only, not a trainable or runtime predictor.
+
+The primary predictor metric is \(\mathrm{FDE}(H)=\lVert\hat{\mathbf{p}}_h(t+H)-\mathbf{p}_h(t+H)\rVert_2\). Average displacement error is not required unless the predictor later outputs an entire future trajectory. Validation also records prediction jitter under stable intent, direction or region correctness where a justified representation exists, and useful prediction lead time. The horizon \(H\) is selected from an independently declared prediction-accuracy versus useful-lead-time tradeoff, not from whichever value improves final HRI \(T_{\mathrm{FD}}\).
+
+For prediction-driven replanning, \(\delta_{\mathrm{pred}}\) is derived from held-out error or jitter statistics \(E_H\) under stable human intent, for example through a quantile-based rule. The quantile level remains unresolved until the validation design is frozen. The outputs are the frozen predictor, \(H\), \(\delta_{\mathrm{pred}}\), and held-out predictor performance.
+% TODO(prediction experiment): freeze dataset split, predictor target
+% semantics, H-selection rule, and delta_pred after independent validation.
+
+\subsection{Representation and Mission-Risk Parameters}
+
+These parameters are not ordinary statistical fit parameters. The provenance of grid resolution \(\Delta\) depends on the implementation: if the belief grid inherits the reconnaissance-map resolution, \(\Delta\) is primarily a representation parameter; if resampling is allowed, a coarse/final/fine sensitivity family is assessed using localization uncertainty, center and planning stability, computation time, memory, and A\(^\ast\) cost. No numerical resolution is fixed here.
+
+The current baseline uses \(\delta_C=\Delta\), since center displacement below one cell scale need not define a distinct discrete search target; this choice requires sensitivity analysis around the baseline. In contrast, \(\epsilon_{\mathrm{miss}}\) is a mission-level acceptable residual missed-detection risk, not a sensor-fitted constant. Its final value is predeclared from task-risk requirements and supported by sensitivity analysis, rather than selected to improve mean \(T_{\mathrm{FD}}\). The mission budget is likewise an experimental or task-design choice. Finally, path length remains the baseline assignment-cost method choice; comparison with estimated travel time is a separate ablation or benchmark, not calibration of a hidden weighted objective.
+
+\subsection{Controlled Collaboration Conditions}
+
+Table~\ref{tab:collaboration_conditions} defines the collaboration ablations. The primary HRI conditions use a future position at horizon \(H\), not an assumed destination endpoint. Conditions H1--H4 share the same fleet composition and replayed human trajectory within each paired scenario. H5 is secondary explicit-command functionality and is not the central prediction ablation.
+% TODO(figure-2): visualize H2 current, H3 predictive, and H4 oracle
+% responsibility redistribution using the same belief and human trajectory.
+
+\begin{table*}[t]
+  \caption{Controlled collaboration conditions.}
+  \label{tab:collaboration_conditions}
+  \centering
+  \begin{tabular}{p{1.00in} p{1.05in} p{2.90in} p{1.25in}}
+    \hline
+    \textbf{Mode} & \textbf{Fleet} & \textbf{Planner human information} & \textbf{Fixed anchor} \\
+    \hline
+    H0 Auto10 & 10 autonomous USVs & No human-controlled vehicle or human responsibility information. & None \\
+    H1 Isolated & 9 autonomous + 1 replayed human USV & Shared belief includes human sensor observations; autonomous planning receives no human spatial-responsibility information. & None \\
+    H2 Current & As H1 & Current human-controlled position \(\mathbf{p}_h(t)\). & \(\mathbf{p}_h(t)\) \\
+    H3 Predictive & As H1 & Predicted future position \(\hat{\mathbf{p}}_h(t+H)\); transparent CV and candidate learned variants may be instantiated. & \(\hat{\mathbf{p}}_h(t+H)\) \\
+    H4 Oracle & As H1 & True replayed future position, used only as an evaluation reference for the same redistribution mechanism. & \(\mathbf{p}_h(t+H)\) \\
+    H5 Command-Aware & When structured command is available & Explicit structured pair \((r,g_{\mathrm{cmd}})\); modality agnostic. & \(g_{\mathrm{cmd}}\); locked pair \\
+    \hline
+  \end{tabular}
+\end{table*}
+
+In H0, all 10 USVs are autonomous, with no human-controlled vehicle and no human responsibility anchor. H1 uses nine autonomous USVs and one human-controlled USV whose trajectory is replayed; human sensor observations still update the shared Bayesian belief, but autonomous allocation and planning receive no human spatial-responsibility information. H2 adds \(\mathbf{p}_h(t)\) as the fixed responsibility anchor without future prediction. H3 instead uses \(\hat{\mathbf{p}}_h(t+H)\), with transparent constant-velocity and candidate learned predictor variants where appropriate. H4 uses the true replayed future position \(\mathbf{p}_h(t+H)\) only to estimate the upper bound of the same responsibility-redistribution mechanism under perfect future-position information; it is not available to a runtime real-world deployment. When the interface actually provides \((r,g_{\mathrm{cmd}})\), H5 treats \(g_{\mathrm{cmd}}\) as a fixed anchor and the pair as locked, without associating this condition with any particular interaction modality.
+
+\subsection{Paired Replay Protocol}
+
+For H1--H4, the human-controlled USV follows the same timestamped replay trajectory within each paired scenario. Independent freehand driving for each condition would confound differences in planning strategy with changes in human behavior. Each paired scenario freezes the target location, initial USV poses and states, map or environment realization, sensor stochastic seed or equivalent controlled sensing randomness, replayed human trajectory, mission budget, calibrated sensing parameters, and the predictor version, checkpoint, or hash when relevant. The condition changes only the human spatial information exposed to the autonomous planning layer. A run manifest records these fields for reproducibility.
+
+The final number of paired scenarios and repetitions is determined from pilot variance and power analysis for the primary outcome. The paired design reduces scenario variability without imposing a universal fixed sample count. Calibration trials, predictor-validation trials, and final paired HRI trials serve distinct purposes and remain separate datasets.
+
+\subsection{Primary Contrasts and Outcome Measures}
+
+The primary causal contrasts are: H0 versus H1, which measures the effect of replacing one autonomous USV with a human-controlled USV while autonomous allocation ignores human responsibility; H1 versus H2, which measures current human spatial-responsibility awareness; H2 versus H3, the core comparison of predicted future spatial information against reactive current-position responsibility reservation; and H3 versus H4, which measures the performance gap caused by imperfect future-position prediction. H5 evaluates secondary explicit-command functionality rather than the core prediction hypothesis.
+
+The hypothesis is not supported merely because H3 outperforms H0. Its key evidence is improvement of H3 over H2 under paired human trajectories, together with mechanism-level evidence of reduced redundancy. Mission outcomes include \(T_{\mathrm{FD}}\), effective-detection probability before the mission budget, \emph{SEARCH\_EXHAUSTED} and \emph{BUDGET\_EXPIRED} fractions, and confirmation delay \(T_{\mathrm{FOUND}}-T_{\mathrm{FD}}\) where applicable. Collaboration mechanism outcomes include future human--autonomy search overlap, redundant sensing effort or cumulative hazard, responsibility or center redistribution magnitude, and predictive lead time. Navigation and resource outcomes include total fleet path length, maximum per-USV path length, planned A\(^\ast\) cost versus executed distance, replan and pairwise A\(^\ast\)-call counts, and planning latency or memory when logged. Primary metrics remain tied to the scientific hypothesis rather than automatically including every available telemetry channel.
+% TODO(mechanism metric): finalize a threshold-free or physically justified
+% definition of human-autonomy redundant search. Prefer a sensor/hazard-aware
+% metric if supported by the logger rather than an arbitrary geometric corridor.
+% TODO(responsibility metric): evaluate whether belief-weighted agreement
+% between predicted-anchor and oracle-anchor responsibility regions is a useful
+% mechanism metric linking position prediction error to planning consequence.
+
+\subsection{Statistical Analysis}
+
+Because some trials may terminate without effective correct detection, \(T_{\mathrm{FD}}\) is a censored event-time outcome and undetected trials are not dropped. Detection-survival curves using Kaplan--Meier estimates and/or restricted mean survival time (RMST) up to the common mission budget summarize the primary outcome. H1--H4 use paired comparisons because their scenarios are matched, and analysis reports effect sizes and confidence intervals rather than only \(p\)-values. A suitable baseline uses paired bootstrap confidence intervals for RMST differences and secondary paired metrics.
+
+If later live human-participant experiments include multiple participants, mixed-effects survival or regression analysis accounts for participant and scenario effects. No specific parametric survival distribution is assumed. Multiple primary comparisons are predeclared or corrected before final evaluation.
+% TODO(statistics): freeze primary contrast, power analysis, multiplicity
+% handling, and final confidence-interval procedure before final evaluation.
+
+\subsection{Prediction-Quality Mechanism Study}
+
+This study tests the stronger mechanism claim that prediction quality affects mission performance through responsibility redistribution, rather than relying only on a constant-velocity versus learned-predictor comparison. The oracle future position \(\mathbf{p}_h(t+H)\) provides the controlled reference. A candidate controlled error-injection study uses
+\begin{equation}
+  \hat{\mathbf{p}}_h^{(q)}(t+H) = \mathbf{p}_h(t+H) + e_q,
+  \label{eq:prediction_error_injection}
+\end{equation}
+where error levels are derived from representative quantiles of held-out predictor residual statistics rather than arbitrary magnitudes.
+
+The study measures, in sequence, injected or predicted position error, planning or responsibility deviation from the oracle, the human--autonomy redundant-search metric, and the final mission event-time outcome. The dose-response hypothesis is that larger prediction error may yield poorer responsibility approximation, greater redundant search, and poorer search performance; this relationship is an experimental hypothesis, not a guaranteed monotonic effect. No final responsibility-IoU or hazard-overlap equation is introduced until it is implemented and validated.
+% TODO(result figure): prediction-error injection / dose-response curve
+% may share space with the main mechanism result if page budget allows.
+
+\section{Results}
+% TODO(figure-5): main causal result figure.
+% Primary candidate: Kaplan-Meier / detection-survival curves for the
+% collaboration conditions, with emphasis on H2 current vs H3 predictive
+% and H4 oracle.
+% Pair with a mechanism metric such as future search overlap or redundant
+% cumulative hazard, if space permits.
+% Suggested future label: fig:main_results
+% TODO: Add results.
+
+\section{Discussion}
+% TODO: Add the discussion.
+
+\section{Conclusion}
+% TODO: Add the conclusion.
+
+\end{document}
