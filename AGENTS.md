@@ -7,7 +7,9 @@ These rules apply to the entire repository.
 - `/home/cyz/USV_HRI_PATROL` is the authoritative versioned research repository.
 - `platform/` is the reproducible ROS 2 / Gazebo / VRX platform representation.
 - `idea/` contains research notes, mathematical frameworks, candidate designs, and research-state documentation.
-- `paper/` contains formal paper material.
+- `paper/manuscript/` contains formal paper material and the canonical `references.bib`.
+- `literature/` contains PDFs, the file catalog, metadata and reading evidence.
+- `doc/` and `paper/references/` retain only legacy-path README pointers; do not recreate parallel workspaces there.
 - `algo/` contains the Unity-implementation coverage path planning algorithm package (specification docs + Unity-free reference code). It documents the current implementation, including its known differences from CONFIRMED decisions.
 - `/home/cyz/vrx_ws` is the authoritative currently runnable ROS 2 / Gazebo / VRX workspace.
 

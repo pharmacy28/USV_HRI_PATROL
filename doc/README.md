@@ -1,15 +1,5 @@
-# ICRA paper workspace snapshot
+# 旧路径说明
 
-This directory contains the source snapshot from the local `E:\ICRA`
-workspace.
+此处曾是 ICRA 本地工作区快照。现在正文统一到 [paper/manuscript/](../paper/manuscript/)，文献统一到 [literature/](../literature/INDEX.md)。
 
-Included:
-
-- `main.tex` and `main_test.tex`;
-- the official `ieeeconf.cls` used by the manuscript;
-- `references.bib` and the literature/research notes;
-- the writing guide and the official template reference source.
-
-LaTeX build products (`.aux`, `.log`, `.fls`, `.fdb_latexmk`, `.synctex.gz`)
-and the generated `main.pdf` are intentionally not included in this upload.
-The manuscript source is not being changed by this snapshot operation.
+请使用[论文入口](../paper/README.md)，不再向 `doc/` 添加新的正文副本。旧文件到新文件的逐项映射与 SHA-256 见[迁移清单](../docs/migration-2026-09-23.json)。

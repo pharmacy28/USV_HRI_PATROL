@@ -1,6 +1,6 @@
 # ICRA USV-HRI Literature Ledger
 
-This ledger is intended for the `paper/references/` area of `pharmacy28/USV_HRI_PATROL`.
+This ledger is intended for the `literature/` area of `pharmacy28/USV_HRI_PATROL`.
 
 **Status semantics**
 - `FULLY_READ`: full or effectively complete paper was reviewed in the project discussion.

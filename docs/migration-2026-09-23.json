@@ -1,0 +1,207 @@
+[
+  {
+    "from": "paper/references/Best和Fitch - 2015 - Bayesian Intention Inference for Trajectory Prediction with an Unknown Goal Destination.pdf",
+    "to": "literature/pdfs/BestFitch2015Bayesian.pdf",
+    "sha256": "66af676b158f56543d30e0f1f9656074013ecc7617746233ccb1d3491acfe318"
+  },
+  {
+    "from": "paper/references/Bourgault 等 - 2003 - Coordinated Decentralized Search for a Lost Target in a Bayesian World.pdf",
+    "to": "literature/pdfs/Du2003ConstrainedCVT.pdf",
+    "sha256": "3c1848584cf38803bcf5f87053148ce7393833010dca2c0f24bec8cf7e218c96"
+  },
+  {
+    "from": "paper/references/Capitán 等 - 2013 - Decentralized Multi-Robot Cooperation with Auctioned POMDPs.pdf",
+    "to": "literature/pdfs/Capitan2013Auctioned.pdf",
+    "sha256": "9cd20acfecf1dd1cd984f97373ceea61aae0a7bccef4626d17440708760c1468"
+  },
+  {
+    "from": "paper/references/Catellani 等 - 2025 - HMPCC Human-Aware Model Predictive Coverage Control.pdf",
+    "to": "literature/pdfs/CatellaniGabbiSabattini2025HMPCC.pdf",
+    "sha256": "508630a374ce72d57f54ad37e07c27a3568424f5ee169a56af14b4e766634666"
+  },
+  {
+    "from": "paper/references/Cortés 等 - 2004 - Coverage Control for Mobile Sensing Networks.pdf",
+    "to": "literature/pdfs/Cortes2004Coverage.pdf",
+    "sha256": "06af662e4bfa3d1447724a0093f9bb82fbef66be81b575652a8b50ab0889344c"
+  },
+  {
+    "from": "paper/references/Fu 等 - 2009 - Local Voronoi Decomposition for Multi-Agent Task Allocation.pdf",
+    "to": "literature/pdfs/Fu2009LocalVoronoi.pdf",
+    "sha256": "54dd0ba251a6ef158469fe6b3b230ec6401e02d0ad28aa3cd4ef25fa47c9bdc2"
+  },
+  {
+    "from": "paper/references/Heintzman 等 - 2021 - Anticipatory Planning and Dynamic Lost Person Models for Human-Robot Search and Rescue.pdf",
+    "to": "literature/pdfs/Heintzman2021Anticipatory.pdf",
+    "sha256": "c8b453bce9f084a40abf0de6655333173f52332cea0a7aba5885334f47071779"
+  },
+  {
+    "from": "paper/references/Hollinger 等 - 2009 - Efficient Multi-Robot Search for a Moving Target.pdf",
+    "to": "literature/pdfs/Hollinger2009Efficient.pdf",
+    "sha256": "ee5670e523170804d4fc4ddc4b5ef8152c96d303db20651431149328575ae5cd"
+  },
+  {
+    "from": "paper/references/Hollinger 等 - 2011 - Distributed Coordination and Data Fusion for Underwater Search.pdf",
+    "to": "literature/pdfs/Hollinger2011Underwater.pdf",
+    "sha256": "549a328057c74dc66f508925cc9933dcfad0e579519410342217c9727cbcd8fd"
+  },
+  {
+    "from": "paper/references/Hollinger 等 - 2015 - Distributed Data Fusion for Multirobot Search.pdf",
+    "to": "literature/pdfs/Hollinger2015Fusion.pdf",
+    "sha256": "60542eb18419b91f48f638d3881b79e1344ff6a02a02df2e4c5e4b7ed99852ef"
+  },
+  {
+    "from": "paper/references/Ishii 等 - 2023 - Enhancing Human-Robot Collaborative Object Search through Human Behavior Observation and Dialog.pdf",
+    "to": "literature/pdfs/Ishii2023Enhancing.pdf",
+    "sha256": "c86fc333d347d6ae9eddc21f236cc4f188ce039621cdb0622a657e79b398a359"
+  },
+  {
+    "from": "paper/references/Kim和Kim - 2025 - Coordinated Informative Path Planning for Multi-Robot Search in Open Fields.pdf",
+    "to": "literature/pdfs/KimKim2025OpenFields.pdf",
+    "sha256": "6dc411a601c3e1d691df5e4dce3c029b6716f7cffa4b61604a7456df3066bc27"
+  },
+  {
+    "from": "paper/references/Krzysiak和Butail - 2022 - Information-Based Control of Robots in Search-and-Rescue Missions With Human Prior Knowledge.pdf",
+    "to": "literature/pdfs/KrzysiakButail2022Information.pdf",
+    "sha256": "a150d1eabd94566d7b9a3ed31d1175ecb585cdf1913905458ac6142dde92bf7b"
+  },
+  {
+    "from": "paper/references/Krzysiak和Butail - 2025 - Human Prior Knowledge Estimation from Movement Cues for Information-Based Control of Mobile Robots d.pdf",
+    "to": "literature/pdfs/KrzysiakButail2025Movement.pdf",
+    "sha256": "77b94a6fb064e8c03cdc4b413b66dd6a8bd1452c655b0cd4410af7e8ef246a16"
+  },
+  {
+    "from": "paper/references/Lim Hong Da 等 - 2025 - Enhancing Human-Robot Collaborative Search Through Efficient Space Sharing with On-Demand Bidirectio.pdf",
+    "to": "literature/pdfs/LimMiuraHayashi2025SpaceSharing.pdf",
+    "sha256": "84055dd2a052dfecf5aaac44e787261cd168c31606f999007b13596e49f7fd58"
+  },
+  {
+    "from": "paper/references/Mahboubi 等 - 2013 - Distributed Coverage Optimization in a Network of Static and Mobile Sensors.pdf",
+    "to": "literature/pdfs/Mahboubi2013StaticMobile.pdf",
+    "sha256": "19286d2b8be96f90caad2b3811e3074dad32ce1d74229f9640d4f9492ae80d57"
+  },
+  {
+    "from": "paper/references/Swamy 等 - 2020 - Scaled Autonomy Enabling Human Operators to Control Robot Fleets.pdf",
+    "to": "literature/pdfs/Swamy2020Scaled.pdf",
+    "sha256": "951fe3bb902193e0b746ab78cfd70abf2d777d7c095aaeb4acd1c38ae2ca4dd4"
+  },
+  {
+    "from": "paper/references/Talebpour和Martinoli - 2018 - Multi-Robot Coordination in Dynamic Environments Shared with Humans.pdf",
+    "to": "literature/pdfs/TalebpourMartinoli2018ICRA.pdf",
+    "sha256": "f3941dcae04b550c6c2ffd4deb9aed1cd0ee086c912a5adf8ffe19a11d387cf3"
+  },
+  {
+    "from": "paper/references/Talebpour和Martinoli - 2018 - Risk-Based Human-Aware Multi-Robot Coordination in Dynamic Environments Shared with Humans.pdf",
+    "to": "literature/pdfs/TalebpourMartinoli2018IROS.pdf",
+    "sha256": "29ac2f17c565e11b0f695e46610f4ab5c581d68136ebafc4ebc6c80253eeda5f"
+  },
+  {
+    "from": "paper/references/Wang 等 - 2007 - Bidding Protocols for Deploying Mobile Sensors.pdf",
+    "to": "literature/pdfs/Wang2007Bidding.pdf",
+    "sha256": "e5e4b17227aefb8877763dbcd8b0071685a0312b16f2fd992efaf1f3e7f056d6"
+  },
+  {
+    "from": "paper/references/Wu 等 - 2021 - Spatial Intention Maps for Multi-Agent Mobile Manipulation.pdf",
+    "to": "literature/pdfs/Wu2021Spatial.pdf",
+    "sha256": "9cd88e2690a2be53a7c1a3d26dc02d917da13b56df8f21ef01ceae9361295bd6"
+  },
+  {
+    "from": "paper/references/Xie 等 - 2011 - Intention-Based Coordination and Interface Design for Human-Robot Cooperative Search.pdf",
+    "to": "literature/pdfs/Xie2011Intention.pdf",
+    "sha256": "a96e68582d1925304c6f93ca039aebb5542510a5a91f1d13681e450ca501a8f3"
+  },
+  {
+    "from": "doc/literature/LITERATURE_LEDGER.md",
+    "to": "literature/LITERATURE_LEDGER.md",
+    "sha256": "225e5d64e7e5020d438cf99e71a8306358c6aaa1a595c3d4ebfbe1f60bdb5336"
+  },
+  {
+    "from": "doc/literature/LITERATURE_LEDGER.seed_metadata_20260902.md",
+    "to": "literature/LITERATURE_LEDGER.seed_metadata_20260902.md",
+    "sha256": "937dbf7285d8630e31ad7b0c6c9a11dc9751bf7e24dd1ada45ddbc994511b1e2"
+  },
+  {
+    "from": "doc/literature/novelty_boundary.md",
+    "to": "literature/novelty_boundary.md",
+    "sha256": "20a610569644effc8bebe26c221d741508d93d83e47f6226019b4bd9240f26d2"
+  },
+  {
+    "from": "doc/literature/README.md",
+    "to": "literature/README.md",
+    "sha256": "c47986a3c24466d8bfa26ba77d26434e815c76667ed7f9b15e1fad9acc314c06"
+  },
+  {
+    "from": "doc/literature/metadata/doi_list.txt",
+    "to": "literature/metadata/doi_list.txt",
+    "sha256": "d8528e368b086e161597f9195c3f0b534e2d6ea7aeeaa107cb17d06eed3b7944"
+  },
+  {
+    "from": "doc/literature/metadata/literature_index.csv",
+    "to": "literature/metadata/literature_index.csv",
+    "sha256": "e460884063199e004d5651ec1ef4ec9c554f3c78cb6094db0987e660bee82a35"
+  },
+  {
+    "from": "doc/literature/metadata/README_Zotero_Import_CN.md",
+    "to": "literature/metadata/README_Zotero_Import_CN.md",
+    "sha256": "05b0ad57b6ae91150666825026dcfc476e7858084e73315afed8734413b6e224"
+  },
+  {
+    "from": "doc/literature/metadata/recommended_collections.md",
+    "to": "literature/metadata/recommended_collections.md",
+    "sha256": "e410f9e08ed3669d258a86ac8f8b1b97cffbe91cbe1dc7fe54b21e4c118cc22e"
+  },
+  {
+    "from": "doc/literature/metadata/USV_HRI_core_literature.ris",
+    "to": "literature/metadata/USV_HRI_core_literature.ris",
+    "sha256": "c74f2190cb235d0617710aed9babf8d2743d374f8a450069ff473143e6736a59"
+  },
+  {
+    "from": "doc/literature/papers/INDEX.md",
+    "to": "literature/papers/INDEX.md",
+    "sha256": "eac9bb6fad9ac371308a56466c870711056de97c5605ac73847511223d3a845d"
+  },
+  {
+    "from": "doc/literature/related_work_notes/README.md",
+    "to": "literature/related_work_notes/README.md",
+    "sha256": "99b400c0181f3c3e8924a039dc6c9bb3fac581be721f12f8fed610dc8bf93788"
+  },
+  {
+    "from": "doc/.gitignore",
+    "to": "paper/manuscript/.gitignore",
+    "sha256": "3dbf9f90599c9586eb2fd57d71b99420d52f94c1b7ad54dd69ed1789743b4d49"
+  },
+  {
+    "from": "doc/ieeeconf.cls",
+    "to": "paper/manuscript/ieeeconf.cls",
+    "sha256": "4befef671c2a996889d325f5170d3387bf42aac9a37dcaa93724ad49816e4ec2"
+  },
+  {
+    "from": "doc/main.tex",
+    "to": "paper/manuscript/main.tex",
+    "sha256": "b9a299b287361572c9d9ef50707f6d4c3d22ddc80a44819deeda63777167285d"
+  },
+  {
+    "from": "doc/main_test.tex",
+    "to": "paper/manuscript/template_reference/main_test.tex",
+    "sha256": "b9b858efbc8d258440caa1eee6c0f7579674b1e87311ba87f526337d03a053a5"
+  },
+  {
+    "from": "doc/references.bib",
+    "to": "paper/manuscript/references.bib",
+    "sha256": "c4f029c226ee6bd4ba1884c42e266dcf6b903bb13c82ca585e5b97bff4f11cc8"
+  },
+  {
+    "from": "doc/SCIENTIFIC_WRITING_GUIDE.md",
+    "to": "paper/SCIENTIFIC_WRITING_GUIDE.md",
+    "sha256": "017c4ca025854019897f243fb02a6d00661752faeb0f7939038e340bf02e4d21"
+  },
+  {
+    "from": "doc/template_reference/root.tex",
+    "to": "paper/manuscript/template_reference/root.tex",
+    "sha256": "a7eba1fe1fcd8c39dcc523fd787dc713a90d6830b37c516a0bdaeaeeeac2408f"
+  },
+  {
+    "from": "paper/references/.gitattributes",
+    "to": "literature/pdfs/.gitattributes",
+    "sha256": "fdfa7b607b52326cb536a984c43634aaa9afd5fb2c3df583c525f68615a80fad"
+  }
+]

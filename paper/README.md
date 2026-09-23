@@ -1,15 +1,18 @@
-# Paper
+# 论文写作入口
 
-这里用于维护论文正文、图表、参考文献和投稿材料。目前仓库中尚未提供独立论文稿，因此只建立目录和边界，不从研究备忘录自动生成或虚构论文内容。
+正式正文工作目录：[manuscript/](manuscript/)。原 `doc/` 内容已归位，正文与书目的字节保持不变。本轮是文件整理，没有产生新实验结果或修改研究结论。
 
-建议后续按以下结构维护：
+| 内容 | 位置 |
+|---|---|
+| 当前正文（仍含占位内容） | [main.tex](manuscript/main.tex) |
+| 唯一正式书目，26 条原引用键 | [references.bib](manuscript/references.bib) |
+| IEEE 类文件 | [ieeeconf.cls](manuscript/ieeeconf.cls) |
+| 官方模板与最小测试稿 | [template_reference/](manuscript/template_reference/) |
+| 写作规范 | [SCIENTIFIC_WRITING_GUIDE.md](SCIENTIFIC_WRITING_GUIDE.md) |
+| 参考论文与阅读证据 | [文献索引](../literature/INDEX.md) |
 
-```text
-paper/
-├── manuscript/   # LaTeX、Word 或 Markdown 正文
-├── figures/      # 可复现图表及源文件
-├── references/   # BibTeX 与文献笔记
-└── experiments/  # 论文采用的实验协议和结果索引
-```
+## Overleaf 与本地编辑
 
-只有已验证并计划写入论文的内容放在这里；探索性记录继续放在 `idea/`。
+将 `manuscript/` 内文件及 `template_reference/` 上传到 Overleaf，设 `main.tex` 为主文件。`template_reference/main_test.tex` 是旧的最小测试，不是第二篇正文。当前正文是否已经配置 bibliography，以实际 LaTeX 源码为准；目录整理不会自动插入引用或改变模板。
+
+在本地编译时先进入 `paper/manuscript/`，以保留类文件和资源的相对路径。参考 PDF 放在 `literature/pdfs/`，不必随正文上传 Overleaf。探索性新想法继续放在 `idea/`，确认之后再进入论文。

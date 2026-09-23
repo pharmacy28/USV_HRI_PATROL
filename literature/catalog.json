@@ -1,0 +1,494 @@
+[
+  {
+    "citekey": "Wu2021Spatial",
+    "title": "Spatial Intention Maps for Multi-Agent Mobile Manipulation",
+    "year": "2021",
+    "doi": "10.1109/ICRA48506.2021.9561359",
+    "zotero_key": "M6SKRUND",
+    "priority": "P3",
+    "topic": "空间意图表示",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Wu2021Spatial.pdf",
+      "sha256": "9cd88e2690a2be53a7c1a3d26dc02d917da13b56df8f21ef01ceae9361295bd6",
+      "bytes": 3168066,
+      "pages": 9,
+      "previous_filename": "Wu 等 - 2021 - Spatial Intention Maps for Multi-Agent Mobile Manipulation.pdf",
+      "attachment_key": "ZFKUSNF2"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Hollinger2009Efficient",
+    "title": "Efficient Multi-Robot Search for a Moving Target",
+    "year": "2009",
+    "doi": "10.1177/0278364908099853",
+    "zotero_key": "G9L84YGW",
+    "priority": "P2",
+    "topic": "贝叶斯搜索基础",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Hollinger2009Efficient.pdf",
+      "sha256": "ee5670e523170804d4fc4ddc4b5ef8152c96d303db20651431149328575ae5cd",
+      "bytes": 909630,
+      "pages": 19,
+      "previous_filename": "Hollinger 等 - 2009 - Efficient Multi-Robot Search for a Moving Target.pdf",
+      "attachment_key": "AA2Z3CM4"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "TalebpourMartinoli2018IROS",
+    "title": "Risk-Based Human-Aware Multi-Robot Coordination in Dynamic Environments Shared with Humans",
+    "year": "2018",
+    "doi": "10.1109/IROS.2018.8593586",
+    "zotero_key": "LVMQSNN6",
+    "priority": "P3",
+    "topic": "人感知安全协调",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/TalebpourMartinoli2018IROS.pdf",
+      "sha256": "29ac2f17c565e11b0f695e46610f4ab5c581d68136ebafc4ebc6c80253eeda5f",
+      "bytes": 1476153,
+      "pages": 8,
+      "previous_filename": "Talebpour和Martinoli - 2018 - Risk-Based Human-Aware Multi-Robot Coordination in Dynamic Environments Shared with Humans.pdf",
+      "attachment_key": "3GV267BC"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "TalebpourMartinoli2019Adaptive",
+    "title": "Adaptive Risk-Based Replanning for Human-Aware Multi-Robot Task Allocation With Local Perception",
+    "year": "2019",
+    "doi": "10.1109/LRA.2019.2926966",
+    "zotero_key": "2966IFGA",
+    "priority": "P3",
+    "topic": "人感知安全协调",
+    "reading_scope_this_review": "仅 Zotero 元数据，本地无 PDF",
+    "legacy_reading_status": "METADATA_VERIFIED",
+    "pdf": null,
+    "file_status": "missing"
+  },
+  {
+    "citekey": "CatellaniGabbiSabattini2025HMPCC",
+    "title": "HMPCC: Human-Aware Model Predictive Coverage Control",
+    "year": "2025",
+    "doi": "10.48550/arXiv.2512.12717",
+    "zotero_key": "CUKX46A4",
+    "priority": "P2",
+    "topic": "覆盖控制",
+    "reading_scope_this_review": "本地 PDF 方法概览已读；公开摘要核对",
+    "legacy_reading_status": "METADATA_VERIFIED",
+    "pdf": {
+      "path": "literature/pdfs/CatellaniGabbiSabattini2025HMPCC.pdf",
+      "sha256": "508630a374ce72d57f54ad37e07c27a3568424f5ee169a56af14b4e766634666",
+      "bytes": 951244,
+      "pages": 7,
+      "previous_filename": "Catellani 等 - 2025 - HMPCC Human-Aware Model Predictive Coverage Control.pdf",
+      "attachment_key": "685BBHUW"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Bourgault2003Bayesian",
+    "title": "Coordinated Decentralized Search for a Lost Target in a Bayesian World",
+    "year": "2003",
+    "doi": "10.1109/IROS.2003.1250604",
+    "zotero_key": "5CGPY6QN",
+    "priority": "P2",
+    "topic": "贝叶斯搜索基础",
+    "reading_scope_this_review": "仅 Zotero 元数据，本地无 PDF",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": null,
+    "file_status": "missing"
+  },
+  {
+    "citekey": "Hollinger2011Underwater",
+    "title": "Distributed Coordination and Data Fusion for Underwater Search",
+    "year": "2011",
+    "doi": "10.1109/ICRA.2011.5979685",
+    "zotero_key": "BLM7DXIL",
+    "priority": "P2",
+    "topic": "分布式信息融合",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Hollinger2011Underwater.pdf",
+      "sha256": "549a328057c74dc66f508925cc9933dcfad0e579519410342217c9727cbcd8fd",
+      "bytes": 428821,
+      "pages": 7,
+      "previous_filename": "Hollinger 等 - 2011 - Distributed Coordination and Data Fusion for Underwater Search.pdf",
+      "attachment_key": "6IK2EZK5"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Hollinger2015Fusion",
+    "title": "Distributed Data Fusion for Multirobot Search",
+    "year": "2015",
+    "doi": "10.1109/TRO.2014.2378411",
+    "zotero_key": "9RUY62UL",
+    "priority": "P2",
+    "topic": "分布式信息融合",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Hollinger2015Fusion.pdf",
+      "sha256": "60542eb18419b91f48f638d3881b79e1344ff6a02a02df2e4c5e4b7ed99852ef",
+      "bytes": 916668,
+      "pages": 12,
+      "previous_filename": "Hollinger 等 - 2015 - Distributed Data Fusion for Multirobot Search.pdf",
+      "attachment_key": "F4IKPX4I"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Capitan2013Auctioned",
+    "title": "Decentralized Multi-Robot Cooperation with Auctioned POMDPs",
+    "year": "2013",
+    "doi": "10.1177/0278364913483345",
+    "zotero_key": "67HHE2AP",
+    "priority": "P2",
+    "topic": "任务分配",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ_PRECURSOR",
+    "pdf": {
+      "path": "literature/pdfs/Capitan2013Auctioned.pdf",
+      "sha256": "9cd20acfecf1dd1cd984f97373ceea61aae0a7bccef4626d17440708760c1468",
+      "bytes": 245646,
+      "pages": 6,
+      "previous_filename": "Capitán 等 - 2013 - Decentralized Multi-Robot Cooperation with Auctioned POMDPs.pdf",
+      "attachment_key": "8WYT28LB"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Cortes2004Coverage",
+    "title": "Coverage Control for Mobile Sensing Networks",
+    "year": "2004",
+    "doi": "10.1109/TRA.2004.824698",
+    "zotero_key": "ZJKSGIWN",
+    "priority": "P2",
+    "topic": "覆盖控制",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Cortes2004Coverage.pdf",
+      "sha256": "06af662e4bfa3d1447724a0093f9bb82fbef66be81b575652a8b50ab0889344c",
+      "bytes": 581288,
+      "pages": 13,
+      "previous_filename": "Cortés 等 - 2004 - Coverage Control for Mobile Sensing Networks.pdf",
+      "attachment_key": "NF9UCXP6"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Fu2009LocalVoronoi",
+    "title": "Local Voronoi Decomposition for Multi-Agent Task Allocation",
+    "year": "2009",
+    "doi": "10.1109/ROBOT.2009.5152829",
+    "zotero_key": "9MLV6D9H",
+    "priority": "P2",
+    "topic": "任务分配",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Fu2009LocalVoronoi.pdf",
+      "sha256": "54dd0ba251a6ef158469fe6b3b230ec6401e02d0ad28aa3cd4ef25fa47c9bdc2",
+      "bytes": 841367,
+      "pages": 6,
+      "previous_filename": "Fu 等 - 2009 - Local Voronoi Decomposition for Multi-Agent Task Allocation.pdf",
+      "attachment_key": "LI782MNZ"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Mahboubi2013StaticMobile",
+    "title": "Distributed Coverage Optimization in a Network of Static and Mobile Sensors",
+    "year": "2013",
+    "doi": "10.1109/ACC.2013.6580919",
+    "zotero_key": "HRI6TJER",
+    "priority": "P3",
+    "topic": "覆盖控制",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Mahboubi2013StaticMobile.pdf",
+      "sha256": "19286d2b8be96f90caad2b3811e3074dad32ce1d74229f9640d4f9492ae80d57",
+      "bytes": 295700,
+      "pages": 5,
+      "previous_filename": "Mahboubi 等 - 2013 - Distributed Coverage Optimization in a Network of Static and Mobile Sensors.pdf",
+      "attachment_key": "C3EPSCWL"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Wang2007Bidding",
+    "title": "Bidding Protocols for Deploying Mobile Sensors",
+    "year": "2007",
+    "doi": "10.1109/TMC.2007.1022",
+    "zotero_key": "5PIVA24Z",
+    "priority": "P3",
+    "topic": "任务分配",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "METADATA_VERIFIED",
+    "pdf": {
+      "path": "literature/pdfs/Wang2007Bidding.pdf",
+      "sha256": "e5e4b17227aefb8877763dbcd8b0071685a0312b16f2fd992efaf1f3e7f056d6",
+      "bytes": 4875027,
+      "pages": 14,
+      "previous_filename": "Wang 等 - 2007 - Bidding Protocols for Deploying Mobile Sensors.pdf",
+      "attachment_key": "YUBNYTY9"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Du2003ConstrainedCVT",
+    "title": "Constrained Centroidal Voronoi Tessellations for Surfaces",
+    "year": "2003",
+    "doi": "10.1137/S1064827501391576",
+    "zotero_key": "8K3JTQWS",
+    "priority": "P2",
+    "topic": "覆盖控制",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Du2003ConstrainedCVT.pdf",
+      "sha256": "3c1848584cf38803bcf5f87053148ce7393833010dca2c0f24bec8cf7e218c96",
+      "bytes": 273367,
+      "pages": 19,
+      "previous_filename": "Bourgault 等 - 2003 - Coordinated Decentralized Search for a Lost Target in a Bayesian World.pdf",
+      "attachment_key": "ER3UWZMX"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "KimKim2025OpenFields",
+    "title": "Coordinated Informative Path Planning for Multi-Robot Search in Open Fields",
+    "year": "2025",
+    "doi": "10.1007/s10846-025-02270-z",
+    "zotero_key": "SNKLQ9PJ",
+    "priority": "P2",
+    "topic": "信息路径规划",
+    "reading_scope_this_review": "元数据核验，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/KimKim2025OpenFields.pdf",
+      "sha256": "6dc411a601c3e1d691df5e4dce3c029b6716f7cffa4b61604a7456df3066bc27",
+      "bytes": 2077478,
+      "pages": 16,
+      "previous_filename": "Kim和Kim - 2025 - Coordinated Informative Path Planning for Multi-Robot Search in Open Fields.pdf",
+      "attachment_key": "HKSEQYD2"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Heintzman2021Anticipatory",
+    "title": "Anticipatory Planning and Dynamic Lost Person Models for Human-Robot Search and Rescue",
+    "year": "2021",
+    "doi": "10.1109/ICRA48506.2021.9562070",
+    "zotero_key": "39QUGML8",
+    "priority": "P1",
+    "topic": "预测搜索责任",
+    "reading_scope_this_review": "本地 PDF 第 1–2 页，方法概览已读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Heintzman2021Anticipatory.pdf",
+      "sha256": "c8b453bce9f084a40abf0de6655333173f52332cea0a7aba5885334f47071779",
+      "bytes": 5735425,
+      "pages": 7,
+      "previous_filename": "Heintzman 等 - 2021 - Anticipatory Planning and Dynamic Lost Person Models for Human-Robot Search and Rescue.pdf",
+      "attachment_key": "XRXMVK2L"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Cangan2020Anticipatory",
+    "title": "Anticipatory Human-Robot Path Planning for Search and Rescue",
+    "year": "2020",
+    "doi": "10.48550/arXiv.2009.03976",
+    "zotero_key": "HL2WJ4M4",
+    "priority": "P2",
+    "topic": "预测搜索责任",
+    "reading_scope_this_review": "仅条目元数据及公开摘要核对，本地无 PDF",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": null,
+    "file_status": "missing"
+  },
+  {
+    "citekey": "Xie2011Intention",
+    "title": "Intention-Based Coordination and Interface Design for Human-Robot Cooperative Search",
+    "year": "2011",
+    "doi": "10.1109/IROS.2011.6094688",
+    "zotero_key": "M4IUSH6W",
+    "priority": "P1",
+    "topic": "意图预测协同",
+    "reading_scope_this_review": "本地 PDF 第 1–2 页，摘要与问题设定已读；实验细节待复核",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Xie2011Intention.pdf",
+      "sha256": "a96e68582d1925304c6f93ca039aebb5542510a5a91f1d13681e450ca501a8f3",
+      "bytes": 1066064,
+      "pages": 6,
+      "previous_filename": "Xie 等 - 2011 - Intention-Based Coordination and Interface Design for Human-Robot Cooperative Search.pdf",
+      "attachment_key": "7PCPXWFI"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "KrzysiakButail2022Information",
+    "title": "Information-Based Control of Robots in Search-and-Rescue Missions With Human Prior Knowledge",
+    "year": "2022",
+    "doi": "10.1109/THMS.2021.3113642",
+    "zotero_key": "XZVEWN2F",
+    "priority": "P1",
+    "topic": "人类先验与信息控制",
+    "reading_scope_this_review": "本地 PDF 第 1 页及方法相关段落已读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/KrzysiakButail2022Information.pdf",
+      "sha256": "a150d1eabd94566d7b9a3ed31d1175ecb585cdf1913905458ac6142dde92bf7b",
+      "bytes": 1709475,
+      "pages": 12,
+      "previous_filename": "Krzysiak和Butail - 2022 - Information-Based Control of Robots in Search-and-Rescue Missions With Human Prior Knowledge.pdf",
+      "attachment_key": "QNY4EFLW"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "KrzysiakButail2025Movement",
+    "title": "Human Prior Knowledge Estimation from Movement Cues for Information-Based Control of Mobile Robots during Search",
+    "year": "2025",
+    "doi": "10.1145/3706065",
+    "zotero_key": "HFDC5PFH",
+    "priority": "P1",
+    "topic": "人类知识估计",
+    "reading_scope_this_review": "本地 PDF 第 1、19–22 页及参与者描述已读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/KrzysiakButail2025Movement.pdf",
+      "sha256": "77b94a6fb064e8c03cdc4b413b66dd6a8bd1452c655b0cd4410af7e8ef246a16",
+      "bytes": 12215609,
+      "pages": 29,
+      "previous_filename": "Krzysiak和Butail - 2025 - Human Prior Knowledge Estimation from Movement Cues for Information-Based Control of Mobile Robots d.pdf",
+      "attachment_key": "9354D6D5"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Ishii2023Enhancing",
+    "title": "Enhancing Human-Robot Collaborative Object Search through Human Behavior Observation and Dialog",
+    "year": "2023",
+    "doi": "10.1109/ICCVW60793.2023.00199",
+    "zotero_key": "CMDCWET2",
+    "priority": "P1",
+    "topic": "行为与主动询问",
+    "reading_scope_this_review": "本地 PDF 第 1 页，摘要与概览已读；详细实验待复核",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Ishii2023Enhancing.pdf",
+      "sha256": "c86fc333d347d6ae9eddc21f236cc4f188ce039621cdb0622a657e79b398a359",
+      "bytes": 1765237,
+      "pages": 8,
+      "previous_filename": "Ishii 等 - 2023 - Enhancing Human-Robot Collaborative Object Search through Human Behavior Observation and Dialog.pdf",
+      "attachment_key": "K8PUEF8D"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "LimMiuraHayashi2025SpaceSharing",
+    "title": "Enhancing Human-Robot Collaborative Search Through Efficient Space Sharing with On-Demand Bidirectional Interaction",
+    "year": "2025",
+    "doi": "10.1007/978-3-031-92591-7_2",
+    "zotero_key": "CYMHXCCX",
+    "priority": "P1",
+    "topic": "双向沟通与空间共享",
+    "reading_scope_this_review": "本地 PDF 第 1–3、11–14 页已读，含实验表 1",
+    "legacy_reading_status": "METADATA_VERIFIED",
+    "pdf": {
+      "path": "literature/pdfs/LimMiuraHayashi2025SpaceSharing.pdf",
+      "sha256": "84055dd2a052dfecf5aaac44e787261cd168c31606f999007b13596e49f7fd58",
+      "bytes": 3943198,
+      "pages": 16,
+      "previous_filename": "Lim Hong Da 等 - 2025 - Enhancing Human-Robot Collaborative Search Through Efficient Space Sharing with On-Demand Bidirectio.pdf",
+      "attachment_key": "TUAHXTY9"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "BestFitch2015Bayesian",
+    "title": "Bayesian Intention Inference for Trajectory Prediction with an Unknown Goal Destination",
+    "year": "2015",
+    "doi": "10.1109/IROS.2015.7354203",
+    "zotero_key": "V9HUPGMI",
+    "priority": "P2",
+    "topic": "意图预测",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/BestFitch2015Bayesian.pdf",
+      "sha256": "66af676b158f56543d30e0f1f9656074013ecc7617746233ccb1d3491acfe318",
+      "bytes": 531225,
+      "pages": 7,
+      "previous_filename": "Best和Fitch - 2015 - Bayesian Intention Inference for Trajectory Prediction with an Unknown Goal Destination.pdf",
+      "attachment_key": "SIM57RT6"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Swamy2020Scaled",
+    "title": "Scaled Autonomy: Enabling Human Operators to Control Robot Fleets",
+    "year": "2020",
+    "doi": "10.1109/ICRA40945.2020.9196792",
+    "zotero_key": "VZCRFQUY",
+    "priority": "P2",
+    "topic": "有限人类注意力",
+    "reading_scope_this_review": "本地 PDF 第 1 页已读",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": {
+      "path": "literature/pdfs/Swamy2020Scaled.pdf",
+      "sha256": "951fe3bb902193e0b746ab78cfd70abf2d777d7c095aaeb4acd1c38ae2ca4dd4",
+      "bytes": 4702190,
+      "pages": 7,
+      "previous_filename": "Swamy 等 - 2020 - Scaled Autonomy Enabling Human Operators to Control Robot Fleets.pdf",
+      "attachment_key": "78GQM5BD"
+    },
+    "file_status": "present"
+  },
+  {
+    "citekey": "Lippi2023Task",
+    "title": "A Task Allocation Framework for Human Multi-Robot Collaborative Settings",
+    "year": "2023",
+    "doi": "10.1109/ICRA48891.2023.10161458",
+    "zotero_key": "KIVAX5IQ",
+    "priority": "P2",
+    "topic": "人机任务分配",
+    "reading_scope_this_review": "仅 Zotero 元数据，本地无 PDF",
+    "legacy_reading_status": "FULLY_READ",
+    "pdf": null,
+    "file_status": "missing"
+  },
+  {
+    "citekey": "TalebpourMartinoli2018ICRA",
+    "title": "Multi-Robot Coordination in Dynamic Environments Shared with Humans",
+    "year": "2018",
+    "doi": "10.1109/ICRA.2018.8460978",
+    "zotero_key": "JRE3PI9K",
+    "priority": "P3",
+    "topic": "人感知安全协调",
+    "reading_scope_this_review": "元数据初筛，PDF 已提取未精读",
+    "legacy_reading_status": "METADATA_VERIFIED",
+    "pdf": {
+      "path": "literature/pdfs/TalebpourMartinoli2018ICRA.pdf",
+      "sha256": "f3941dcae04b550c6c2ffd4deb9aed1cd0ee086c912a5adf8ffe19a11d387cf3",
+      "bytes": 1675845,
+      "pages": 8,
+      "previous_filename": "Talebpour和Martinoli - 2018 - Multi-Robot Coordination in Dynamic Environments Shared with Humans.pdf",
+      "attachment_key": "2Y8S6WV2"
+    },
+    "file_status": "present"
+  }
+]
