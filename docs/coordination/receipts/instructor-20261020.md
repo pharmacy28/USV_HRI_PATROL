@@ -45,3 +45,9 @@
 - 已只读定向核对真实console/pad/launcher/bridge入口，准备005 DRAFT；不改004R生产source/install、不启动仿真或硬件。无竞争READY或新增运行额度。
 - 第一周以UI/按钮/现有硬件/记录导出与训练入口准备为重心。005草案列现有资产、显式SEARCH UI缺口、完整操作流程、按键表、源身份和RF数据合同接入；待004R收口/工程依赖复核后转READY。
 - RF首个候选运动状态/当前操纵，眼动语音非必需特征；分组/标签/源身份按已冻结合同，H等数值OPEN。不启动志愿者招募、正式数据采集/训练。真实硬件未验证如实待现场。
+
+
+## 004R失败审查与后继
+- role=instructor；read_commit=b758f6dd1906a2db8213f9b9f7f5f1d14e1f8ed0；亲读004R报告/本地详报/驱动脚本及关键原始hash。审查=BLOCKED/RUN_CONSUMED；错误为临时client/cleanup服务类型，不声称生产Planner失败。20路被动零不构成STOP验收，004仍CHANGES_REQUESTED。
+- 新唯一READY=004R2，先隔离无Gazebo驱动预检（std_srvs/SetBool正反与退出码），通过/回传准备证据后才可消费一次新会话；继承原运行边界，不无限补跑。004R旧READY不可重领。
+- UI005草案保持，instructor不依赖生产基线的UI设计/文档可继续，不把第一周准备无限挂在RF或smoke上。未修改生产代码/未启动Gazebo。
