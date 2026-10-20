@@ -2,8 +2,8 @@
 
 更新日期：2026-10-20，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-最新统筹补充：本轮用户要求继续统筹、检查constructor子agent、建设后由用户运行复验。main首读通信b3ede718/论文214b2cc9均无新提交；已有报告证实三只读子agent已启动/初步产出，尚无逐项当前状态、生产修复或可供复验的新版本。已纠正第一周计划仍称005 DRAFT、角色协议仍将004R2作为当前难题的漂移；发布MAIN-20261020-004要求沿唯一005由主agent汇总实际状态/成果并整合证据充分的小修，交付有版本/改动/验证/少量复验操作的候选版。main定时任务本轮查为停用，已恢复原任务并再次核实enabled=true，后台成功仍未验证。认知/文件已更新不等于其他Work本人读入或平台已改好，见第24节。
-论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与24节；第10—23节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
+最新统筹补充：main已本人读取6c51a0c9a3e0cf3d79fa92a39f9d9fe27d2ef2e0的005 R1实施增量与instructor本人回执。instructor已接收MAIN-004/LOOP并直接读constructor及三子agent最终输出，确认三者全部完成并close；原“当前完成状态未核实”已被该证据更新，main未亲入Linux管理器。005沿原任务进入R1：整体卡顿隔离基线/证实热点最小显示链修复、语音errors漏显/分层失败与执行反馈、眼动独立样本/UDP计数和Linux阶段计时/UNALIGNED诊断。无新自动Gazebo/控制许可；热图美化/布局/SEARCH大功能/轨迹优化后置。首报无生产修复，当前尚无R1改动hash/测试构建/前后证据或可复验候选版，不称已改好。见第25节。
+论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与25节；第10—24节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
 ## 1. 角色与工作目标
 
@@ -11,9 +11,9 @@
 |---|---|---|
 | exploration | 文献整理、版本/原文证据、直接交付inspiration | Xie已接收；本轮main另读1cea3553的Ishii证据笔记/交付增量，按其证据范围接收，不冒称main复读原文。后续按明确论断缺口推进，不扩大主实验 |
 | inspiration | 向用户解释全貌、讨论反例与研究取舍 | 用户/instructor报告已发送并送达训练用途解释请求；新请求本人接收/解释完成待证据。下一次直接按RF合同讲清操纵→标签→训练→预测→责任比较，不先反问或扩线 |
-| main | 科学合同、计划优先级、跨线状态与评审 | 完成本轮全角色仓库核查、纠正计划/协议/自动化状态，发布MAIN-004；三子agent当前状态/候选版仍待constructor证据，不把主记忆更新当平台完成 |
-| instructor | 平台设计、唯一工程派发与验收 | 接续唯一005，汇总constructor既有三子agent成果、指导证据充分的小修/候选版；本轮统筹新交接及LOOP接收待本人新回执，不重派调查或延续004复验 |
-| constructor | 实际平台实现、测试、报告与本人STATUS | 最后bf78ed55领取/79226670 RUNNING报告证实三agent已启动和初步线索；当前活跃/完成/阻塞无逐项新证据。下一步主agent一次汇总并集成有依据的小修、报告候选版；不是已改好 |
+| main | 科学合同、计划优先级、跨线状态与评审 | 已ACK 6c51a0c9的005 R1范围与instructor本人接收；同步子agent全部完成close/前三实施优先级，不再重复要求调查或发竞争READY |
+| instructor | 平台设计、唯一工程派发与验收 | 6c51a0c9本人ACK MAIN-004/LOOP，直接复核三子agent最终输出并确认全关闭；原005已追加R1最小实施，已通知constructor继续，待实际候选版审查 |
+| constructor | 实际平台实现、测试、报告与本人STATUS | 005仍RUNNING；三只读子agent已全部完成close（instructor直接核查）。原首报无生产修复，R1接续通知据报已收到；主agent实施/整合并回传代码hash、测试构建与分层证据，当前未收到R1完成报告 |
 | overleaf | 唯一论文母稿、引用与论证 | 论文HEAD214b2cc9无增量；原R1/RF-Xie ACCEPTED保持。下一次仅校正确有过时的工程当前状态，勿把UI候选/四传感器待对齐写成已实现或扩科学合同 |
 
 exploration提供有来源的文献证据；inspiration据此与用户讨论；main统一有依据的新结论和用户明确决定，工程交instructor、母稿交overleaf。用户已明确的第一周方向无需再次批准，助手候选不能自升为合同。main不向constructor另发竞争工程READY。角色名、仓库发布、本人ACK、后台启用、执行和验收必须分别记录。
@@ -63,7 +63,7 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 | 004 | instructor ACCEPTED（限生产B3门控/无模型回退） | 最终Planner source/build SHA256=ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84；004R2最终运行闭合fallback、撤销、直接STOP与Recorder。不是有效RF/正式效能验收 |
 | 004R | instructor BLOCKED / RUN_CONSUMED | 唯一Gazebo已启动，临时START及cleanup错用example_interfaces/SetBool，真实为std_srvs/SetBool；未START。20路空闲零值不是STOP因果安全，旧额度不能重用 |
 | 004R2 | instructor ACCEPTED（限定工程）；运行已完成、额度已消费 | run=448cd4ea97f64161bcaf9d850386bba5。instructor原始证据复核：STOP前20路均非零；STOP后各360条全零、最短11.634358088s，回执至保守屏障间689条亦零。任务活动约2.2s，非长期性能/预算删失验证 |
-| 第一周平台准备 / 005 | READY / PHASE_1_STARTUP_AND_TARGETED_DIAGNOSIS；constructor RECEIVED/RUNNING | cac0e02e任务、bf78ed55本人回执。启动说明先交；总体卡顿优先于热图，语音/眼动分层诊断。主agent统合三只读子agent，阶段无自动新Gazebo/START/操纵/STOP，用户已有会话只读监测一次≤15分钟；尚无真实改善证据 |
+| 第一周平台准备 / 005 | 原005 READY/RUNNING内R1实施批，非新任务 | 6c51a0c9：整体卡顿→语音→眼动前三优先；隔离Qt计时/合成帧与明确错误反馈可立即实施，不等待RF/设备。三子agent关闭，主agent整合；无自动新Gazebo/START/操纵/STOP，候选/现场改善待证据 |
 | RF真实来源与训练 | 最小数据合同已发布；真实来源链/数据/模型未验证 | 无模型不阻断准备；无法核验源身份时仍保守回退 |
 | encounter、正式B2/B3与RMST | 未验证/未报告 | 不用工程验收或文本ACCEPTED升级科学结果 |
 
@@ -106,8 +106,8 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 
 ## 8. 当前优先级与开放事项
 
-1. **005从已有线索转为小批候选版**。总体卡顿/语音/眼动问题及闭环语义核对保持；已有证据足够的小修不无限等待新的Gazebo或RF。由constructor主agent一次汇总三子agent真实状态/产出并整合，instructor核查该批基本可启动/边界后交用户亲自评价UI、流畅性、语义；无代码变化不得称优化新版，缺现场指标保留待测。
-2. **既有三子agent分工与证据**。005 READY/RUNNING不重派；已启动报告不等于当前仍活跃或已完成。下一实际报告合并各agent可核对标识、状态/时间/输出/阻塞/修改所有权，主agent避免console等并发覆盖，完成即停止驻留。按005原边界，无自动新Gazebo/START/操纵/STOP，不清理用户会话；一次≤15分钟只读监测不自动续时。
+1. **005 R1实施前三优先**。整体卡顿先聚合计时/隔离Qt回放，证实热点才最小修显示链，不改源频率；语音实际补last_result.errors漏显及按事件关联的ASR/解析/策略/执行反馈，明确等义变体和歧义反例；眼动分tracker独立样本/UDP包计数、Linux阶段计时与UNALIGNED/积压诊断，有证据才修队列。热图美化/布局/SEARCH大功能/轨迹优化暂后置，既有手柄手感保留。
+2. **三子agent已完成close，主agent实施整合**。instructor在6c51a0c9直接读最终输出确认关闭，不再描述当前仍调查或为本批重派三次同类调查。console由主agent单人整合，按原任务给最小反例/回归/受影响包构建/source-install hash和前后证据；计时新增或文档更新不能独称优化完成。无自动Gazebo/START/操纵/STOP，已有会话一次≤15分钟只读上限不续时。
 3. **依赖顺序**。可操作/可记录/可导出平台→后续志愿者实际采样→RF开发训练/按组验证→模型与参数冻结→另行安排pilot/正式B2/B3评价。当前不招募、不启动正式采集/训练；工程联调样例不称志愿者数据或效能证据。
 4. **RF接口已有合同**。decisions/RF-DATA-CONTRACT-v1.md明确人控艇t+H二维位置、最少运动状态/当前操纵、因果可用性和源身份、先按会话/参与者分组再造窗口、开发与正式评估分离。instructor不需等main再次给同一数据语义；具体接口/键位按实际资产设计。硬件联动不把眼动/语音自动扩为主实验特征。Windows Unity/Tobii桥接按第19节现有单接收链纳入准备，先核实真实收包/发布/记录与来源身份，不能用Linux接收时刻补写成Windows采样身份。
 5. **inspiration先直接解释当前训练用途**。真人在VRX操纵艇→记录运动状态/当前命令→同艇同控制段且SEARCH连续有效的t+H位置标签→按参与者/完整会话分组训练→预测人控艇未来位置→B2当前位/B3有效未来位责任比较。不是训练语音、眼动、底层驾驶或目标探测器。眼动/语音非本版RF必需，但影响行为/时序的卡顿与输入失真须先修；不以反问/新文献扩线代替解释。文献/论文保持既定边界。
@@ -115,9 +115,9 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 
 ## 9. 当前交接与本人接收
 
-- main统筹入口：本轮MAIN-20261020-004统筹各Work，承接MANUAL/UI/LOOP交接。当前首读通信b3ede718及论文214b2cc9无新提交；不重复已充分审阅的文件，不修改其他角色任务/receipt/内部记忆，新交接本人接收分别记录。
+- main统筹入口：MAIN-20261020-004与LOOP回复已由instructor在6c51a0c9本人接收；本轮main读取其005 R1任务增量和回执并更新记忆/计划，不重复工程派发。具体实施/候选版仍以constructor报告及instructor评审为准。
 - instructor RF请求f884a8ce、PREP请求8cb9879f均已由main回复且instructor本人ACK；合同不再待重复批准。instructor在cac0e02e本人ACK main手动走查决定，并发布005第一阶段READY，原DRAFT/PRODUCTION_BLOCKED_BY_004R已由任务所有者更正。
-- constructor已完成004离线返工/004R2最终运行并本人接收限定ACCEPTED。当前bf78ed55本人回执read_commit=cac0e02e：005 RECEIVED/RUNNING，启动说明已向本聊天交付，3个只读子agent实际启动；这些是constructor报告，不冒称main进入本地主机亲验。当前无生产修改、新Gazebo或实测延迟证据。
+- constructor已完成004/004R2且限定ACCEPTED保留；005首报仍无生产修复。三只读子agent由instructor直接核验全部完成关闭；R1继续实施消息据用户/instructor报告已送达，尚无新的R1代码/测试/候选版报告，不把通知或子agent关闭写成主agent实施完成。
 - overleaf在c3c75966本人ACK PAPER-001最终ACCEPTED、MAIN-003、RF合同、第一周计划与Xie证据（通信read_commit=87364b3b）；不再标该接收缺口。其RF/Xie新增论文内容已在本轮审查ACCEPTED，见第20节；线上Overleaf版本仍未核实。
 - exploration本人ACK及交付=1b5067ea，main本轮已实际读取并接收；不再标“exploration待本人ACK”。inspiration在629062c8已本人记录接收EX-XIE-01—05；overleaf亦已在c3c75966本人记录读入。
 - inspiration：原基线本人ACK=629062c8、read_commit=c821fbb9保持。当前用户/instructor称训练用途解释请求已发送/送达；尚无该新请求的本人ACK/解释结果，不假报已解释或已改研究笔记。未验证其自动接收器。
@@ -310,3 +310,11 @@ read_commit=fdf0e3119a65f7290029b5831d23308413950fe6；main本人ACK INSTRUCTOR-
 main自动化发现真实停用并恢复：原id=6ad720ead3cc8191abc79a66100726cc，更新后peek enabled=true，当前last_run_time为17:34:08.095942+08:00，无后台成功证据；原每小时schedule不变。未重复创建，不推测停用原因、不宣称其他Work被唤醒。细节见receipts/automation-main.md。
 
 本轮交付仅统筹/计划/协议/自动化回执等main文件，尚无生产优化版本。下次可交用户的候选版应有实际source/install版本/hash、可见改动/已知缺口、必要定向验证和一两项复验操作；可体验不等于005整体、硬件或科学ACCEPTED。新交接接收/改动落地以本人证据更新。
+
+## 25. 005 R1实施批接收：三子agent全部关闭（2026-10-20）
+
+main本人读入6c51a0c9a3e0cf3d79fa92a39f9d9fe27d2ef2e0：仅原005任务R1追加及instructor本人回执变化。instructor已ACK MAIN-004/LOOP、直接读constructor及3子agent最终输出并确认全完成close；这更新第24节“当前状态未核实”历史快照，不是main亲看远端管理器。constructor首报没有生产修复。
+
+原005立即实施R1，复用既有调查：整体卡顿以隔离Qt/合成帧回放和聚合计时取得可重复基线，针对证实热点修最小显示链；语音补已证实last_result.errors漏显、事件关联的ASR/解析/策略/执行反馈及明确等义/歧义反例；眼动分设备样本和UDP包计数、Linux接收/发布/Qt阶段耗时、UNALIGNED/积压，有证据才改队列。不能用parser测试当ASR通过、UDP包率当独立设备采样率或无时钟映射的端到端延迟；不改源采样/洗时间/恢复双LSL/越权修改Windows。
+
+console主agent单人整合，受影响测试/构建/source-install hash和真实前后证据随候选报告；尚无实测的现场项保留待用户。首批热图美化、布局、SEARCH大功能、轨迹优化不抢前三优先，四传感器期望/binary区别已接收且不改科学合同。无新自动Gazebo/控制许可，005仍RUNNING，不自签ACCEPTED。主agent已被通知继续实施，main不再派重复调查或另开READY；本轮仅同步主记忆和第一周当前批次。
