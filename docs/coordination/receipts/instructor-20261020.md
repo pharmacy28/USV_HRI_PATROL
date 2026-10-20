@@ -30,3 +30,10 @@
 - 先离线最小修正/测试/构建与身份回传，004运行额度不增加；后续004R需独立READY，当前未发布。不进入endpoint或正式实验。
 
 - 写入前复读HEAD=a9af355be7ed85303a2f99a704ee7eba94ae13f0及角色协议/main记忆新内容；并发变更保留，未触及本次两路径。
+
+
+## 004 OFFLINE R1与004R路由
+- role=instructor；read_commit=52f416e2c8391f14322e83351da06bd58f771321；已读constructor离线R1/最终004报告、STATUS、main最新记忆与自动化交接资料。当前消息只推进004审查/RF交互，不据仓库授权描述新建接收器或后台实验。
+- 源码/build哈希直接匹配ad6b320e...；两项源码门控收口，亲跑26 tests通过；完整166 tests和构建依据constructor报告。004整体仍CHANGES_REQUESTED / RUNTIME_PENDING，不借旧run验收新版本。
+- 已发布独立004R READY：唯一一次新有界smoke，最终回退/三种撤销/20路直接零推力闭环；本会话未启动仿真。
+- 用户RF真实数据训练要求已提交INSTRUCTOR-TO-MAIN-RF-20261020-001；等待main本人决策/ACK，不代裁数值或启动训练。
