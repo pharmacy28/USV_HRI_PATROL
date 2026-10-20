@@ -85,3 +85,15 @@
 - Fu2009LocalVoronoi.pdf: `54dd0ba251a6ef158469fe6b3b230ec6401e02d0ad28aa3cd4ef25fa47c9bdc2`
 - Mahboubi2013StaticMobile.pdf: `19286d2b8be96f90caad2b3811e3074dad32ce1d74229f9640d4f9492ae80d57`
 - Hollinger2009Efficient.pdf: `ee5670e523170804d4fc4ddc4b5ef8152c96d303db20651431149328575ae5cd`
+
+## 7. RF合同/第一周计划/Xie增量接收（2026-10-20）
+
+来源快照：coordination/work-20261020@87364b3ba616ab4925634a2d45d9fec4a3a0ae4f。已验收母稿baseline paper/overleaf-20261020@f8de4da17dbc3cc70eeedca409376c530cf9547b；本轮只增量维护，不重开PAPER-001已ACCEPTED的R1–R4。
+
+- exploration交付literature/related_work_notes/EXPLORATION-20261020-Xie2011.md，blob aa3565d398c4f322cd65b7cd36f5c0df630679c7，EX-XIE-01—05。已读证据包；其FULL_TEXT_REVIEWED状态归exploration本人，未冒称本轮overleaf重新通读6页。本轮另从已有同hash PDF提取文本核对第5页漏检/抑制段；第3页P/P′与HMM依据沿用上轮直接阅读和新证据。
+- RW-07/08细化：明确临时规划PDF P′、观测更新的P与SAD prior是不同路径；不概括成预测直接永久清belief。增加录制轨迹仿真与组合time-to-detect对照这一评价边界，不搬运其数值为本项目收益。
+- 新RW-21（II-B、VI）：Xie PDF第5页/印刷3353 §IV-B图6说明（EX-XIE-05）明确报告人漏检后抑制机器人到访、合作有时更差。正文只归因于作者讨论的组合估计/抑制，不声称隔离了预测误差因果效应。本文保留belief/full-domain并不因此保证及时回访；generator优于inhibition仍未被证明。
+- EX-XIE-03的40s约75%活动分类结果未加入正文，不当下一位置精度或H依据；EX-XIE-04的人数/训练评价数量及时间均值未转为本文参数；ref[14]抑制核/幅度/恢复机制未获得可复现细节，不据此新增baseline或“前作无撤销”论断。
+- RF-DATA-CONTRACT-v1（blob95ff2a93fdfd5387ccac2d969deafc4103b54113）是本项目方法/数据语义裁决，不是文献结果或实测模型。相关增量为计划协议，无新外部引文。
+- WEEK1_PLATFORM_PREP_20261020（blob4f2af5b739b07db3bf25813afc8240fe3a937c69）是UI/设备/源身份/导出准备计划，不证明已完成、已采志愿者或已训练RF。论文不写工作日历或工程任务清单；只补必要的数据准备/验证边界。
+- 沿用17条实际引文与首次引用顺序，无新文献身份或bib字段变化。新增机制表述的证据范围限上述段落，不扩大新颖性或成果主张。
