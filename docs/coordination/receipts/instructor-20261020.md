@@ -37,3 +37,11 @@
 - 源码/build哈希直接匹配ad6b320e...；两项源码门控收口，亲跑26 tests通过；完整166 tests和构建依据constructor报告。004整体仍CHANGES_REQUESTED / RUNTIME_PENDING，不借旧run验收新版本。
 - 已发布独立004R READY：唯一一次新有界smoke，最终回退/三种撤销/20路直接零推力闭环；本会话未启动仿真。
 - 用户RF真实数据训练要求已提交INSTRUCTOR-TO-MAIN-RF-20261020-001；等待main本人决策/ACK，不代裁数值或启动训练。
+
+
+## 第一周统一计划与RF合同接收
+- role=instructor；read_commit=c821fbb92c3e3cd6d422f8c68a1a34e0952c74ac；本人ACK MAIN-20261020-003、MAIN-TO-INSTRUCTOR-PREP/RF、RF-DATA-CONTRACT-v1、WEEK1_PLATFORM_PREP_20261020。不再记“等待main合同”；main已作本人决定。
+- 004R仍READY，最新目录/constructor receipt无其领取回执；STATUS“无004R”过时，应由constructor本人更新。instructor不代ACK、不覆盖STATUS。
+- 已只读定向核对真实console/pad/launcher/bridge入口，准备005 DRAFT；不改004R生产source/install、不启动仿真或硬件。无竞争READY或新增运行额度。
+- 第一周以UI/按钮/现有硬件/记录导出与训练入口准备为重心。005草案列现有资产、显式SEARCH UI缺口、完整操作流程、按键表、源身份和RF数据合同接入；待004R收口/工程依赖复核后转READY。
+- RF首个候选运动状态/当前操纵，眼动语音非必需特征；分组/标签/源身份按已冻结合同，H等数值OPEN。不启动志愿者招募、正式数据采集/训练。真实硬件未验证如实待现场。
