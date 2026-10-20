@@ -2,6 +2,7 @@
 
 更新日期：2026-10-20，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
+最新统筹补充：2026-10-20用户已授权main定时统筹，启用情况见第15节；004在c1f42e8a中已由instructor CHANGES_REQUESTED，见第16节。
 本轮依据：可见对话与仓库证据；论文5748cf31的R1修订、main精确源码独立编译/局部PDF复审，以及通信3ef5f2fa中的004任务/角色回执/004B公开证据索引。第1—9节更新为当前事实；第10—11节明确保留历史；第12节记本次验收。此前跨对话历史检索失败；本轮仅按当前文件继续，不声称完整读取所有历史对话或其他角色的内部记忆。
 
 ## 1. 角色与工作目标
@@ -11,8 +12,8 @@
 | exploration | 用户新增Related Work预处理Work | 文献收集、版本核对、原文证据与比较边界 | 46个作品统一入口、22份仓库PDF；向inspiration交付，待本人ACK |
 | inspiration | 从“分支 · 重审研究路线”分出的Work（用户拟创建） | 研究讨论、项目全貌解释、持续提问、假设/论证收紧 | 入口已定义，待本人ACK；讨论结论回传main |
 | main | 本统筹对话 | 科学问题、范围、指标、路线冻结、证据与论文一致性 | 本记忆、科学裁决、跨线交接 |
-| instructor | 重构仿真平台 | 平台设计、唯一工程任务下发与验收 | 003/003R已验收；已发布独立004；constructor已DONE，待instructor正式review |
-| constructor | 审计 VRX 仿真平台精简方案 agent | 读取实际本地源码、实现、测试、报告 | 004已提交DONE报告；等待instructor审查 |
+| instructor | 重构仿真平台 | 平台设计、唯一工程任务下发与验收 | 003/003R已验收；004已review=CHANGES_REQUESTED，要求先离线最小修正 |
+| constructor | 审计 VRX 仿真平台精简方案 agent | 读取实际本地源码、实现、测试、报告 | 004原DONE报告已被review；下一步按CHANGES_REQUESTED离线修正，未补跑授权 |
 | overleaf | 撰写IEEEtran论文主干 | 唯一论文母稿、文献原文核查、数学和叙述、编译 | PAPER-001定向返修已获main ACCEPTED；保持母稿与新证据一致 |
 
 exploration先整理文献证据并直接交付inspiration；overleaf负责论文采用时的措辞、引用与正文审计，二者不争写母稿。inspiration面向用户讨论和解释；main将有依据的研究结论或用户新决定统一同步。用户在inspiration中已明确的决定无需重复批准，尚在讨论的建议仍为CANDIDATE。每轮优先一个关键问题，不重复确认已冻结事项。
@@ -58,12 +59,12 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 
 | 工作 | 当前可确认状态 | 证据与限制 |
 |---|---|---|
-| 通信及角色接收 | CONNECTED；instructor/constructor/overleaf本人receipt均已读取 | 完成角色交接，不等于新文件自动接收或后台执行 |
+| 通信及角色接收 | CONNECTED；instructor/constructor/overleaf本人receipt均已读取 | 角色交接已有回执；定时接收器另行登记，main已启用，其他接收器尚待真实验证 |
 | USV-20261020-001 | DONE / ACCEPTED，静态审计 | 保留历史发现；不能据其“缺SEARCH”否定后来实现 |
 | SLIM-004B | instructor公开历史证据索引已由main读取：183 tests/80事件 | instructor亲读原详报并记录hash；main未读本地原报告/源码或重算运行。UNKNOWN目标精确runtime分支未重现；不追签历史独立ACCEPTED |
 | USV-20261020-002 / SLIM-004D | ACCEPTED，报告支持的工程验收 | 预算到期、安全STOP、Recorder；非正式实验 |
 | USV-20261020-003 / 003R | instructor ACCEPTED，限ROS API SEARCH/B2 | 最终sim clock运行解除原阻断；UI未观察，非B3/encounter验收 |
-| USV-20261020-004 / B3生产fallback | constructor DONE / instructor REVIEW_PENDING，尚未ACCEPTED | 报告162 tests与一次无模型smoke；20路实际推进器未采集，第二次ACTIVE/NAVIGATE/RELEASE/UI未闭合。main仅读公开报告，不代instructor验收 |
+| USV-20261020-004 / B3生产fallback | constructor原报告DONE / instructor CHANGES_REQUESTED，尚未ACCEPTED | instructor已审查原始记录/源码并要求修正源身份与源时间倒退；20路实际推力、NAVIGATE/RELEASE等缺口保留。main仅读公开report/review，不冒称本地复验 |
 | encounter、正式B2/B3、RMST | 未验证/未报告 | 主语义新冻结，数字和实现/统计证据仍需补齐 |
 
 002 run_id=7904539e7ad44213b4baa971245e3bb9；start=42.540s、deadline=82.540s、发布=83.000s。0.460s发布延迟不能延长分析预算。10/10 path STOPPED、20/20 thruster=0，T_conf=null；encounter_censoring_validated=false。
@@ -99,16 +100,16 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 | 旧T_FD/T_conf、Gamma或R_miss就是当前成功判据 | 主实验成功仅encounter，旧确认不得单独触发主实验正常成功；字段映射和实现仍待instructor落实 |
 | B2/B3 始终同 posterior，B4 必然上界 | 共享更新规则，后验可随轨迹分化；B4 只作完美未来信息参考 |
 | verified_refs.bib 或 FULLY_READ 代表所有新论断已验证 | 必须记录真实原文版本、页/节/公式、支持范围和不能推出的结论 |
-| 自动通信已经建立跨对话持续调度 | 已有可读写仓库通道；角色 ACK 和用户启动仍需真实发生 |
+| 自动通信已经建立跨对话持续调度 | 用户新授权已使main每小时统筹启用；各Work接收器/本地runner仍待真实登记与端到端验证，见AUTOMATION.md |
 | GT只能在评价器使用；b是包含全部人类行为信息的真实后验 | GT仅允许生成器/独立评价器两用途；b是给定几何且忽略动作选择likelihood的sensor-evidence模型 |
-| B3尚未授权，或收到004即表示实现完成 | 004已由constructor提交DONE报告；无instructor review前不升级为ACCEPTED |
+| B3尚未授权，或收到004即表示实现完成 | 004原报告DONE；最新instructor review=CHANGES_REQUESTED，未ACCEPTED |
 
 本轮只审计可见的记忆载体/产物，不能读取或改写其他对话内部记忆。各角色需提交自己读取的 commit、纠正条目和当前任务回执。旧 idea/研究决策状态.md 的“人工目的地可作固定中心”、旧传感器第二贡献等，与本轮已确认语义冲突时，按用户较新指令与 RC-20261020-v1 处理；不恢复旧语义。原文献结论则不能被研究偏好覆盖，必须回原文核查。
 
 ## 8. 仍开放与推进顺序
 
 - main：已发布RC-v1.1，冻结单binary理想化观测范围（四模态不扩入）、真值两类合法用途、encounter唯一成功/边界同tick、缺测操作语义和统计单位原则。R/tau/B/H及配置阈值/样本量仍OPEN，待最小配置依据表，不暗填数字。
-- instructor/constructor：003R已收口；004已提交DONE报告，等待instructor对实际证据与缺口正式评审。main已读报告内初步参数依据，数值尚未冻结；等待instructor审查结论，再按依赖收紧数值/encounter。无需等待RF训练或正式样本量；不重领003R或004，不并行实施后继D2/D3/D4。
+- instructor/constructor：003R已收口；004已获instructor CHANGES_REQUESTED，先按review离线修正源身份/时间倒退并回传；最终运行需instructor另发004R READY，当前未授权。main已读初步参数依据，数值尚未冻结；按依赖收紧数值/encounter。无需等待RF训练或正式样本量；不重领003R或004，不并行实施后继D2/D3/D4。
 - overleaf：PAPER-001的R1–R4与RC-v1.1同步已通过main局部复审，无需重做本次返修或整轮文献审计。文献实质结论沿用初审五篇关键原文抽查和20项审计表；后续据有版本的新工程验收/有来源参数表更新正文，不预写效能结论。
 - 实验：先完成工程和日志可测性，再开发集预测验证、配对 replay、必要的 live pilot/正式研究；不能把 calendar 目标当已完成事实。
 - 10/15—11/15 原月度计划保留为路线参考（工程整合→数据/预测→部署/pilot→合格正式实验/论文）；实际验收依赖优先，不编造样本、训练、结果或伦理审批。
@@ -120,7 +121,7 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 - inspiration入口：handoffs/INSPIRATION-20261020-001.md；接收PENDING，聊天创建/重命名由用户操作，不冒称已启动。
 - instructor 交接：handoffs/INSTRUCTOR-20261020-001.md。
 - overleaf 任务：论文分支 paper/manuscript/tasks/PAPER-20261020-001.md。
-- main已读取三角色本人回执。MAIN-20261020-002/RC-v1.1：instructor、overleaf已有本人ACK；constructor在004回执中明确读入新合同/交接并接收004。此轮跨角色接收有证据；004现已DONE并等待instructor评审。新发布的论文ACCEPTED review及本记忆是否已被他方读取需后续真实ACK，不代签。
+- main已读取三角色本人回执。MAIN-20261020-002/RC-v1.1：instructor、overleaf已有本人ACK；constructor在004回执中明确读入新合同/交接并接收004。此轮跨角色接收有证据；004原报告DONE，最新review为CHANGES_REQUESTED；该review是否被constructor读取仍须本人新回执。新发布的论文ACCEPTED review及本记忆是否已被他方读取需后续真实ACK，不代签。
 - 本文后续由 main 按已接收报告/review 更新；修订不抹掉先前快照与证据限制。
 
 
@@ -183,3 +184,16 @@ Costen/Yuan/MAC的后续历史矩阵比007初始建议更新，分别记录正�
 ### 本轮写前并发更新（004）
 
 读到c9bfa8b484f8e2f2ba5bd565d411fe9a95baa6f5：constructor新增004报告/STATUS/本人完成回执。报告称162项测试及构建通过、一次无模型运行f87fc7b8a1934a52ada1fbc1fd7d4828已记录SEARCH回退/CANCEL/STOP与Recorder收尾；20路实际thruster及第二次ACTIVE后的NAVIGATE/RELEASE/UI为NOT_OBSERVED，不拿003R历史记录代替。当前DONE / instructor REVIEW_PENDING，main通过公开compare读取，不独立验证本地原始记录、不代签验收。早先RUNNING表述保留作领取时历史。参数表中的10m、0.1s/实测间隔、H=5s等均仅报告来源/工程沿用，未据此冻结正式研究数值。此次角色和文献提交保留这三项并发文件，未改constructor产物。
+
+
+## 15. main中心任务触发器（2026-10-20用户授权）
+
+用户明确要求定时检查各Work的GitHub情况、下达命令、角色回执并闭环。本轮已实际创建main每小时定时任务（Asia/Shanghai），创建结果enabled=true；启用回执见receipts/automation-main.md，细则AUTOMATION.md，角色启用交接handoffs/MAIN-AUTO-20261020-001.md。只在实质进展/阻塞/待用户决定时通知，无变化不制造提交和新任务。
+
+当前可用接口没有指定其他既有会话的参数；各Work须在本人会话各创建一次定时接收器并登记。constructor需要真实本地执行器，交instructor指导部署。main已启用不等于这些接收器已启动，不等于完整端到端自动闭环已验收。本轮未伪造其他角色ACK或修改其内部记忆。原协议只手动触发的条款由用户本次明确授权定向更新；科研合同、文件所有权、单一工程派发和运行预算不变。
+
+## 16. 004 review已到达：CHANGES_REQUESTED
+
+本轮人工检查读到c1f42e8a944e58cd222ee5161d51eeabdff9c37b中instructor的004.review和本人回执。其亲读本地原始日志/源码、核对hash；main读取公开review，不代其本地验证。确认局部fallback/CANCEL/STOP/Recorder运行事实保留，但接收时刻赋当前segment不能证明源输入属于当前段，同段位姿t2→t1倒退尚未拒绝。
+
+按review先补确定性生产路径反例与最小离线修正/测试/构建、更新最终hash；无法证明来源的特征不得靠接收时刻伪装新鲜，可使依赖分支回退，不破坏原手控接口。20路实际推力及最终撤销覆盖仍需后继有界运行；004的一次额度已用尽，004R尚无READY。原报告DONE不升级ACCEPTED，不新增endpoint/正式实验，不更改H/R/tau/B。上文历史快照的“待review”仅代表当时状态。
