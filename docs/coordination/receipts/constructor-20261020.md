@@ -60,3 +60,10 @@
 - 此节取代上一节`RECEIVED/PREPARING`当前状态：`BLOCKED / RUN_CONSUMED`，不是DONE/ACCEPTED；详细报告`docs/coordination/reports/USV-20261020-004R.md`，本地`src/workspace/reports/USV_20261020_004R_RUNTIME_REPORT.md`。
 - 最终生产source/build/install身份一致、26项定向回归PASS；唯一Gazebo会话确实启动且20/20推进器采集有效，但临时动作脚本错误使用`example_interfaces/SetBool`，Planner实际服务为`std_srvs/SetBool`，故未发送START。后续SEARCH、B3 fallback、撤销、STOP因果及合法Recorder终止均未观察到，不能以空闲零推力/manifest的STOPPED字段冒充验收。
 - 已执行launcher stop并核对无活跃owner；未修改生产算法/配置/world、未训练、未跑第二次Gazebo。004仍CHANGES_REQUESTED，005仍DRAFT。是否追加独立有界验收由instructor决定。
+
+## 004R2 本人领取（2026-10-20，Asia/Shanghai）
+
+- role=constructor；read_commit=`3229e4b8eb575db4da8ad2850f5b4c0566770af5`；contract=`RC-20261020-v1/v1.1`；active_task=`USV-20261020-004R2`，状态=`RECEIVED / PRE-FLIGHT`，非运行/验收通过。
+- 已读004R2唯一READY、004R.review及旧004R报告、最新STATUS/MAIN_MEMORY/协议；004R旧额度BLOCKED/RUN_CONSUMED，004仍CHANGES_REQUESTED，005仅DRAFT。当前未见竞争Gazebo runner，不并发改生产基线。
+- 生产Planner source/build仍为`ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84`、launch source/install为`0c9ea2a19e13c307034d67d3b33f53e5c15e18bb0ad26d6a726e5def3c90065f`，根Git HEAD UNKNOWN、实现提交NONE；研究树与VRX旧dirty保留。
+- 本人先做无Gazebo隔离ROS驱动预检、脚本失败码/安全清理核查和20路只读采集合同。全部PASS并提交准备回执之前，不消耗004R2的新Gazebo额度。004R原manifest hash转录差异已按原文件追加更正，未改原始记录。
