@@ -8,9 +8,9 @@
 
 原计划第一周的观测简化/搜索流程整合仍保留；已验收的底层/API工作作为基础复用，不重做整个平台审计。API通过不能替代实际UI点击和设备验证。第一周完成度按操作与记录流程验收，不按“测试数越来越多”代替交付。
 
-## 当前阶段：首轮反馈后小批建设，交用户复验
+## 当前阶段：005 R1候选已就绪，等待用户现场复验
 
-首轮和闭环走查已发生，005保持原任务READY/RUNNING。instructor在6c51a0c9本人ACK MAIN-004/LOOP、直接核验三子agent最终输出均已完成close，并追加R1最小实施批。首报无生产修复，R1候选代码/hash/必要测试构建/前后证据尚未回传；不称优化新版已就绪。当前主agent继续实施整合，不重复同类只读调查。
+首轮和闭环走查已发生，005 R1实际代码候选已完成。instructor在1ae7932f7d84cb3bc16c719e7fe83a7e8db6efb0发布CANDIDATE_READY / FIELD_FEEDBACK_PENDING，005整体仍RUNNING、未最终ACCEPTED。instructor亲核三个模块source-build导入同hash、独立53tests（0 skip）和bash-n通过；三包构建通过依据constructor报告。主agent已集成，原三只读及本批两代码子agent已回传关闭。现场整体流畅度、真实ASR质量与眼动端到端改善仍待用户，不重复诊断或等005全量完成才展示。
 
 1. **现状入口与最短说明已先交**：constructor的005报告已核脚本入口`cd /home/cyz/vrx_ws && ./run_vrx.sh start`、默认h5_command_aware及脚本hash，专用desktop未核实。后续候选版只补实际变化/安装身份/已知缺口，不为启动说明重开全平台审计、不暗换模式。
 2. **用户一键走查**：先看布局、地图/字号、选艇、控制权/SEARCH/mission状态、按钮语义和设备反馈，可先不START。截图或文字自然反馈即可，不要求长表、不要求向多个角色重复转述。
@@ -19,13 +19,13 @@
 
 不等待RF数据/模型、005全量完成或额外同类smoke；用户手动走查已有本轮授权，不要求重复批准。constructor已核run_vrx.sh start含Qt，桌面入口若使用则另按实际核对；--research-core会关闭UI/硬件，不能用来走查；--headless只关闭Gazebo窗口，默认h5_command_aware须如实说明，不冒称新的SEARCH/B2/B3模式。缺失SEARCH按钮列明，不用ROS CLI代替用户点击。
 
-## 下一批可复验交付
+## 当前R1交付及复验边界
 
-当前R1优先整体卡顿、语音、眼动：隔离Qt计时回放→证实热点最小显示链修复；语音errors漏显与分层失败/执行反馈、明确等义变体反例；眼动独立tracker/UDP计数、Linux阶段计时、UNALIGNED/积压诊断，有证据才修队列。原始采样不降频/洗时间，手柄手感保留。热图美化/布局/SEARCH大功能/轨迹优化暂后置；四传感器期望/binary及闭环事实核对继续保留但不阻塞本批，不改科学合同。
+当前R1实际交付：显示图/视频缩放缓存、避免重复图像处理及每10秒聚合计时；语音errors漏显、按同命令关联的分层失败/执行反馈及E5/E，5/E、5安全等义解析；眼动独立tracker/UDP计数、Linux阶段计时与UNALIGNED诊断。合成离屏10000格重复绘制70.05→0.89ms仅支持该显示链改善，不是现场FPS；Whisper/PTT/VAD未改，眼动未证明端到端提速。原始采样、概率/Recorder及手柄映射保留。热图美化/布局/SEARCH大功能/轨迹优化仍后置；四传感器期望/binary与闭环事实核对保留，不改科学合同。
 
-三名只读子agent已由instructor在6c51a0c9直接核验全部完成并close，不再记当前调查/完成状态未知。constructor主agent复用最终输出实施、单人整合console；候选报告记录已采纳改动与文件所有权。主agent收到接续实施消息不等于代码修改完成，不为本批重派三个同类调查。
+原三名只读子agent及R1两名代码子agent已由instructor review记录完成并关闭，constructor主agent已集成console；报告已有实际文件/hash、测试/构建和离屏前后证据。运行根Git HEAD UNKNOWN、实现提交NONE，通信提交不是完整源码快照；精确三模块SHA256见tasks/USV-20261020-005.R1.review.md。
 
-交用户前回传实际改动/source-install hash、必要定向离线或构建验证、精确命令/profile、可见改动/已知缺口和一两项复验操作。instructor确认该小批可供用户体验，尚待真实UI/硬件指标的项目明确标注；没有代码变化不称优化新版。用户自然反馈后继续下一批，不能长期停留在只读诊断，也不等待模型/数据才修明显语义问题。
+用户保存/结束需保留的旧会话后，用原入口`cd /home/cyz/vrx_ws && ./run_vrx.sh start`重开；默认h5_command_aware含Qt/硬件，不加--research-core。start会清理旧进程，旧进程不自动加载改动，不对需保留会话重复执行。最少复验：①可先不START切FPV/全局页、切艇/鼠标，反馈哪页哪动作卡；②用户可控场景一次语音，看ASR原文/解析/策略/执行是否清楚；③Windows端在场时看眼动跟随、新tracker/重复/包Hz/Linux分段。短文字或截图即可，卡顿时一条ui_timing_10s辅助定位。若ASR原文错则查声学链；眼动按源样本或Linux耗时分段推进，UNALIGNED时总延迟仍未知。全套结束用`./run_vrx.sh stop`；本轮助手未运行。根据现场反馈沿原005小批修改，不重做全平台审计或重复smoke。
 
 ## 本周最小交付
 
@@ -46,7 +46,7 @@
 
 004R2与004已由instructor正式ACCEPTED（限定无模型B3门控/回退工程），review在0f2c80e7；其直接核最终hash与原始事件、重算20路STOP后各360条零值，最短11.634358088s。main读取review，不冒称独立本地复验。004复验冻结解除；004R历史失败/额度耗用保留，004R2额度已消费且完成，不再将同类smoke设为用户看UI的前置。
 
-005现为READY / PHASE_1_STARTUP_AND_TARGETED_DIAGNOSIS，constructor RECEIVED/RUNNING；旧DRAFT/PRODUCTION_BLOCKED_BY_004R已由instructor更新，不再作为当前状态。继续唯一005链，无自动新Gazebo/START/操纵/STOP；既有会话一次≤15分钟低开销只读监测按原任务。用户将亲自运行候选版，不把底层通过当UI/硬件/RF/效能验收。
+005已从原PHASE_1_STARTUP_AND_TARGETED_DIAGNOSIS推进到R1 CANDIDATE_READY / FIELD_FEEDBACK_PENDING，整体保持RUNNING；旧DRAFT/PRODUCTION_BLOCKED_BY_004R及“尚无生产修复”都不是当前状态。继续唯一005链，不新增自动Gazebo/START/操纵/STOP；用户亲自运行候选版，不把离线测试或底层通过当现场UI/硬件/RF/效能验收。
 
 ## 后续依赖
 
