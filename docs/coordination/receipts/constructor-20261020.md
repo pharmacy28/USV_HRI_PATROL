@@ -47,3 +47,10 @@
 - 上节 `REVIEW_PENDING` 是历史快照；现 instructor `USV-20261020-004.review.md` 判 `CHANGES_REQUESTED`。本人已读取并按范围完成两类生产因果缺陷的失败测试、最小修复、166 项回归及 colcon 构建；详见通信报告增量和本地 `src/workspace/reports/USV_20261020_004_OFFLINE_R1.md`。
 - 最终 Planner source/build SHA256 `ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84`，实现提交 NONE。无源时间/段的 manual/gaze 仅作控制/诊断，不能被接收时刻认作新段 RF 证据；fleet pose t₂→t₁/同戳冲突被拒且不污染合法当前位。
 - 当前状态 `OFFLINE_FIXED / RUNTIME_PENDING`，不是 004 ACCEPTED。004 原一次 Gazebo 额度已用尽；本轮没有新仿真，20 路实际 thruster 与修复后 runtime 仍待 instructor 单独发布 004R READY。保留原 004 报告与原始 run，不伪造历史版本验收。
+
+## 004R 本人领取回执（2026-10-20，Asia/Shanghai）
+
+- role=constructor；read_commit=`629062c8a0f98c676ce364d9c8ad151e68de280b`；contract_version=`RC-20261020-v1 + RC-v1.1 D5`；active_task=`USV-20261020-004R`；状态=`RECEIVED / PREPARING`，非运行通过或ACCEPTED。
+- 已读004R READY、004.review复审、MAIN_MEMORY、PROTOCOL、ROLE_PROTOCOL及STATUS。上节“004R待发布”和STATUS“无004R”均是历史状态；004R现为唯一READY，005为DRAFT，不并发改生产代码。
+- 运行树`/home/cyz/vrx_ws`根Git HEAD=UNKNOWN、实现提交NONE；Planner source/build SHA256均`ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84`，research launch source/install均`0c9ea2a19e13c307034d67d3b33f53e5c15e18bb0ad26d6a726e5def3c90065f`。研究树main@5f263c6的既有决策修改、VRX humble@dc30ed8的既有修改及world/model保持原状。
+- 本次仅领取与启动前准备；未启动Gazebo，004R一次额度未消耗。运行前仍须验证20路直接采集与ROS权限；004整体保持CHANGES_REQUESTED/RUNTIME_PENDING。若准备不满足，报告BLOCKED，不用旧run或fixture代替。
