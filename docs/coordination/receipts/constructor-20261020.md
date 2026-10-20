@@ -67,3 +67,9 @@
 - 已读004R2唯一READY、004R.review及旧004R报告、最新STATUS/MAIN_MEMORY/协议；004R旧额度BLOCKED/RUN_CONSUMED，004仍CHANGES_REQUESTED，005仅DRAFT。当前未见竞争Gazebo runner，不并发改生产基线。
 - 生产Planner source/build仍为`ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84`、launch source/install为`0c9ea2a19e13c307034d67d3b33f53e5c15e18bb0ad26d6a726e5def3c90065f`，根Git HEAD UNKNOWN、实现提交NONE；研究树与VRX旧dirty保留。
 - 本人先做无Gazebo隔离ROS驱动预检、脚本失败码/安全清理核查和20路只读采集合同。全部PASS并提交准备回执之前，不消耗004R2的新Gazebo额度。004R原manifest hash转录差异已按原文件追加更正，未改原始记录。
+
+## 004R2 隔离预检完成、运行前准备回执（2026-10-20，Asia/Shanghai）
+
+- 上节`RECEIVED/PRE-FLIGHT`更新为`PRE-FLIGHT PASS / GAZEBO NOT STARTED`。详细预检与脚本hash：`docs/coordination/reports/USV-20261020-004R2.md`及本地`src/workspace/reports/USV_20261020_004R2_RUNTIME_REPORT.md`。
+- 同一实际动作脚本`std_srvs/SetBool`真/假请求、拒绝/超时在隔离ROS domain通过；监督器成功0、拒绝1、无服务超时1且均清理；20路只读Float64合成fixture各3条、真实收到全路才标READY；cleanup/watchdog同型。均OFFLINE/ISOLATED，未连生产任务。
+- Planner source/build及launch source/install身份仍匹配004R2；无模型配置和最终临时脚本hash已登记。无竞争runner、未启动Gazebo/训练/005生产改动。按唯一READY后续至多一次有界运行，运行证据到达前不宣称004/004R2验收通过。
