@@ -1,6 +1,6 @@
 # 角色协作补充 v1.1
 
-日期：2026-10-20。由 main 按用户本轮明确角色分工发布。补充 PROTOCOL.md v1；不改变其公开信息、源码隔离、非强制更新和用户启动规则。传输可用不等于各角色已经 ACK。2026-10-20追加用户指定的inspiration研究讨论入口，原四角色所有权保持。
+日期：2026-10-20。由 main 按用户本轮明确角色分工发布。补充 PROTOCOL.md v1；不改变其公开信息、源码隔离、非强制更新和用户启动规则。传输可用不等于各角色已经 ACK。2026-10-20追加用户指定的inspiration研究讨论入口，原四角色所有权保持。同日按用户追加exploration文献预处理入口，形成六角色协作。
 
 ## 1. 唯一负责人
 
@@ -10,6 +10,7 @@
 | docs/coordination/tasks/USV-*.md 与 *.review.md | instructor | constructor 执行；main/overleaf 读取结论 |
 | docs/coordination/reports/USV-*.md、STATUS.md、LOCAL_RECEIPT.md | constructor | instructor 验收 |
 | paper/manuscript/main.tex、references.bib、文献审计和修稿报告 | overleaf | main 审查科学边界；instructor 核对实现事实 |
+| literature/EXPLORATION_INDEX.md、exploration_catalog.json、本角色related_work_notes与research/EXPLORATION_TO_INSPIRATION.md | exploration | inspiration使用研究证据；main/overleaf读取 |
 | docs/coordination/research/INSPIRATION_NOTES.md（有实质讨论结果后创建） | inspiration | main接收；相关角色读取 |
 | docs/coordination/receipts/<role>-<date>.md | 对应角色 | main 检查接收 |
 
@@ -29,7 +30,7 @@ main发布统筹交接和论文任务，不新增与instructor冲突的工程REA
 - constructor 报告必须区分科学设计、源码存在、离线测试、真实运行、正式比较实验；最终代码/参数改变之后，旧运行只能支持旧版本。
 - instructor 逐项给 ACCEPTED / CHANGES_REQUESTED / BLOCKED；需要修复时发布最小返工或后继任务，不要求违反原任务运行限制。
 - constructor 的 STOP、日志、时间、版本问题首先回 instructor；main 只接收科学口径冲突及完成摘要。
-- 当前工程链按最新MAIN_MEMORY、STATUS及task/review确定。2026-10-20更新：003/003R已API级ACCEPTED；004（B3生产门控/fallback）已由instructor发布并被constructor领取，RUNNING且尚未验收。原“不能跳到B3”仅适用于此前003R尚未收口阶段，不能作为当前阻断；不得重领旧任务或由main另开竞争任务。
+- 当前工程链按最新MAIN_MEMORY、STATUS及task/review确定。2026-10-20更新：003/003R已API级ACCEPTED；004（B3生产门控/fallback）已由constructor提交DONE报告，等待instructor正式review；尚未ACCEPTED。原“不能跳到B3”仅适用于此前003R尚未收口阶段，不能作为当前阻断；不得重领旧任务或由main另开竞争任务。
 
 没有新增后台轮询、无限自主运行或跨对话自动唤醒。已授权且已启动的任务内可正常迭代；超出原运行预算由 instructor 写明新的有界任务后继续。用户触发规则仍按 v1，不将协议文件当脚本自动执行。
 
@@ -56,3 +57,13 @@ inspiration由用户从“分支 · 重审研究路线”创建Work分支，面�
 用户在inspiration中的明确决定按最新用户授权处理，交main统一记录和同步，不要求用户在main重复批准。助手建议或未决讨论不能自升级为冻结合同；真实文献和工程证据不能被偏好替代。main将工程影响交instructor、论文影响交overleaf。inspiration不直接给constructor派发工程任务，不代写母稿或其他角色验收。
 
 新入口发布不等于聊天已创建或被唤醒；沿用用户启动和真实ACK规则，不新增自动后台调度。仓库所有权与公开信息边界继续有效。
+
+## 7. exploration → inspiration 文献证据交付（2026-10-20用户授权补充）
+
+规范角色名exploration（用户亦曾写esploration）：收集/去重既有相关工作，核对原文身份与版本，对重要论断给页/节/公式和实验范围，维护证据缺口。入口handoffs/EXPLORATION-20261020-001.md；初始汇总literature/EXPLORATION_INDEX.md共46个作品记录、22份仓库PDF入口，非全量全文新审计。
+
+exploration负责文献事实与证据载体；inspiration据证据与用户讨论问题、反例和研究候选；main统一用户决定与科学合同；overleaf负责母稿措辞和引用采用。exploration可直接通过research/EXPLORATION_TO_INSPIRATION.md交付，inspiration在实质记录中注明来源/claim_id与处理意见，无需每条资料经过main许可。改变研究合同的决定仍交main统一同步。事实性纠错可供overleaf修订后回报，不要求重复全量阅读。
+
+母稿main.tex、canonical references.bib、正文RELATED_WORK_AUDIT仍由overleaf维护；exploration不直接覆盖这些文件，不向constructor下发工程任务。历史FULLY_READ、阅读卡结题、已存PDF与某条新主张的核验分别记录。文献结果不随本项目偏好改变；没有某个词不等于不存在等价机制。
+
+新Work由用户创建/命名并启动；本人ACK前保持接收PENDING。已建立文件交付链不等于后台自动对话。旧主线/已在途004不因新增角色而重启或扩张。
