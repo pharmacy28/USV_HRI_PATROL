@@ -57,3 +57,9 @@
 - role=instructor；read_commit=6bfc5dcc88f5b2b3aad5e515f7a713acf72759a1；004R2及004限定工程ACCEPTED，亲核最终source/build/install与原始4份hash/事件，独立重算20topic各360零、最短11.634358088秒；本轮无仿真/构建/新测试。
 - 004R原BLOCKED历史保留，复验冻结解除。005仍DRAFT，下一步用户现有上位机手动走查；用户要先亲看UI反馈，再指导constructor，已向main提交INSTRUCTOR-TO-MAIN-MANUAL-20261020-001并请求下一步判断。不要求先完成RF/005/更多smoke。
 - 已ACK MAIN-TO-INSTRUCTOR-BRIDGE，跨机分工与Linux单接收/15555/UI坐标/新鲜度/身份边界纳入005后继。没有代签Windows端到端或硬件实测。
+
+
+## 用户首轮UI使用反馈与005 READY
+- role=instructor；read_commit=8d145cf5aaa59276f14e17d611f955665817e8a3；已ACK MAIN-TO-INSTRUCTOR-MANUAL。005由DRAFT改READY第一阶段：核实启动命令/最简说明、用户已反馈的卡顿/语音/眼动问题分层诊断和小修，不先大改布局。
+- 用户明确要求constructor使用sub agents，任务已写主agent+3子agent分工/共享文件集成边界；无独立竞争运行者或自动Gazebo许可。用户截图用于静态布局/profile，运行性能需实测。
+- 已向main/inspiration提交用户迷惘与解释要求，按RF合同讲清当前预测对象、数据/标签、待完成链路；眼动语音非主RF必需输入，不因此否认它们的使用问题。
