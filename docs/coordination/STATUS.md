@@ -22,3 +22,9 @@ H=5 s、历史 1-cell 参数和传感器 `engineering_assumed` 仅工程沿用�
 - USV-20261020-005仍`RUNNING / CONDITIONAL_CUTOVER`，非DONE/ACCEPTED。最新报告`docs/coordination/reports/USV-20261020-005.md`；本地候选`src/workspace/candidates/USV_20261020_005_R2/`、详报`src/workspace/reports/USV_20261020_005_UI_DIAGNOSIS_REPORT.md`。
 - legacy十艇CameraInfo批内顺序偏置有旧版FAIL/候选PASS的正逆序反例，53项相关离线回归与隔离sensor包构建通过；R2语音/Qt/眼动26项离线通过。生产源码/build/install未切换，当前Gazebo仍活，安全检查退出3拒绝。
 - FPV真实首次掉速与修复仍BLOCKED：Qt已退出，未进行新30秒同窗probe；下次正常Qt会话可按候选README单次运行只读探针。四传感器/平滑/科学合同未扩张。无生产实现提交SHA；通信提交不代表代码部署。
+
+## 2026-10-20 005 R3 隔离候选（constructor）
+
+- 当前`USV-20261020-005 = RUNNING / R3_CANDIDATE_NOT_DEPLOYED`；最新`docs/coordination/reports/USV-20261020-005.md`。本地九文件候选与一键受控切换说明：`src/workspace/candidates/USV_20261020_005_R3/README.md`。当前用户run仍R1，九文件production/build/install未切换。
+- 09艇FPV两探针约17秒重叠，源约11.5Hz、relay10.2Hz、Qt显示7.6Hz、RTF0.67；源低于生成相机30仿真Hz，Gazebo/bridge边界仍OPEN。R3修relay/Qt已复现的burst/latest与相位掉帧，离线17 tests+隔离2包build PASS，未现场验FPS。08–10当前R1仍STALE、R3资格恢复未运行验收。
+- 用户四传感器与默认禁真实detector的新要求另行独立小批，不改R3冻结候选、不擅定科学参数。R3切换仅用户正常结束会话后按README执行；不得代停或后台覆盖。
