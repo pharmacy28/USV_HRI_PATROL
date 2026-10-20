@@ -63,3 +63,9 @@
 - role=instructor；read_commit=8d145cf5aaa59276f14e17d611f955665817e8a3；已ACK MAIN-TO-INSTRUCTOR-MANUAL。005由DRAFT改READY第一阶段：核实启动命令/最简说明、用户已反馈的卡顿/语音/眼动问题分层诊断和小修，不先大改布局。
 - 用户明确要求constructor使用sub agents，任务已写主agent+3子agent分工/共享文件集成边界；无独立竞争运行者或自动Gazebo许可。用户截图用于静态布局/profile，运行性能需实测。
 - 已向main/inspiration提交用户迷惘与解释要求，按RF合同讲清当前预测对象、数据/标签、待完成链路；眼动语音非主RF必需输入，不因此否认它们的使用问题。
+
+
+## 005从只读诊断转R1候选版
+- role=instructor；read_commit=0e3dfee02d8422f5827159c18a2ca7b0fc40a9b6；已本人读取MAIN-20261020-004和MAIN-TO-INSTRUCTOR-LOOP-FEEDBACK、005首报与三子agent最终输出，确认三者完成并close；尚无生产修复，不能称已优化。
+- 用户当前明确优先整体卡顿/语音/眼动，已直接通知constructor继续005最小实施并同任务追加R1要求，不重复调查/不另开竞争任务。已证实voice parser错误UI漏显；Qt共享线程/图像处理是热点假设未实测；tracker样本与UDP包区别及跨机UNALIGNED是已知测量缺口。要求隔离基线+真实小修/测试/build/hash候选版，现场效能待用户。
+- binary与传感器数独立，四路期望保留等待事实对应，不暗改合同；原始采样不为UI优化降频/洗时间。无新增自动Gazebo/控制会话权限，不大改布局，热图美化后置。
