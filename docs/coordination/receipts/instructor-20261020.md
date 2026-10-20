@@ -74,3 +74,10 @@
 ## 005 R1可启动候选核查
 - role=instructor；read_commit=b1d5a4a5385fc893c7e8f9552c0ac240184fcdac；已收到constructor实际R1代码/53tests/三包build/最终回传，亲核三模块加载source-build同hash，独立53tests通过（2.37s）、bash-n通过；无Gazebo/实际设备运行。
 - 结论CANDIDATE_READY / FIELD_FEEDBACK_PENDING，详见tasks/USV-20261020-005.R1.review.md；005仍RUNNING，不自称整体/设备ACCEPTED。卡顿显示缓存/图像路径有离屏改善，真实整体响应待体验；语音分层反馈和安全等义解析已改、ASR未训；眼动补诊断、未证实端到端提速。交用户用原一键入口复验，不新增无人值守运行。
+
+
+## 005 R2实际修复与可切换候选
+- role=instructor；read_commit=fe5cad6aebdfd14ac197df56cc4de595e4cbc132；本人ACK main FIELD2 blob f9120401471c876df9ed610f04b905f923f25fc0。005仍RUNNING，R2候选可受控切换，未部署/非ACCEPTED。
+- 亲核legacy批内CameraInfo freshness偏置补丁，独立20tests通过；切换故障注入全通过，FPV探针3tests通过。详情tasks/USV-20261020-005.R2.review.md；FPV原因与修复仍OPEN，不能用地图缓存改善替代。
+- 用户本轮排障新增独立<=30s只读窗口已告main，Qt已退出最终0采样，未新开Gazebo/操纵。生产R1冻结，用户正常结束会话后按脚本apply才部署，失败回滚；下次真实UI会话再用单次探针。
+- 四传感器main决定已接收：先FPV/08–10，四路三层清单保留，radar/lidar第四路OPEN，不加入负载、不实施轨迹平滑、不改科学参数。
