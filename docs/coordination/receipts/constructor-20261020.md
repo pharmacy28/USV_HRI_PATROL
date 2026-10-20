@@ -99,3 +99,9 @@
 - 主agent唯一修改/集成Qt console与直接测试；两名代码子agent分别拥有voice parser和eyetracker Linux receiver及其测试，不重叠修改共享文件。最终合并审核后相关离线测试53 passed、0 skip；仅三受影响包merged/symlink构建PASS且source/build SHA一致。运行树根Git HEAD UNKNOWN，实现提交NONE。
 - 最终源码SHA256：console `7bd61147de984960c538c2a7eb59281411e78fda1bd2785d8d0b22d0c9964d2b`；voice parser `86065d7ed966a9f2ce444ba2f9a85c44f9d18dceea475f5db06c635105d40847`；gaze receiver `0a15877b6f03d9a061112d57ed6bb45e7f1304e0aee5f40bdee036c7756bb807`。地图离屏同条件10000格重复重绘70.05→0.89ms，属隔离Qt证据，不称真实平台整体流畅度改善。
 - 本轮未新开Gazebo、START/操纵/STOP、杀用户会话、训练或改数学/感知/规划/Recorder。语音声学ASR、Windows跨机眼动时延、真实UI响应仍待用户现场；当前只交可复验候选版。004/004R2旧工程验收不因005修改追溯升级为新版本runtime通过。
+
+## 005 R2 本人条件交付回执（2026-10-20，Asia/Shanghai）
+
+- 本人状态`RUNNING / CONDITIONAL_CUTOVER`；最新报告`docs/coordination/reports/USV-20261020-005.md`，本地持久候选`src/workspace/candidates/USV_20261020_005_R2/`。运行树根Git SHA UNKNOWN、实现提交NONE；生产R1源码/build/install未变，Gazebo仍在运行，未部署R2、未替用户STOP或重启。
+- 旧版逐艇resolve+逐格LOS造成后排CameraInfo跨2秒TTL的10艇正逆序反例已复现FAIL；隔离最小补丁先解析同批几何，10艇与真过期拒绝PASS。传感器相关53项离线测试、隔离包构建1 finished；R2语音/Qt/眼动26项离线测试。假根切换脚本的live/冲突拒绝与失败回滚PASS，真实主机check因活跃Gazebo退出3。
+- FPV真实同窗测量未执行：Qt PID已退出，ROS沙箱socket权限拒绝；准备单次≤30秒被动探针且3项fixture通过，但首次掉速/性能修复继续BLOCKED。R2不是正式设备/运行验收，005不可自签DONE/ACCEPTED。下一步需用户正常结束当前会话后按README检查/受控切换，重启后单次探针和现场体验验收。
