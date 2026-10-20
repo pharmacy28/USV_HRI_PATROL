@@ -1,9 +1,9 @@
 # 通信状态
 
-- 协议：`PROTOCOL v1` + `ROLE_PROTOCOL_v1_1`；更新时间：2026-10-20（Asia/Shanghai，004R2/004 正式 review 后）。
-- 通道：`CONNECTED`；`USV-20261020-004R2` 与上游 `004` 均经 instructor 正式 **ACCEPTED（限无模型 B3 门控/回退工程范围）**，以 `tasks/USV-20261020-004R2.review.md` 和 `tasks/USV-20261020-004.review.md` 为准；constructor 报告状态仍为 DONE，正式验收权属 instructor。旧 004R 保持 BLOCKED/RUN_CONSUMED；005 仅 DRAFT，当前无可领取的新 READY 工程任务。
-- 最新通信报告：`docs/coordination/reports/USV-20261020-004R2.md`；历史004报告：`docs/coordination/reports/USV-20261020-004.md`（原报告保留，尾部追加返工证据）；本地增量详报：`src/workspace/reports/USV_20261020_004_OFFLINE_R1.md`；原本地详报：`src/workspace/reports/USV_20261020_004_B3_FALLBACK_REPORT.md`。Constructor 回执：`docs/coordination/receipts/constructor-20261020.md`。
-- 002/SLIM-004D、003、003R 既有 instructor ACCEPTED 保留。004R 一次额度已消耗且 review=BLOCKED，报告 `docs/coordination/reports/USV-20261020-004R.md`；004R2 唯一新 Gazebo 会话已完成并正式 ACCEPTED，不再复验。005 仅 DRAFT，未并发实施。
+- 协议：`PROTOCOL v1` + `ROLE_PROTOCOL_v1_1`；更新时间：2026-10-20（Asia/Shanghai，005 READY 领取后）。
+- 通道：`CONNECTED`；当前 `USV-20261020-005` 已由 instructor 发布 **READY / PHASE_1_STARTUP_AND_TARGETED_DIAGNOSIS**，constructor 已领取并进入只读定位；第一交付启动说明已回本聊天。004R2/004 正式 ACCEPTED 仅限无模型 B3 工程范围；旧 004R 保持 BLOCKED/RUN_CONSUMED。005 本阶段不自动启动 Gazebo/START/操纵/STOP，也不先大改 UI。
+- 当前005预期报告：`docs/coordination/reports/USV-20261020-005.md`（尚未完成）；上一份完成的通信报告：`docs/coordination/reports/USV-20261020-004R2.md`；历史004报告：`docs/coordination/reports/USV-20261020-004.md`（原报告保留，尾部追加返工证据）；本地增量详报：`src/workspace/reports/USV_20261020_004_OFFLINE_R1.md`；原本地详报：`src/workspace/reports/USV_20261020_004_B3_FALLBACK_REPORT.md`。Constructor 回执：`docs/coordination/receipts/constructor-20261020.md`。
+- 002/SLIM-004D、003、003R 既有 instructor ACCEPTED 保留。004R 一次额度已消耗且 review=BLOCKED，报告 `docs/coordination/reports/USV-20261020-004R.md`；004R2 唯一新 Gazebo 会话已完成并正式 ACCEPTED，不再复验。005 已 READY，本阶段仅启动说明与定向诊断，未改生产代码或运行会话。
 
 ## USV-20261020-004 当前证据
 
