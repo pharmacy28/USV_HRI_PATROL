@@ -1,17 +1,20 @@
 # main 共享工作记忆 — USV 研究统筹
 
 更新日期：2026-10-20，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
-用途：四角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
+用途：五角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
 本轮依据：可见对话与仓库证据；论文5748cf31的R1修订、main精确源码独立编译/局部PDF复审，以及通信3ef5f2fa中的004任务/角色回执/004B公开证据索引。第1—9节更新为当前事实；第10—11节明确保留历史；第12节记本次验收。此前跨对话历史检索失败；本轮仅按当前文件继续，不声称完整读取所有历史对话或其他角色的内部记忆。
 
 ## 1. 角色与工作目标
 
 | 角色 | 原称 | 负责 | 当前交付 |
 |---|---|---|---|
+| inspiration | 从“分支 · 重审研究路线”分出的Work（用户拟创建） | 研究讨论、项目全貌解释、持续提问、假设/论证收紧 | 入口已定义，待本人ACK；讨论结论回传main |
 | main | 本统筹对话 | 科学问题、范围、指标、路线冻结、证据与论文一致性 | 本记忆、科学裁决、跨线交接 |
 | instructor | 重构仿真平台 | 平台设计、唯一工程任务下发与验收 | 003/003R已验收；已发布独立004，待审constructor实际交付 |
 | constructor | 审计 VRX 仿真平台精简方案 agent | 读取实际本地源码、实现、测试、报告 | 004已本人接收、RUNNING；待提交实现/运行证据 |
 | overleaf | 撰写IEEEtran论文主干 | 唯一论文母稿、文献原文核查、数学和叙述、编译 | PAPER-001定向返修已获main ACCEPTED；保持母稿与新证据一致 |
+
+inspiration面向用户讨论和解释；main将有依据的研究结论或用户新决定统一同步。用户在inspiration中已明确的决定无需重复批准，尚在讨论的建议仍为CANDIDATE。每轮优先一个关键问题，不重复确认已冻结事项。
 
 main 不与 instructor 同时向 constructor 下发实现任务。overleaf 发现工程缺口通过 main/instructor 提交，不直接改变平台定义。角色名不等于新的后台代理，任务发布不等于接收或执行。
 
@@ -111,7 +114,8 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 
 ## 9. 本轮入口与接收状态
 
-- 协作补充：ROLE_PROTOCOL_v1_1.md。
+- 协作补充：ROLE_PROTOCOL_v1_1.md（含2026-10-20 inspiration补充）。
+- inspiration入口：handoffs/INSPIRATION-20261020-001.md；接收PENDING，聊天创建/重命名由用户操作，不冒称已启动。
 - instructor 交接：handoffs/INSTRUCTOR-20261020-001.md。
 - overleaf 任务：论文分支 paper/manuscript/tasks/PAPER-20261020-001.md。
 - main已读取三角色本人回执。MAIN-20261020-002/RC-v1.1：instructor、overleaf已有本人ACK；constructor在004回执中明确读入新合同/交接并接收004。此轮跨角色接收有证据，004仍RUNNING。新发布的论文ACCEPTED review及本记忆是否已被他方读取需后续真实ACK，不代签。
@@ -150,3 +154,12 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 写前读到通信3ef5f2fa中的新事实：instructor已发004并本人ACK新交接，constructor已本人接收且RUNNING；overleaf的新交接ACK也已读。main未执行或验收004，不发竞争工程任务。004B公开历史索引已读取，保持“instructor亲读报告、main读公开摘要”的证据层次。
 
 下一次收紧围绕004实际验收/参数依据表及独立encounter依赖；R/tau/B/H等OPEN数值不凭空补。当前论文文本验收不等于正式实验完成或可投稿。未改生产代码、未运行Gazebo/训练、未合并远端main；母稿仍由overleaf维护。
+
+
+## 13. inspiration入口（2026-10-20用户新增分工）
+
+用户将“分支 · 重审研究路线”分支为Work并命名inspiration，作为持续收紧研究和理解项目全貌的入口。main已建立仓库交接与角色分工；尚无inspiration本人ACK，不代表该聊天已创建/命名或自动读入。
+
+该入口先解释研究问题、方法、已验证范围和下一缺口，再每轮一个关键问题；允许反例/质疑/新想法，也直接回应用户追问。实质结论才记简短研究笔记，交main同步；工程唯一派发仍instructor，实施constructor，母稿overleaf。当前PAPER-001 ACCEPTED、004 RUNNING等状态保持，未新增工程任务或扩大研究主线。
+
+本轮直接读用户附件《1015-1115.pdf》，保留工程闭环→数据/预测→部署/pilot→正式实验/论文的计划方向；RF/参与者实验等是计划，不是既成结果。源对话历史检索失败，不能声称通读其全部内容；新分支继承的历史需按当前RC纠偏，尤其人控艇位置、encounter成功、B4非保证上界。
