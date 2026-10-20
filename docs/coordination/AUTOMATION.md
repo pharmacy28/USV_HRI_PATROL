@@ -42,7 +42,7 @@ main 的启用证据见 receipts/automation-main.md；其余是否启动以真�
 
 一个活跃执行者、任务标识与版本去重；READY 及明确返工指令才执行，依赖/预算不满足就 BLOCKED；每轮有界执行，已 RUNNING 不并发重领。自动化失败时保留原任务和证据，不删除工作或擅自重试仿真。凭据不进公开仓库。仅在真有本地 runner 与回执后宣称本地自动执行已启用。
 
-## 2026-10-20 首次人工检查结果
+## 2026-10-20 首次人工检查结果（历史快照）
 
 读到 c1f42e8a944e58cd222ee5161d51eeabdff9c37b 的 instructor 新 review：
 USV-20261020-004 已为 CHANGES_REQUESTED，不能继续写“尚无review”。
@@ -55,3 +55,10 @@ USV-20261020-004 已为 CHANGES_REQUESTED，不能继续写“尚无review”。
 
 官方能力依据（本轮读取）：https://learn.chatgpt.com/docs/automations
 当前本会话工具允许的最高定时频率为每小时一次；不承诺即时跨会话触发。平台定时执行的工具权限/认证失败需如实回报，不能视为已成功。
+
+
+## 2026-10-20 全角色检查更新
+
+见handoffs/MAIN-20261020-003.md及MAIN_MEMORY当前章节。004离线修复已instructor核查，004R已独立READY，尚未见constructor新ACK/报告；上方首次快照“004R尚无READY”不再是当前状态。RF合同、PREP本人回复和第一周UI/按键/硬件/记录导出计划均已发布，接收者不需等待同一合同再次裁决。
+
+main本轮peek确认原任务enabled=true，updated_at=2026-10-20T08:24:21.079645+00:00；last_run_time=2026-10-20T08:17:24.761501+00:00，只证明接口有运行时间记录，不证明成功或交付。next_run_time未给明确值，不承诺首跑或下一次时刻。本轮未重复创建/修改任务。其他角色接收器无本人登记，constructor本地runner未验证，完整自动闭环未通过。新交接发布后的接收仍需真实ACK。

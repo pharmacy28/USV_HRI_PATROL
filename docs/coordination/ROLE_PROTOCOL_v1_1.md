@@ -30,7 +30,7 @@ main发布统筹交接和论文任务，不新增与instructor冲突的工程REA
 - constructor 报告必须区分科学设计、源码存在、离线测试、真实运行、正式比较实验；最终代码/参数改变之后，旧运行只能支持旧版本。
 - instructor 逐项给 ACCEPTED / CHANGES_REQUESTED / BLOCKED；需要修复时发布最小返工或后继任务，不要求违反原任务运行限制。
 - constructor 的 STOP、日志、时间、版本问题首先回 instructor；main 只接收科学口径冲突及完成摘要。
-- 当前工程链按最新MAIN_MEMORY、STATUS及task/review确定。2026-10-20更新：003/003R已API级ACCEPTED；004（B3生产门控/fallback）已由constructor提交DONE报告，等待instructor正式review；尚未ACCEPTED。原“不能跳到B3”仅适用于此前003R尚未收口阶段，不能作为当前阻断；不得重领旧任务或由main另开竞争任务。
+- 当前工程链按最新原负责人task/review/report/receipt确定，较早STATUS或MAIN_MEMORY不能覆盖较新证据。2026-10-20全角色检查：003/003R已API级ACCEPTED；004离线修复已instructor核查、整体仍RUNTIME_PENDING；独立004R已READY，尚未见constructor本人领取/运行回执。第一周后继重点按WEEK1_PLATFORM_PREP_20261020执行。原“不能跳到B3”“004R未READY”是历史状态；不得重领已消费任务或由main另开竞争工程READY。
 
 没有新增后台轮询、无限自主运行或跨对话自动唤醒。已授权且已启动的任务内可正常迭代；超出原运行预算由 instructor 写明新的有界任务后继续。用户触发规则仍按 v1，不将协议文件当脚本自动执行。
 
@@ -75,4 +75,4 @@ exploration负责文献事实与证据载体；inspiration据证据与用户讨�
 
 main已实际创建每小时定时任务，见receipts/automation-main.md；创建不等于已后台运行。当前接口无法替另一个既有Work绑定任务，所以instructor/overleaf/exploration/inspiration在本人会话各启用一次接收器并真实登记；constructor本地runner由instructor指导建立，未验证前不称自动执行。旧角色ACK不等于自动化已启用。
 
-main统一跨线调度，instructor仍唯一工程任务发布与review。自动检查/接续不得重跑DONE任务、绕过CHANGES_REQUESTED、增加Gazebo额度或替用户作科研选择。只有真实发布→ACK→报告→review链条闭合才报告端到端通过。当前004新review为CHANGES_REQUESTED，先离线最小修正；004R未READY，不因自动化部署补跑。
+main统一跨线调度，instructor仍唯一工程任务发布与review。自动检查/接续不得重跑DONE任务、绕过CHANGES_REQUESTED、增加Gazebo额度或替用户作科研选择。只有真实发布→ACK→报告→review链条闭合才报告端到端通过。当前004离线修复已核查、整体RUNTIME_PENDING；004R已独立READY，严格沿该任务预算执行，不因自动化部署补跑。所有状态按最新原负责人证据核对。
