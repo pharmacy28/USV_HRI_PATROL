@@ -18,7 +18,7 @@ main发布统筹交接和论文任务，不新增与instructor冲突的工程REA
 
 ## 2. 每次接续工作
 
-1. 读取通信分支最新 HEAD、MAIN_MEMORY、当前任务/报告/review，再读取与本任务相关的实际本地源码或论文分支。仓库旧代码不是生产基线。
+1. 先读相关分支HEAD并与上次处理版本比较；无变化且无待执行任务即结束。有变化先看差异，再读MAIN_MEMORY当前章节、相关任务/报告/review和所需本地源码/论文。首次进入或合同变更仍读取适用AGENTS及协议。仓库旧代码不是生产基线；历史长记忆/PDF不每轮全量重读。
 2. 在本轮首份报告或独立 receipt 写明 role、read_commit、contract_version、active_task、纠正的旧记忆、仍有的冲突。尚未回执标 PENDING，不伪造别人的 ACK。
 3. 若只是 topic 名、文件拆分、接口实现等已授权范围内工程细节，由 instructor/constructor 决定并记录；不逐项返回 main 请示。
 4. 若会改成功事件、科学参数、基线对比、目标证据或贡献边界，提交 main 决策项，带建议/依据/影响。可以继续不依赖该项的工作。
@@ -30,7 +30,7 @@ main发布统筹交接和论文任务，不新增与instructor冲突的工程REA
 - constructor 报告必须区分科学设计、源码存在、离线测试、真实运行、正式比较实验；最终代码/参数改变之后，旧运行只能支持旧版本。
 - instructor 逐项给 ACCEPTED / CHANGES_REQUESTED / BLOCKED；需要修复时发布最小返工或后继任务，不要求违反原任务运行限制。
 - constructor 的 STOP、日志、时间、版本问题首先回 instructor；main 只接收科学口径冲突及完成摘要。
-- 当前工程链按最新原负责人task/review/report/receipt确定，较早STATUS或MAIN_MEMORY不能覆盖较新证据。2026-10-20全角色检查：003/003R已API级ACCEPTED；004离线修复已instructor核查、整体仍RUNTIME_PENDING；独立004R已READY，尚未见constructor本人领取/运行回执。第一周后继重点按WEEK1_PLATFORM_PREP_20261020执行。原“不能跳到B3”“004R未READY”是历史状态；不得重领已消费任务或由main另开竞争工程READY。
+- 当前工程链按最新原负责人task/review/report/receipt确定，较早STATUS或MAIN_MEMORY不能覆盖较新证据。2026-10-20当前004R=BLOCKED/RUN_CONSUMED，004整体CHANGES_REQUESTED/RUNTIME_PENDING；独立004R2已READY且constructor本人领取为RECEIVED/PRE-FLIGHT，先隔离预检全部PASS并回传脚本hash等准备证据后才可一次新Gazebo。005仍DRAFT、生产基线串行，第一周独立UI/按键/硬件/记录准备继续。不得重领已消费任务或由main另开竞争工程READY。
 
 没有新增后台轮询、无限自主运行或跨对话自动唤醒。已授权且已启动的任务内可正常迭代；超出原运行预算由 instructor 写明新的有界任务后继续。用户触发规则仍按 v1，不将协议文件当脚本自动执行。
 
@@ -75,4 +75,28 @@ exploration负责文献事实与证据载体；inspiration据证据与用户讨�
 
 main已实际创建每小时定时任务，见receipts/automation-main.md；创建不等于已后台运行。当前接口无法替另一个既有Work绑定任务，所以instructor/overleaf/exploration/inspiration在本人会话各启用一次接收器并真实登记；constructor本地runner由instructor指导建立，未验证前不称自动执行。旧角色ACK不等于自动化已启用。
 
-main统一跨线调度，instructor仍唯一工程任务发布与review。自动检查/接续不得重跑DONE任务、绕过CHANGES_REQUESTED、增加Gazebo额度或替用户作科研选择。只有真实发布→ACK→报告→review链条闭合才报告端到端通过。当前004离线修复已核查、整体RUNTIME_PENDING；004R已独立READY，严格沿该任务预算执行，不因自动化部署补跑。所有状态按最新原负责人证据核对。
+main统一跨线调度，instructor仍唯一工程任务发布与review。自动检查/接续不得重跑DONE任务、绕过CHANGES_REQUESTED、增加Gazebo额度或替用户作科研选择。只有真实发布→ACK→报告→review链条闭合才报告端到端通过。当前004仍CHANGES_REQUESTED/RUNTIME_PENDING；004R已BLOCKED/RUN_CONSUMED，004R2严格先预检再按原独立任务预算执行，不因自动化部署补跑。所有状态按最新原负责人证据核对。
+
+## 9. 工作强度与模型建议（2026-10-20用户要求节省token）
+
+下表是main按角色任务制定的配置建议，不表示已远程切换既有Work；模型以用户界面实际可选项为准。默认Standard速度，不常驻Max/Ultra。档位升级只覆盖具体难题，解决后回默认。
+
+| Work | 默认模型 / 思考强度 | 何时升级 |
+|---|---|---|
+| main | GPT-6.1 Sol / medium | 科学合同冲突、重要验收用Sol high；仍难裁决的研究取舍才Astra high。单纯状态摘录可Luna low |
+| instructor | GPT-6.1 Sol / medium | 004R2驱动/清理/STOP证据门槛等关键验收用high |
+| constructor | GPT-6.1 Sol / medium | 当前004R2真实驱动、退出码、清理与安全问题用high；范围清楚的UI/配置恢复medium |
+| exploration | GPT-6 Luna / medium | 最相近论文原文机制、矛盾论断与新颖性判断交Sol medium/high，不能仅靠小模型摘要 |
+| inspiration | GPT-6.1 Sol / medium | 实质研究分歧/反例推演才Astra high；用户未回复不继续后台深思 |
+| overleaf | GPT-6 Luna / medium（常规LaTeX/引文整理） | 概率、公式、端点/统计论证和跨段大修用Sol high |
+
+当前工作量：instructor/constructor集中004R2及不冲突的平台准备；exploration按一个明确证据缺口推进；inspiration按用户问题推进；overleaf只因实质新证据/修订任务更新。没有待办就停止，不为每角色保持活跃制造任务。
+
+执行规则：
+- 先HEAD/差异；相同合同、已读PDF、历史记忆不反复全文载入。换上下文只带目标、当前任务/基线、关键约束、证据路径、下一步。
+- 本人首次接收重要新交接照常ACK；后续状态尽量随实际报告合并，main集中同步，不产生ACK套ACK。没有变化不提交心跳、不重复催收。
+- 正常汇报控制为结果、证据、阻塞、下一步；详细原始日志留原位置，需要时定向读。
+- 只有明确未知或反例才扩大搜索/测试/推理；保留实际源码、类型、时钟、失败路径、STOP等必要验证，不能用节省token降低证据要求。
+- 不因统筹新增监控子代理、竞争工程任务或运行额度。既有接收器无任务即退出，未登记的不宣称已启用。
+
+模型能力/成本依据：https://learn.chatgpt.com/docs/model-selection 、https://learn.chatgpt.com/docs/models 、https://learn.chatgpt.com/docs/pricing （2026-10-20读取）。模型推荐是角色层面的取舍，不承诺账户账单或固定节省比例；较高思考强度、长上下文与提速均可能增加消耗。

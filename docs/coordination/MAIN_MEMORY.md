@@ -2,8 +2,8 @@
 
 更新日期：2026-10-20，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-最新统筹补充：main本轮读入629062c8a0f98c676ce364d9c8ad151e68de280b，并在写前接收fc99afb5的004R本人领取与15eaba47faef09d9bfcfe39be18fa8d60bcd44f1的STATUS更新。已核实instructor在848965a1本人ACK MAIN-003、PREP/RF合同和第一周计划，005已发布为DRAFT / PRODUCTION_BLOCKED_BY_004R；同时核实inspiration在629062c8本人ACK并接收Xie证据，DISCUSSION_READY、尚无新增科研决定。004R任务保持READY，constructor已在fc99afb5本人领取，状态RECEIVED / PREPARING、未启动Gazebo、额度未消耗。见第18节与MAIN-20261020-003接收增量。自动化沿上次核对结果，未因角色ACK升级后台成功。
-论文验收历史依据：5748cf31的R1修订、main当时精确源码独立编译/局部PDF复审，以及3ef5f2fa的004任务/回执/004B索引，详见第12节。当前事实见第1—9与18节；第10—17节保留相应检查时快照。此次检查以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
+最新统筹补充：main已读instructor通信3229e4b8（004R review与004R2 READY），增量核对至c3c75966：004R=BLOCKED / RUN_CONSUMED，004仍CHANGES_REQUESTED / RUNTIME_PENDING；constructor在7ce60e3c本人领取004R2，当前RECEIVED / PRE-FLIGHT，尚无预检PASS/新Gazebo运行证据。005仍DRAFT。main本人ACK正式Windows Unity/Tobii桥接报告c636b7fd，将Windows采集→UDP 15555→Linux现有单接收→/tobii/gaze纳入第一周准备；这是本地Codex只读核查报告，不是main硬件实测或constructor桥接ACK。用户要求节省token，分工强度与模型建议见ROLE_PROTOCOL_v1_1第9节；实际仅优化main既有定时任务提示，未代改各Work模型。详见第19节。
+论文验收历史依据：5748cf31的R1修订、main当时精确源码独立编译/局部PDF复审，以及3ef5f2fa的004任务/回执/004B索引，详见第12节。当前事实见第1—9与19节；第10—18节保留相应检查时快照。此次检查以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
 ## 1. 角色与工作目标
 
@@ -11,10 +11,10 @@
 |---|---|---|
 | exploration | 文献整理、版本/原文证据、直接交付inspiration | 本人ACK及Xie2011证据包1b5067ea已读；main接收完成。后续按具体论断缺口增量核验，不扩大主实验 |
 | inspiration | 向用户解释全貌、讨论反例与研究取舍 | 本人ACK=629062c8；已接收合同/第一周计划/Xie证据，DISCUSSION_READY。当前讨论OPEN、尚无新USER_DECIDED；无实质结论时不建空壳笔记 |
-| main | 科学合同、计划优先级、跨线状态与评审 | RF最小合同、PREP本人回复与第一周计划已发布；本轮同步共享记忆和全角色交接 |
-| instructor | 平台设计、唯一工程派发与验收 | 本人ACK=848965a1，已接收MAIN-003/PREP/RF/第一周计划；004R保持原READY，005已DRAFT，待其核对依赖后决定转READY及联调预算 |
-| constructor | 实际平台实现、测试、报告与本人STATUS | 004R已本人领取：fc99afb5，RECEIVED / PREPARING，未启动Gazebo/未消耗额度；启动前验证20路直接采集及ROS权限，004整体仍RUNTIME_PENDING |
-| overleaf | 唯一论文母稿、引用与论证 | PAPER-001 R1已main ACCEPTED；待本人ACK该review与最新统筹，按真实新证据增量维护，不重做已收口返修 |
+| main | 科学合同、计划优先级、跨线状态与评审 | 接收004R失败review、004R2本人领取及Windows桥接事实；增量统筹，避免重复全量审查 |
+| instructor | 平台设计、唯一工程派发与验收 | 本人review004R=BLOCKED/RUN_CONSUMED，独立004R2 READY先隔离预检；005保持DRAFT，UI/按键/设备/源身份设计继续；RF/PREP合同已本人ACK |
+| constructor | 实际平台实现、测试、报告与本人STATUS | 7ce60e3c本人领取004R2，RECEIVED / PRE-FLIGHT；全部预检PASS并回传脚本hash等准备证据后才可按原任务一次新Gazebo；本轮未读到PASS/新运行，Windows桥接接收另待本人ACK |
+| overleaf | 唯一论文母稿、引用与论证 | PAPER-001 R1已main ACCEPTED；c3c75966本人ACK最终review、MAIN-003、RF合同、第一周计划与Xie证据。按真实增量维护，不重领旧返修 |
 
 exploration提供有来源的文献证据；inspiration据此与用户讨论；main统一有依据的新结论和用户明确决定，工程交instructor、母稿交overleaf。用户已明确的第一周方向无需再次批准，助手候选不能自升为合同。main不向constructor另发竞争工程READY。角色名、仓库发布、本人ACK、后台启用、执行和验收必须分别记录。
 
@@ -53,7 +53,7 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 
 ## 5. 工程事实快照
 
-本轮main在既有f97997b3审查基础上增量读入629062c8，核对instructor ACK/005草案、inspiration ACK及constructor最新STATUS/receipt及写前fc99afb5的004R领取增量；不声称访问实际/home/cyz/vrx_ws或独立重跑。最新review/独立任务优先于较早STATUS。constructor已在15eaba47本人纠正STATUS，当前为004R RECEIVED / PREPARING；main读取该更新，未代写其文件。
+本轮main读取instructor的004R.review/004R2/receipt（3229e4b8），并增量核对至87364b3b的constructor本人领取、STATUS及manifest hash更正。只读远端工程证据，不声称访问实际/home/cyz/vrx_ws、Windows或独立重跑。最新review/独立任务优先于较早STATUS和历史记忆。
 
 | 工作 | 当前状态 | 证据与限制 |
 |---|---|---|
@@ -61,12 +61,13 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 | 002 / SLIM-004D | instructor ACCEPTED | 预算/STOP/Recorder工程验收，非正式实验 |
 | 003 / 003R | instructor ACCEPTED，限ROS API SEARCH/B2 | 最终sim clock阻断解除；实际UI未观察，非B3/encounter验收 |
 | 004 | CHANGES_REQUESTED / OFFLINE_FIXES_VERIFIED / RUNTIME_PENDING | f884a8ce中instructor核查两项源码修复并独立26 tests通过；完整166/build依constructor报告。最终Planner source/build SHA256=ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84 |
-| 004R | 任务READY；constructor RECEIVED / PREPARING | fc99afb5本人ACK，read_commit=629062c8；source/build与launch身份匹配原任务。未启动Gazebo、一次额度未消耗；先验证20路直接采集与ROS权限，不称RUNNING/DONE，不采集训练数据 |
-| 第一周平台准备 / 005 | instructor已本人ACK；005为DRAFT / PRODUCTION_BLOCKED_BY_004R，非READY | 已定向核对真实console/pad/bridge；未找到显式SEARCH发布入口为待补缺口，需constructor完整核对。UI/按键/设备实测仍未验证，未新增运行额度 |
+| 004R | instructor BLOCKED / RUN_CONSUMED | 唯一Gazebo已启动，临时START及cleanup错用example_interfaces/SetBool，真实为std_srvs/SetBool；未START。20路空闲零值不是STOP因果安全，旧额度不能重用 |
+| 004R2 | instructor READY（隔离预检门槛）；constructor RECEIVED / PRE-FLIGHT | 7ce60e3c本人ACK，87364b3b同步STATUS；无Gazebo预检实际驱动正反、拒绝/超时/退出码及所有清理类型，全部PASS并回传脚本hash后才可一次新会话。尚无预检PASS/新运行证据，无自动补跑 |
+| 第一周平台准备 / 005 | instructor已本人ACK；005为DRAFT，非READY | 与004R2生产基线串行，独立UI/按键/硬件反馈/记录导出准备可继续；显式SEARCH发布入口仍待补缺。新增Windows Unity/Tobii→UDP→Linux单接收→/tobii/gaze整合，源会话/段身份待补，设备未实测，未新增运行额度 |
 | RF真实来源与训练 | 最小数据合同已发布；真实来源链/数据/模型未验证 | 无模型不阻断准备；无法核验源身份时仍保守回退 |
 | encounter、正式B2/B3与RMST | 未验证/未报告 | 不用工程验收或文本ACCEPTED升级科学结果 |
 
-004旧run=f87fc7b8a1934a52ada1fbc1fd7d4828只支持修复前SEARCH→当前位fallback/CANCEL/STOP/Recorder局部事实；不支持最终返工版本，20路实际推力和NAVIGATE/RELEASE缺口由004R收口。有效预测仅离线可信fixture，不是真实RF验证。004R原任务的工程预算不是正式B；本轮不追加运行额度。
+004旧run=f87fc7b8a1934a52ada1fbc1fd7d4828只支持修复前SEARCH→当前位fallback/CANCEL/STOP/Recorder局部事实；不支持最终返工版本，20路实际推力和NAVIGATE/RELEASE缺口仍未收口，现由instructor独立004R2按预检门槛推进。有效预测仅离线可信fixture，不是真实RF验证。004R原任务的工程预算不是正式B；本轮不追加运行额度。
 
 002 run=7904539e7ad44213b4baa971245e3bb9，deadline=82.540s、发布=83.000s；0.460s延迟不能延长分析预算。10/10 path STOPPED、20/20 thruster=0为该次证据，encounter_censoring_validated=false。003R最终run=5c84c3736225450eb5d0759cd1498f59，77条相关记录1—44s；邻近位姿差0.0287m，0.024s是Recorder外层差，源plan差0.172s，非精确同步。行政STOP不替代自然预算验收。
 
@@ -99,26 +100,26 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 | verified_refs.bib 或 FULLY_READ 代表所有新论断已验证 | 必须记录真实原文版本、页/节/公式、支持范围和不能推出的结论 |
 | 自动通信已经建立跨对话持续调度 | 用户新授权已使main每小时统筹启用；各Work接收器/本地runner仍待真实登记与端到端验证，见AUTOMATION.md |
 | GT只能在评价器使用；b是包含全部人类行为信息的真实后验 | GT仅允许生成器/独立评价器两用途；b是给定几何且忽略动作选择likelihood的sensor-evidence模型 |
-| B3尚未授权、004R尚未发布/领取，或离线修复即代表完成 | 004已OFFLINE_FIXES_VERIFIED / RUNTIME_PENDING；004R已READY且本人RECEIVED / PREPARING，未启动Gazebo，未ACCEPTED |
+| 离线修复/空闲零值即代表004完成，或004R额度可重用 | 004仍CHANGES_REQUESTED/RUNTIME_PENDING；004R已BLOCKED/RUN_CONSUMED，未START。004R2本人领取不等于预检PASS或运行；STOP安全需原任务规定的有效直接证据 |
 
 本轮只审计可见的记忆载体/产物，不能读取或改写其他对话内部记忆。各角色需提交自己读取的 commit、纠正条目和当前任务回执。旧 idea/研究决策状态.md 的“人工目的地可作固定中心”、旧传感器第二贡献等，与本轮已确认语义冲突时，按用户较新指令与 RC-20261020-v1 处理；不恢复旧语义。原文献结论则不能被研究偏好覆盖，必须回原文核查。
 
 ## 8. 当前优先级与开放事项
 
 1. **平台准备优先**。用户已明确第一周重心为UI、统一按键、现有手柄/眼动/语音及桥接的连接反馈、会话源身份、记录导出和参数化训练入口。计划plans/WEEK1_PLATFORM_PREP_20261020.md、回复handoffs/MAIN-TO-INSTRUCTOR-PREP-20261020-001.md已发布；志愿者数据、RF训练和全部数值冻结不是准备工作的前置。
-2. **004R沿原任务收口**。至多一次新有界运行，最终fallback、三种撤销和20路STOP直接证据；由instructor唯一安排/验收。constructor已领取并处于PREPARING，未启动Gazebo；不能把领取写成仿真已运行。其间可以继续UI设计、定向资产核对、隔离离线导出准备，不漂移待复验source/install。若阻塞，报告具体原因并继续不依赖项，不无限加smoke。
+2. **004R2先预检，满足门槛后一次有界运行**。004R已BLOCKED/RUN_CONSUMED。constructor已本人领取004R2，仅RECEIVED/PRE-FLIGHT；隔离无Gazebo核验实际驱动正反、拒绝/超时/退出码、START/STOP/cleanup类型与采集合同，全部PASS且提交脚本hash等准备回执后才可进入原任务一次新会话。任何新Gazebo启动即消耗该次额度，无自动补跑。其间继续不依赖生产基线的UI设计、文档与隔离准备，不漂移待复验source/install、不无限加smoke。
 3. **依赖顺序**。可操作/可记录/可导出平台→后续志愿者实际采样→RF开发训练/按组验证→模型与参数冻结→另行安排pilot/正式B2/B3评价。当前不招募、不启动正式采集/训练；工程联调样例不称志愿者数据或效能证据。
-4. **RF接口已有合同**。decisions/RF-DATA-CONTRACT-v1.md明确人控艇t+H二维位置、最少运动状态/当前操纵、因果可用性和源身份、先按会话/参与者分组再造窗口、开发与正式评估分离。instructor不需等main再次给同一数据语义；具体接口/键位按实际资产设计。硬件联动不把眼动/语音自动扩为主实验特征。
+4. **RF接口已有合同**。decisions/RF-DATA-CONTRACT-v1.md明确人控艇t+H二维位置、最少运动状态/当前操纵、因果可用性和源身份、先按会话/参与者分组再造窗口、开发与正式评估分离。instructor不需等main再次给同一数据语义；具体接口/键位按实际资产设计。硬件联动不把眼动/语音自动扩为主实验特征。Windows Unity/Tobii桥接按第19节现有单接收链纳入准备，先核实真实收包/发布/记录与来源身份，不能用Linux接收时刻补写成Windows采样身份。
 5. **文献与论文**。exploration的Xie证据已由main接收，inspiration也已本人ACK接收，当前讨论OPEN、无新增研究决定。保留B2/B3信息价值主线，不因文献包新增机制对照。PAPER-001 R1已ACCEPTED，不重做返修/全文审计；overleaf据后续真实工程证据增量维护。
 6. **仍OPEN**。H、源/预测年龄、缺测/标签插值、刷新/重规划阈值，R/tau/正式B，正式predictor、采样人数/会话数/预算及统计方案仍需依据。框架参数化准备可先做，不能把旧5s/1-cell/smoke预算当正式设置。
 
 ## 9. 当前交接与本人接收
 
-- main统筹入口：handoffs/MAIN-20261020-003.md（新增本轮接收增量）；通信增量读入629062c8。instructor与inspiration对MAIN-003均已有本人ACK，main已读；其余接收仍据对应本人回执，不一概称全角色接收完成。
+- main统筹入口：handoffs/MAIN-20261020-003.md；本轮增量读入至87364b3b，新增当前统筹见第19节。instructor与inspiration对MAIN-003均已有本人ACK；不一概称全角色接收完成。
 - instructor RF请求f884a8ce：main已本人ACK于receipts/main-rf-20261020-001.md，合同及MAIN-TO-INSTRUCTOR-RF回复已发布；PREP请求8cb9879f：main已本人ACK于MAIN-TO-INSTRUCTOR-PREP，计划已发布。instructor已在848965a1本人ACK两份回复、RF-DATA-CONTRACT-v1、第一周计划及MAIN-003；不再待重复合同。005草案也在同提交发布，保持DRAFT。
-- constructor已接收并完成004离线返工；004R在fc99afb5新增本人ACK，RECEIVED / PREPARING、未启动Gazebo、一次额度未消耗。STATUS已由其本人在15eaba47同步RECEIVED / PREPARING；instructor负责推进，main未代写。
-- overleaf此前MAIN-002/R1本人ACK已核实；R1最终ACCEPTED的本人接收回执尚未见。论文分支最新f8de4da1，未新增返修要求，线上Overleaf同步仍未核实。
-- exploration本人ACK及交付=1b5067ea，main本轮已实际读取并接收；不再标“exploration待本人ACK”。inspiration在629062c8已本人记录接收EX-XIE-01—05；overleaf是否读入仍待本人记录。
+- constructor已完成004离线返工，004R已报告BLOCKED/RUN_CONSUMED并获instructor对应review；c7a95345已更正原manifest hash转录，未改原记录。7ce60e3c本人ACK独立004R2（read_commit=3229e4b8），87364b3b将STATUS同步RECEIVED/PRE-FLIGHT；尚无预检PASS/新运行证据。Windows桥接消息接收另待其本人ACK，main未代写其文件。
+- overleaf在c3c75966本人ACK PAPER-001最终ACCEPTED、MAIN-003、RF合同、第一周计划与Xie证据（通信read_commit=87364b3b）；不再标该接收缺口。其新增论文内容未在本轮审查，线上Overleaf版本仍未核实。
+- exploration本人ACK及交付=1b5067ea，main本轮已实际读取并接收；不再标“exploration待本人ACK”。inspiration在629062c8已本人记录接收EX-XIE-01—05；overleaf亦已在c3c75966本人记录读入。
 - inspiration：receipts/inspiration-20261020.md已由本人在629062c8提交，read_commit=c821fbb9；main已读并确认BASELINE_RECEIVED / DISCUSSION_READY。当前问题OPEN、无新增USER_DECIDED，因此尚无INSPIRATION_NOTES是符合协议的停止点，不再作为接收缺口。其本人声明本次由用户消息触发，未建立/验证定时接收器。
 - 自动化：main工具当前enabled=true；last_run_time为2026-10-20 16:17:24.761501+08:00，仅为运行记录时间，无成功/交付证据，next_run_time未给明确值。其他四个Work接收器无本人automation登记，constructor本地runner未验证。完整自动闭环未通过。
 
@@ -231,3 +232,17 @@ Costen/Yuan/MAC的后续历史矩阵比007初始建议更新，分别记录正�
 - 用户转述instructor已向现有constructor聊天发协调消息；main未独立观察该聊天，随后实际读取fc99afb5本人ACK才确认领取成立。constructor状态RECEIVED / PREPARING，source/build与launch身份匹配；回执明确未启动Gazebo、额度未消耗，尚须验证20路直接采集与ROS权限。004R沿原独立READY和一次有界预算推进；005生产source/install改动继续串行，不另发竞争READY。
 - inspiration本人ACK=629062c8，读入c821fbb9并接收合同/计划及EX-XIE-01—05。main已实际读取并确认接收；exploration证据→inspiration读入这一步已有本人证据。尚无新科研决定、用户答案或效能结论，当前讨论OPEN，不要求为了状态表制造研究笔记。
 - 本轮仅更新main自有MAIN_MEMORY与MAIN-003接收状态，不覆盖instructor任务/回执或constructor STATUS；不运行仿真、硬件、训练或论文编译，不因ACK变更自动化状态。
+
+## 19. 004R2门槛、Windows桥接与工作强度（2026-10-20）
+
+main ACK instructor的3229e4b8与用户本轮接口同步；最新已核对通信HEAD=c3c75966e5bcb85cc81c3f17fe195d04628430e5。004R失败原因在临时驱动/cleanup服务类型，未START，不升级为生产Planner故障或STOP安全通过。constructor已本人领取004R2；领取、预检PASS、Gazebo启动、验收分别记录。004整体保持CHANGES_REQUESTED/RUNTIME_PENDING，历史002/003/003R验收不变。
+
+main已本人读取并ACK reports/WINDOWS-BRIDGE-20261020-001.md@c636b7fd11c6daabb5c1287ff823b2c0b1251fe7（LOCAL_AUDIT_COMPLETE / LINUX_INTEGRATION_PENDING）；本地Codex核对：`C:\bridge\UUV.exe`、UUV_Data与Tobii DLL存在；cli.txt指向Linux UDP 15555；`C:\EyeTrackerBridge\Assets\Scripts\GazeUdpSender.cs`包含t/unity_t/tracker_us、valid、归一化/像素/原始坐标与屏幕尺寸，缺源会话/控制段身份。文件存在不证明该exe由所见源码构建，也不证明设备/网络/ROS运行通过。报告列明exe/DLL/发送源码hash；进程命令行读取被拒、当前日志为空，实际生效目标和有效采样未核实。
+
+关键限制：provider中的t实际等同更新时Unity时间，不能证明设备采集年龄；Update可重复发送同一tracker_us，传输包数与独立设备样本数须分开。坐标参考Windows Unity窗口，不是Linux控制台；DPI、内容区、黑边、Y翻转及现场角点/中心映射待验证。包缺可信source/session/run/epoch/vehicle/authority段身份，不可在接收端倒填后充当RF证据。UI应区分接收新鲜度/设备采样新鲜度，Recorder保留重复、无效、时钟域、配置和源身份缺失。
+
+第一周将Windows采集→UDP 15555→Linux现有单接收→/tobii/gaze纳入UI设备状态、连接/失效反馈、时间语义与源身份、记录/导出整合；以实际接收器与消息类型为准，仓库旧双LSL链不是生产基线。第一周计划已同步，main向instructor的仓库接口交接见handoffs/MAIN-TO-INSTRUCTOR-BRIDGE-20261020-001.md；由instructor沿005及既有工程链安排，当前005仍DRAFT、无新增运行额度；不启动Gazebo、不采志愿者数据、不扩展RF特征或科学定义。instructor可继续只读设计/文档，生产更改与004R2串行。
+
+constructor真实聊天ID/链接：本轮可用工具及定向历史检索均未找到可核验入口，保持UNKNOWN，不猜测或填入其他Work ID。用户桥接消息由main接收不等于constructor已ACK；后续以本人回执/真实聊天同步为准。
+
+用户要求降低token消耗。执行RULE更新见ROLE_PROTOCOL_v1_1第9节与AUTOMATION：先HEAD/差异、只读相关内容、合并状态提交、无增量停止、不进行ACK套ACK或无任务深思。main既有定时任务仅提示已实际优化，小时频率/启用不变；各Work模型与思考档位是配置建议，尚未远程改设，不能宣称已全员生效。工程类型/退出码/安全验证不因节省token省略。

@@ -23,11 +23,11 @@
 
 硬件接入/可记录不改变RF主线输入：当前最小候选是运动状态与当前操纵，眼动/语音不自动升级为主实验必需特征。可选设备失效要如实显示和记录，不能让模型或UI暗中补值。
 
-## 与当前004R的衔接
+## 与当前004R2的衔接
 
 004离线两项修复已instructor核查，26项直接测试为其亲跑，完整166/build依constructor报告；整体仍CHANGES_REQUESTED / OFFLINE_FIXES_VERIFIED / RUNTIME_PENDING。
-独立004R已READY，按其原任务仅一次最终回退/撤销/20路直接安全证据收口；不取消、不扩张、不搭车采集/训练。
-004R在途时可进行UI/键位/硬件资产核对与设计、隔离离线导出工具；不同时改动其待复验生产source/install。收尾后工程重心转向本计划。若有运行阻塞，由instructor记录并安排互不冲突的准备工作，不能无限加smoke或让所有UI设计等待RF。
+004R已因临时START/cleanup服务类型错误BLOCKED/RUN_CONSUMED，未START；20路空闲零值不等于STOP安全。独立004R2由instructor发布READY，constructor在7ce60e3c本人领取为RECEIVED/PRE-FLIGHT；全部无Gazebo隔离实际驱动预检PASS并回传脚本hash等准备证据后，才可按原任务至多一次新会话，无自动补跑。
+004R2在途时可进行UI/键位/硬件资产核对与设计、隔离离线导出工具；不同时改动其待复验生产source/install。收尾后工程重心转向本计划。若有运行阻塞，由instructor记录并安排互不冲突的准备工作，不能无限加smoke或让所有UI设计等待RF。
 
 ## 后续依赖
 
@@ -43,3 +43,19 @@
 main维护本计划、RF数据语义和研究合同；instructor负责UI/键位/硬件/记录框架设计及唯一工程派发与验收；constructor实施；overleaf区分计划、已实现和已验证事实。
 
 H、有效年龄/缺测/重规划阈值、R/tau/B、具体人数/会话数和正式统计设计继续OPEN。UI/记录/导出按参数化接口准备，不硬编码拍脑袋数值；可以在数值未冻时完成框架，正式数据处理或实验前再冻结对应配置。
+
+## Windows Unity/Tobii桥接纳入（main本人ACK，2026-10-20）
+
+依据：reports/WINDOWS-BRIDGE-20261020-001.md@c636b7fd11c6daabb5c1287ff823b2c0b1251fe7。main已读完整报告；接受其LOCAL_AUDIT_COMPLETE / LINUX_INTEGRATION_PENDING边界，不将本地文件存在或进程可见记为设备/端到端通过。工程接口交接见handoffs/MAIN-TO-INSTRUCTOR-BRIDGE-20261020-001.md，沿instructor→constructor原链；005仍DRAFT，不新增竞争READY或运行额度。
+
+生产整合目标：Windows Unity/Tobii采集→UDP 15555→Linux现有单接收→/tobii/gaze→UI/Recorder。仓库旧双LSL链仅作历史参考，不恢复或复制覆盖生产环境。Linux实际接收器路径/source-install身份/消息字段及发布者数量由constructor按instructor安排核对。
+
+| 本周整合项 | 记录与验收要求 |
+|---|---|
+| UI设备状态 | 区分发送进程可见、UDP收到、眼动有效、映射可用；显示无效/超时/恢复。接收新鲜度与设备采样新鲜度分开 |
+| 时间与重复 | t是更新时Unity时间，不能证明真实采集年龄；tracker_us保留原单位/时钟域与重复事实，传输包数不当设备样本数；未测时钟偏差不报跨机延迟 |
+| 显示映射 | 坐标属于Windows Unity窗口；实际观看屏幕/远程镜像内容区、DPI、黑边、翻转与角点/中心须现场核验，不能直接当Linux控制台像素 |
+| 来源与记录 | 包缺可信session/epoch/vehicle/authority等源身份，不接收端倒填成RF证据；保留代码/DLL hash、配置、无效/缺测/重复/重启与身份缺失状态 |
+| 分层联调证据 | 同次会话逐层核对Windows→UDP→ROS→UI→Recorder及失效/恢复和导出；当前有效采样、Linux实时接收、映射和完整导出均未验证 |
+
+眼动接入不自动成为RF主实验必需特征；硬件/UI/记录框架准备继续，不等待志愿者数据、训练模型或最终H。只读核对/设计可先进行，生产变更与004R2串行，现场运行仍由instructor明确范围。
