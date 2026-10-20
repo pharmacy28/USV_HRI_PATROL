@@ -92,3 +92,10 @@
 - 已先向本聊天交付 `/home/cyz/vrx_ws` 的默认 `./run_vrx.sh start` 与最简操作说明；默认 `h5_command_aware`，Qt/joy/pad/voice/gaze启用，`--research-core` 不适用于 UI 走查。当前进程快照未见本工作环境的 Gazebo/Qt owner，不以此断言用户其他会话不存在。
 - 按任务授权实际启动三名只读 sub agents，分别负责 UI/按键、性能/热图、语音/眼动数据流；主agent负责现有安装身份、回执、跨线集成与报告。初步证据为单艇显式 SEARCH UI 缺口、主线程回调图像处理的性能假设、语音分层拒绝与眼动 tracker 样本身份区别；尚无实测延迟/真实设备复验。
 - 本阶段未启动 Gazebo、START/操纵/STOP、训练或清理用户会话；未修改生产代码。研究仓库 `main@5f263c694f3d601bf1596bb92b0849d98f7e677b` 既有 dirty，独立 VRX `humble@dc30ed8d17aa1083fd872edad9c77c69896d2b07` 既有 dirty/world/model 均保留；运行根 Git HEAD UNKNOWN，实现提交 NONE。
+
+## 005 R1 本人回传（2026-10-20，Asia/Shanghai）
+
+- 在005原READY下读取同路径R1增量；当前状态仍 `RUNNING / CANDIDATE_READY_FOR_USER_CHECK`，不是本人或instructor ACCEPTED。初版仅只读诊断的快照仍作为历史保留；新R1修改与证据见 `docs/coordination/reports/USV-20261020-005.md` 和本地 `src/workspace/reports/USV_20261020_005_UI_DIAGNOSIS_REPORT.md`。
+- 主agent唯一修改/集成Qt console与直接测试；两名代码子agent分别拥有voice parser和eyetracker Linux receiver及其测试，不重叠修改共享文件。最终合并审核后相关离线测试53 passed、0 skip；仅三受影响包merged/symlink构建PASS且source/build SHA一致。运行树根Git HEAD UNKNOWN，实现提交NONE。
+- 最终源码SHA256：console `7bd61147de984960c538c2a7eb59281411e78fda1bd2785d8d0b22d0c9964d2b`；voice parser `86065d7ed966a9f2ce444ba2f9a85c44f9d18dceea475f5db06c635105d40847`；gaze receiver `0a15877b6f03d9a061112d57ed6bb45e7f1304e0aee5f40bdee036c7756bb807`。地图离屏同条件10000格重复重绘70.05→0.89ms，属隔离Qt证据，不称真实平台整体流畅度改善。
+- 本轮未新开Gazebo、START/操纵/STOP、杀用户会话、训练或改数学/感知/规划/Recorder。语音声学ASR、Windows跨机眼动时延、真实UI响应仍待用户现场；当前只交可复验候选版。004/004R2旧工程验收不因005修改追溯升级为新版本runtime通过。
