@@ -174,7 +174,7 @@
           "scope": "历史阅读卡原件本轮读取；不等于本轮重读原论文、验证全部数字或运行代码"
         }
       ],
-      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "current_pass": "FULL_TEXT_REVIEWED; exploration 2026-10-20; 7-page proceedings PDF; pages 2/3/6 visually checked; no code inspection or execution",
       "audit_rows": [
         {
           "id": "RW-09",
@@ -186,14 +186,63 @@
         }
       ],
       "notes": [
-        "谱系关联Cangan2020Anticipatory / Heintzman2021Anticipatory：不同版本/作品条目保留，不因主题相近合并。"
+        "谱系关联Cangan2020Anticipatory / Heintzman2021Anticipatory：不同版本/作品条目保留，不因主题相近合并。",
+        "Exploration本轮全文核验：地面搜索者预计路径与失踪者运动分布分开；式(5)为风险R，式(6)/图6实线为含长度和平滑的总目标F。opt/sweep/rc不是同分配器当前位/未来位单因素比较；本轮无代码复现。"
       ],
       "priority": "P1",
       "topic": "预测搜索责任",
       "reading_card": "003_Heintzman_2021_ICRA_预测式人机搜救_精读卡.md",
       "record_id": "EXP-002",
       "in_current_manuscript": true,
-      "primary_url": "https://doi.org/10.1109/icra48506.2021.9562070"
+      "primary_url": "https://doi.org/10.1109/icra48506.2021.9562070",
+      "exploration_review": {
+        "date": "2026-10-20",
+        "role": "exploration",
+        "read_commit": "c821fbb92c3e3cd6d422f8c68a1a34e0952c74ac",
+        "paper_commit": "f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "evidence_level": "FULL_TEXT_REVIEWED",
+        "metadata_status": "METADATA_CHECKED",
+        "abstract_status": "ABSTRACT_CHECKED",
+        "pdf_acquired": true,
+        "pdf_sha256": "c8b453bce9f084a40abf0de6655333173f52332cea0a7aba5885334f47071779",
+        "pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "visually_checked_pages": [
+          2,
+          3,
+          6
+        ],
+        "metadata_sources": [
+          "PDF p.1 and printed pp.8252-8258",
+          "https://api.crossref.org/works/10.1109/ICRA48506.2021.9562070"
+        ],
+        "version_status": "2021 proceedings version identified; paper explicitly extends ref [20] Cangan2020; no full version diff or exhaustive correction search",
+        "code_inspected": false,
+        "code_run": false,
+        "note": "literature/related_work_notes/EXPLORATION-20261020-Heintzman2021.md",
+        "claim_ids": [
+          "EX-HEI-01",
+          "EX-HEI-02",
+          "EX-HEI-03",
+          "EX-HEI-04",
+          "EX-HEI-05",
+          "EX-HEI-06"
+        ],
+        "unresolved": [
+          "ref [19] full searcher model and implementation details",
+          "y_HS/y_RB measurement values, noise and online replanning semantics not code-checked",
+          "raw Figure 6 data, seeds, searcher-count correspondence and statistical replication",
+          "equivalent revocation/fallback logic not established",
+          "NSF author manuscript returned 502; version/correction audit not exhaustive"
+        ]
+      }
     },
     {
       "identity": "10.1109/thms.2021.3113642",

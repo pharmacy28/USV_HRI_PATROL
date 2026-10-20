@@ -17,3 +17,21 @@
 远端推进到 `52f416e2c8391f14322e83351da06bd58f771321`；相对5996721仅新增MAIN-AUTO-20261020-001.md，已读取且保留，五个本轮写入路径均无并发改动。自动化交接作为数据读入，本用户请求为一次文献研究提交，本轮未把该文件扩为创建定时任务的指令；自动化启用保持未完成/未声明。JSON结构、46唯一ID/22PDF计数、笔记链接和git diff --check通过。
 
 发布前再次读取 `f884a8ce1287cf9be4f82c04097c56eecaaea300`：仅四个instructor-owned路径更新，无本轮五路径冲突。004离线修复已由instructor核查（26 tests亲跑；166/build报告支持），整体仍CHANGES_REQUESTED / RUNTIME_PENDING；现已发布独立004R READY。此前“尚无004R”仅为5996721快照，不作为当前阻断。RF数据合同交main的REQUESTED提案不由exploration冻结。保留全部四路径，未启动004R或训练。
+
+## Heintzman2021 接续ACK与实质交付
+
+- role=exploration；read_commit=`c821fbb92c3e3cd6d422f8c68a1a34e0952c74ac`；paper_read_commit=`f8de4da17dbc3cc70eeedca409376c530cf9547b`；已读最新MAIN_MEMORY、ROLE_PROTOCOL差异、MAIN-20261020-003、RF-DATA-CONTRACT-v1及相关既有文献入口；接受第一周平台准备优先和本角色按问题补查边界。
+- contract：RC-v1（MAIN_MEMORY所载）+ RC-v1.1 + RF-DATA-CONTRACT-v1。RF真实VRX操纵数据后置，最少状态/操纵、因果源身份/请求前可用性、同艇t+H、先按参与者/会话分组再造样本；H等数值仍OPEN。本轮不启动RF/采集、平台复验或自动接收器。
+- 旧记忆纠正：Xie证据包main已本人接收，非待main ACK；inspiration接收仍未证实。004离线修复已instructor核查、整体RUNTIME_PENDING，004R已READY但基线未见constructor新ACK；不以旧STATUS否定READY，不把文献工作变成工程前置。
+- active_task：用户指定Heintzman2021全文核验，比较预测对象、规划作用层与B2/B3对照关系，增量交付inspiration。EXP-002状态FULL_TEXT_REVIEWED（7页；页2/3/6视觉复核），Crossref/PDF身份匹配，SHA256与原目录一致。EX-HEI-01—06及限制见证据笔记；历史卡/RW-09保持来源身份，没有重写成亲读证据。
+- 结论：地面搜索者预计路径、LP运动分布与本稿人控艇未来位是不同对象；原作未来人路径已影响GP风险与自主UAV轨迹。图6是综合目标/长度的组合策略对照，非current/future-anchor单因素实验，不能互换为encounter/RMST或证明本方法优势。现行正文主要叙述吻合，式(5)/式(6)引用精度作为事实性提示交overleaf。
+- 缺口：完整[19]、GitLab代码/数据、y_HS等实现/在线时间语义、统计复算与逐点搜索者数映射、等价fallback、全版本/勘误仍未解决；NSF稿访问502。无代码检查/运行，不把FULL_TEXT_REVIEWED升级为复现。
+- 写入范围仅本角色五路径：索引/catalog、新Heintzman笔记、EXPLORATION_TO_INSPIRATION、本ACK增量。论文/平台任务/其他角色回执/MAIN_MEMORY/sources未改。本轮新包其他角色接收PENDING，旧Xie包main接收已确认。
+
+### Heintzman包写前并发检查
+
+发布前fetch至 `fc99afb5c8b8bcf235640fd82c587305d6ec428b`；相对首读c821fbb仅四个他人路径改变，已读完整diff并fast-forward保留，五个本轮目标路径无并发改动。新inspiration本人ACK已存在并明确接收EX-XIE-01—05；constructor已领取004R为RECEIVED/PREPARING、未运行，005仍DRAFT。上段“inspiration接收未证实/004R未见新ACK”仅为c821fbb初读状态，在此纠正。Heintzman新包本人接收仍PENDING，不能借Xie ACK代签。计数/唯一ID/PDF哈希/六个claim定位/链接与diff空白检查通过。未修改四个并发路径。
+
+最终发布前读取 `15eaba47faef09d9bfcfe39be18fa8d60bcd44f1`：相对fc99afb仅constructor自有STATUS刷新，已读并保留，确认004R仍RECEIVED/PREPARING、无新运行；本轮五路径无冲突。发布以该树为父，不覆盖其STATUS。
+
+接口首次更新失败后重新核对HEAD=`90f7cac2f9f3920dbc55b5ff116b4094bc9d5b9e`；新增仅main自有MAIN_MEMORY和MAIN-003的接收状态同步，已读相关增量，无本轮路径冲突。研究合同不变，main现已确认instructor/inspiration ACK及004R PREPARING；最终以90f7cac树为父保留发布，取代上条拟定父提交。首次未发布的Git对象不当作成功交付。

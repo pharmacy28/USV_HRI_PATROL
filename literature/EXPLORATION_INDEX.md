@@ -103,3 +103,9 @@ P1/P2/P3是本次整理的讨论优先级，不是创新性分数、全文核验
 通信读入 `5996721fbdf021c60b8b08e01c02d25888e03ca0`；论文仍为 `f8de4da17dbc3cc70eeedca409376c530cf9547b`。EXP-001/Xie2011本轮升级为 **FULL_TEXT_REVIEWED**：6页已读，页3/5目视核对，正式版PDF与Crossref元数据一致；代码未检查/未运行。既有RW-07/08是历史审计，本轮新增证据为EX-XIE-01—05，见[完整证据笔记](related_work_notes/EXPLORATION-20261020-Xie2011.md)。
 
 关键增量：下一搜索位置抑制已有先例；作者报告人漏检后抑制机器人导致合作退化的案例。P与临时P′不能混称；B2/B3不能独立证明generator优于inhibition。其余45条不升级，46/22/17计数不变。旧表中的“本轮”为main建立汇总时的来源范围，本节才是exploration本人新核验。
+
+## Heintzman2021 增量核验（2026-10-20，exploration）
+
+EXP-002本轮升级 **FULL_TEXT_REVIEWED**：7页已读，第2/3/6页目视复核，正式PDF与Crossref元数据匹配；代码未检查/未运行。通信读入 `c821fbb92c3e3cd6d422f8c68a1a34e0952c74ac`；论文仍 `f8de4da17dbc3cc70eeedca409376c530cf9547b`。见[EX-HEI-01—06证据笔记](related_work_notes/EXPLORATION-20261020-Heintzman2021.md)。
+
+预计地面搜索者路径进入GP风险/测量模型、优化UAV整条轨迹；另有独立失踪者运动模型。opt/sweep/rc比较组合策略，未隔离本项目current/future-anchor因素；图6实线是式(6)综合目标，不是纯风险或encounter时间。本项目B2/B3也不能证明优于该GP规划。2020前序版不混写；[19]完整模型/代码、原始统计与等价撤销fallback缺口保留。46作品/22PDF/17正文引文不变，已有Xie核验不覆盖，其余记录不升级。
