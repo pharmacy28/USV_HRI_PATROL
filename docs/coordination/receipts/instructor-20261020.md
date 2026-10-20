@@ -81,3 +81,9 @@
 - 亲核legacy批内CameraInfo freshness偏置补丁，独立20tests通过；切换故障注入全通过，FPV探针3tests通过。详情tasks/USV-20261020-005.R2.review.md；FPV原因与修复仍OPEN，不能用地图缓存改善替代。
 - 用户本轮排障新增独立<=30s只读窗口已告main，Qt已退出最终0采样，未新开Gazebo/操纵。生产R1冻结，用户正常结束会话后按脚本apply才部署，失败回滚；下次真实UI会话再用单次探针。
 - 四传感器main决定已接收：先FPV/08–10，四路三层清单保留，radar/lidar第四路OPEN，不加入负载、不实施轨迹平滑、不改科学参数。
+
+
+## 005 R3核查/R4用户纠正
+- role=instructor；read_commit=8b6e0b7a0a4e0af54df3e5ef86be64492e7d8674。R3 CANDIDATE_READY/FIELD_PENDING；独立16tests及九文件切换故障注入通过，亲读relay/Qt与wrapper，生产未部署。FPV本人同窗数据及双探针重叠限制见R3 review，源端吞吐仍OPEN。
+- 当前用户新run实际仍R1，08–10仍STALE，没有R2/R3运行恢复证据；不以热图颜色替代资格/贡献。用户不知切换输出位置，新wrapper持久日志并失败不启动。
+- 用户再次明确四传感器未完成、禁真实检测、区分preview与低频观测。已追加R4实际隔离实施并向main发送SENSING-SPLIT交接；未以科学参数待定阻断默认关detector方向。维持ideal0.25simHz/belief4s、video30simHz名义配置，四路参数/相关性与第四路main裁决。当前会话不改不控。
