@@ -69,3 +69,8 @@
 - role=instructor；read_commit=0e3dfee02d8422f5827159c18a2ca7b0fc40a9b6；已本人读取MAIN-20261020-004和MAIN-TO-INSTRUCTOR-LOOP-FEEDBACK、005首报与三子agent最终输出，确认三者完成并close；尚无生产修复，不能称已优化。
 - 用户当前明确优先整体卡顿/语音/眼动，已直接通知constructor继续005最小实施并同任务追加R1要求，不重复调查/不另开竞争任务。已证实voice parser错误UI漏显；Qt共享线程/图像处理是热点假设未实测；tracker样本与UDP包区别及跨机UNALIGNED是已知测量缺口。要求隔离基线+真实小修/测试/build/hash候选版，现场效能待用户。
 - binary与传感器数独立，四路期望保留等待事实对应，不暗改合同；原始采样不为UI优化降频/洗时间。无新增自动Gazebo/控制会话权限，不大改布局，热图美化后置。
+
+
+## 005 R1可启动候选核查
+- role=instructor；read_commit=b1d5a4a5385fc893c7e8f9552c0ac240184fcdac；已收到constructor实际R1代码/53tests/三包build/最终回传，亲核三模块加载source-build同hash，独立53tests通过（2.37s）、bash-n通过；无Gazebo/实际设备运行。
+- 结论CANDIDATE_READY / FIELD_FEEDBACK_PENDING，详见tasks/USV-20261020-005.R1.review.md；005仍RUNNING，不自称整体/设备ACCEPTED。卡顿显示缓存/图像路径有离屏改善，真实整体响应待体验；语音分层反馈和安全等义解析已改、ASR未训；眼动补诊断、未证实端到端提速。交用户用原一键入口复验，不新增无人值守运行。
