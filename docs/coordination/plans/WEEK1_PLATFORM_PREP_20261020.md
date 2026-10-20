@@ -8,7 +8,9 @@
 
 原计划第一周的观测简化/搜索流程整合仍保留；已验收的底层/API工作作为基础复用，不重做整个平台审计。API通过不能替代实际UI点击和设备验证。第一周完成度按操作与记录流程验收，不按“测试数越来越多”代替交付。
 
-## 当前阶段：R1第二轮反馈取证；R2隔离修复与Windows协作
+## 当前阶段：FPV/观测链隔离补丁与测试；核查后准备下一版切换
+
+本轮instructor本人回报已读main FIELD2 blob f9120401471c876df9ed610f04b905f923f25fc0，并已沿原005续派constructor隔离补丁与测试，接受FPV+08/09/10优先、四路三层/radar-lidar待裁决及暂不平滑。main写前读入新提交7495731013d3d9dce0c4c0b13a0271b84be02d2d与005追加条款，续派已正式发布；constructor本批新领取/结果仍待本人证据。用户已要求下一版切换准备；隔离候选经instructor核查后，待当前R1复验结束统一安排，当前未部署/未称已修复。
 
 用户已给R1第二轮反馈：FPV仍卡、眼动主观快不少、09/10持续红需取证，四路/路径待后继判断；R2未部署，不能归因给R2。生产source/build/install与Windows当前exe/会话冻结，不在复验中静默替换；R2可以隔离继续修真实采音和眼动链。首轮和闭环走查已发生，005 R1实际代码候选已完成。instructor在1ae7932f7d84cb3bc16c719e7fe83a7e8db6efb0发布CANDIDATE_READY / FIELD_FEEDBACK_PENDING，005整体仍RUNNING、未最终ACCEPTED。instructor亲核三个模块source-build导入同hash、独立53tests（0 skip）和bash-n通过；三包构建通过依据constructor报告。主agent已集成，原三只读及本批两代码子agent已回传关闭。现场整体流畅度、真实ASR质量与眼动端到端改善仍待用户，不重复诊断或等005全量完成才展示。
 
@@ -43,6 +45,12 @@ main判断见handoffs/MAIN-TO-INSTRUCTOR-FIELD2-20261020-001.md。constructor@45
 四路建设期望保留；当前注册表camera/sonar/infrared/radar仅camera启用，用户lidar建议作为候选并列比较，不能暗换radar。逐项列展示占位、仿真传感器/物理近似、合法binary观测接线的实际/候选/缺失。camera占位不自动构成声学/红外物理模型，四画面不自动成四条独立后验证据。先清单和逐路资源预算，当前不增渲染/迁移模型或改科学profile；不以旧binary合同取消用户四路期望。
 
 路径先区分同generation网格折线、generation替换和实际跟踪摆动；当前run163次generation有报告证据，但没有同generation轨迹/障碍对照，不能据此断言真实艇摆动。复杂轨迹优化当前无必要证据；障碍净空检查的最小简化是待评估候选，需用户理解必要性后再决定实施。真正改执行路径必须处理安全/成本/assignment一致性，本轮不改规划器或成本。
+
+## 本批补丁与切换证据
+
+- **观测链**：instructor亲读legacy逐艇resolve后昂贵LOS、CameraPoseSource动态monotonic/2s freshness，提出同批后排运算超时假设。先用假时钟/调换艇序使旧版直接反例失败，再做同批几何与判定时间快照；不放宽TTL、不改源戳，批开始已经陈旧/缺失的输入仍须拒绝，快照不跨批洗新。main尚未亲跑源码反例，不能把假设写成已定位/已修复。
+- **FPV**：同窗源、relay、Qt定位最早瓶颈；30Hz配置上限不当实测源率。如需被动采样仅一次最多30秒且在原15分钟总额度剩余内，耗尽则用既有记录/离线链；不续时、不新开Gazebo/主动控制；缺同窗数据如实保留，离线前后证据不替代现场FPS。
+- **交付/切换**：constructor主agent集成已有R2语音/眼动与本批修复，交隔离补丁、完整基线/候选hash、旧版失败与修后通过证据、必要回归/隔离构建及source/install一致性、待现场项、持久可取候选/备份与切换/回退说明；instructor核查后统一安排下一版，部署程序遇到存活的用户会话必须拒绝、不杀进程，用户保存退出后才切换。当前R1 source/build/install、用户会话及Windows exe不动，005保持RUNNING；用户现场复验与离线通过分别记录。不为本批另发竞争工程READY或扩科学合同。
 
 ## 本周最小交付
 

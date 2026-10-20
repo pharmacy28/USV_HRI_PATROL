@@ -2,8 +2,8 @@
 
 更新日期：2026-10-20，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-最新统筹补充：main已接收FIELD2@8e03631b，写前读constructor@4579f89a同run证据：当前command_aware / LEGACY_ASSUMED_BATCH，08/09/10在123次更新均CAMERA_INFO_STALE、01—07有效，新离散事件0；这是所查窗口的legacy资格缺口，根因待定位，不能用detector帧/旧binary验收覆盖。FPV仍卡，同窗源Hz/源年龄/RTF缺证据，Qt非已证唯一瓶颈；眼动明显变快仅R1主观反馈，不归因未部署R2。四路三层方向保留，但当前注册表camera/sonar/infrared/radar仅camera启用，用户lidar为候选，不静默替换radar。路径先区分网格折线/generation跳变/实际摆动，暂不实施平滑。R2隔离候选@3796d83f未部署；Windows已具名中转但无本人ACK/执行或可调用入口。005仍RUNNING，生产冻结。见第27—28节及两份main交接。
-论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与27—28节；第10—26节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
+最新统筹补充：main已接收instructor本轮本人回报：已读FIELD2 blob f9120401471c876df9ed610f04b905f923f25fc0，接受FPV+08/09/10优先、四路三层/radar-lidar待裁决及暂不平滑；已沿005续派隔离补丁、测试与下一版切换准备。写前已读新提交7495731013d3d9dce0c4c0b13a0271b84be02d2d及005追加条款：续派已正式发布，constructor本批新领取/候选完成仍待本人证据。legacy逐艇动态monotonic freshness=2s与昂贵LOS可能造成同批后排超时，仍是instructor源码线索，待旧版反例证实；不能放宽TTL。FPV须定位源/relay/Qt最早瓶颈，不拿30Hz配置上限充实测。R1生产/用户会话保持，候选经instructor核查后再统一切换；005仍RUNNING、未称修复或部署完成。原只读总额度不续时，无新增Gazebo/操纵。见第29节；第27—28节保留R2/Windows和FIELD2证据边界。
+论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与27—29节；第10—26节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
 ## 1. 角色与工作目标
 
@@ -11,8 +11,8 @@
 |---|---|---|
 | exploration | 文献整理、版本/原文证据、直接交付inspiration | Xie已接收；本轮main另读1cea3553的Ishii证据笔记/交付增量，按其证据范围接收，不冒称main复读原文。后续按明确论断缺口推进，不扩大主实验 |
 | inspiration | 向用户解释全貌、讨论反例与研究取舍 | 用户/instructor称已通知继续解释FIELD2：AUTO10/HUMAN0未展示B2/B3；责任≠覆盖，收益是假设，讲平台→SEARCH采样→按组RF→replay/live→encounter。本人新ACK/回复待证据，不先反问或扩线 |
-| main | 科学合同、计划优先级、跨线状态与评审 | 已ACK FIELD2并判断四路三层/路径必要性，交接MAIN-TO-INSTRUCTOR-FIELD2；Windows R2已具名中转但接收/执行待证据，不新增READY |
-| instructor | 平台设计、唯一工程派发与验收 | 8e03631b已在005追加当前run FPV/逐艇01—10只读取证；R1保持、R2复核/切换仍归其负责，四路/路径后继按main判断小步设计 |
+| main | 科学合同、计划优先级、跨线状态与评审 | 接收instructor本轮FIELD2本人ACK与005隔离补丁/测试续派回报；同步记忆/计划，不重复工程READY。候选、核查、切换和现场效果分别记录；Windows接收/执行仍待证据 |
+| instructor | 平台设计、唯一工程派发与验收 | 本轮本人报告已读FIELD2并续派005隔离实现/测试及下一版切换准备；优先FPV+08/09/10，动态freshness/LOS线索待反例。候选由其核查、统一切换；续派已在74957310发布，候选回传待证据 |
 | constructor | 实际平台实现、测试、报告与本人STATUS | R2@3796d83f隔离候选26离线tests、未部署；4579f89a回传当前run 08/09/10 CAMERA_INFO_STALE、FPV约5.4—6.5回调/s及163次generation，根因/源Hz-RTF/同generation轨迹仍缺；生产R1保持 |
 | Windows本地Codex（既有桥接agent） | C:\bridge / C:\EyeTrackerBridge本机采集与发送；沿instructor/005协作 | 原LOCAL_AUDIT_COMPLETE不等于本轮接收。main已发R2跨线交接；本人ACK/实际源链证据/候选patch待回传，无可调用接收入口证据 |
 | overleaf | 唯一论文母稿、引用与论证 | 论文HEAD214b2cc9无增量；原R1/RF-Xie ACCEPTED保持。下一次仅校正确有过时的工程当前状态，勿把UI候选/四传感器待对齐写成已实现或扩科学合同 |
@@ -354,3 +354,13 @@ main正式判断见handoffs/MAIN-TO-INSTRUCTOR-FIELD2-20261020-001.md：四路�
 inspiration应直接解释责任是未来任务分配、不是已感知证明；AUTO10/HUMAN0未展示人工SEARCH/有效预测，不是B2/B3效果演示。按平台与身份/流程→真实SEARCH操纵→同段t+H标签→参与者/会话分组RF验证→冻结后配对replay及另行live→encounter评价讲明。replay条件化在给定人工轨迹，不能证明live人机效能；收益待检验、数值/人数时长OPEN。本人新解释完成尚无回执，不假称已交付。
 
 写前收到constructor新报告4579f89a065fecbf4751962cb1e30bda07172593：run=05e99147b14b4ce59f2892fd3acffe3d，manifest未finalize，实际command_aware / LEGACY_ASSUMED_BATCH；仿真20—508秒123次更新，08/09/10均CAMERA_INFO_STALE、01—07有效，新离散事件seen/applied/rejected=0，09/10 pose正常。main据此将当前疑点更新为“该窗口legacy几何资格缺口有报告证据，根因未定”；视觉候选/旧004C sampler PASS不可补成当前binary证据，不能暗切profile或放宽freshness。FPV约5.4—6.5回调/s、转换均值0.32—0.44ms/paint6.7—7.6ms/cycle1.7—1.8ms，同窗源Hz/年龄/RTF未记录；不认定Qt唯一瓶颈。同run163次generation提交仅提示检查换代，未证真实艇摆动。当前注册表第四路radar与用户lidar建议不同，先列差异/候选，未裁决替换。上述按constructor本人报告接收，不冒称main直接测量；未覆盖其文件。
+
+## 29. FIELD2本人接收与005隔离补丁、测试、切换准备（2026-10-20）
+
+- role=main；read_commit=7495731013d3d9dce0c4c0b13a0271b84be02d2d；active_task=005统筹状态同步；contract_version=RC-v1 + RC-v1.1（不变）。main核对FIELD2正文与blob f9120401471c876df9ed610f04b905f923f25fc0一致；首读35838c34的005任务/报告、instructor回执及计划，写前发现新HEAD，复核差异只改005并读取新增条款（blob 2e345ab2f78cddf1d6da7f2f54ce294873b52fef）。instructor本人ACK与续派已正式发布，不再仅记对话回报；constructor本批新领取/候选完成尚未见新证据。本次main两个目标文件未被并发修改，保留新的005。
+- 接收优先级：FPV与08/09/10观测资格；四路按展示/物理近似/二值观测三层列清单，radar/lidar待裁决；暂不实施平滑。用户要求实际补丁+测试和下一版切换，沿现有005隔离推进，不只停留于诊断。main不另发竞争READY，也不覆盖instructor任务/review或constructor报告/STATUS。
+- 新根因线索归属instructor亲读Linux源码：legacy target_search_node逐艇resolve后执行昂贵LOS，CameraPoseSource每次使用动态monotonic判定2s freshness；怀疑同批运算耗时令后排艇超时。源码机制不等于现场根因已证实，main未亲读Linux源码/重跑。按instructor已发布条款先用假时钟/调换艇序让旧版反例失败，再冻结同批几何与判定时间；保持原TTL和源时间，不能让批开始已陈旧/缺失的输入因冻结变合法，也不能把快照重复用作后续批的新样本。
+- FPV沿同窗source→relay→Qt查最早瓶颈；配置30Hz仅上限，既有约5.4—6.5回调/s也不能单独定位源端。证据缺项继续UNKNOWN；如需新被动采样仅一次最多30秒且须在原15分钟总额度剩余内，额度用尽改用既有记录/离线链，不重新计时续额。离线反例/补丁测试与现场FPS分开，不因显示修复降低科研源采样、洗时间或刷后验颜色。
+- 下一交付应为隔离补丁及基线/候选hash、旧版失败→候选通过的直接证据、必要回归/隔离构建与source/install一致性、剩余现场项，以及持久可取候选/备份/切换/回退说明；由主agent唯一集成已有R2语音/眼动候选与本批修复。先由instructor核查，部署程序在用户会话仍存活时必须拒绝且不杀进程，用户保存退出后再统一切换。R1源码/build/install、用户进程及Windows当前exe保持稳定；本轮未实际切换、未运行仿真/操纵/录音/训练。005仍RUNNING，补丁完成、部署完成与现场效果均未被本回报证明。
+
+本轮main只更新自有记忆和阶段计划，既有Windows中转和未部署语音/眼动R2证据保持；不产生ACK套ACK或另行催派。后续有实际候选/review/切换证据再增量更新。
