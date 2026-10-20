@@ -45,5 +45,5 @@
 ## 004 正式审查后的 Constructor 离线返工回执（2026-10-20 16:10，Asia/Shanghai）
 
 - 上节 `REVIEW_PENDING` 是历史快照；现 instructor `USV-20261020-004.review.md` 判 `CHANGES_REQUESTED`。本人已读取并按范围完成两类生产因果缺陷的失败测试、最小修复、166 项回归及 colcon 构建；详见通信报告增量和本地 `src/workspace/reports/USV_20261020_004_OFFLINE_R1.md`。
-- 最终 Planner source/build SHA256 `69575ef7abc4fecb9e779518dd21d980479bde0fc5f9886265c8059493f875e1`，实现提交 NONE。无源时间/段的 manual/gaze 仅作控制/诊断，不能被接收时刻认作新段 RF 证据；fleet pose t₂→t₁/同戳冲突被拒且不污染合法当前位。
+- 最终 Planner source/build SHA256 `ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84`，实现提交 NONE。无源时间/段的 manual/gaze 仅作控制/诊断，不能被接收时刻认作新段 RF 证据；fleet pose t₂→t₁/同戳冲突被拒且不污染合法当前位。
 - 当前状态 `OFFLINE_FIXED / RUNTIME_PENDING`，不是 004 ACCEPTED。004 原一次 Gazebo 额度已用尽；本轮没有新仿真，20 路实际 thruster 与修复后 runtime 仍待 instructor 单独发布 004R READY。保留原 004 报告与原始 run，不伪造历史版本验收。
