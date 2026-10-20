@@ -1,44 +1,31 @@
 # 通信状态
 
 - 协议版本：`v1`
-- 更新时间：`2026-10-20 14:14`（`Asia/Shanghai`）
+- 更新时间：`2026-10-20`（`Asia/Shanghai`）
 - 通道状态：`CONNECTED`
-- 当前任务：`USV-20261020-002`——SLIM-004D 预算终止工程收口
-- 当前任务状态：`DONE`（等待 Work review）
-- 最新报告：`docs/coordination/reports/USV-20261020-002.md`
-- 本地详报：`/home/cyz/vrx_ws/src/workspace/reports/SLIM_004D_BUDGET_TERMINATION_REPORT.md`
-- 待执行 READY 任务：`无`
+- 当前任务：`USV-20261020-003`——单艇显式 SEARCH 责任 gate 与撤销
+- 当前任务状态：`RUNNING`
+- 最新已验收任务：`USV-20261020-002`（`ACCEPTED`）
+- 预期报告：`docs/coordination/reports/USV-20261020-003.md`
+- 本地详报：`/home/cyz/vrx_ws/src/workspace/reports/USV_20261020_003_SEARCH_RESPONSIBILITY_REPORT.md`
+- 待执行 READY 任务：`USV-20261020-003`（已领取）
 
-## 本次结论
+## 当前范围
 
-1. 001 review 已为 `ACCEPTED`；002 未重复全局审计。
-2. 复用既有 Search budget owner，最小补齐 hard terminal 对人工直控的安全覆盖。
-3. 有界真实仿真形成 START → 40 s 仿真预算 → 单一 `BUDGET_EXPIRED` →
-   10/10 path STOPPED → 20/20 实际推力 0 → Recorder finalize 的证据链。
-4. 后续行政 STOP 未覆盖预算终态；终态后未记录新的 observation/application。
-5. Recorder 将工程删失端点限定为现有 calibrated confirmation，并明确
-   `encounter_censoring_validated=false`。
+只实现并验证显式 `SEARCH_ACTIVE / SEARCH_CANCEL`、planner-owned 单艇搜索责任、
+B2 当前位 fixed center、撤销/epoch/segment/event 幂等与 Recorder 审计。
 
-## 验证摘要
+不实施 B3 fallback、encounter、FOUND/RMST、概率模型或传感器修改。
 
-- 构建：3 packages finished。
-- 离线回归：259 passed。
-- 运行 run_id：`7904539e7ad44213b4baa971245e3bb9`。
-- sim start/deadline/terminal：42.540 / 82.540 / 83.000 s。
-- Recorder：`mission_success=false`、`T_conf_ns=null`、`T_end_ns=40.46 s`。
-- 实现提交 SHA：`NONE`（平台运行工作区无有效 Git HEAD）。
+## 当前保护边界
 
-## 阻塞项与待裁决
-
-1. encounter 半径 R、连续停留 tau、正式预算仍未冻结。
-2. encounter/FOUND 映射及 encounter 与 budget 同 tick 优先级未冻结。
-3. `budget_right_censored` 不能作为 RC encounter/RMST 正式证据。
-4. 实际平台运行工作区仍无有效 Git SHA；平台源码基线继续为 `UNKNOWN`。
-5. 论文正文路径及 Overleaf 同步状态仍为 `UNKNOWN`。
+1. 基于最新本地运行源码实施，不使用通信分支旧平台代码。
+2. 保留 004D、研究仓库及 VRX 的全部既有未提交修改和历史资产。
+3. 运行工作区无有效 Git HEAD，继续以文件 SHA256、测试与运行证据追溯。
+4. 未冻结的 R、tau、正式 budget、预测阈值不在本任务补设。
 
 ## 下一次通信
 
-`DONE` 仅表示本地工程收口和报告上传完成。是否验收通过，以
-`docs/coordination/tasks/USV-20261020-002.review.md` 的
-`ACCEPTED / CHANGES_REQUESTED / BLOCKED` 为准。未自动进入单艇 SEARCH、B3 或
-encounter 任务。
+完成最小实现和有界验证后，本地 agent 写
+`docs/coordination/reports/USV-20261020-003.md` 并将状态更新为 `DONE`；
+如遇研究合同冲突则更新为 `BLOCKED`。
