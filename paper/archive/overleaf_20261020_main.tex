@@ -1,0 +1,1811 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+% ============================================================
+% PACKAGES
+% ============================================================
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{multirow}
+\graphicspath{{figures/}} % Put manuscript figures in the figures/ directory.
+
+% ============================================================
+% MASTER-DRAFT NOTE -- FROZEN HRI RESEARCH CONTRACT v1.1
+% Research identity: HRI-centered collaborative search.
+% Primary comparison: B2 Reactive-Current vs B3 Predictive-Future.
+% Primary system estimand: Delta_RMST at the common mission budget.
+% This file is intentionally complete at the method/protocol level.
+% It is designed to guide final platform freezing and the subsequent
+% participant study. Numerical values that must come from frozen calibration
+% or participant data should be inserted only after the corresponding
+% pre-registered analysis has been completed.
+% ============================================================
+
+\newcommand{\figplaceholder}[2]{%
+\fbox{%
+\parbox[c][#1][c]{0.93\columnwidth}{%
+\centering\footnotesize\textbf{FIGURE PLACEHOLDER}\\[2mm]#2}}}
+
+\newcommand{\figplaceholderwide}[2]{%
+\fbox{%
+\parbox[c][#1][c]{0.94\textwidth}{%
+\centering\footnotesize\textbf{FIGURE PLACEHOLDER}\\[2mm]#2}}}
+
+\newcommand{\TBD}[1]{\textit{[#1]}}
+
+% Figure workflow:
+% 1) Draw the conceptual/method figures now and export them as vector PDF.
+% 2) Put them under figures/ with the suggested names in this source.
+% 3) Replace only the corresponding placeholder box with \includegraphics.
+% 4) Leave result-figure comments untouched until formal experiments and
+%    pre-registered analyses are complete.
+
+\begin{document}
+
+% ============================================================
+% TITLE
+% ============================================================
+\title{Predictive Human Spatial Responsibility Redistribution for\\
+Collaborative Multi-USV Probabilistic Search}
+
+\author{Anonymous Authors}
+
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+This paper studies human--multi-USV collaboration in probabilistic maritime
+search. The central human--robot interaction question is whether a robot fleet
+should merely react to where a human-controlled vehicle is now, or anticipate
+where that human intervention will allocate search effort in the near future.
+We represent this effect as \emph{human spatial responsibility}: target-sensor
+observations update a normalized Bayesian belief, whereas joystick, gaze, and
+voice influence fleet planning without directly modifying the target
+posterior. Under direct human control, a reactive-current baseline fixes the
+human-controlled USV's current position $p_h(t)$ as a responsibility center;
+the proposed predictive condition instead fixes the predicted future position
+$\hat p_h(t+H)$. All searchable free cells remain in the same belief-weighted
+allocation problem while only autonomous centers are updated. Pairwise
+obstacle-aware A* paths are computed before path-cost Hungarian assignment.
+Voice provides a separate explicit vehicle--destination responsibility channel,
+while gaze is treated as optional predictive context rather than target
+evidence. The evaluation freezes perception, sensor calibration, gaze
+validation, and future-position prediction before mission testing. The primary
+system outcome is the B2--B3 difference in restricted mean
+time-to-confirmed-detection under a common mission budget; redundant sensing
+overlap, success probability, fleet effort, NASA-TLX workload, and perceived
+coordination alignment are secondary outcomes. An oracle future-position
+condition estimates the performance gap due to prediction error independently
+of the redistribution mechanism.
+\end{abstract}
+
+\begin{IEEEkeywords}
+human--robot interaction, human--robot collaboration, multi-robot systems,
+unmanned surface vehicles, probabilistic search, future-position prediction,
+task allocation, maritime robotics
+\end{IEEEkeywords}
+
+% ============================================================
+% I. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Multi-robot maritime search combines uncertain sensing with repeated spatial
+allocation. Even when a coarse obstacle map is known before deployment, the
+target location is unknown and onboard observations are imperfect. Bayesian
+search therefore provides a probabilistically meaningful task state: target
+belief is reduced only by calibrated positive and negative evidence rather
+than by geometric visitation alone~\cite{b1,b7,b8}.
+
+The central problem of this paper, however, is not Bayesian filtering itself.
+It is how an autonomous fleet should adapt when a human becomes an active
+member of the search team. A human may directly control one USV, explicitly
+assign a vehicle to a destination, or provide spatial context through gaze.
+These interventions change who is expected to search where. If the autonomous
+fleet only reacts to the human-controlled USV's current position, it can still
+allocate effort toward a region that the human is already moving toward. A
+human-aware fleet should therefore reason about the future spatial consequence
+of the intervention, not merely obey the intervention locally.
+
+We call this consequence \emph{human spatial responsibility}: the future
+search effort expected to be undertaken by the human-controlled or
+human-commanded member of the fleet. Human spatial responsibility is not a
+probability that the target is present. The target posterior and the human
+responsibility representation answer different questions---\emph{where is the
+target likely to be?} and \emph{where is the human likely to search?}---and
+are deliberately kept separate until fleet-level allocation.
+
+This leads to the primary research question:
+
+\begin{quote}
+\emph{Does predicted future human spatial responsibility provide actionable
+coordination value beyond the current spatial responsibility of a
+human-controlled USV?}
+\end{quote}
+
+The principal comparison is therefore deliberately narrow. Under direct human
+control, the reactive-current condition represents human responsibility by the
+current vehicle position $p_h(t)$. The predictive condition uses a frozen
+future-position model to estimate $\hat p_h(t+H)$ and supplies that point to the
+same fixed-center redistribution operator. An oracle condition uses the actual
+future human-controlled position $p_h(t+H)$ offline to estimate the upper bound
+of the same mechanism. Thus the scientific difference between the key
+conditions is future human information, not a different planner.
+
+Human behavior and intent prediction are established HRI topics~\cite{b2,b3,b4},
+and Bayesian search, weighted clustering, A*, Hungarian assignment, speech
+recognition, eye tracking, and Random Forest regression are established
+components. The contribution is consequently not an algorithmic stack or a
+multimodal interface. Instead, the paper makes three contributions:
+
+\begin{enumerate}
+\item a probabilistically consistent HRI formulation in which human
+      intervention is represented as spatial search responsibility rather
+      than target evidence;
+\item a predictive fixed-center redistribution mechanism that uses the future
+      spatial consequence of direct human control to reorganize the remaining
+      autonomous fleet while retaining all searchable free cells in one
+      belief-weighted allocation problem; and
+\item a present--predicted--oracle evaluation ladder that compares current
+      human responsibility, predicted future responsibility, and perfect
+      future responsibility under the same redistribution operator, enabling
+      prediction error to be separated from mechanism limitations.
+\end{enumerate}
+
+The primary hypothesis is mission-level HRI benefit: predictive-future
+redistribution should reduce restricted mean time-to-confirmed-detection
+relative to reactive-current redistribution. A secondary mechanism hypothesis
+is that this improvement is mediated by reduced redundant sensing overlap
+between the human-controlled and autonomous portions of the fleet. Human
+workload and perceived coordination alignment are evaluated as secondary HRI
+outcomes rather than used to redefine the primary system claim.
+
+\begin{figure*}[t]
+\centering
+\figplaceholderwide{42mm}{
+\textbf{HRI-centered system architecture.}\\
+Target branch: RGB sensing $\rightarrow$ frozen detector $\rightarrow$
+calibrated likelihood $\rightarrow$ Bayesian target belief.\\
+Human branch: direct joystick control $+$ gaze context $\rightarrow$ future
+position prediction $\hat p_h(t+H)$; voice $\rightarrow$ explicit
+vehicle--destination responsibility.\\
+Show three human responsibility representations: current $p_h(t)$, predicted
+future $\hat p_h(t+H)$, and explicit commanded destination. The target and
+human branches meet only at belief-aware fixed-center redistribution, followed
+by pairwise A*, path-cost Hungarian assignment, execution, sensing, and
+event-driven replanning. Add an explicit crossed arrow showing that human
+signals do not directly update the target posterior.}
+\caption{HRI-centered system concept. Calibrated target observations update the
+Bayesian target belief, whereas direct control, gaze context, and explicit
+voice commands determine current, predicted, or commanded human spatial
+responsibility. The two information streams meet only at fleet allocation.}
+\label{fig:architecture}
+\end{figure*}
+
+% ============================================================
+% II. RELATED WORK
+% ============================================================
+\section{Related Work and Research Gap}
+
+\subsection{Probabilistic Robotic Search}
+
+Probabilistic search represents uncertainty about target location rather than
+reducing search to geometric coverage. Bourgault \emph{et al.} presented
+coordinated Bayesian search for a lost target~\cite{b1}. Dames showed how
+finite field of view, false negatives, false positives, and probabilistic
+search objectives can be integrated in multi-robot search and tracking
+\cite{b7}. Jovan \emph{et al.} further demonstrated the importance of modeling
+unreliable sensing when probabilistic estimates drive exploration~\cite{b8}.
+In the present work, the Bayesian target posterior is not itself a novelty; it
+provides the shared probabilistic state on which human-aware responsibility
+redistribution operates.
+
+A second distinction is important. A normalized posterior and accumulated
+missed-detection evidence are not interchangeable. The former expresses
+relative target plausibility after normalization, whereas the latter records
+how compatible each cell remains with the accumulated negative observations.
+Keeping both quantities avoids conflating ``visited'' with ``cleared.''
+
+\subsection{Human Behavior Prediction and Anticipatory Coordination}
+
+Intent inference and action prediction are established topics in human--robot
+collaboration~\cite{b4}. Xie \emph{et al.} used inferred human search behavior
+to support complementary human--robot search~\cite{b2}. Heintzman \emph{et
+al.} incorporated anticipated human-searcher trajectories into search-and-
+rescue planning~\cite{b3}. These studies define an important novelty boundary:
+this work does not claim the first prediction of human search behavior.
+
+The narrower gap addressed here is how the future spatial consequence of
+direct human control should alter a belief-driven multi-robot responsibility
+allocation. The present work does not claim task-level intent recognition:
+the predictor estimates a future vehicle position. That position is interpreted
+as a prospective human search responsibility and inserted as a fixed center
+while all free cells remain in the same belief-weighted optimization.
+
+\subsection{Collaborative Navigation and Task Allocation}
+
+Human--robot collaborative navigation combines shared planning, communication,
+authority changes, and task allocation. Dalmasso \emph{et al.} studied shared
+task representation for collaborative navigation and search~\cite{b5}. Our
+setting adds a dynamic fleet-allocation problem in which the same USV may be
+autonomous, directly human controlled, or locked to an explicit human-issued
+goal while the remaining vehicles continue probabilistic search.
+
+Search responsibility is not treated as a navigation obstacle. A region
+expected to be searched by the human-controlled USV remains traversable by
+other USVs. Responsibility allocation and collision-free motion planning are
+separate layers.
+
+\subsection{Novelty Boundary}
+
+This paper does not claim novelty for Bayesian filtering, Random Forest
+regression, weighted Lloyd updates, A*, Hungarian assignment, speech
+recognition, eye tracking, joystick teleoperation, ROS~2, Gazebo, or VRX
+individually. The scientific hypothesis concerns the mechanism: predict the
+future spatial consequence of human intervention, encode that future point as
+a fixed search-responsibility center, and redistribute the remaining
+autonomous fleet before a reactive condition receives the same spatial
+responsibility explicitly.
+
+% ============================================================
+% III. PROBLEM FORMULATION
+% ============================================================
+\section{Problem Formulation}
+
+\subsection{Environment, Target, and Fleet}
+
+Let $\Omega\subset\mathbb{R}^2$ denote a bounded maritime workspace and
+$\mathcal{O}\subset\Omega$ the known static obstacle region obtained from
+preliminary reconnaissance. The searchable free space is
+
+\begin{equation}
+\mathcal{F}=\Omega\setminus\mathcal{O}.
+\label{eq:free_space}
+\end{equation}
+
+The free space is discretized into $N$ searchable cells with centers
+
+\begin{equation}
+\mathcal{X}=\{x_1,\ldots,x_N\},\qquad x_i\in\mathcal{F}.
+\label{eq:cells}
+\end{equation}
+
+Exactly one stationary target occupies one unknown searchable cell. Simulator
+ground truth is retained for calibration and offline evaluation only; it is not
+provided to the production detector, Bayesian estimator, clustering algorithm,
+planner, or mission-success logic.
+
+The fleet contains $R$ homogeneous USVs. Vehicle $r$ has planar position
+$p_r(t)\in\mathbb{R}^2$ and heading $\psi_r(t)$. Its task-level authority state
+is
+
+\begin{equation}
+a_r(t)\in\{\mathsf{A},\mathsf{H},\mathsf{L}\},
+\label{eq:authority}
+\end{equation}
+
+where $\mathsf{A}$ denotes autonomous operation, $\mathsf{H}$ direct human
+control, and $\mathsf{L}$ an explicit human-commanded locked task. Only
+vehicles in $\mathsf{A}$ participate in the autonomous vehicle--center
+assignment.
+
+\subsection{Probabilistic Target State}
+
+Let the discrete random variable $X$ denote the unknown target cell. Given
+valid target-sensor observations $Z_{1:t}$, the normalized target belief is
+
+\begin{equation}
+b_i^t=P(X=x_i\mid Z_{1:t}),\qquad
+\sum_{i=1}^{N}b_i^t=1.
+\label{eq:posterior}
+\end{equation}
+
+Obstacle cells carry zero probability, and the prior $b_i^0$ is frozen at
+mission start. Let $\bar D_{0:t}$ denote the event that no effective target
+detection has occurred up to time $t$. The conditional cumulative
+missed-detection probability is
+
+\begin{equation}
+S_i(t)=P(\bar D_{0:t}\mid X=x_i),\qquad S_i(0)=1.
+\label{eq:cell_miss}
+\end{equation}
+
+The values $S_i(t)$ are not normalized across cells. The mission-level residual
+miss probability is
+
+\begin{equation}
+R_{\mathrm{miss}}(t)=\sum_{i=1}^{N}b_i^0S_i(t).
+\label{eq:rmiss}
+\end{equation}
+
+For histories containing only negative target evidence,
+
+\begin{equation}
+b_i^t=\frac{b_i^0S_i(t)}{R_{\mathrm{miss}}(t)}.
+\label{eq:posterior_survival_relation}
+\end{equation}
+
+Equation~\eqref{eq:posterior_survival_relation} clarifies the difference
+between absolute compatibility with accumulated negative evidence and relative
+posterior probability. An unobserved cell can retain $S_i(t)=1$ while its
+normalized posterior increases because mass is reduced elsewhere.
+
+\subsection{Human Information Boundary}
+
+Let $U_{1:t}^{h}$ denote human-interaction information, including joystick
+actions, gaze behavior, interface-view context, semantic voice commands, and
+predicted future human motion. The production target posterior in
+Eq.~\eqref{eq:posterior} is defined only from calibrated target-sensor
+evidence. Human interaction is not modeled as a target observation and
+therefore does not directly modify $b_i^t$.
+
+This restriction is deliberate. Human-derived information could enter the
+Bayesian target state only after introducing and validating an explicit human-
+observation likelihood. In the present framework, human information affects
+search responsibility, not target probability.
+
+\subsection{Human Spatial Responsibility and Search Allocation}
+
+Human spatial responsibility denotes the portion of future search effort that
+is expected to be undertaken by a human-controlled or human-commanded member of
+the fleet. In the present point-responsibility formulation it is represented by
+a fixed search center rather than a hard region deletion. Let $\mathcal{C}(t)$
+denote the current set of search-responsibility centers.
+Given the target posterior, the spatial allocation objective is
+
+\begin{equation}
+\Phi(\mathcal{C};t)=
+\sum_{i=1}^{N}
+b_i^t\min_{c\in\mathcal{C}}\|x_i-c\|_2^2.
+\label{eq:responsibility_objective}
+\end{equation}
+
+Human-related fixed centers are collected in $\mathcal{C}_F$ and autonomous
+centers in $\mathcal{C}_A$. If $K_A$ autonomous vehicles are available,
+
+\begin{equation}
+\begin{aligned}
+\mathcal{C}_A^{\star}
+=\arg\min_{\mathcal{C}_A}
+&\;\Phi(\mathcal{C}_F\cup\mathcal{C}_A;t)\\[-1mm]
+\text{s.t. }&\mathcal{C}_A\subseteq\mathcal{F},\quad
+|\mathcal{C}_A|=K_A.
+\end{aligned}
+\label{eq:constrained_responsibility}
+\end{equation}
+
+All searchable free cells remain in the optimization. Fixed centers do not
+move; only autonomous centers are updated. No residual human region is manually
+removed.
+
+\subsection{Reactive-Current and Predictive-Future Collaboration}
+
+The principal HRI study considers one directly human-controlled USV at a time
+and the remaining autonomous fleet. Let $p_h(t)$ denote the current position of
+the human-controlled USV. The reactive-current condition represents the
+human's present spatial responsibility by
+
+\begin{equation}
+c_h^{B2}(t)=p_h(t).
+\label{eq:b2_current_center}
+\end{equation}
+
+The proposed predictive-future condition estimates the same vehicle's future
+position at horizon $H$ and uses
+
+\begin{equation}
+c_h^{B3}(t)=\hat p_h(t+H).
+\label{eq:b3_predicted_center}
+\end{equation}
+
+For offline oracle evaluation, perfect future responsibility is represented by
+
+\begin{equation}
+c_h^{B4}(t)=p_h(t+H).
+\label{eq:b4_oracle_center}
+\end{equation}
+
+B2, B3, and B4 use the same constrained redistribution operator in
+Eq.~\eqref{eq:constrained_responsibility}. Their scientific difference is the
+human spatial information available to the planner: present position,
+predicted future position, or actual future position. The prediction neither
+commands the human-controlled USV nor claims to infer the operator's final
+semantic goal.
+
+Explicit voice commands form a separate responsibility channel. A valid
+vehicle--destination command produces a locked pair and an explicit fixed
+center; it is not used to define the primary B2--B3 comparison and is not
+provided as a privileged input to the future-position predictor.
+
+% ============================================================
+% IV. PROBABILISTIC TARGET SEARCH
+% ============================================================
+\section{Probabilistic Target Search}
+
+\subsection{Truth-Free Visual Observation Interface}
+
+The formal search system uses a frozen single-class visual target detector. The
+detector architecture is an implementation choice; the search algorithm
+consumes only the detector outputs and their independently calibrated
+statistical model. Simulator target truth is used for detector development,
+calibration, and offline evaluation, but it does not enter production
+inference.
+
+
+% ------------------------------------------------------------
+% FIG. 2: SENSOR--BAYES CLOSED LOOP
+% Suggested final file: figures/fig2_sensor_bayes_pipeline.pdf
+% Replace only the placeholder box when the final vector figure is ready.
+% ------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\figplaceholderwide{46mm}{
+\textbf{Visual observation $\rightarrow$ Bayesian search closed loop.}\\
+Online branch: RGB image $\rightarrow$ frozen detector $\rightarrow$
+positive/negative observation. Positive branch: bbox/pixel anchor
+$\rightarrow$ image-time camera ray $\rightarrow$ water-plane localization
+$\rightarrow z_k$. Negative branch: range/FOV + static LOS
+$\rightarrow$ missed-detection likelihood. Both branches enter
+$L_i(Z_k)\rightarrow b^{k+1}\rightarrow$ belief-aware centers
+$\rightarrow A^*\rightarrow$ path-cost Hungarian $\rightarrow$ USV motion
+$\rightarrow$ next observation.\\
+Offline branch: independent calibration of
+$P_D$, $P_{\rm FA}$, $q_T$, $\nu_{\rm eff}$, and $\Gamma$, with a dashed
+arrow into the online likelihood model.}
+\caption{Closed-loop visual probabilistic search pipeline. The visual detector
+does not directly modify the target posterior. Its outputs are interpreted
+through an independently calibrated observation model, and the resulting
+posterior drives the subsequent fleet-planning cycle.}
+\label{fig:sensor_bayes}
+\end{figure*}
+
+As summarized in Fig.~\ref{fig:sensor_bayes}, the perception frontend,
+probabilistic observation model, Bayesian estimator, and fleet planner form a
+closed loop but remain distinct modules. In particular, the detector score is
+not interpreted as target probability, and offline simulator truth is not an
+online inference input.
+
+Let $C_r$ denote the optical center of camera $r$. For candidate cell $x_i$,
+define the horizontal camera-relative geometry
+
+\begin{equation}
+\begin{aligned}
+\rho_{ri}(t)&=\|x_i-p_{C_r}(t)\|_2,\\
+\beta_{ri}(t)&=
+\operatorname{wrap}\!\left[
+\operatorname{atan2}(\Delta y,\Delta x)-\psi_{C_r}(t)
+\right],
+\end{aligned}
+\label{eq:camera_geometry}
+\end{equation}
+
+where $\Delta=[\Delta x,\Delta y]^\top=x_i-p_{C_r}(t)$ and $\psi_{C_r}$ is the
+camera optical heading projected into the horizontal plane.
+
+
+The geometry $(\rho_{ri},\beta_{ri})$ does not require a stereo or depth
+camera. It is evaluated for each \emph{hypothesized} target cell $x_i$ from
+the known map coordinate of that cell and the time-aligned camera pose. Depth
+is required only when a positive image candidate is converted to a world
+measurement; that localization uses the ray--water-plane construction
+described below.
+
+\subsection{Static Visibility Qualification}
+
+Static obstacles can invalidate negative visual evidence. Let
+
+\begin{equation}
+V_{ri}(t)\in\{\mathsf{VIS},\mathsf{OCC},\mathsf{UNK}\}
+\label{eq:visibility_state}
+\end{equation}
+
+represent the static visibility state between camera $r$ and candidate cell
+$i$. The state is computed from verified physical obstacle geometry, not from
+the safety-inflated navigation map. Static line of sight is qualified using the
+known environment model; target ground truth is not an input.
+
+For $V_{ri}=\mathsf{VIS}$, the calibrated detector supplies an end-to-end
+probability of an effective correct target observation,
+
+\begin{equation}
+P_{D,ri}=P_D(\rho_{ri},\beta_{ri}).
+\label{eq:pd_generic}
+\end{equation}
+
+The function $P_D(\rho,\beta)$ is identified from independent calibration data.
+A logistic or other parametric form is retained only if supported by the
+calibration fit; the paper does not treat historical engineering parameters as
+scientific constants.
+
+When $V_{ri}=\mathsf{OCC}$ or $\mathsf{UNK}$, the current observation is not
+qualified to reduce the probability of cell $i$. This is an abstention rule,
+not an assertion that the physical detector has zero detection probability.
+Dynamic vessel occlusion and transient wave-crest occlusion are treated as
+residual sensor uncertainty unless explicitly modeled in calibration.
+
+\subsection{Negative Observation Update}
+
+Let $\nu_{\rm eff}$ denote the calibrated effective rate of statistically
+independent observation opportunities. For approximately constant geometry
+over interval $\Delta t$, define
+
+\begin{equation}
+\hspace{-0.8em}
+\begin{aligned}
+m_{ri}(t,\Delta t)
+&=
+\begin{cases}
+[1-P_{D,ri}(t)]^{\nu_{\rm eff}\Delta t},
+V_{ri}=\mathsf{VIS},\\
+1,\hspace{40px}
+V_{ri}\in\{\mathsf{OCC},\mathsf{UNK}\}.
+\end{cases}
+\end{aligned}
+\label{eq:interval_miss}
+\end{equation}
+
+The corresponding first-effective-detection hazard for visible cells is
+
+\begin{equation}
+h_{ri}(t)=-\nu_{\rm eff}\ln[1-P_{D,ri}(t)],
+\label{eq:detection_hazard}
+\end{equation}
+
+so that $m_{ri}=\exp[-h_{ri}\Delta t]$ under constant geometry.
+
+Assuming conditional independence across USVs given the target cell, the
+fleet-level missed-detection likelihood is
+
+\begin{equation}
+M_i(t)=\prod_{r\in\mathcal{R}}m_{ri}(t,\Delta t).
+\label{eq:fleet_miss}
+\end{equation}
+
+For an interval with no valid positive target observation,
+
+\begin{equation}
+\begin{aligned}
+b_i^{t+1}
+&=\frac{b_i^tM_i(t)}{\sum_j b_j^tM_j(t)},\\
+S_i(t+1)&=S_i(t)M_i(t).
+\end{aligned}
+\label{eq:negative_update}
+\end{equation}
+
+If the per-opportunity false-alarm probability $P_{\rm FA}$ is independent of
+candidate cell, its common factor cancels in the normalized negative update.
+Thus missed detections reduce belief only where the target should have been
+observable.
+
+\subsection{World Localization of Positive Candidates}
+
+A detector bounding box is converted to a world-frame measurement through a
+camera model and the nominal water surface. Let $K$ be the camera intrinsic
+matrix and $(u,v)$ the selected image anchor. The camera-optical ray is
+
+\begin{equation}
+d_{C_{\rm opt}}
+=\frac{K^{-1}[u,v,1]^\top}
+{\|K^{-1}[u,v,1]^\top\|_2}.
+\label{eq:camera_ray}
+\end{equation}
+
+The image/CameraInfo frame is a generic camera-sensor frame rather than the ROS
+optical frame. The global optical transform is therefore
+
+\begin{equation}
+T^G_{C_{\rm opt}}(t_k)=
+T^G_B(t_k)
+T^B_{C_{\rm sensor}}(t_k)
+T^{C_{\rm sensor}}_{C_{\rm opt}},
+\label{eq:camera_transform_chain}
+\end{equation}
+
+where all time-varying terms are evaluated at the image measurement time.
+With global camera origin $o_G$ and ray direction $d_G$, the nominal water
+plane is
+
+\begin{equation}
+n^\top p+d=0.
+\label{eq:water_plane}
+\end{equation}
+
+The valid intersection is
+
+\begin{equation}
+\lambda=-\frac{n^\top o_G+d}{n^\top d_G},\qquad
+z_k=o_G+\lambda d_G,
+\label{eq:ray_plane}
+\end{equation}
+
+provided the ray is not parallel to the plane and $\lambda>0$. Anchor choice is
+frozen from independent localization residual validation rather than chosen for
+visual convenience.
+
+\subsection{Positive Observation Update}
+
+Let $z_k$ denote a geometrically valid world-frame positive candidate. The
+formal positive likelihood is
+
+\begin{equation}
+L_i^+(z_k)=P(z_k,\mathrm{positive}\mid X=x_i),
+\label{eq:positive_likelihood_interface}
+\end{equation}
+
+whose target-generated localization component is denoted
+$q_T(z_k\mid X=x_i)$. The detector operating point, false-alarm behavior, and
+localization residual model are estimated from independent calibration data.
+The Bayesian update is
+
+\begin{equation}
+b_i^+=
+\frac{b_i^-L_i^+(z_k)}{\sum_j b_j^-L_j^+(z_k)}.
+\label{eq:positive_update}
+\end{equation}
+
+A detector confidence score is not treated as a target posterior probability.
+If the perception frontend retains more than one simultaneous candidate, the
+positive likelihood must use a set-valued clutter model rather than reusing a
+single-candidate approximation.
+
+\subsection{Unified Observation Model}
+
+Positive and negative observations are two outcomes of one Bayesian sensor
+model. For effective observation $Y_k$,
+
+\begin{equation}
+\hspace{-0.8em}
+\begin{aligned}
+b_i^{k+1}
+&=\frac{b_i^kL_i(Y_k)}{\sum_j b_j^kL_j(Y_k)},\\[-0.3ex]
+L_i(Y_k)
+&=P(Y_k\mid X=x_i).
+\end{aligned}
+\label{eq:unified_bayes}
+\end{equation}
+
+Negative observations use the visibility-qualified missed-detection
+likelihood. Positive observations use the calibrated localized likelihood in
+Eq.~\eqref{eq:positive_likelihood_interface}.
+
+\subsection{Confirmation and Episode Termination}
+
+Detector output, Bayesian belief, and mission success are distinct quantities.
+Let $\tau_{\rm det}$ denote the frozen detector operating threshold and let
+$\Gamma_k\in\{0,1\}$ denote the independently calibrated confirmation rule
+applied to eligible candidate history. The formal confirmed-detection time is
+
+\begin{equation}
+T_{\rm conf}=\inf\{t_k:\Gamma_k=1\}.
+\label{eq:tconf}
+\end{equation}
+
+The primary experiment ends at
+
+\begin{equation}
+T_{\rm end}=\min\{T_{\rm conf},T_{\rm budget}\}.
+\label{eq:tend}
+\end{equation}
+
+A run is successful only if calibrated confirmation occurs within budget:
+
+\begin{equation}
+\delta_{\rm succ}=
+\mathbf{1}[T_{\rm conf}\leq T_{\rm budget}].
+\label{eq:success_indicator}
+\end{equation}
+
+\texttt{BUDGET\_EXPIRED}, \texttt{SEARCH\_EXHAUSTED}, \texttt{STOPPED}, and
+\texttt{INVALID} are non-success terminal causes. Ground-truth proximity,
+posterior-MAP proximity, and $R_{\rm miss}$ thresholds remain offline diagnostics
+and are not formal target-detection events.
+
+% ============================================================
+% V. MULTIMODAL HUMAN SPATIAL RESPONSIBILITY
+% ============================================================
+\section{Human Spatial Responsibility and Interaction Channels}
+
+\subsection{Interaction Semantics}
+
+The interaction modalities support different HRI roles and are not treated as
+an undifferentiated multimodal-fusion contribution. Joystick input directly
+controls the selected human-controlled USV and provides implicit motor evidence
+about its future spatial responsibility. Gaze supplies attentional and spatial
+context that may improve future-position prediction when its task-space
+mapping and timing are valid. Voice supplies explicit spatial task
+responsibility in the restricted form of a vehicle--destination command.
+
+None of these signals is target evidence. Joystick and gaze may enter the
+future-position predictor; an explicit voice destination does not, because the
+responsibility is already specified. A valid voice command creates a locked
+vehicle--destination pair, excludes that USV from autonomous Hungarian
+assignment, and inserts the commanded destination as a fixed responsibility
+center for the remaining fleet.
+
+% ------------------------------------------------------------
+% FIG. 3: HUMAN SPATIAL RESPONSIBILITY CHANNELS
+% Suggested final file: figures/fig3_human_responsibility.pdf
+% ------------------------------------------------------------
+\begin{figure}[t]
+\centering
+\figplaceholder{45mm}{
+\textbf{Human spatial responsibility channels.}\\
+Joystick $\rightarrow$ direct control / implicit motor intent $\rightarrow$
+future-position predictor;\\
+Gaze $\rightarrow$ attentional/spatial context $\rightarrow$ optional predictor
+features;\\
+Voice $\rightarrow$ explicit vehicle--destination responsibility $\rightarrow$
+locked fixed center.\\
+Show the predictor output $\hat p_h(t+H)$ as predicted responsibility and the
+current position $p_h(t)$ as reactive-current responsibility. Add an explicit
+``does not update target belief'' boundary.}
+\caption{Human interaction channels and their HRI roles. Direct control and
+valid gaze context support implicit future-responsibility prediction, whereas
+voice provides explicit vehicle--destination responsibility. Human information
+constrains planning but does not directly update the Bayesian target belief.}
+\label{fig:human_responsibility}
+\end{figure}
+
+\subsection{Tobii Eye-Tracking Pipeline}
+
+The eye tracker produces screen-space gaze, not world-space target evidence.
+Let the measured gaze be
+
+\begin{equation}
+g_s(t)=[u_g(t),v_g(t)]^\top,
+\label{eq:screen_gaze}
+\end{equation}
+
+with validity and source timestamps. The acquisition path preserves tracker
+time, Windows-side sequence information, Linux receive time, ROS publication
+time, active interface view, and the currently viewed and controlled vehicles.
+These timestamps are aligned to the experiment time base before causal feature
+construction.
+
+Two calibrations are distinguished. Device calibration maps eye measurements
+to screen coordinates and is performed with the eye-tracker manufacturer's
+procedure. Task-space validation then checks the experiment-specific mapping
+from screen gaze to interface coordinates and, in the global map view, to world
+coordinates. Participant sessions begin only after both checks satisfy the
+pre-registered accuracy and validity criteria.
+
+\subsection{Task-Space Gaze Mapping}
+
+In the global overview, valid screen gaze is mapped through the actual Qt map
+rectangle to a world point $p_g^W(t_g)$. Relative to the human-controlled USV,
+
+\begin{equation}
+\Delta p_g^W(t_g)=p_g^W(t_g)-p_h^W(t_g),
+\label{eq:gaze_relative_world}
+\end{equation}
+
+and the body-frame gaze vector is
+
+\begin{equation}
+g_G^B(t_g)=R[-\psi_h(t_g)]\Delta p_g^W(t_g),
+\label{eq:gaze_body}
+\end{equation}
+
+where
+
+\begin{equation}
+R(\psi)=
+\begin{bmatrix}
+\cos\psi&-\sin\psi\\
+\sin\psi&\cos\psi
+\end{bmatrix}.
+\label{eq:rotation}
+\end{equation}
+
+Gaze outside the displayed map rectangle remains invalid rather than being
+clamped to the nearest map point.
+
+In FPV mode, gaze is retained in image coordinates. A normalized horizontal
+offset is
+
+\begin{equation}
+\tilde u_g=\frac{u_g-u_c}{W_{\rm img}},
+\label{eq:fpv_gaze}
+\end{equation}
+
+with an analogous normalized vertical offset when used. FPV gaze is not
+silently projected to world $x$--$y$ unless a validated camera-ray mapping is
+explicitly invoked. The active view mode is observed context, not a target
+label.
+
+\subsection{Gaze Validation}
+
+Task-space validation presents known screen or map targets $q_k$ and records the
+corresponding estimated gaze locations $\hat q_k$. Error is
+
+\begin{equation}
+e_k=\|\hat q_k-q_k\|_2.
+\label{eq:gaze_error}
+\end{equation}
+
+For global-map targets, the same validation is expressed in world meters.
+Median error, upper-tail error, valid-sample fraction, and out-of-map fraction
+are reported. Cross-host clock mapping is validated separately by measuring the
+residual timing error after synchronization; gaze samples that cannot be
+aligned within the frozen tolerance are excluded from predictor windows rather
+than assigned an arbitrary time.
+
+% ============================================================
+% VI. HUMAN FUTURE-POSITION PREDICTION
+% ============================================================
+\section{Human Future-Position Prediction}
+
+The predictor estimates the future spatial consequence of direct human
+control. It is therefore a future-position predictor, not a classifier of
+high-level task semantics such as search, hold, patrol, or pursuit.
+
+\subsection{Prediction Target}
+
+For causal history duration $W$ and horizon $H$, the future displacement of the
+human-controlled USV is expressed in the vehicle body frame at time $t$,
+
+\begin{equation}
+\Delta p_h^B(t,H)=
+R[-\psi_h(t)]\left[p_h(t+H)-p_h(t)\right].
+\label{eq:prediction_target}
+\end{equation}
+
+The body-frame representation reduces dependence on absolute map orientation.
+Only samples contained within a single human-controlled segment are valid;
+windows crossing authority changes, controlled-vehicle changes, mission resets,
+or simulation resets are rejected.
+
+\subsection{Causal Feature Construction}
+
+The recorder stores an asynchronous research-data superset. Candidate feature
+family $\mathcal{F}_k$ maps the interval $[t-W,t]$ into
+
+\begin{equation}
+x_t^{(k)}=\mathcal{F}_k\!\left(\mathcal{D}_{\rm raw}[t-W,t]\right),
+\qquad x_t^{(k)}\in\mathbb{R}^{d_k}.
+\label{eq:feature_mapping}
+\end{equation}
+
+The stable control/dynamics baseline summarizes body velocity, speed, yaw rate,
+body accelerations, semantic manual commands, and left/right thrust using last,
+mean, standard deviation, and slope statistics. Multimodal candidate families
+add gaze, view context, and switch/authority context. Voice-specified explicit
+goals are not included as privileged predictor inputs because they already
+constitute explicit task intent.
+
+\begin{table}[t]
+\centering
+\caption{Predefined predictor feature families.}
+\label{tab:feature_families}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{clc}
+\toprule
+ID & Information & Dim.\\
+\midrule
+$F_0$ & Reduced control/dynamics & 20\\
+$F_1$ & Full control/dynamics & 40\\
+$F_2$ & $F_1$ + gaze & 54\\
+$F_3$ & $F_2$ + view context & 58\\
+$F_4$ & $F_3$ + switch context & 61\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The final feature family is selected using participant-disjoint validation and
+then frozen before mission testing. Thus the table defines a predeclared
+ablation family rather than asserting that the largest representation is best.
+
+\subsection{Random-Forest Regression}
+
+The predictor estimates body-frame future displacement,
+
+\begin{equation}
+\widehat{\Delta p}_h^B(t,H)=f_{\rm RF}(x_t^{\star}),
+\label{eq:rf_regression}
+\end{equation}
+
+where $x_t^{\star}$ denotes the frozen selected feature family. The world-frame
+future point is
+
+\begin{equation}
+\hat p_h(t+H)=
+p_h(t)+R[\psi_h(t)]\widehat{\Delta p}_h^B(t,H).
+\label{eq:world_prediction}
+\end{equation}
+
+Random Forest is used as an interpretable regression component rather than
+claimed as the main contribution. Its role is to provide a reproducible future
+spatial consequence estimate for the planning experiment.
+
+\subsection{Prediction Quality and Coordination Lead Time}
+
+Final displacement error is
+
+\begin{equation}
+\mathrm{FDE}(H)=
+\|\hat p_h(t+H)-p_h(t+H)\|_2.
+\label{eq:fde}
+\end{equation}
+
+Median, 90th, and 95th percentile FDE are reported because occasional large
+errors can trigger inappropriate redistribution. Let $T_{\rm sys}$ denote the
+measured delay from prediction availability to commitment of the corresponding
+fleet plan. Effective anticipation time is
+
+\begin{equation}
+H_{\rm eff}=H-T_{\rm sys}.
+\label{eq:heff}
+\end{equation}
+
+A horizon with $H_{\rm eff}\le0$ cannot provide proactive coordination even if
+its FDE is small. The final $(W,H,F_s)$ is therefore selected using held-out
+participants by jointly considering prediction error, valid-window support,
+and positive coordination lead time.
+
+% ============================================================
+% VII. PREDICTIVE SPATIAL RESPONSIBILITY REDISTRIBUTION
+% ============================================================
+\section{Predictive Spatial Responsibility Redistribution}
+
+\subsection{Fixed-Center Belief-Aware Update}
+
+Equation~\eqref{eq:constrained_responsibility} is implemented using a
+weighted Lloyd-style update with fixed centers. Each free cell is assigned to
+its nearest current center. For autonomous center $c_j$, let $\mathcal{V}_j$
+denote its assigned cells. The weighted centroid is
+
+\begin{equation}
+\bar c_j=
+\frac{\sum_{i\in\mathcal{V}_j}b_i^t x_i}
+{\sum_{i\in\mathcal{V}_j}b_i^t},
+\label{eq:weighted_centroid}
+\end{equation}
+
+and the updated autonomous center is projected to an admissible free cell in
+its cluster,
+
+\begin{equation}
+c_j^+=\Pi_{\mathcal{F}\cap\mathcal{V}_j}(\bar c_j).
+\label{eq:center_projection}
+\end{equation}
+
+Fixed centers are never moved. Crucially, all non-obstacle free cells
+participate again whenever reclustering occurs. The method does not remove a
+previous human region from the optimization.
+
+\subsection{Current, Predicted, and Explicit Human Responsibility}
+
+During direct human control, the reactive-current condition inserts the current
+human-controlled position $p_h(t)$ into $\mathcal{C}_F$, while the predictive
+condition inserts $\hat p_h(t+H)$. The human-controlled USV is excluded from
+autonomous matching in both conditions. This design ensures that B2 and B3
+share the same responsibility-redistribution operator and differ only in
+whether the planner uses present or predicted future human spatial
+responsibility.
+
+An explicit voice destination is handled separately. It is inserted directly
+into $\mathcal{C}_F$, and the associated vehicle--destination pair remains
+locked for the command interval. Explicit commands therefore validate the same
+responsibility interface without defining the predictive hypothesis.
+
+\subsection{Obstacle-Aware Path Planning and Assignment}
+
+For each autonomous USV $r$ and autonomous center $c_j$,
+
+\begin{equation}
+\mathcal{P}_{rj}=A^*(p_r,c_j;\mathcal{M}).
+\label{eq:astar_path}
+\end{equation}
+
+If $\mathcal{P}_{rj}=(q_0,\ldots,q_{n_{rj}-1})$, its path length is
+
+\begin{equation}
+L(\mathcal{P}_{rj})=
+\sum_{\ell=0}^{n_{rj}-2}\|q_{\ell+1}-q_{\ell}\|_2.
+\label{eq:path_length}
+\end{equation}
+
+The assignment cost is
+
+\begin{equation}
+J_{rj}=L(\mathcal{P}_{rj}),
+\label{eq:path_cost}
+\end{equation}
+
+with infeasible pairs removed from the admissible matching set. The remaining
+minimum-cost one-to-one assignment is
+
+\begin{equation}
+\pi^*=\arg\min_{\pi}
+\sum_{r\in\mathcal{R}_A}J_{r,\pi(r)}.
+\label{eq:assignment}
+\end{equation}
+
+All eligible pairwise A* paths are computed before Hungarian matching. The
+selected path is the path subsequently executed by the controller, ensuring
+consistency between assignment cost and execution.
+
+\subsection{Event-Driven Replanning}
+
+Replanning is triggered by task-relevant events rather than every incoming
+message. Events include autonomous arrival, explicit human-goal changes,
+predicted future-point changes, controlled-USV changes, command
+completion/cancellation/replacement, invalid allocation, and invalid path
+state. Belief-only replanning uses a center-set displacement gate to avoid
+chattering when posterior changes are negligible.
+
+Let $\hat p_h^{\rm plan}(t+H)$ denote the prediction associated with the active
+plan and $\hat p_h^{\rm new}(t+H)$ the latest prediction. A prediction-triggered
+replan occurs when
+
+\begin{equation}
+\left\|\hat p_h^{\rm new}(t+H)-
+\hat p_h^{\rm plan}(t+H)\right\|_2
+\geq\delta_{\rm pred}.
+\label{eq:prediction_trigger}
+\end{equation}
+
+The threshold $\delta_{\rm pred}$ is frozen from held-out prediction-jitter and
+prediction-error statistics rather than tuned on mission outcomes.
+
+% ------------------------------------------------------------
+% FIG. 4: CORE CONTRIBUTION
+% Suggested final file: figures/fig4_predictive_redistribution.pdf
+% Recommended layout: three map panels + one compact timing strip.
+% ------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\figplaceholderwide{50mm}{
+\textbf{Core HRI mechanism: current versus predicted human responsibility.}\\
+Panel (a): before takeover, autonomous belief-aware centers.\\
+Panel (b): B2 Reactive-Current, with the human-controlled USV at $p_h(t)$ and
+that current position fixed as the human responsibility center; remaining
+autonomous centers are re-optimized.\\
+Panel (c): B3 Predictive-Future, with $\hat p_h(t+H)$ fixed instead; show how
+the remaining autonomous centers move earlier to reduce prospective overlap.\\
+Optional inset: B4 oracle center $p_h(t+H)$ for offline upper-bound analysis.\\
+Show that all free cells remain active in every panel. Bottom timing strip:
+current time $t$, prediction horizon $t+H$, prediction availability, plan
+commitment, and effective anticipation time $H_{\rm eff}$.}
+\caption{Current versus predicted human spatial responsibility. B2, B3, and
+the offline B4 oracle use the same fixed-center redistribution operator; they
+differ only in whether the fixed human center is $p_h(t)$,
+$\hat p_h(t+H)$, or $p_h(t+H)$.}
+\label{fig:reactive_predictive}
+\end{figure*}
+
+% ============================================================
+% VIII. SYSTEM IMPLEMENTATION
+% ============================================================
+\section{System Implementation}
+
+\subsection{ROS~2, Gazebo, and VRX}
+
+The platform is implemented in ROS~2 Humble, Gazebo, and VRX with ten
+homogeneous WAM-Vs. A single launch entry point starts the world, overview
+state, perception, search, planning, controller, interaction, and recording
+layers. The research recorder is the unique authoritative experiment-data
+writer; raw records remain immutable after finalization.
+
+\subsection{Canonical Search Target and World Suite}
+
+Formal experiments use a versioned stationary floating search target
+(``search\_target'') rather than a scenario-specific object name. The benchmark
+asset has fixed episode-level planar position and a geometry that intersects
+the nominal water surface. Target asset, camera configuration, and world
+version are hashed and stored in each experiment manifest.
+
+Four worlds separate sensing identification from mission-level mechanism tests.
+The calibration world contains open water and is used primarily for controlled
+sensor characterization; it is not used as an HRI benchmark. The open-search world weakens obstacle effects and
+provides a baseline probabilistic-search environment. The channel world
+introduces path-distortion structures that make obstacle-aware assignment
+relevant. The archipelago world contains several semi-open search regions and
+is used as the principal environment for human spatial-responsibility
+redistribution. These worlds represent different experimental mechanisms,
+not a claimed monotonic difficulty scale.
+
+The nominal search domain is an $800\times800$~m local ENU region represented
+by a coarse $10$~m planning grid. Physical obstacle geometry, visual geometry,
+LOS geometry, and navigation inflation are tracked separately. Static LOS uses
+uninflated opaque physical polygons; the A* grid uses conservative inflation
+for vehicle clearance.
+
+\begin{table}[t]
+\centering
+\caption{Role of the frozen world suite.}
+\label{tab:worlds}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{ll}
+\toprule
+World & Primary experimental role\\
+\midrule
+Calibration & $P_D$, $P_{FA}$, localization, temporal sensing\\
+Open search & probabilistic-search baseline\\
+Channel & obstacle/path-cost relevance\\
+Archipelago & spatial-responsibility redistribution\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------
+% FIG. 5: WORLD SUITE
+% Suggested final file: figures/fig5_world_suite.pdf
+% Four aligned overhead panels: Calibration / Open / Channel / Archipelago.
+% Show navigable water, physical obstacles, representative starts, and target
+% allowed region. Do not encode results or imply a monotonic difficulty order.
+% ------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\figplaceholderwide{43mm}{
+\textbf{Versioned maritime search environments.}\\
+Four aligned top-down panels: (a) Calibration, (b) Open, (c) Channel,
+(d) Archipelago. Use the same map scale and visual legend. Distinguish physical
+obstacle geometry from navigation inflation if both are shown. The figure
+should communicate each world's experimental role rather than an
+easy-to-hard ordering.}
+\caption{Representative benchmark environments used to separate sensor
+characterization, low-obstacle probabilistic search, path-sensitive
+allocation, and spatial-responsibility redistribution.}
+\label{fig:world_suite}
+\end{figure*}
+
+% PLATFORM GATE BEFORE FORMAL MISSION STUDY:
+% Freeze the learned detector checkpoint and runtime preprocessing, then perform
+% independent sensor calibration. Do not insert engineering detector constants
+% into the final paper as calibration results.
+\subsection{Visual Perception and World Localization}
+
+A single detector owner serves all camera streams. The formal perception
+frontend is a frozen single-class learned detector whose checkpoint, input
+preprocessing, operating point, and inference configuration are fixed before
+sensor calibration. Detector development uses group-disjoint training,
+validation, and detector-test data. Sensor calibration and mission data are
+separate roles and cannot be used for detector training or threshold tuning.
+
+World localization uses the image-time transform chain in
+Eq.~\eqref{eq:camera_transform_chain}. The implementation explicitly separates
+the generic Gazebo camera sensor frame from the ROS optical frame, avoiding a
+frame-convention error in back-projected rays. Missing CameraInfo, unavailable
+transforms, stale timing, parallel rays, and behind-camera intersections fail
+closed and do not become negative target evidence.
+
+\subsection{Joystick, Voice, and Authority}
+
+Joystick takeover assigns one vehicle to direct human control. Raw joystick
+input, semantic manual command, authority state, and executed thrust are
+recorded separately. Voice is transcribed and normalized into a deliberately restricted canonical
+command representation containing a vehicle and a destination. This channel is
+used to validate explicit spatial responsibility, not general high-level
+language reasoning. A valid vehicle--destination command creates a locked pair
+when execution is enabled. Locked pairs use the same A* path planner but are
+excluded from autonomous Hungarian assignment.
+
+
+% PLATFORM GATE BEFORE LIVE HRI:
+% Freeze a single world-independent semantic-destination resolver/rejection
+% rule for command regions that intersect obstacles. Do not use map-specific
+% parser branches or silently relocate commands without provenance.
+
+% PLATFORM GATE BEFORE PARTICIPANT STUDY:
+% Complete Tobii device calibration, task-space validation, and cross-host
+% time-alignment validation. Raw UDP reception alone is not sufficient.
+\subsection{Eye Tracking and Time Alignment}
+
+Tobii gaze is acquired on the operator workstation and transmitted with source
+validity, tracker timestamp, sequence metadata, and screen geometry. The ROS
+bridge preserves source and receive timing; the operator interface supplies
+view mode and screen-to-map geometry. Device calibration and task-space
+validation are performed before experimental sessions. Cross-host timing is
+mapped to the experiment time base and checked against a predeclared residual
+alignment tolerance. Missing or invalid gaze remains missing rather than being
+zero-filled.
+
+\subsection{Research Data Architecture}
+
+The data model distinguishes record order, measurement time, and source-local
+order. Predictor windows are generated offline from immutable raw streams using
+mission-relative simulation time plus validated source-time alignment where
+needed. Windows never cross mission reset, authority change, controlled-vehicle
+change, or human-controlled segment boundaries. This organization allows the
+same raw participant sessions to support alternative causal history windows and
+feature-family ablations without recollecting data.
+
+% ============================================================
+% IX. EXPERIMENTAL METHODOLOGY
+% ============================================================
+\section{Experimental Methodology}
+
+The experimental protocol is structured so that perception development,
+sensor-model identification, gaze validation, predictor selection, and
+mission-level hypothesis testing cannot leak into one another. All quantities
+used by the final participant study are frozen before the corresponding test
+runs.
+
+\subsection{Stage A: Detector Development and Freeze}
+
+Detector development uses disjoint training and validation episode groups.
+A separate detector-test set remains sealed during development. The detector
+checkpoint, image preprocessing, class mapping, non-maximum suppression,
+operating score range, and runtime adapter are frozen before Stage~B. Detector
+training details are not a scientific contribution; the paper reports only the
+frozen detector identity and held-out detector characterization required to
+make the sensing model reproducible.
+
+\subsection{Stage B: Sensor Calibration}
+
+\subsubsection{Detection probability}
+
+Target-present trials span controlled camera-relative range and bearing. For
+each calibration opportunity, simulator truth is used offline to classify the
+frozen detector output as TP or FN. Empirical detection probability is
+
+\begin{equation}
+\widehat P_D(\rho,\beta)=
+\frac{N_{\rm TP}(\rho,\beta)}
+{N_{\rm TP}(\rho,\beta)+N_{\rm FN}(\rho,\beta)}.
+\label{eq:empirical_pd}
+\end{equation}
+
+A parametric model is fitted only if it passes goodness-of-fit and residual
+checks. Confidence intervals or posterior uncertainty are reported for the
+fitted parameters.
+
+\subsubsection{False alarms and operating point}
+
+Target-absent and distractor-present trials estimate false-positive behavior,
+
+\begin{equation}
+\widehat P_{\rm FA}=
+\frac{N_{\rm FP}}{N_{\rm FP}+N_{\rm TN}}.
+\label{eq:empirical_pfa}
+\end{equation}
+
+The final detector operating point is selected before mission testing to
+satisfy a predeclared false-alarm or false-termination constraint while
+retaining useful detection probability. Mission outcomes are not used to
+retune this threshold.
+
+\subsubsection{Localization and anchor selection}
+
+For true-positive detections,
+
+\begin{equation}
+e_{z,k}=z_k-p_{{\rm GT},k}
+\label{eq:localization_error}
+\end{equation}
+
+is used to compare admissible bounding-box anchors and to estimate localization
+bias, covariance, and range/bearing dependence. The final anchor and
+$q_T(z\mid X=x_i)$ are frozen from these residuals. A Gaussian model is used
+only if supported by residual diagnostics.
+
+\subsubsection{Temporal dependence}
+
+Continuous detector sequences at fixed relative geometry are used to estimate
+frame-to-frame dependence and $\nu_{\rm eff}$. First-detection-time survival
+under the selected temporal model is validated directly rather than inferred
+from camera frame rate.
+
+\subsubsection{Confirmation rule}
+
+The formal confirmation rule $\Gamma_k$ is selected from held-out calibration
+sequences. A single validated detection is allowed only if its mission-level
+false-termination risk satisfies the predeclared criterion; otherwise repeated
+spatiotemporally consistent positives are required. The final rule is frozen
+before any B0--B4 mission comparison.
+
+\subsection{Stage C: Tobii and Interface Validation}
+
+Each participant first completes the manufacturer's device calibration. A
+second task-space validation presents known targets in the actual experiment
+interface. For the global overview, validation points span the map display;
+for FPV, validation checks image-space gaze. The study records median and
+upper-tail task-space error, valid-sample fraction, out-of-map fraction, and
+cross-host timing residual. Sessions that do not satisfy the pre-registered
+quality criteria are recalibrated before data collection.
+
+This stage is essential because valid eye-tracker UDP traffic alone does not
+establish scientifically valid gaze features. The study validates the complete
+measurement chain used by the predictor.
+
+% PLATFORM GATE BEFORE B2--B3 TESTING:
+% Use participant-disjoint data to select/freeze W, H, F_s, feature family,
+% RF configuration, and delta_pred. Mission test data must remain untouched.
+\subsection{Stage D: Predictor Development}
+
+Predictor-development data are collected with participant-level separation.
+During controlled intent-elicitation trials, the participant receives a
+private spatial task cue that is independent of target ground truth and is not
+provided to the autonomous planner. The cue induces a real intended direction
+or destination for joystick control without turning that intention into target
+evidence. Voice-specified destinations are excluded from predictor training
+because they already provide explicit responsibility.
+
+No participant contributes to more than one of training, validation, or final
+predictor test. The temporal configuration $(W,H,F_s)$ and feature family
+$F_k$ are selected only on training and validation participants. Candidate
+horizons are rejected when $H_{\rm eff}\le0$ or when upper-tail FDE makes
+responsibility redistribution unstable. The selected temporal configuration,
+feature family, RF parameters, and prediction-trigger threshold are frozen
+before the held-out predictor test and all mission-level comparisons.
+
+Primary predictor characterization reports median, 90th-percentile, and
+95th-percentile FDE. Predefined feature-family ablation tests whether gaze,
+view context, and switch context add predictive value beyond control/dynamics.
+This is a secondary research question: the main HRI claim does not depend on
+gaze improving prediction.
+
+\subsection{Stage E: Collaboration Conditions}
+
+Five conditions isolate adaptation to human intervention and the information
+available about human spatial responsibility.
+
+\paragraph{B0: Autonomous}
+All USVs remain autonomous. B0 provides an autonomous reference and contains no
+human-controlled responsibility center.
+
+\paragraph{B1: Human No-Adapt}
+One USV is directly human controlled, but the intervention itself does not
+trigger immediate fleet redistribution. Ordinary sensing-, arrival-, and
+path-validity replanning remains active.
+
+\paragraph{B2: Human Reactive-Current}
+One USV is directly human controlled. The planner represents current human
+spatial responsibility by fixing the current human-controlled position,
+
+\begin{equation}
+c_h^{B2}(t)=p_h(t).
+\label{eq:b2_stagee}
+\end{equation}
+
+The remaining autonomous fleet is redistributed using the same constrained
+operator as B3.
+
+\paragraph{B3: Human Predictive-Future}
+The frozen predictor supplies
+
+\begin{equation}
+c_h^{B3}(t)=\hat p_h(t+H)
+\label{eq:b3_stagee}
+\end{equation}
+
+as the temporary fixed center while direct human control is active.
+
+\paragraph{B4: Oracle Future Responsibility}
+For controlled replay analysis only, the actual future human-controlled
+position at the same horizon is supplied,
+
+\begin{equation}
+c_h^{B4}(t)=p_h(t+H).
+\label{eq:b4_stagee}
+\end{equation}
+
+B4 never uses target ground truth and is not a live participant condition. It
+estimates the upper bound of the same redistribution mechanism under perfect
+future-human-position information.
+
+The primary system comparison is B2 versus B3. B1 measures the consequence of
+human intervention without proactive fleet adaptation; B4 separates predictor
+error from limitations of the redistribution mechanism. Explicit voice
+commands are validated separately as an explicit-responsibility capability and
+do not redefine B2.
+
+\subsection{Controlled and Live Evaluation}
+
+The evaluation has three complementary layers. First, a controlled Monte Carlo
+study samples the frozen calibrated observation model and compares B0--B4 over
+matched maps, target positions, initial fleets, and frozen human-control traces.
+This isolates responsibility-allocation effects from incidental image-level
+perception variability. Second, perception-in-the-loop trials process Gazebo
+images through the frozen detector and world-localization pipeline online,
+validating the complete image-to-belief-to-planning chain. Third, the live HRI
+study compares B1, B2, and B3 with counterbalanced within-subject condition
+order. B0 remains an autonomous reference and B4 remains an offline/replay
+oracle.
+
+Replay of the same timestamped human trace may be used for paired algorithmic
+comparisons, but replay is treated as an experimental-control device rather
+than an independent human observation.
+
+\subsection{World Assignment to Experimental Questions}
+
+The calibration world is reserved for sensing identification. Open-search
+missions evaluate the basic probabilistic-search loop without strong path
+constraints. Channel missions expose path-cost assignment effects. Archipelago
+missions provide multiple semi-open spatial responsibility regions and form the
+principal environment for predictive human redistribution. Map selection is
+fixed before B2--B3 testing and is not tuned to maximize predictive benefit.
+
+\subsection{Primary System Outcome}
+
+The unique primary mission-level outcome is time to calibrated target
+confirmation under a fixed mission budget $\tau=T_{\rm budget}$. For condition
+$c$, let
+
+\begin{equation}
+\mathcal{S}_c(t)=P(T_{\rm conf}>t)
+\label{eq:mission_survival}
+\end{equation}
+
+be the survival function of confirmation time. Restricted mean
+time-to-confirmed-detection is
+
+\begin{equation}
+\mathrm{RMST}_c(\tau)=\int_0^{\tau}\mathcal{S}_c(t)\,dt.
+\label{eq:rmst}
+\end{equation}
+
+The predeclared primary estimand is
+
+\begin{equation}
+\Delta_{\rm RMST}
+=\mathrm{RMST}_{B3}(\tau)-\mathrm{RMST}_{B2}(\tau),
+\label{eq:delta_rmst}
+\end{equation}
+
+where $\Delta_{\rm RMST}<0$ favors predictive-future redistribution. This
+estimand incorporates right-censored missions instead of averaging only
+successful runs.
+
+\subsection{Secondary System and Mechanism Outcomes}
+
+Success probability before budget is secondary rather than co-primary.
+Additional secondary system outcomes are total fleet travel distance, maximum
+single-USV travel distance, accepted replanning count, planning latency, and
+minimum inter-USV separation.
+
+The principal mechanism metric is \emph{Redundant Sensing Overlap} (RSO). For
+cell $i$, define the accumulated effective sensing hazard generated by the
+human-controlled vehicle and autonomous fleet as
+
+\begin{equation}
+H_{h,i}=\int_0^{T_{\rm end}} h_{hi}(t)\,dt,
+\label{eq:human_hazard_effort}
+\end{equation}
+
+\begin{equation}
+H_{A,i}=\int_0^{T_{\rm end}}
+\sum_{r\in\mathcal{R}_A(t)}h_{ri}(t)\,dt.
+\label{eq:auto_hazard_effort}
+\end{equation}
+
+For human-intervention conditions with nonzero human sensing effort,
+
+\begin{equation}
+\mathrm{RSO}=
+\frac{\sum_i b_i^0\min(H_{h,i},H_{A,i})}
+{\sum_i b_i^0 H_{h,i}}.
+\label{eq:rso}
+\end{equation}
+
+RSO measures the fraction of belief-weighted human sensing effort that is also
+covered by the autonomous fleet. It is undefined for B0 and is not replaced by
+a geometric trajectory-overlap metric.
+
+\subsection{Human-Centered Outcomes}
+
+The live study includes two secondary HRI outcomes. Perceived workload is
+measured using the six standard NASA-TLX dimensions and summarized by the
+unweighted Raw TLX score. Coordination alignment is measured with the fixed
+1--7 Likert item: ``The autonomous fleet adapted in a way that was consistent
+with where I intended to search.'' This single task-specific item is treated as
+a diagnostic outcome rather than as a validated psychometric scale.
+
+\subsection{Human-Subject Design}
+
+The final live participant study uses a within-subject design for B1, B2, and
+B3. The primary contrast is B2 versus B3; condition order is randomized or
+counterbalanced. The same world families, mission budgets, detector, calibrated
+sensor model, controller, planner, and frozen predictor are used across
+conditions. Target placements and initial fleet configurations are drawn from
+a predeclared mission set disjoint from detector development and sensor
+calibration.
+
+Participant identity is treated as a repeated factor rather than treating
+sliding predictor windows as independent samples. Sample size is determined
+before formal data collection from a power or precision analysis based on
+pilot participant-level variance for the primary $\Delta_{\rm RMST}$ estimand.
+No participant is added or removed based on interim significance.
+
+\subsection{Frozen Hypotheses}
+
+The primary hypothesis is that B3 reduces RMST relative to B2,
+$\Delta_{\rm RMST}<0$. The principal mechanism hypothesis is that B3 reduces
+RSO relative to B2. B4 is expected to define the attainable upper-bound trend
+of the same responsibility mechanism and is used to quantify the gap due to
+prediction error. A separate secondary predictor hypothesis tests whether
+valid gaze/view context improves held-out future-position prediction beyond
+control/dynamics alone. Failure of this secondary predictor hypothesis does not
+alter the primary B2--B3 HRI question.
+
+\subsection{Statistical Analysis}
+
+Kaplan--Meier curves are used to visualize time to calibrated confirmation, but
+the predeclared primary summary is $\Delta_{\rm RMST}$ at the common budget
+$\tau$. The B2--B3 primary effect is reported with an effect estimate and 95\%
+confidence interval using a paired participant-level or mixed-effects procedure
+consistent with the counterbalancing structure. Success probability is analyzed
+as a secondary paired binary or mixed-effects outcome. RSO, travel distance,
+replanning, NASA-TLX, and coordination-alignment scores use paired
+participant-level contrasts or hierarchical models, with robust intervals when
+distributional assumptions are weak.
+
+Predictor analyses remain separate from mission analyses. Participant-level
+FDE distributions, feature-family ablation, and prediction-trigger statistics
+are reported on held-out participants. Formal mission data are never used to
+retrain the predictor, retune the detector, change the B2/B3 definitions,
+select the primary metric, or recalibrate the sensor model.
+
+% ------------------------------------------------------------
+% FIG. 6: EXPERIMENTAL LOGIC
+% Suggested final file: figures/fig6_experimental_design.pdf
+% Recommended layout: upper row = freeze/data-isolation pipeline;
+% lower row = B0--B4 information/timing comparison.
+% ------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\figplaceholderwide{50mm}{
+\textbf{Frozen experimental workflow and HRI condition ladder.}\\
+Upper row: detector development/freeze $\rightarrow$ sensor calibration/freeze
+$\rightarrow$ Tobii task-space validation $\rightarrow$ participant-disjoint
+predictor development/freeze $\rightarrow$ controlled Monte Carlo
+$\rightarrow$ perception-in-the-loop $\rightarrow$ live HRI. Mark all data
+roles as disjoint.\\
+Lower row: B0 autonomous reference; B1 human no-adapt; B2
+Reactive-Current with fixed center $p_h(t)$; B3 Predictive-Future with fixed
+center $\hat p_h(t+H)$; B4 offline Oracle Future with $p_h(t+H)$. Highlight B2
+vs B3 as the primary comparison. Mark live conditions B1/B2/B3 and offline B4.
+Add compact metric labels: Primary $\Delta_{\rm RMST}$; mechanism RSO; human
+outcomes Raw NASA-TLX and coordination alignment.}
+\caption{Frozen experimental workflow and present--predicted--oracle HRI
+evaluation ladder. B2 and B3 use the same redistribution operator and differ
+only in whether current or predicted future human spatial responsibility is
+available.}
+\label{fig:experiment_workflow}
+\end{figure*}
+
+% ============================================================
+% X. RESULTS TEMPLATE
+% ============================================================
+\section{Results}
+
+The final manuscript inserts only results produced after all model and protocol
+freezes described above. This master draft deliberately separates the result
+structure from the method so that platform development cannot silently change
+a hypothesis after observing mission outcomes.
+
+\subsection{Sensor and Interface Validation}
+
+% FUTURE RESULT FIGURES -- insert only after frozen calibration:
+% figures/result_pd_surface.pdf       : calibrated P_D(range,bearing)
+% figures/result_localization_error.pdf : localization residuals/anchor choice
+% Optional table: P_FA, nu_eff, and confirmation false-termination statistics.
+
+The final paper reports the calibrated $P_D(\rho,\beta)$ model and uncertainty,
+$P_{\rm FA}$, localization residual statistics and selected anchor, temporal
+model and $\nu_{\rm eff}$, the frozen confirmation rule, Tobii task-space error,
+valid-sample rate, and cross-host timing residual. These values establish the
+measurement validity of the subsequent human study.
+
+\subsection{Predictor Development and Held-Out Performance}
+
+% FUTURE RESULT FIGURES -- insert only after participant-disjoint testing:
+% figures/result_fde_horizon.pdf      : median/Q90/Q95 FDE versus horizon
+% figures/result_feature_ablation.pdf : predeclared F0--F4 ablation
+
+The final paper reports the selected $(W,H,F_s)$, selected feature family,
+held-out participant FDE distribution, effective anticipation time, and
+predefined feature-family ablation. The purpose is to determine whether gaze/view context adds predictive value
+beyond control/dynamics and whether the selected horizon is useful to the fleet
+rather than merely easy to predict.
+
+\subsection{Mission-Level Collaboration Results}
+
+% FUTURE RESULT FIGURES -- insert only after formal frozen experiments:
+% figures/result_survival_b0_b4.pdf : time-to-confirmation survival curves
+% figures/result_b2_b3_rmst.pdf     : paired/participant-level Delta_RMST
+% figures/result_rso.pdf            : redundant sensing overlap
+% figures/result_hri_outcomes.pdf   : NASA-TLX and coordination alignment
+
+The primary result is the B2--B3 difference in RMST. Success probability,
+RSO, fleet effort, replanning, and safety are secondary system or mechanism
+outcomes. The live HRI analysis additionally reports Raw NASA-TLX and the
+predeclared coordination-alignment item for B1--B3. B0 contextualizes the
+autonomous reference, while B4 is reported only in controlled/replay analyses
+as an oracle future-responsibility bound. Controlled Monte Carlo,
+perception-in-the-loop, and live participant results are reported separately
+rather than pooled.
+
+\begin{table*}[t]
+\centering
+\caption{Frozen mission-result table template. Values are inserted only after
+the predeclared analyses are completed.}
+\label{tab:result_template}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+Condition & RMST (primary) & Success & RSO & Fleet distance & Replans & Min. sep.\\
+\midrule
+B0 Autonomous & \TBD{result} & \TBD{result} & N/A & \TBD{result} & \TBD{result} & \TBD{result}\\
+B1 Human No-Adapt & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result}\\
+B2 Reactive-Current & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result}\\
+B3 Predictive-Future & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result}\\
+B4 Oracle Future$^{\dagger}$ & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result} & \TBD{result}\\
+\bottomrule
+\end{tabular}
+\\
+\footnotesize{$^{\dagger}$B4 is an offline/replay oracle, not a live participant condition.}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\caption{Human-centered result template for live B1--B3 conditions.}
+\label{tab:hri_result_template}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcc}
+\toprule
+Condition & Raw TLX & Alignment\\
+\midrule
+B1 No-Adapt & \TBD{result} & \TBD{result}\\
+B2 Reactive-Current & \TBD{result} & \TBD{result}\\
+B3 Predictive-Future & \TBD{result} & \TBD{result}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% XI. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+The central HRI contribution is the distinction between uncertainty about the
+target and uncertainty about the human's future contribution. The Bayesian
+posterior represents target uncertainty; human spatial responsibility
+represents where human search effort is expected to occur. This separation
+prevents joystick behavior, gaze, voice, or predicted motion from being
+misinterpreted as target evidence while still allowing the autonomous fleet to
+adapt to human intervention.
+
+The primary comparison is intentionally between B2 and B3. B2 already adapts
+to the human by fixing the current human-controlled position $p_h(t)$, so B3
+cannot gain simply because one condition has a human center and the other does
+not. Any additional B3 benefit must arise from actionable information about
+future spatial responsibility. B4 then quantifies the remaining gap under
+perfect future-human-position information without introducing target truth.
+
+The fixed-center formulation does not manually delete a region that the human
+is expected to search. All searchable free cells remain in the same
+responsibility optimization. This makes overlap possible when the belief and
+geometry justify it, while RSO measures whether autonomous sensing unnecessarily
+repeats human sensing effort.
+
+Prediction is useful only when it provides meaningful coordination lead time.
+A highly accurate short-horizon predictor may offer little benefit if planning
+and motion consume the available horizon, while a long horizon may provide more
+lead time at the cost of larger endpoint uncertainty. FDE, $H_{\rm eff}$, RSO,
+and the B2--B3 RMST contrast therefore evaluate prediction in the HRI role that
+matters: whether the fleet can coordinate earlier and more effectively with the
+human.
+
+The interaction modalities are deliberately asymmetric. Joystick control
+creates implicit future responsibility, gaze may add predictive context, and
+voice provides explicit vehicle--destination responsibility. The paper does not
+claim a new multimodal fusion algorithm, and the primary HRI hypothesis remains
+valid even if gaze does not improve the held-out predictor. Likewise, the
+implemented voice channel should not be described as general high-level intent
+understanding.
+
+A natural extension is to represent richer human task semantics. Future work
+could map natural-language instructions such as search a region, hold position,
+patrol, pursue, escort, or form up into structured fleet responsibilities,
+potentially using large language or multimodal models. That extension would
+change the semantic interpreter, but the present responsibility interface could
+remain the downstream contract. The current study intentionally restricts
+voice to explicit vehicle--destination responsibility in order to isolate the
+spatial-coordination mechanism.
+
+Static LOS qualification is conservative: it prevents known opaque static
+obstacles from producing unjustified negative evidence, but it is not a full
+3-D occlusion model. Dynamic vessel occlusion and transient wave effects remain
+part of residual sensing uncertainty. The current allocation objective also
+uses Euclidean belief-weighted geometry for center generation and obstacle-aware
+path length only during assignment. This interpretable separation is retained
+to keep the HRI hypothesis identifiable; path-aware center generation is a
+possible extension if obstacle topology is later shown to dominate the human
+responsibility effect.
+
+% ============================================================
+% XII. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+This paper formulates collaborative multi-USV probabilistic search as an HRI
+problem of adapting autonomous search responsibility to human intervention.
+Calibrated visual observations update the Bayesian target belief, while human
+interaction is represented separately as spatial responsibility. Under direct
+human control, B2 uses the current human-controlled position $p_h(t)$ as the
+reactive responsibility center, whereas B3 uses the predicted future position
+$\hat p_h(t+H)$. An offline B4 oracle uses $p_h(t+H)$ to quantify the
+performance gap attributable to prediction error. All three conditions share
+the same fixed-center redistribution operator.
+
+The proposed mechanism keeps all searchable free cells active, recomputes only
+autonomous centers around fixed human responsibility, and then executes the
+allocation through pairwise obstacle-aware A* planning and path-cost Hungarian
+assignment. Voice provides a separate explicit vehicle--destination
+responsibility channel, while gaze is treated as optional predictive context;
+neither is allowed to modify the target posterior without an explicit human
+observation model.
+
+The experimental contract freezes the primary HRI question before mission
+results are observed. The unique primary system estimand is the B2--B3
+difference in restricted mean time-to-confirmed-detection. RSO tests the
+redundant-sensing mechanism, while success probability, fleet effort, Raw
+NASA-TLX, and perceived coordination alignment provide secondary system and
+human-centered evidence. The study therefore asks a focused question: whether
+anticipating the future spatial consequence of human action enables a robot
+fleet to cooperate with the human earlier and more effectively than reacting to
+where the human-controlled vehicle is now.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\begin{thebibliography}{00}
+
+\bibitem{b1}
+F. Bourgault, A. Goktogan, T. Furukawa, and H. F. Durrant-Whyte,
+``Coordinated search for a lost target in a Bayesian world,''
+\emph{Advanced Robotics}, vol. 18, no. 10, pp. 979--1000, 2004.
+
+\bibitem{b2}
+D. Xie, Y. Lin, R. A. Grupen, and A. R. Hanson,
+``Intention-based coordination and interface design for human-robot cooperative
+search,'' in \emph{Proc. IEEE/RSJ Int. Conf. Intelligent Robots and Systems
+(IROS)}, pp. 3349--3354, 2011.
+
+\bibitem{b3}
+L. Heintzman, A. Hashimoto, N. Abaid, and R. K. Williams,
+``Anticipatory planning and dynamic lost person models for human-robot search
+and rescue,'' in \emph{Proc. IEEE Int. Conf. Robotics and Automation (ICRA)},
+pp. 8252--8258, 2021.
+
+\bibitem{b4}
+G. Hoffman, T. Bhattacharjee, and S. Nikolaidis,
+``Inferring human intent and predicting human action in human--robot
+collaboration,'' \emph{Annual Review of Control, Robotics, and Autonomous
+Systems}, vol. 7, pp. 73--95, 2024.
+
+\bibitem{b5}
+M. Dalmasso, J. E. Dom\'inguez-Vidal, I. J. Torres-Rodr\'iguez,
+P. Jim\'enez, A. Garrell, and A. Sanfeliu,
+``Shared task representation for human--robot collaborative navigation: The
+collaborative search case,'' \emph{International Journal of Social Robotics},
+vol. 16, pp. 145--171, 2024.
+
+\bibitem{b7}
+P. M. Dames,
+``Distributed multi-target search and tracking using the PHD filter,''
+\emph{Autonomous Robots}, vol. 44, pp. 673--689, 2020.
+
+\bibitem{b8}
+F. Jovan, M. Tomy, N. Hawes, and J. Wyatt,
+``Efficiently exploring for human robot interaction: partially observable
+Poisson processes,'' \emph{Autonomous Robots}, vol. 47, pp. 121--138, 2023.
+
+\end{thebibliography}
+
+\end{document}
