@@ -8,9 +8,9 @@
 
 原计划第一周的观测简化/搜索流程整合仍保留；已验收的底层/API工作作为基础复用，不重做整个平台审计。API通过不能替代实际UI点击和设备验证。第一周完成度按操作与记录流程验收，不按“测试数越来越多”代替交付。
 
-## 当前阶段：005 R1候选已就绪，等待用户现场复验
+## 当前阶段：R1第二轮反馈取证；R2隔离修复与Windows协作
 
-首轮和闭环走查已发生，005 R1实际代码候选已完成。instructor在1ae7932f7d84cb3bc16c719e7fe83a7e8db6efb0发布CANDIDATE_READY / FIELD_FEEDBACK_PENDING，005整体仍RUNNING、未最终ACCEPTED。instructor亲核三个模块source-build导入同hash、独立53tests（0 skip）和bash-n通过；三包构建通过依据constructor报告。主agent已集成，原三只读及本批两代码子agent已回传关闭。现场整体流畅度、真实ASR质量与眼动端到端改善仍待用户，不重复诊断或等005全量完成才展示。
+用户已给R1第二轮反馈：FPV仍卡、眼动主观快不少、09/10持续红需取证，四路/路径待后继判断；R2未部署，不能归因给R2。生产source/build/install与Windows当前exe/会话冻结，不在复验中静默替换；R2可以隔离继续修真实采音和眼动链。首轮和闭环走查已发生，005 R1实际代码候选已完成。instructor在1ae7932f7d84cb3bc16c719e7fe83a7e8db6efb0发布CANDIDATE_READY / FIELD_FEEDBACK_PENDING，005整体仍RUNNING、未最终ACCEPTED。instructor亲核三个模块source-build导入同hash、独立53tests（0 skip）和bash-n通过；三包构建通过依据constructor报告。主agent已集成，原三只读及本批两代码子agent已回传关闭。现场整体流畅度、真实ASR质量与眼动端到端改善仍待用户，不重复诊断或等005全量完成才展示。
 
 1. **现状入口与最短说明已先交**：constructor的005报告已核脚本入口`cd /home/cyz/vrx_ws && ./run_vrx.sh start`、默认h5_command_aware及脚本hash，专用desktop未核实。后续候选版只补实际变化/安装身份/已知缺口，不为启动说明重开全平台审计、不暗换模式。
 2. **用户一键走查**：先看布局、地图/字号、选艇、控制权/SEARCH/mission状态、按钮语义和设备反馈，可先不START。截图或文字自然反馈即可，不要求长表、不要求向多个角色重复转述。
@@ -26,6 +26,23 @@
 原三名只读子agent及R1两名代码子agent已由instructor review记录完成并关闭，constructor主agent已集成console；报告已有实际文件/hash、测试/构建和离屏前后证据。运行根Git HEAD UNKNOWN、实现提交NONE，通信提交不是完整源码快照；精确三模块SHA256见tasks/USV-20261020-005.R1.review.md。
 
 用户保存/结束需保留的旧会话后，用原入口`cd /home/cyz/vrx_ws && ./run_vrx.sh start`重开；默认h5_command_aware含Qt/硬件，不加--research-core。start会清理旧进程，旧进程不自动加载改动，不对需保留会话重复执行。最少复验：①可先不START切FPV/全局页、切艇/鼠标，反馈哪页哪动作卡；②用户可控场景一次语音，看ASR原文/解析/策略/执行是否清楚；③Windows端在场时看眼动跟随、新tracker/重复/包Hz/Linux分段。短文字或截图即可，卡顿时一条ui_timing_10s辅助定位。若ASR原文错则查声学链；眼动按源样本或Linux耗时分段推进，UNALIGNED时总延迟仍未知。全套结束用`./run_vrx.sh stop`；本轮助手未运行。根据现场反馈沿原005小批修改，不重做全平台审计或重复smoke。
+
+
+## R2当前协作：实际修复与生产切换分开
+
+依据instructor@9e8bc6c7的005末节及跨线交接，constructor@3796d83f已报R2隔离候选（/tmp/usv_005_r2_hvSJ6a/、26离线tests），未部署、待instructor复核/统一切换。连续PTT采音候选针对逐块开关采音的机制；UI同源tracker重复/倒退过滤基于fixture，原depth1/latest_pending不是新优化。真实识别率/眼动端到端延迟仍未知，采音完整性与队列计数不能替代现场效果。
+
+main已向既有Windows本地agent具名中转新tracker/Unity重复发送、本机单调时间/队列/阻塞、当前UUV构建和15555目标核对，详见handoffs/MAIN-TO-WINDOWS-VOICE-GAZE-R2-20261020-001.md。有证据再交隔离源新样本发送/显示最新优先patch；保留原始采样、时间、有效性及兼容协议；Windows音频仅实际15556路径才核。当前未有可调用Windows接收入口，本人ACK/执行待回执，发布不冒称已唤醒。
+
+用户当前R1体验不等待R2全做完；R2也不因等待现场反馈而停止已授权隔离修复。候选hash/测试/前后证据准备后，等用户本轮复验结束，由instructor统一安排Linux/Windows切换与回退。不覆盖运行中的UUV.exe/配置或生产symlink源码，不新增麦克风录音、志愿者采样、RF训练、无人值守仿真；跨机未对齐仍UNALIGNED，不编总延迟。
+
+## FIELD2后继：四路与路径
+
+main判断见handoffs/MAIN-TO-INSTRUCTOR-FIELD2-20261020-001.md。constructor@4579f89a已回同run证据：当前command_aware / LEGACY_ASSUMED_BATCH，08/09/10在123次legacy更新均CAMERA_INFO_STALE、01—07有效，新离散事件0；先定位CameraInfo/freshness/时间域与实际profile根因，不能用视觉帧或旧sampler验收覆盖。FPV约5.4—6.5回调/s，同窗源Hz/源年龄/RTF未记录，Qt非已证唯一瓶颈；使用原只读总额度取证，不降低源采样或刷色。
+
+四路建设期望保留；当前注册表camera/sonar/infrared/radar仅camera启用，用户lidar建议作为候选并列比较，不能暗换radar。逐项列展示占位、仿真传感器/物理近似、合法binary观测接线的实际/候选/缺失。camera占位不自动构成声学/红外物理模型，四画面不自动成四条独立后验证据。先清单和逐路资源预算，当前不增渲染/迁移模型或改科学profile；不以旧binary合同取消用户四路期望。
+
+路径先区分同generation网格折线、generation替换和实际跟踪摆动；当前run163次generation有报告证据，但没有同generation轨迹/障碍对照，不能据此断言真实艇摆动。复杂轨迹优化当前无必要证据；障碍净空检查的最小简化是待评估候选，需用户理解必要性后再决定实施。真正改执行路径必须处理安全/成本/assignment一致性，本轮不改规划器或成本。
 
 ## 本周最小交付
 
