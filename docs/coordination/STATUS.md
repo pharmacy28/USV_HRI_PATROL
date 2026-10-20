@@ -28,3 +28,9 @@ H=5 s、历史 1-cell 参数和传感器 `engineering_assumed` 仅工程沿用�
 - 当前`USV-20261020-005 = RUNNING / R3_CANDIDATE_NOT_DEPLOYED`；最新`docs/coordination/reports/USV-20261020-005.md`。本地九文件候选与一键受控切换说明：`src/workspace/candidates/USV_20261020_005_R3/README.md`。当前用户run仍R1，九文件production/build/install未切换。
 - 09艇FPV两探针约17秒重叠，源约11.5Hz、relay10.2Hz、Qt显示7.6Hz、RTF0.67；源低于生成相机30仿真Hz，Gazebo/bridge边界仍OPEN。R3修relay/Qt已复现的burst/latest与相位掉帧，离线17 tests+隔离2包build PASS，未现场验FPS。08–10当前R1仍STALE、R3资格恢复未运行验收。
 - 用户四传感器与默认禁真实detector的新要求另行独立小批，不改R3冻结候选、不擅定科学参数。R3切换仅用户正常结束会话后按README执行；不得代停或后台覆盖。
+
+
+## 005R4 isolated detector-off candidate（2026-10-20 Asia/Shanghai）
+
+- 当前唯一READY后继 `USV-20261020-005R4` 已由constructor实施为 `ISOLATED_READY / RUNTIME_NOT_VALIDATED`，非DONE/ACCEPTED。报告 `docs/coordination/reports/USV-20261020-005.md`，本地11文件候选及安全切换 `src/workspace/candidates/USV_20261020_005_R4/README.md`。生产仍R1，未apply/start/改原始资产。
+- 默认真实detector节点、Search/Qt检测消费与黄色候选可视化已在隔离候选中门控；显式opt-in保留。旧反例FAIL→R4 PASS，相关82+GT7 PASS，隔离5包build PASS，假根切换及失败回滚PASS。真实Gazebo/UI未复验；源相机吞吐、08–10几何资格、四真实传感器仍OPEN。旧0.25仿真Hz假设与4秒belief不变，正式科学结果未验收。
