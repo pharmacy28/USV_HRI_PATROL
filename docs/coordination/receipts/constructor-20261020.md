@@ -54,3 +54,9 @@
 - 已读004R READY、004.review复审、MAIN_MEMORY、PROTOCOL、ROLE_PROTOCOL及STATUS。上节“004R待发布”和STATUS“无004R”均是历史状态；004R现为唯一READY，005为DRAFT，不并发改生产代码。
 - 运行树`/home/cyz/vrx_ws`根Git HEAD=UNKNOWN、实现提交NONE；Planner source/build SHA256均`ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84`，research launch source/install均`0c9ea2a19e13c307034d67d3b33f53e5c15e18bb0ad26d6a726e5def3c90065f`。研究树main@5f263c6的既有决策修改、VRX humble@dc30ed8的既有修改及world/model保持原状。
 - 本次仅领取与启动前准备；未启动Gazebo，004R一次额度未消耗。运行前仍须验证20路直接采集与ROS权限；004整体保持CHANGES_REQUESTED/RUNTIME_PENDING。若准备不满足，报告BLOCKED，不用旧run或fixture代替。
+
+## 004R 本人运行回传（2026-10-20，Asia/Shanghai）
+
+- 此节取代上一节`RECEIVED/PREPARING`当前状态：`BLOCKED / RUN_CONSUMED`，不是DONE/ACCEPTED；详细报告`docs/coordination/reports/USV-20261020-004R.md`，本地`src/workspace/reports/USV_20261020_004R_RUNTIME_REPORT.md`。
+- 最终生产source/build/install身份一致、26项定向回归PASS；唯一Gazebo会话确实启动且20/20推进器采集有效，但临时动作脚本错误使用`example_interfaces/SetBool`，Planner实际服务为`std_srvs/SetBool`，故未发送START。后续SEARCH、B3 fallback、撤销、STOP因果及合法Recorder终止均未观察到，不能以空闲零推力/manifest的STOPPED字段冒充验收。
+- 已执行launcher stop并核对无活跃owner；未修改生产算法/配置/world、未训练、未跑第二次Gazebo。004仍CHANGES_REQUESTED，005仍DRAFT。是否追加独立有界验收由instructor决定。
