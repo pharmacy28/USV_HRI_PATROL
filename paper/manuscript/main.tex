@@ -2,7 +2,7 @@
 \IEEEoverridecommandlockouts
 \usepackage{cite}
 \usepackage{amsmath,amssymb,graphicx,booktabs,array,url}
-% RC-20261020-v1; PAPER-20261020-001. Method/protocol draft; no formal results.
+% RC-20261020-v1.1; PAPER-20261020-001. Method/protocol draft; no formal results.
 % Base: paper/overleaf-20261020 @ f38944669dce2cd45e124af5edc5f48a24608a00.
 \title{Predictive Human Search Responsibility for\\Collaborative Multi-USV Probabilistic Search}
 \author{Anonymous Authors}
@@ -18,7 +18,7 @@ human--robot collaboration, multi-robot search, unmanned surface vehicles, respo
 \section{Introduction}
 Probabilistic robotic search couples uncertain target-location estimates with repeated spatial allocation~\cite{b1,b7}. In human--multi-USV search, an operator may take control, navigate, search, or interrupt a task. Autonomy must account for these interventions without treating human motion as evidence that the target is present.
 
-The question is deliberately narrow: \emph{does predicting where an explicitly searching operator will be improve fleet coordination beyond using the operator's current position?} Human search prediction and anticipatory coordination are established topics~\cite{Xie2011Intention,Heintzman2021Anticipatory,b4}. Our hypothesis concerns the decision value of a future-position anchor in belief-weighted fleet allocation, together with withdrawal when the underlying search commitment ends.
+The question is deliberately narrow: \emph{does predicting the future position of a human-controlled USV during explicit SEARCH improve fleet coordination beyond using that USV's current position?} Human search prediction and anticipatory coordination are established topics~\cite{Xie2011Intention,Heintzman2021Anticipatory,b4}. The anchor represents the operator's search responsibility through the position of the controlled USV, not the physical location of the operator. Our hypothesis concerns the decision value of that future-position anchor in belief-weighted fleet allocation, together with withdrawal when the search commitment ends.
 
 Takeover alone does not establish search responsibility. The operator declares SEARCH; prediction then estimates where that declared activity may occur. NAVIGATE may still generate observations and a target encounter, but does not reserve a search region. This separates execution authority, task commitment, target inference, and fleet allocation.
 
@@ -41,37 +41,37 @@ Krzysiak and Butail optimize a blend of information about the target and a human
 Dalmasso \emph{et al.} represent collaborative navigation/search through Social Reward Sources and multi-agent MCTS~\cite{b5}. Talebpour and Martinoli incorporate predicted human motion and uncertainty into risk-based task bids~\cite{TalebpourMartinoli2018IROS}. The broader intention/action-prediction literature is reviewed in~\cite{b4}. Our distinctions between execution authority, explicit search commitment, and allocation responsibility are analytical definitions of this system, not terminology attributed to those papers.
 
 \subsection{Question Tested Here}
-The proposed comparison is narrower than a first-of-its-kind claim: when an operator explicitly searches using one member of the fleet, does its predicted endpoint, used as a fixed generator of full-domain belief-weighted responsibility, improve on its current position under the same allocation operator? Human forecasts neither clear cells nor delete a predicted region. We compare this mechanism with current-position responsibility and measure its limitations under interruptions and fallback. We do not infer from the reviewed passages that every preceding system lacks equivalent revocation or fallback logic. A comparison with the same predictor driving direct inhibition would test a different mechanism question and remains a proposed additional experiment, not a result established by B2--B3.
+The proposed comparison is narrower than a first-of-its-kind claim: when an operator explicitly searches using one member of the fleet, does its predicted endpoint, used as a fixed generator of full-domain belief-weighted responsibility, improve on its current position under the same allocation operator? Human forecasts neither clear cells nor delete a predicted region. We compare this mechanism with current-position responsibility and measure its limitations under interruptions and fallback. We do not infer from the reviewed passages that every preceding system lacks equivalent revocation or fallback logic. A comparison with the same predictor driving direct inhibition remains an auxiliary replay candidate, not a required main condition or a result established by B2--B3.
 
 \section{Problem and Search Contract}
 \subsection{Environment and Inference}
-A known planar obstacle map defines searchable free cells $\mathcal X=\{x_i\}_{i=1}^N$. Exactly one stationary target occupies an unknown free cell. A fleet of $n$ USVs has positions $p_r(t)$; the VRX platform is configured for ten WAM-Vs. Simulator truth is unavailable to planning and target inference.
+A known planar obstacle map defines searchable free cells $\mathcal X=\{x_i\}_{i=1}^N$. Exactly one stationary target occupies an unknown free cell. A fleet of $n$ USVs has positions $p_r(t)$; the VRX platform is configured for ten WAM-Vs. Hidden target truth has two legitimate uses: generating synthetic sensor reports and independently evaluating target encounters. Neither the planner nor the target estimator receives the true target position, its target-specific distance, or truth-derived admission and abstention reasons. Public distances to hypothetical target cells remain valid model inputs.
 
 \subsection{Effective Sensor Opportunities}
 Let $e_k$ identify an accepted sensor opportunity and $G_k$ contain its acquisition geometry and public input-validity information. Each opportunity has one identifier scoped to the mission, sensor, and opportunity index; retransmission does not create new evidence. Under the current engineering adapter, a valid opportunity yields a single binary report $z_k\in\{0,1\}$ for the sensor as a whole. The grid cells are alternative hypotheses about $X$, not separate independent reports from that one opportunity. ABSTAIN denotes absent evidence and is not a third detection outcome.
 
-With observation history $\mathcal H_{k-1}=Z_{1:k-1}$, define
+We define a sensor-evidence model $\mathcal M$ with observation history $\mathcal H_{k-1}=Z_{1:k-1}$. Acquisition geometries $G_{1:k}$ are supplied design/control inputs, denoted after a semicolon. Within this model, their selection contributes no extra likelihood about $X$:
 \begin{align}
- b_i^k&=P(X=x_i\mid Z_{1:k},G_{1:k}),\\
- L_{i,k}&=p(z_k\mid X=x_i,\mathcal H_{k-1},G_k),\\
+ b_i^k&=P_{\mathcal M}(X=x_i\mid Z_{1:k};G_{1:k}),\\
+ L_{i,k}&=p_{\mathcal M}(z_k\mid X=x_i,\mathcal H_{k-1};G_{1:k}),\\
  b_i^k&=\frac{b_i^{k-1}L_{i,k}}{\sum_j b_j^{k-1}L_{j,k}},\quad \sum_i b_i^k=1.
 \label{eq:bayes}
 \end{align}
-Geometry is conditioned upon; no target information is extracted from human-selected motion itself. The indexing uses report $z_k$ exactly once to update $b^{k-1}$ to $b^k$.
+The recursion intentionally omits an action/geometry-selection likelihood. It uses $z_k$ once to update $b^{k-1}$ to $b^k$ under $\mathcal M$. This is a modeling restriction, not evidence that human actions are independent of the target. If an operator acts on additional target knowledge, $b$ is not claimed to equal a posterior exploiting all available human-behavior information. The normalizing denominator must be positive; an impossible report or zero denominator is a model or numerical fault, not grounds for adding arbitrary probability mass.
 
-In the assumed binary engineering model, $p_{i,k}=P(z_k=1\mid X=x_i,G_k)$ and
+In the assumed binary engineering model, $p_{i,k}=P_{\mathcal M}(z_k=1\mid X=x_i;G_k)$ and
 \begin{equation}
  L_{i,k}=p_{i,k}^{z_k}(1-p_{i,k})^{1-z_k}.
 \label{eq:binary}
 \end{equation}
-This model has zero false alarms and no reported target coordinate. Its positive likelihood is $p_{i,k}$, not a localized measurement of the true target position; its negative likelihood is $1-p_{i,k}$. A positive report does not establish mission success. Extending the adapter to false alarms or measured positions requires a new observation likelihood, not reinterpretation of this binary output.
+The main comparison uses this idealized binary model with zero false alarms and no reported target coordinate. Its positive likelihood is $p_{i,k}$, not a localized measurement of the true target position; its negative likelihood is $1-p_{i,k}$. A positive report does not establish mission success. Extending the adapter to false alarms or measured positions requires a new observation likelihood, not reinterpretation of this binary output.
 
 The existing engineering simulator uses a hard horizontal field of view and logistic range envelope:
 \begin{equation}
  p_{i,k}=v_{i,k}\frac{p_{\max}}{1+\exp[(d_{i,k}-r_{50})/s]},
 \label{eq:pd}
 \end{equation}
-where $v_{i,k}$ gates field of view, configured range support, and modeled visibility. The parameters and effective-opportunity spacing are assumed simulation settings; they are not estimated camera performance. Its conservative visibility convention sets $p_{i,k}=0$ for both occluded and geometrically unknown cells. For such cells a negative report has neutral likelihood one; a whole-sensor positive report has likelihood zero. An entirely absent opportunity instead contributes no likelihood anywhere. Normalization may increase posterior mass outside the negatively observed support without adding mass manually.
+where $v_{i,k}$ gates field of view, configured range support, and modeled visibility. The parameters and effective-opportunity spacing are assumed simulation settings; they are not estimated camera performance. Given $X$ and public geometry, independent Bernoulli draws define the main simulation profile, not a claim of independence among real cameras or across real observation times. Its idealized visibility convention sets $p_{i,k}=0$ for both occluded and geometrically unknown cells. For such cells a negative report has neutral likelihood one; a whole-sensor positive report has likelihood zero. This convention does not guarantee a conservative posterior or a lower bound on real detection under unknown visibility. An entirely absent opportunity instead contributes no likelihood anywhere. Normalization may increase posterior mass outside the negatively observed support without adding mass manually.
 
 Public pose, timing, and map validity determine opportunity admission before consulting the hidden target. In simulation, the sampler computes the same grid probability vector as the estimator, indexes it at the hidden target cell, and samples the binary outcome. Truth may determine the generated outcome but must not determine whether an opportunity is published, its validity, or its public abstention reason. Invalid truth/state-space configuration is a simulation fault, not an ordinary location-dependent abstention. This is a generative simulation boundary; it does not claim image-based perception.
 
@@ -83,7 +83,7 @@ For a negative-only history under this model, the diagnostics
 \end{equation}
 are unnormalized no-positive-report compatibility and its prior-weighted total. Then $b_i^k=b_i^0S_i^k/R^-_k$. If positive reports also update belief while the implementation retains these negative-history diagnostics, that identity no longer represents the mixed-history posterior. These quantities are not calibrated absolute mission risk in this study.
 
-Commands, gaze, joystick inputs, declarations, and predictions do not directly enter~\eqref{eq:bayes}. Legitimate sensing continues in SEARCH and NAVIGATE; geometric visitation alone does not clear a cell. Camera, infrared, sonar, and LiDAR target adapters are not interchangeable. Four-modality detection and dependence models remain proposed extensions, not implemented or calibrated evidence required by the present comparison. The final experimental observation profile must be frozen before testing.
+Commands, gaze, joystick inputs, declarations, and predictions do not directly enter~\eqref{eq:bayes}. Legitimate sensing continues in SEARCH and NAVIGATE; geometric visitation alone does not clear a cell. Camera, infrared, sonar, and LiDAR target adapters are not interchangeable. Four-modality fusion is outside the main experiment. The numerical observation parameters, support, opportunity spacing, and input-validity settings must be exported from the final implementation into a consistent manifest before formal testing.
 
 \subsection{Explicit Human Search Responsibility}
 The operator directly controls at most one vehicle $h(t)$. Directly controlled and active command-locked vehicles are excluded from autonomous reassignment. An execution goal and a search anchor are separate: retaining a NAVIGATE command does not require using its destination as a search center.
@@ -127,19 +127,23 @@ Task and authority changes cause auditable planning updates. Prediction threshol
 
 \section{Encounter Endpoint and Experimental Plan}
 \subsection{Independent Sustained-Proximity Criterion}
-An independent evaluator uses target truth $x^\star$. Radius $\rho_E$ and dwell $\tau_E$ define effective encounter time
+An independent evaluator uses target truth $x^\star$. Radius $\rho_E$ and dwell $\tau_E$ define an ideal continuous-proximity criterion
 \begin{equation}
 \begin{split}
- T_E=\inf\{t\geq\tau_E:\;&\exists r,\ \|p_r(u)-x^\star\|_2\leq\rho_E\\
+ T_E^{\rm cont}=\inf\{t\geq\tau_E:\;&\exists r,\ \|p_r(u)-x^\star\|_2\leq\rho_E\\
  &\text{for every }u\in[t-\tau_E,t]\}.
 \end{split}
 \label{eq:event}
 \end{equation}
-Time is measured from mission start in simulation time. Each vehicle has an independent continuous timer; leaving resets it. Visits and vehicles cannot pool time. Autonomous, manual, and NAVIGATE vehicles are evaluated identically. No heading, field-of-view, or probability condition is added. The endpoint deliberately measures sustained proximity rather than whether the assumed sensor produced a positive report.
+Time is measured from mission start in simulation time. Each vehicle has its own encounter timer; leaving resets it. Visits and vehicles cannot pool time. Autonomous, manual, and NAVIGATE vehicles are evaluated identically. No heading, field-of-view, or probability condition is added. The endpoint deliberately measures sustained proximity rather than whether the assumed sensor produced a positive report.
 
-This endpoint is sustained proximity, not visual detection, confirmation, or rescue. Truth and target distance remain evaluator-only; an event result may be recorded and used for termination without entering the posterior. Sampled logs cannot prove continuous residence between arbitrary missing samples. The evaluator must freeze the pose sampling interval, interpolation or conservative sample-based convention, gap/invalid-pose reset policy, and event timestamp rule. Missing data cannot establish dwell, and future samples may not retroactively create an earlier online event.
+The operational endpoint is \emph{sampled sustained proximity}, denoted by $T_E$. At each valid simulation-time pose sample, the evaluator updates a separate qualifying interval for each vehicle. All consecutive samples in an interval must satisfy $d\leq\rho_E$. When its elapsed duration first reaches $\tau_E$, encounter occurs at that current sample time. There is no interpolation, backdating, or use of future samples to infer an earlier success. Leaving, an invalid pose, or a gap longer than the allowed interval resets the timer; resumption starts a new interval. Duplicate timestamps add no duration. Clock reversal or a mission-epoch change invalidates the old timing state. Sample cadence and the maximum permitted gap must be recorded and frozen. Finite samples do not prove uninterrupted physical residence between them, so $T_E$ is distinguished from $T_E^{\rm cont}$ in~\eqref{eq:event}.
 
-The intended observations at common budget $B$ are $Y=\min(T_E,B)$ and $\delta=\mathbf1[T_E\leq B]$. Radius, dwell, and formal budget remain open. The encounter relationship to existing confirmation-based FOUND/$\Gamma$ and same-tick deadline arbitration also remains open; implementation must reconcile these before formal trials. Budget processing delay must not extend the analysis horizon. The administrative deadline is $t_{\rm start}+B$ even if a termination message is emitted later. Events at that exact deadline require a predeclared arbitration rule; none is selected here. Administrative STOP, invalid timing, and crashes require separate disposition rather than automatic ordinary budget censoring. Random POSITIVE is not encounter success.
+This endpoint is proximity, not visual detection, confirmation, or rescue. Hidden target truth is used inside the synthetic observation generator and the independent encounter evaluator. Their interfaces expose only legitimate reports or encounter events/times for recording and termination, never hidden target coordinates or target-specific distances to planning or inference.
+
+At a common budget $B$, the intended observations are $Y=\min(T_E,B)$ and $\delta=\mathbf1[T_E\leq B]$. Radius, dwell, and the formal budget remain symbolic until their numerical settings are frozen. Encounter is the sole normal success event in the main experiment. A random POSITIVE, legacy $\Gamma$/FOUND, or visual confirmation cannot independently declare success or normally stop search in place of encounter. Existing terminal messages may be reused only with an unambiguous encounter reason and one terminal-state owner.
+
+The administrative deadline is $t_{\rm start}+B$ regardless of termination-message delay. A valid encounter at $T_E=B$ counts as success and takes precedence over natural budget expiration. The terminal owner must arbitrate same-step encounter and budget candidates by their simulation event times before publishing one irreversible terminal state; callback arrival order cannot extend $B$ or justify a later terminal rewrite. Safety-fault stops remain separate and are not overridden by this natural success/budget priority. Administrative STOP, invalid timing, and crashes require separate disposition rather than automatic ordinary budget censoring. These are protocol requirements, not claims of completed endpoint implementation.
 
 \subsection{Conditions and Study Design}
 The primary comparison is B2 versus B3, sharing the declaration interface, sensing model, clustering, assignment, controller, and budget. B0 all-autonomous and B1 human-control without a responsibility anchor are supporting references. Offline B4 uses actual future human motion as a perfect-information reference for the same mechanism, not a deployable predictor or guaranteed performance upper bound.
@@ -154,18 +158,18 @@ The primary estimand is
  \mathrm{RMST}_c(B)&=\int_0^B P(T_E^c>t)\,dt,\\
  \Delta_E&=\mathrm{RMST}_{B3}(B)-\mathrm{RMST}_{B2}(B).
 \end{align}
-Negative $\Delta_E$ supports faster encounters under this protocol. Budget-limited failures are retained. For valid trials with only common-budget administrative censoring, $\mathrm{RMST}_c(B)=\mathbb E[\min(T_E^c,B)]$; thus failures contribute $B$ instead of disappearing from a success-only mean. This identity does not justify treating a crash or administrative early STOP as an ordinary budget-limited failure. Paired scenario bootstrap intervals are a candidate for replay; final resampling units and participant analysis must be predeclared.
+Negative $\Delta_E$ supports faster encounters under this protocol. Budget-limited failures are retained. For valid trials with only common-budget administrative censoring, $\mathrm{RMST}_c(B)=\mathbb E[\min(T_E^c,B)]$; thus failures contribute $B$ instead of disappearing from a success-only mean. This identity does not justify treating a crash or administrative early STOP as an ordinary budget-limited failure. In paired replay, a complete scenario, human trajectory, and declaration sequence define a paired comparison unit. Random repeats under the same trace are nested replicates, not independent operators or trajectories. Multiple traces from one participant require participant-aware clustering. Frames, opportunities, and overlapping predictor windows are not independent experimental units. Paired bootstrap intervals remain a candidate; sample size and the exact analysis must be predeclared. Infrastructure exclusions or reruns follow condition-independent rules and retain all records; method-caused crashes cannot be silently removed.
 
-Supporting evidence includes redistribution lead time, prediction error, fallback frequency, actual sensing overlap, encounter success by budget, travel, and planning cost. Planned responsibility overlap is not actual sensing overlap. An overlap definition must be validated against logging; no unverified hazard metric is frozen here. Optional workload and declaration-burden measures address interaction cost. Faster encounter alone does not establish reduced redundancy or improved operator experience.
+Supporting evidence includes redistribution lead time, prediction error, fallback frequency, encounter success by budget, travel, and planning cost. A candidate overlap measure uses the modeled geometric supports of accepted sensing opportunities. It must specify cross-vehicle versus same-vehicle repetition, opportunity windows, denominator, and comparability after early termination. Neither planned responsibility overlap nor modeled support overlap is automatically real detection redundancy. No unverified overlap or hazard metric is frozen here. Optional workload and declaration-burden measures address interaction cost. Faster encounter alone does not establish reduced redundancy or improved operator experience.
 
 \section{Implementation Status and Limitations}
-The implementation target is an extended VRX/Gazebo/ROS~2 Humble system with ten WAM-Vs. Engineering checks support a shared discrete-event sensor/estimator interface with location-independent opportunity validity, one-use event identifiers, negative-report updates, and neutral abstention. A separate run exercised natural budget expiration, safe stopping, and recorder finalization. These checks validate engineering behavior under assumed sensing; they do not calibrate detection probabilities or prove independence.
+The system uses ROS~2 Humble, Gazebo, and VRX with ten WAM-Vs. Tests exercised the shared sensor-event interface, one-use report identifiers, negative updates, and neutral abstention. For fixed public poses, maps, and times, admission and validity do not depend on hidden target truth. A separate run exercised budget expiry, safe stopping, and recorder closure. These tests support engineering behavior under the assumed model. They do not calibrate sensor performance or establish real-world independence.
 
 An API-level final-configuration run also exercised explicit SEARCH activation of a B2 current-position anchor and its cancellation, navigation, and release transitions within the simulation clock domain. This is bounded execution evidence, not verification of physical interface clicks, every possible race, production B3 fallback, or the independent encounter evaluator. This responsibility run has passed engineering review within that API-level scope. Stage-specific evidence is retained separately from formal mission comparisons.
 
-Four-modality fusion, positive-report/confirmation validation, production prediction fallback, and encounter-based evaluation remain incomplete. Engineering budget expiry is not yet an accepted encounter-censoring contract. General communication planning, prediction-risk recovery, and targeted overlap-support dispatch remain future work.
+Production prediction fallback and encounter-based evaluation remain incomplete. Four-modality fusion and real-perception confirmation are outside the current main experiment. Engineering budget expiry is not yet an accepted encounter-censoring contract. General communication planning, prediction-risk recovery, and targeted overlap-support dispatch remain future work.
 
-No formal B2/B3 outcome is reported for~\eqref{eq:event}. Required evidence includes predictor validation, responsibility/interruption execution, encounter timing/censoring, paired outcomes, and mechanism measurements. Completed RF validation, calibrated perception, gaze validation, or participant studies are not claimed.
+No formal B2/B3 outcome is reported for the sampled endpoint $T_E$. Required evidence includes predictor validation, responsibility/interruption execution, encounter timing/censoring, paired outcomes, and mechanism measurements. Completed RF validation, calibrated perception, gaze validation, or participant studies are not claimed.
 
 The point anchor is a proxy, not a commitment to cover its entire induced region. Inaccurate prediction may harm allocation; frequent fallback may make B3 resemble B2 and must be reported. Tracking quality can confound comparisons. Assumed sensing and proximity-based success support a bounded simulation claim, not real-camera detection or field deployment.
 
@@ -181,6 +185,15 @@ F. Bourgault, A. Goktogan, T. Furukawa, and H. F. Durrant-Whyte, ``Coordinated s
 \bibitem{b7}
 P. M. Dames, ``Distributed multi-target search and tracking using the PHD filter,'' \emph{Autonomous Robots}, vol. 44, pp. 673--689, 2020, doi: 10.1007/s10514-019-09840-9.
 
+\bibitem{Xie2011Intention}
+D. Xie, Y. Lin, R. A. Grupen, and A. R. Hanson, ``Intention-based coordination and interface design for human-robot cooperative search,'' in \emph{Proc. IROS}, pp. 3349--3354, 2011, doi: 10.1109/IROS.2011.6094688.
+
+\bibitem{Heintzman2021Anticipatory}
+L. Heintzman, A. Hashimoto, N. Abaid, and R. K. Williams, ``Anticipatory planning and dynamic lost person models for human-robot search and rescue,'' in \emph{Proc. ICRA}, pp. 8252--8258, 2021, doi: 10.1109/ICRA48506.2021.9562070.
+
+\bibitem{b4}
+G. Hoffman, T. Bhattacharjee, and S. Nikolaidis, ``Inferring human intent and predicting human action in human--robot collaboration,'' \emph{Annu. Rev. Control, Robotics, and Autonomous Systems}, vol. 7, pp. 73--95, 2024, doi: 10.1146/annurev-control-071223-105834.
+
 \bibitem{Hollinger2009Efficient}
 G. A. Hollinger, S. Singh, J. Djugash, and A. Kehagias, ``Efficient multi-robot search for a moving target,'' \emph{Int. J. Robotics Research}, vol. 28, no. 2, pp. 201--219, 2009, doi: 10.1177/0278364908099853.
 
@@ -192,12 +205,6 @@ J. G. M. Fu, T. Bandyopadhyay, and M. H. Ang, ``Local Voronoi decomposition for 
 
 \bibitem{Mahboubi2013StaticMobile}
 H. Mahboubi, J. Habibi, A. G. Aghdam, and K. Sayrafian-Pour, ``Distributed coverage optimization in a network of static and mobile sensors,'' in \emph{Proc. ACC}, 2013, doi: 10.1109/ACC.2013.6580919.
-
-\bibitem{Xie2011Intention}
-D. Xie, Y. Lin, R. A. Grupen, and A. R. Hanson, ``Intention-based coordination and interface design for human-robot cooperative search,'' in \emph{Proc. IROS}, pp. 3349--3354, 2011, doi: 10.1109/IROS.2011.6094688.
-
-\bibitem{Heintzman2021Anticipatory}
-L. Heintzman, A. Hashimoto, N. Abaid, and R. K. Williams, ``Anticipatory planning and dynamic lost person models for human-robot search and rescue,'' in \emph{Proc. ICRA}, pp. 8252--8258, 2021, doi: 10.1109/ICRA48506.2021.9562070.
 
 \bibitem{Cangan2020Anticipatory}
 B. G. Cangan, L. Heintzman, A. Hashimoto, N. Abaid, and R. K. Williams, ``Anticipatory human-robot path planning for search and rescue,'' arXiv:2009.03976, 2020.
@@ -222,9 +229,5 @@ M. Dalmasso, J. E. Dom\'inguez-Vidal, I. J. Torres-Rodr\'iguez, P. Jim\'enez, A.
 
 \bibitem{TalebpourMartinoli2018IROS}
 Z. Talebpour and A. Martinoli, ``Risk-based human-aware multi-robot coordination in dynamic environments shared with humans,'' in \emph{Proc. IROS}, pp. 3365--3372, 2018, doi: 10.1109/IROS.2018.8593586.
-
-\bibitem{b4}
-G. Hoffman, T. Bhattacharjee, and S. Nikolaidis, ``Inferring human intent and predicting human action in human--robot collaboration,'' \emph{Annu. Rev. Control, Robotics, and Autonomous Systems}, vol. 7, pp. 73--95, 2024, doi: 10.1146/annurev-control-071223-105834.
-
 \end{thebibliography}
 \end{document}
