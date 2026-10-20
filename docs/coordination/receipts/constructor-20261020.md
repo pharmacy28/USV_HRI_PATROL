@@ -105,3 +105,9 @@
 - 本人状态`RUNNING / CONDITIONAL_CUTOVER`；最新报告`docs/coordination/reports/USV-20261020-005.md`，本地持久候选`src/workspace/candidates/USV_20261020_005_R2/`。运行树根Git SHA UNKNOWN、实现提交NONE；生产R1源码/build/install未变，Gazebo仍在运行，未部署R2、未替用户STOP或重启。
 - 旧版逐艇resolve+逐格LOS造成后排CameraInfo跨2秒TTL的10艇正逆序反例已复现FAIL；隔离最小补丁先解析同批几何，10艇与真过期拒绝PASS。传感器相关53项离线测试、隔离包构建1 finished；R2语音/Qt/眼动26项离线测试。假根切换脚本的live/冲突拒绝与失败回滚PASS，真实主机check因活跃Gazebo退出3。
 - FPV真实同窗测量未执行：Qt PID已退出，ROS沙箱socket权限拒绝；准备单次≤30秒被动探针且3项fixture通过，但首次掉速/性能修复继续BLOCKED。R2不是正式设备/运行验收，005不可自签DONE/ACCEPTED。下一步需用户正常结束当前会话后按README检查/受控切换，重启后单次探针和现场体验验收。
+
+## 005 R3 本人交付回执（2026-10-20 Asia/Shanghai）
+
+- `RUNNING / R3_CANDIDATE_NOT_DEPLOYED`；本地`src/workspace/candidates/USV_20261020_005_R3/`九文件/安全切换/README，报告`docs/coordination/reports/USV-20261020-005.md`。生产仍R1；本轮未停止/重启或改写用户进程，运行树根Git HEAD UNKNOWN，实现提交NONE。
+- 授权同艇FPV窗口如报告：源、relay、Qt都有墙钟降速且源仿真Hz低于生成30Hz；另一个探针重叠约17秒。R3 relay/Qt burst/latest与33ms相位直接反例旧FAIL新PASS，17项离线测试、隔离两包构建PASS；九文件fake-root切换故障注入PASS。源Gazebo/bridge性能、R3真实FPS、08–10恢复仍OPEN/NOT_VALIDATED。
+- 条件切换一条命令及持久日志见README；当前仍活跃会话不部署。后继独立核默认detector关闭与四传感器真实接口，不把黄色候选或占位图作为科学探测。
