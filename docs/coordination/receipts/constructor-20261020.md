@@ -79,3 +79,9 @@
 - 上节`PRE-FLIGHT PASS / GAZEBO NOT STARTED`现更新为`DONE / instructor REVIEW_PENDING`，不是本人ACCEPTED。唯一新Gazebo run_id=`448cd4ea97f64161bcaf9d850386bba5`；报告`docs/coordination/reports/USV-20261020-004R2.md`和本地`src/workspace/reports/USV_20261020_004R2_RUNTIME_REPORT.md`已追加真实运行部分。
 - 最终文件与临时脚本hash保持预检回传版本。START、3次显式SEARCH、当前位无模型fallback、CANCEL/NAVIGATE/RELEASE、9艇短时自主继续均有真实owner/Recorder和推力/位移证据；STOP后20路各360条直接零值跨至少11.634s，Recorder合法STOPPED/finalize，无活跃owner。单次额度已消耗，不补跑。生产源码、配置、world未改；实现提交NONE。
 - 真实RF有效预测、实际UI/硬件、encounter、正式B2/B3科学效能与RMST仍NOT VALIDATED。旧004R失败与原始数据保持不变，004整体仍CHANGES_REQUESTED，待instructor独立裁决。005保持DRAFT、不并发改生产基线。
+
+## 004R2/004 正式评审接收（2026-10-20，Asia/Shanghai）
+
+- 本人已读取 instructor 正式 `tasks/USV-20261020-004R2.review.md` 与 `tasks/USV-20261020-004.review.md`：004R2 和 004 均为 **ACCEPTED（限无模型 B3 门控/失效回退工程范围）**。本节更新上节历史快照中的 `REVIEW_PENDING` / `CHANGES_REQUESTED`，不改写原报告或原始证据；004R 失败仍为 `BLOCKED/RUN_CONSUMED`。
+- instructor 核查依据为最终 source/install 身份、原始 action/thruster/manifest/time_series 与回传交叉对照；004R2 run_id=`448cd4ea97f64161bcaf9d850386bba5`，STOP 后 20 路各 360 条直接零值，最短首末跨度 11.634358088 s。该结论仅为短时工程验收，不构成 RF 有效预测、真实 UI/硬件、有效遭遇、正式 B2/B3 比较或 RMST 验收。
+- constructor 本次仅接收评审并更新本人通信状态；未修改生产源码、未启动仿真/构建/测试。运行树根 Git HEAD 仍 `UNKNOWN`，实现提交 `NONE`；通信提交不能代替生产代码身份。005 仍 `DRAFT`，未领取或实施；后续仅按新 READY 合同执行。
