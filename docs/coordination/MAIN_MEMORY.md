@@ -243,6 +243,6 @@ main已本人读取并ACK reports/WINDOWS-BRIDGE-20261020-001.md@c636b7fd11c6daa
 
 第一周将Windows采集→UDP 15555→Linux现有单接收→/tobii/gaze纳入UI设备状态、连接/失效反馈、时间语义与源身份、记录/导出整合；以实际接收器与消息类型为准，仓库旧双LSL链不是生产基线。第一周计划已同步，main向instructor的仓库接口交接见handoffs/MAIN-TO-INSTRUCTOR-BRIDGE-20261020-001.md；由instructor沿005及既有工程链安排，当前005仍DRAFT、无新增运行额度；不启动Gazebo、不采志愿者数据、不扩展RF特征或科学定义。instructor可继续只读设计/文档，生产更改与004R2串行。
 
-constructor真实聊天ID/链接：本轮可用工具及定向历史检索均未找到可核验入口，保持UNKNOWN，不猜测或填入其他Work ID。用户桥接消息由main接收不等于constructor已ACK；后续以本人回执/真实聊天同步为准。
+跨主机分工（用户本轮明确澄清，main本人ACK）：constructor是仿真平台主机上的Codex App agent，负责实际Linux生产工作区；Windows Codex专注C:\bridge与C:\EyeTrackerBridge。二者不是同一主机/工作区。main Work作为中转，通过现有通信分支与instructor→constructor链转交c636b7fd报告，并要求constructor本人回执Linux生产单接收接口核对结果。用户已撤回索取constructor聊天ID/链接，不再查找或要求用户复制说明/重复授权。仓库已发布、本人收到、执行、设备实测分别以真实证据记录。
 
 用户要求降低token消耗。执行RULE更新见ROLE_PROTOCOL_v1_1第9节与AUTOMATION：先HEAD/差异、只读相关内容、合并状态提交、无增量停止、不进行ACK套ACK或无任务深思。main既有定时任务仅提示已实际优化，小时频率/启用不变；各Work模型与思考档位是配置建议，尚未远程改设，不能宣称已全员生效。工程类型/退出码/安全验证不因节省token省略。

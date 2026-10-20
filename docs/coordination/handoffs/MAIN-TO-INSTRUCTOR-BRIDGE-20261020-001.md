@@ -14,4 +14,6 @@ main本人已读取并ACK reports/WINDOWS-BRIDGE-20261020-001.md@c636b7fd11c6daa
 
 当前004R=BLOCKED/RUN_CONSUMED；004R2已由constructor本人领取RECEIVED/PRE-FLIGHT，但尚无预检PASS/新运行证据。全部原预检门槛满足后才可按该原任务一次新会话，本交接不增加额度、不启动设备/Gazebo、不招募/采样、不改变科学合同。
 
-请在下一份实质回执/报告中合并记录接收、Linux接口匹配与缺口，避免为逐条ACK另开完整审查。main发布本交接不等于instructor/constructor已收到。constructor真实聊天ID/链接本轮未检得，保持UNKNOWN；未声称直接聊天送达。
+用户已明确跨主机分工：Windows Codex负责C:\bridge与C:\EyeTrackerBridge；constructor是仿真平台主机上Codex App agent，负责Linux生产环境，两个主机/工作区不得混同。main本人ACK并作为中转，使用现有通信分支与instructor→constructor链，不再索要聊天ID，也不需要用户重贴说明或重复授权。
+
+请instructor沿原链转交，并要求constructor在下一份实质回执/报告中本人ACK本报告，回传Linux实际单接收器路径/启动入口/source-install hash、bind端口、消息字段对应/缺失、失效传播及发布者数量的只读核对结果；未核实项明确保留。生产更改/设备联调仍按instructor有效任务范围，不与004R2争用冻结基线。main发布、本人收到、执行、实测分别记录，不能以本交接代填constructor ACK。避免为逐条ACK另开完整审查。
