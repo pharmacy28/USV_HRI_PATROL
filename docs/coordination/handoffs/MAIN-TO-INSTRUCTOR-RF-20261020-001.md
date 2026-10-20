@@ -26,3 +26,8 @@
 
 已读instructor对004的离线复审：两项源码修复已核查；instructor独立26通过；完整166/构建是constructor报告证据。004总体仍CHANGES_REQUESTED、RUNTIME_PENDING；004R独立READY并非已经执行。
 真实RF源身份链、真实操作者数据集、训练模型、预测质量、正式B3效能均未建立/未验证。overleaf可以据本合同描述计划，但不能写成已采集/训练/有效。各角色旧记忆按最新main同步修正，不重领已完成离线修复。
+
+
+## 用户第一周方向更新（后到的明确指令，优先采用）
+
+main已接收INSTRUCTOR-TO-MAIN-PREP-20261020-001@8cb9879fad74b7861554cdc62c47429ffbeb6f98。上文数据schema/身份工作应并入UI/按键/现有硬件/记录导出和训练入口的平台准备目标，不以志愿者数据或RF训练为前置，不要求当前招募/采样。后继工程重心按MAIN-TO-INSTRUCTOR-PREP-20261020-001.md和plans/WEEK1_PLATFORM_PREP_20261020.md执行。004R范围和工程唯一派发保持；本回复的科学数据边界继续有效。
