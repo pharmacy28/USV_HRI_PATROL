@@ -1,0 +1,2016 @@
+{
+  "as_of": "2026-10-20",
+  "role": "main bootstrap for exploration",
+  "scope": "Accessible repo catalog, current canonical bib/audit, archived manuscript bibliography, Library historical ledgers and six reading cards; not proof all unseen chats exhausted",
+  "read_commits": {
+    "communication": "c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d",
+    "paper": "f8de4da17dbc3cc70eeedca409376c530cf9547b"
+  },
+  "statistics": {
+    "unique_works": 46,
+    "repo_pdf_files": 22,
+    "current_manuscript_works": 17,
+    "audit_rows": 20,
+    "works_with_audit_rows": 19,
+    "reading_cards": 6
+  },
+  "records": [
+    {
+      "identity": "10.1109/iros.2011.6094688",
+      "title": "Intention-Based Coordination and Interface Design for Human-Robot Cooperative Search",
+      "year": "2011",
+      "authors": "Xie, D. and Lin, Y. and Grupen, R. A. and Hanson, A. R.",
+      "venue": "2011 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "doi": "10.1109/iros.2011.6094688",
+      "citekeys": [
+        "Xie2011Intention"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/IROS.2011.6094688"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Xie2011Intention.pdf",
+        "sha256": "a96e68582d1925304c6f93ca039aebb5542510a5a91f1d13681e450ca501a8f3",
+        "bytes": 1066064,
+        "pages": 6,
+        "previous_filename": "Xie 等 - 2011 - Intention-Based Coordination and Interface Design for Human-Robot Cooperative Search.pdf",
+        "attachment_key": "7PCPXWFI",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Xie2011Intention.pdf",
+        "git_blob_sha": "53ba4803c56965bf3afb5a6bf92b26cee7cef6ea",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "本地 PDF 第 1–2 页，摘要与问题设定已读；实验细节待复核",
+          "legacy_tag": "FULLY_READ"
+        },
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Metadata+abstract"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-07",
+          "location": "Xie et al., IROS 2011:3349–3354; DOI 10.1109/IROS.2011.6094688；PDF第3页=印刷3351，HMM段、步骤(1)–(4)、式(3)–(6)",
+          "supported": "HMM估计人工搜索状态/下一位置；inhibition message更新临时PDF并影响动作选择",
+          "limit": "明确承认预测位置与抑制互补搜索已有先例；不能泛称“首次预测人工搜索”",
+          "status": "PASSAGE_CHECKED；第3页视觉核对",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        },
+        {
+          "id": "RW-08",
+          "location": "同Xie第3页右栏Learning from Demonstration，式(7)周围及左栏临时PDF描述",
+          "supported": "人工搜索活动密度用于对象先验，人工位置推断影响临时规划PDF",
+          "limit": "本稿“人工输入不直接改posterior”是我们选择的模型边界，不是对原方法正确性的否定；不把P'_t和原始P_t混称",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P1",
+      "topic": "意图预测协同",
+      "record_id": "EXP-001",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1109/iros.2011.6094688"
+    },
+    {
+      "identity": "10.1109/icra48506.2021.9562070",
+      "title": "Anticipatory Planning and Dynamic Lost Person Models for Human-Robot Search and Rescue",
+      "year": "2021",
+      "authors": "Heintzman, L. and Hashimoto, A. and Abaid, N. and Williams, R. K.",
+      "venue": "2021 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/icra48506.2021.9562070",
+      "citekeys": [
+        "Heintzman2021Anticipatory",
+        "heintzman2021anticipatory"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d",
+        "LIBRARY_verified_refs.bib@2026-10-16",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ICRA48506.2021.9562070",
+        "https://par.nsf.gov/servlets/purl/10302700"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Heintzman2021Anticipatory.pdf",
+        "sha256": "c8b453bce9f084a40abf0de6655333173f52332cea0a7aba5885334f47071779",
+        "bytes": 5735425,
+        "pages": 7,
+        "previous_filename": "Heintzman 等 - 2021 - Anticipatory Planning and Dynamic Lost Person Models for Human-Robot Search and Rescue.pdf",
+        "attachment_key": "XRXMVK2L",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Heintzman2021Anticipatory.pdf",
+        "git_blob_sha": "dcbe3f4a075c1003e107f6d177b93a4c053fda61",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "本地 PDF 第 1–2 页，方法概览已读",
+          "legacy_tag": "FULLY_READ"
+        },
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "IEEE abstract"
+        },
+        {
+          "source": "003_Heintzman_2021_ICRA_预测式人机搜救_精读卡.md",
+          "scope": "历史阅读卡原件本轮读取；不等于本轮重读原论文、验证全部数字或运行代码"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-09",
+          "location": "Heintzman et al., ICRA 2021:8252–8258; DOI 10.1109/ICRA48506.2021.9562070；PDF第2页§II-A/B、第3页§II-C/III、风险目标式(6)",
+          "supported": "预期地面搜索者路径、动态失踪者模型、GP后验风险及UAV路径优化",
+          "limit": "本稿操控同队艇和责任中心是比较轴，不能单以USV应用宣称创新；不声称它没有所有fallback机制",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [
+        "谱系关联Cangan2020Anticipatory / Heintzman2021Anticipatory：不同版本/作品条目保留，不因主题相近合并。"
+      ],
+      "priority": "P1",
+      "topic": "预测搜索责任",
+      "reading_card": "003_Heintzman_2021_ICRA_预测式人机搜救_精读卡.md",
+      "record_id": "EXP-002",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1109/icra48506.2021.9562070"
+    },
+    {
+      "identity": "10.1109/thms.2021.3113642",
+      "title": "Information-Based Control of Robots in Search-and-Rescue Missions With Human Prior Knowledge",
+      "year": "2022",
+      "authors": "Krzysiak, R. and Butail, S.",
+      "venue": "IEEE Transactions on Human-Machine Systems",
+      "doi": "10.1109/thms.2021.3113642",
+      "citekeys": [
+        "KrzysiakButail2022Information",
+        "krzysiak2022information"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d",
+        "LIBRARY_verified_refs.bib@2026-10-16",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/THMS.2021.3113642"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/KrzysiakButail2022Information.pdf",
+        "sha256": "a150d1eabd94566d7b9a3ed31d1175ecb585cdf1913905458ac6142dde92bf7b",
+        "bytes": 1709475,
+        "pages": 12,
+        "previous_filename": "Krzysiak和Butail - 2022 - Information-Based Control of Robots in Search-and-Rescue Missions With Human Prior Knowledge.pdf",
+        "attachment_key": "QNY4EFLW",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/KrzysiakButail2022Information.pdf",
+        "git_blob_sha": "9ab1eaa21ca34f6c3aebaa3704fffe172c94415d",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "本地 PDF 第 1 页及方法相关段落已读",
+          "legacy_tag": "FULLY_READ"
+        },
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Public full-text accessible via ResearchGate"
+        },
+        {
+          "source": "001_Krzysiak_Butail_2022_人类先验与信息论搜救_阅读卡.md",
+          "scope": "历史阅读卡原件本轮读取；不等于本轮重读原论文、验证全部数字或运行代码"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-13",
+          "location": "Krzysiak & Butail, IEEE THMS 52(1):52–63, 2022; DOI 10.1109/THMS.2021.3113642；PDF第4–5页§IV，算法与目标式(10)",
+          "supported": "目标/遥控参考机器人信息的加权控制；独立搜索与协助接近混合",
+          "limit": "2021 DOI/在线登记不应代替2022卷期；本稿不能以“同队遥控成员”单独主张首次",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P1",
+      "topic": "人类先验与信息控制",
+      "reading_card": "001_Krzysiak_Butail_2022_人类先验与信息论搜救_阅读卡.md",
+      "record_id": "EXP-003",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1109/thms.2021.3113642"
+    },
+    {
+      "identity": "10.1109/iccvw60793.2023.00199",
+      "title": "Enhancing Human-Robot Collaborative Object Search through Human Behavior Observation and Dialog",
+      "year": "2023",
+      "authors": "Ishii, T. and Miura, J. and Hayashi, K.",
+      "venue": "2023 IEEE/CVF International Conference on Computer Vision Workshops (ICCVW)",
+      "doi": "10.1109/iccvw60793.2023.00199",
+      "citekeys": [
+        "Ishii2023Enhancing"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ICCVW60793.2023.00199"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Ishii2023Enhancing.pdf",
+        "sha256": "c86fc333d347d6ae9eddc21f236cc4f188ce039621cdb0622a657e79b398a359",
+        "bytes": 1765237,
+        "pages": 8,
+        "previous_filename": "Ishii 等 - 2023 - Enhancing Human-Robot Collaborative Object Search through Human Behavior Observation and Dialog.pdf",
+        "attachment_key": "K8PUEF8D",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Ishii2023Enhancing.pdf",
+        "git_blob_sha": "9767f7d3e2e74980f239e61efd1af4fdbf8f7c63",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "本地 PDF 第 1 页，摘要与概览已读；详细实验待复核",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-11",
+          "location": "Ishii et al., ICCVW 2023:1841–1848; DOI 10.1109/ICCVW60793.2023.00199；PDF第3页§3/4.1、第4页§4.2、后续dialog描述",
+          "supported": "过去已搜区域估计、未来区域预测，候选歧义时询问，互补搜索",
+          "limit": "“预测未来搜索区域/避免重复”不是本稿独创；不从一个示例概括所有方法为硬删除",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P1",
+      "topic": "行为与主动询问",
+      "record_id": "EXP-004",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1109/iccvw60793.2023.00199"
+    },
+    {
+      "identity": "10.1007/s12369-023-01067-0",
+      "title": "Shared Task Representation for Human--Robot Collaborative Navigation: The Collaborative Search Case",
+      "year": "2024",
+      "authors": "Dalmasso, M. and Dom\\'inguez-Vidal, J. E. and Torres-Rodr\\'iguez, I. J. and Jim\\'enez, P. and Garrell, A. and Sanfeliu, A.",
+      "venue": "International Journal of Social Robotics",
+      "doi": "10.1007/s12369-023-01067-0",
+      "citekeys": [
+        "b5",
+        "dalmasso2024shared"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "LIBRARY_verified_refs.bib@2026-10-16",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1007/s12369-023-01067-0",
+        "https://link.springer.com/content/pdf/10.1007/s12369-023-01067-0.pdf",
+        "https://youtu.be/k4j51308Zz4"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open full text"
+        },
+        {
+          "source": "004_Dalmasso_2024_SRS共享任务表示与多智能体MCTS_精读卡.md",
+          "scope": "历史阅读卡原件本轮读取；不等于本轮重读原论文、验证全部数字或运行代码"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-16",
+          "location": "Dalmasso et al., IJSR16:145–171,2024; DOI10.1007/s12369-023-01067-0；出版社§3.1、§3.3/3.4、§4 Multi-agent MCTS、摘要",
+          "supported": "SRS共享表征、异质团队规划、多agent MCTS及collaborative search",
+          "limit": "本文authority/commitment/responsibility是我们的分析分类，不能冒称原文三权限框架",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P1",
+      "topic": "共享任务表示与搜索",
+      "reading_card": "004_Dalmasso_2024_SRS共享任务表示与多智能体MCTS_精读卡.md",
+      "record_id": "EXP-005",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1007/s12369-023-01067-0"
+    },
+    {
+      "identity": "10.1007/978-3-031-92591-7_2",
+      "title": "Enhancing Human-Robot Collaborative Search Through Efficient Space Sharing with On-Demand Bidirectional Interaction",
+      "year": "2025",
+      "authors": "Lim Hong Da, N. and Miura, J. and Hayashi, K.",
+      "venue": "Computer Vision – ECCV 2024 Workshops",
+      "doi": "10.1007/978-3-031-92591-7_2",
+      "citekeys": [
+        "LimMiuraHayashi2025SpaceSharing"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1007/978-3-031-92591-7_2"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/LimMiuraHayashi2025SpaceSharing.pdf",
+        "sha256": "84055dd2a052dfecf5aaac44e787261cd168c31606f999007b13596e49f7fd58",
+        "bytes": 3943198,
+        "pages": 16,
+        "previous_filename": "Lim Hong Da 等 - 2025 - Enhancing Human-Robot Collaborative Search Through Efficient Space Sharing with On-Demand Bidirectio.pdf",
+        "attachment_key": "TUAHXTY9",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/LimMiuraHayashi2025SpaceSharing.pdf",
+        "git_blob_sha": "eade6dbf5231429bf4ca4a1cba05755eda9184c9",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "本地 PDF 第 1–3、11–14 页已读，含实验表 1",
+          "legacy_tag": "METADATA_VERIFIED"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-12",
+          "location": "Nicholas Lim Hong Da, Miura, Hayashi, ECCV 2024 Workshops, LNCS 15634:20–35, published2025; DOI 10.1007/978-3-031-92591-7_2；PDF第6–8页=印刷25–27，§3.2、§4.1/4.2",
+          "supported": "继承人的路径估计/预测，按歧义与人发起询问双向沟通，更新区域图和计划；§5为虚拟环境实验",
+          "limit": "2024是workshop名，2025是出版年；主动双向询问属已有工作及本稿future scope，不声称提出首个空间共享系统",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P1",
+      "topic": "双向沟通与空间共享",
+      "record_id": "EXP-006",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1007/978-3-031-92591-7_2"
+    },
+    {
+      "identity": "10.1145/3706065",
+      "title": "Human Prior Knowledge Estimation from Movement Cues for Information-Based Control of Mobile Robots during Search",
+      "year": "2025",
+      "authors": "Krzysiak, R. and Butail, S.",
+      "venue": "ACM Transactions on Human-Robot Interaction",
+      "doi": "10.1145/3706065",
+      "citekeys": [
+        "KrzysiakButail2025Movement",
+        "krzysiak2025human"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d",
+        "LIBRARY_verified_refs.bib@2026-10-16",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1145/3706065"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/KrzysiakButail2025Movement.pdf",
+        "sha256": "77b94a6fb064e8c03cdc4b413b66dd6a8bd1452c655b0cd4410af7e8ef246a16",
+        "bytes": 12215609,
+        "pages": 29,
+        "previous_filename": "Krzysiak和Butail - 2025 - Human Prior Knowledge Estimation from Movement Cues for Information-Based Control of Mobile Robots d.pdf",
+        "attachment_key": "9354D6D5",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/KrzysiakButail2025Movement.pdf",
+        "git_blob_sha": "36b1ec99dcc187f8ed0d94535f2bdfe5c6a1991a",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "本地 PDF 第 1、19–22 页及参与者描述已读",
+          "legacy_tag": "FULLY_READ"
+        },
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "ACM open abstract"
+        },
+        {
+          "source": "002_Krzysiak_Butail_2025_运动线索与自适应信息论控制_精读卡.md",
+          "scope": "历史阅读卡原件本轮读取；不等于本轮重读原论文、验证全部数字或运行代码"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-14",
+          "location": "Krzysiak & Butail, ACM THRI14(2), Article27, 2025,29页; DOI10.1145/3706065；PDF第17–19页§5.1–5.3，式(6)、5.3 simulation setup；第1页摘要",
+          "supported": "运动线索到知识推断、自适应MI blending；真实实验的预录遥控轨迹用于模拟自主适配",
+          "limit": "回放不是我们的创新；无依据不概括各策略“平均时间都更优”；本稿不复用其视觉/识别终点",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P1",
+      "topic": "人类知识估计",
+      "reading_card": "002_Krzysiak_Butail_2025_运动线索与自适应信息论控制_精读卡.md",
+      "record_id": "EXP-007",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1145/3706065"
+    },
+    {
+      "identity": "10.1007/s40747-025-02055-9",
+      "title": "Robot movement based inference of teleoperator state for multi-robot search",
+      "year": "2025",
+      "authors": "Bhattacharya, A. and Butail, S.",
+      "venue": "Complex and Intelligent Systems",
+      "doi": "10.1007/s40747-025-02055-9",
+      "citekeys": [
+        "bb2025",
+        "bhattacharya2025movement"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "LIBRARY_verified_refs.bib@2026-10-16",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1007/s40747-025-02055-9",
+        "https://link.springer.com/content/pdf/10.1007/s40747-025-02055-9.pdf",
+        "https://youtu.be/3E6V3mOa7AM"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open full text key sections checked"
+        },
+        {
+          "source": "006_Bhattacharya_Butail_2025_遥操作状态与自适应蜂群_精读卡.md",
+          "scope": "历史阅读卡原件本轮读取；不等于本轮重读原论文、验证全部数字或运行代码"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-15",
+          "location": "Bhattacharya & Butail, Complex & Intelligent Systems11:443,2025; DOI10.1007/s40747-025-02055-9；出版社全文“Estimating human prior knowledge and state based on movement cues”“Adaptive search based on prior knowledge and SA”，式(6)–(10)、“Simulation setup”",
+          "supported": "遥控UAV运动到知识/SA估计，调节swarm吸引与分离；实验轨迹回放",
+          "limit": "不将其说成单纯界面研究；不据此推断没有某种责任/撤销功能；本文无其人因改善结论",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P1",
+      "topic": "遥操作状态推断与自主蜂群",
+      "reading_card": "006_Bhattacharya_Butail_2025_遥操作状态与自适应蜂群_精读卡.md",
+      "record_id": "EXP-008",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1007/s40747-025-02055-9"
+    },
+    {
+      "identity": "10.1137/s1064827501391576",
+      "title": "Constrained Centroidal Voronoi Tessellations for Surfaces",
+      "year": "2003",
+      "authors": "Du, Q. and Gunzburger, M. D. and Ju, L.",
+      "venue": "SIAM Journal on Scientific Computing",
+      "doi": "10.1137/s1064827501391576",
+      "citekeys": [
+        "Du2003ConstrainedCVT"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1137/S1064827501391576"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Du2003ConstrainedCVT.pdf",
+        "sha256": "3c1848584cf38803bcf5f87053148ce7393833010dca2c0f24bec8cf7e218c96",
+        "bytes": 273367,
+        "pages": 19,
+        "previous_filename": "Bourgault 等 - 2003 - Coordinated Decentralized Search for a Lost Target in a Bayesian World.pdf",
+        "attachment_key": "ER3UWZMX",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Du2003ConstrainedCVT.pdf",
+        "git_blob_sha": "e29cbecc043e7d671825718011f0760225c11c1b",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "覆盖控制",
+      "record_id": "EXP-009",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1137/s1064827501391576"
+    },
+    {
+      "identity": "10.1109/iros.2003.1250604",
+      "title": "Coordinated Decentralized Search for a Lost Target in a Bayesian World",
+      "year": "2003",
+      "authors": "Bourgault, F. and Furukawa, T. and Durrant-Whyte, H. F.",
+      "venue": "2003 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "doi": "10.1109/iros.2003.1250604",
+      "citekeys": [
+        "Bourgault2003Bayesian"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/IROS.2003.1250604"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "仅 Zotero 元数据，本地无 PDF",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [
+        "谱系关联Bourgault2003Bayesian / b1：不同版本/作品条目保留，不因主题相近合并。"
+      ],
+      "priority": "P2",
+      "topic": "贝叶斯搜索基础",
+      "record_id": "EXP-010",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/iros.2003.1250604"
+    },
+    {
+      "identity": "10.1163/1568553042674707",
+      "title": "Coordinated search for a lost target in a Bayesian world",
+      "year": "2004",
+      "authors": "Bourgault, F. and Goktogan, A. and Furukawa, T. and Durrant-Whyte, H. F.",
+      "venue": "Advanced Robotics",
+      "doi": "10.1163/1568553042674707",
+      "citekeys": [
+        "b1"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1163/1568553042674707"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Publisher abstract"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-01",
+          "location": "Bourgault et al., Advanced Robotics 18(10):979–1000, 2004; DOI 10.1163/1568553042674707；出版社元数据/题名，全文入口本轮403",
+          "supported": "只保留协调Bayesian搜索这一宽背景",
+          "limit": "不以2003会议文替代2004版本；不引其具体滤波公式、性能或不存在性结论；全文仍需补查",
+          "status": "METADATA_ONLY",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [
+        "谱系关联Bourgault2003Bayesian / b1：不同版本/作品条目保留，不因主题相近合并。"
+      ],
+      "priority": "P2",
+      "topic": "Bayesian搜索基础",
+      "record_id": "EXP-011",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1163/1568553042674707"
+    },
+    {
+      "identity": "10.1109/tra.2004.824698",
+      "title": "Coverage Control for Mobile Sensing Networks",
+      "year": "2004",
+      "authors": "Cortés, J. and Martínez, S. and Karatas, T. and Bullo, F.",
+      "venue": "IEEE Transactions on Robotics and Automation",
+      "doi": "10.1109/tra.2004.824698",
+      "citekeys": [
+        "Cortes2004Coverage"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/TRA.2004.824698"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Cortes2004Coverage.pdf",
+        "sha256": "06af662e4bfa3d1447724a0093f9bb82fbef66be81b575652a8b50ab0889344c",
+        "bytes": 581288,
+        "pages": 13,
+        "previous_filename": "Cortés 等 - 2004 - Coverage Control for Mobile Sensing Networks.pdf",
+        "attachment_key": "NF9UCXP6",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Cortes2004Coverage.pdf",
+        "git_blob_sha": "44ffa2c1197eacb7d846e0bac9e692efab963a14",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-04",
+          "location": "Cortés et al., IEEE TRA 20(2):243–255, 2004; DOI 10.1109/TRA.2004.824698；PDF第3–4页§II、§II-C；第4页§III开头",
+          "supported": "locational coverage目标、CVT与Lloyd控制",
+          "limit": "固定中心/动态分区不能单列为新颖性；不把其收敛结论移植到本稿障碍投影算法",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P2",
+      "topic": "覆盖控制",
+      "record_id": "EXP-012",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1109/tra.2004.824698"
+    },
+    {
+      "identity": "10.1177/0278364908099853",
+      "title": "Efficient Multi-Robot Search for a Moving Target",
+      "year": "2009",
+      "authors": "Hollinger, G. A. and Singh, S. and Djugash, J. and Kehagias, A.",
+      "venue": "The International Journal of Robotics Research",
+      "doi": "10.1177/0278364908099853",
+      "citekeys": [
+        "Hollinger2009Efficient"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1177/0278364908099853"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Hollinger2009Efficient.pdf",
+        "sha256": "ee5670e523170804d4fc4ddc4b5ef8152c96d303db20651431149328575ae5cd",
+        "bytes": 909630,
+        "pages": 19,
+        "previous_filename": "Hollinger 等 - 2009 - Efficient Multi-Robot Search for a Moving Target.pdf",
+        "attachment_key": "AA2Z3CM4",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Hollinger2009Efficient.pdf",
+        "git_blob_sha": "a608b672e199563c80af835ac64e670600626a17",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-03",
+          "location": "Hollinger et al., IJRR 28(2):201–219, 2009; DOI 10.1177/0278364908099853；PDF第1页摘要和Introduction",
+          "supported": "移动目标的多机器人概率搜索",
+          "limit": "不借移动目标模型证明本稿静态模型或责任新颖性",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P2",
+      "topic": "贝叶斯搜索基础",
+      "record_id": "EXP-013",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1177/0278364908099853"
+    },
+    {
+      "identity": "10.1109/robot.2009.5152829",
+      "title": "Local Voronoi Decomposition for Multi-Agent Task Allocation",
+      "year": "2009",
+      "authors": "Fu, J. G. M. and Bandyopadhyay, T. and Ang, M. H.",
+      "venue": "2009 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/robot.2009.5152829",
+      "citekeys": [
+        "Fu2009LocalVoronoi"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ROBOT.2009.5152829"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Fu2009LocalVoronoi.pdf",
+        "sha256": "54dd0ba251a6ef158469fe6b3b230ec6401e02d0ad28aa3cd4ef25fa47c9bdc2",
+        "bytes": 841367,
+        "pages": 6,
+        "previous_filename": "Fu 等 - 2009 - Local Voronoi Decomposition for Multi-Agent Task Allocation.pdf",
+        "attachment_key": "LI782MNZ",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Fu2009LocalVoronoi.pdf",
+        "git_blob_sha": "1d5307eb6052d7302e75f8ada1f1b83a380db671",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-05",
+          "location": "Fu et al., ICRA 2009:1935–1940; DOI 10.1109/ROBOT.2009.5152829；PDF第1页摘要/Introduction",
+          "supported": "local Voronoi任务分解与探索中的重叠避免",
+          "limit": "不从该段声称全文没有人工预测或任何特定撤销机制",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P2",
+      "topic": "任务分配",
+      "record_id": "EXP-014",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1109/robot.2009.5152829"
+    },
+    {
+      "identity": "10.1109/icra.2011.5979685",
+      "title": "Distributed Coordination and Data Fusion for Underwater Search",
+      "year": "2011",
+      "authors": "Hollinger, G. A. and Yerramalli, S. and Singh, S. and Mitra, U. and Sukhatme, G. S.",
+      "venue": "2011 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/icra.2011.5979685",
+      "citekeys": [
+        "Hollinger2011Underwater"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ICRA.2011.5979685"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Hollinger2011Underwater.pdf",
+        "sha256": "549a328057c74dc66f508925cc9933dcfad0e579519410342217c9727cbcd8fd",
+        "bytes": 428821,
+        "pages": 7,
+        "previous_filename": "Hollinger 等 - 2011 - Distributed Coordination and Data Fusion for Underwater Search.pdf",
+        "attachment_key": "6IK2EZK5",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Hollinger2011Underwater.pdf",
+        "git_blob_sha": "29998f232a7236a0dd47acf07ffefbadc0fae06e",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [
+        "谱系关联Hollinger2011Underwater / Hollinger2015Fusion：不同版本/作品条目保留，不因主题相近合并。"
+      ],
+      "priority": "P2",
+      "topic": "分布式信息融合",
+      "record_id": "EXP-015",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra.2011.5979685"
+    },
+    {
+      "identity": "10.1177/0278364913483345",
+      "title": "Decentralized Multi-Robot Cooperation with Auctioned POMDPs",
+      "year": "2013",
+      "authors": "Capitán, J. and Spaan, M. T. J. and Merino, L. and Ollero, A.",
+      "venue": "The International Journal of Robotics Research",
+      "doi": "10.1177/0278364913483345",
+      "citekeys": [
+        "Capitan2013Auctioned"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1177/0278364913483345"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Capitan2013Auctioned.pdf",
+        "sha256": "9cd20acfecf1dd1cd984f97373ceea61aae0a7bccef4626d17440708760c1468",
+        "bytes": 245646,
+        "pages": 6,
+        "previous_filename": "Capitán 等 - 2013 - Decentralized Multi-Robot Cooperation with Auctioned POMDPs.pdf",
+        "attachment_key": "8WYT28LB",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Capitan2013Auctioned.pdf",
+        "git_blob_sha": "2def44a785abaa4c050461db347cda7209d458dc",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ_PRECURSOR"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "任务分配",
+      "record_id": "EXP-016",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1177/0278364913483345"
+    },
+    {
+      "identity": "10.1109/iros.2015.7354203",
+      "title": "Bayesian Intention Inference for Trajectory Prediction with an Unknown Goal Destination",
+      "year": "2015",
+      "authors": "Best, G. and Fitch, R.",
+      "venue": "2015 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "doi": "10.1109/iros.2015.7354203",
+      "citekeys": [
+        "BestFitch2015Bayesian"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/IROS.2015.7354203"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/BestFitch2015Bayesian.pdf",
+        "sha256": "66af676b158f56543d30e0f1f9656074013ecc7617746233ccb1d3491acfe318",
+        "bytes": 531225,
+        "pages": 7,
+        "previous_filename": "Best和Fitch - 2015 - Bayesian Intention Inference for Trajectory Prediction with an Unknown Goal Destination.pdf",
+        "attachment_key": "SIM57RT6",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/BestFitch2015Bayesian.pdf",
+        "git_blob_sha": "336d226e188e009b9113276541667cfd1388de71",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "意图预测",
+      "record_id": "EXP-017",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/iros.2015.7354203"
+    },
+    {
+      "identity": "10.1109/tro.2014.2378411",
+      "title": "Distributed Data Fusion for Multirobot Search",
+      "year": "2015",
+      "authors": "Hollinger, G. A. and Yerramalli, S. and Singh, S. and Mitra, U. and Sukhatme, G. S.",
+      "venue": "IEEE Transactions on Robotics",
+      "doi": "10.1109/tro.2014.2378411",
+      "citekeys": [
+        "Hollinger2015Fusion"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/TRO.2014.2378411"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Hollinger2015Fusion.pdf",
+        "sha256": "60542eb18419b91f48f638d3881b79e1344ff6a02a02df2e4c5e4b7ed99852ef",
+        "bytes": 916668,
+        "pages": 12,
+        "previous_filename": "Hollinger 等 - 2015 - Distributed Data Fusion for Multirobot Search.pdf",
+        "attachment_key": "F4IKPX4I",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Hollinger2015Fusion.pdf",
+        "git_blob_sha": "60cdafaa2f993bcf37e78702f5ab1aa335d4a86b",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [
+        "谱系关联Hollinger2011Underwater / Hollinger2015Fusion：不同版本/作品条目保留，不因主题相近合并。"
+      ],
+      "priority": "P2",
+      "topic": "分布式信息融合",
+      "record_id": "EXP-018",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/tro.2014.2378411"
+    },
+    {
+      "identity": "10.15607/rss.2015.xi.032",
+      "title": "Shared Autonomy via Hindsight Optimization",
+      "year": "2015",
+      "authors": "Javdani et al.",
+      "venue": "RSS",
+      "doi": "10.15607/rss.2015.xi.032",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://roboticsproceedings.org/rss11/p32.html"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open full text"
+        }
+      ],
+      "current_pass": "PRIMARY_IDENTITY_OR_ABSTRACT_CHECKED; not full-paper audit",
+      "audit_rows": [],
+      "notes": [
+        "本轮核对RSS官网身份；历史PMC链接与RSS版本映射待核，不继续当同版全文入口。"
+      ],
+      "priority": "P2",
+      "topic": "planning under human goal distribution",
+      "record_id": "EXP-019",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.15607/rss.2015.xi.032"
+    },
+    {
+      "identity": "10.1109/iros.2018.8593586",
+      "title": "Risk-Based Human-Aware Multi-Robot Coordination in Dynamic Environments Shared with Humans",
+      "year": "2018",
+      "authors": "Talebpour, Z. and Martinoli, A.",
+      "venue": "2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "doi": "10.1109/iros.2018.8593586",
+      "citekeys": [
+        "TalebpourMartinoli2018IROS"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/IROS.2018.8593586"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/TalebpourMartinoli2018IROS.pdf",
+        "sha256": "29ac2f17c565e11b0f695e46610f4ab5c581d68136ebafc4ebc6c80253eeda5f",
+        "bytes": 1476153,
+        "pages": 8,
+        "previous_filename": "Talebpour和Martinoli - 2018 - Risk-Based Human-Aware Multi-Robot Coordination in Dynamic Environments Shared with Humans.pdf",
+        "attachment_key": "3GV267BC",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/TalebpourMartinoli2018IROS.pdf",
+        "git_blob_sha": "87c4bcc03f5229edb3ed4b6417f965a54f48c6d1",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-17",
+          "location": "Talebpour & Martinoli, IROS2018:3365–3372; DOI10.1109/IROS.2018.8593586；PDF第2页引言后半、第3页§III-C/D与式(3)",
+          "supported": "人轨迹预测/误差进入social/risk bids，支持代价层预测比较",
+          "limit": "“预测作用于bid”和本文“预测作为generator”是被审查机制的区别，不从全文缺词断言没有等价行为",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P2",
+      "topic": "人感知安全协调",
+      "record_id": "EXP-020",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1109/iros.2018.8593586"
+    },
+    {
+      "identity": "10.1109/lra.2019.2926966",
+      "title": "Adaptive Risk-Based Replanning for Human-Aware Multi-Robot Task Allocation With Local Perception",
+      "year": "2019",
+      "authors": "Talebpour, Z. and Martinoli, A.",
+      "venue": "IEEE Robotics and Automation Letters",
+      "doi": "10.1109/lra.2019.2926966",
+      "citekeys": [
+        "TalebpourMartinoli2019Adaptive"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/LRA.2019.2926966"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "仅 Zotero 元数据，本地无 PDF",
+          "legacy_tag": "METADATA_VERIFIED"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "人感知安全协调",
+      "record_id": "EXP-021",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/lra.2019.2926966"
+    },
+    {
+      "identity": "10.48550/arxiv.2009.03976",
+      "title": "Anticipatory Human-Robot Path Planning for Search and Rescue",
+      "year": "2020",
+      "authors": "Cangan, B. G. and Heintzman, L. and Hashimoto, A. and Abaid, N. and Williams, R. K.",
+      "venue": "arXiv",
+      "doi": "10.48550/arxiv.2009.03976",
+      "citekeys": [
+        "Cangan2020Anticipatory"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.48550/arXiv.2009.03976",
+        "https://arxiv.org/abs/2009.03976"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "仅条目元数据及公开摘要核对，本地无 PDF",
+          "legacy_tag": "FULLY_READ"
+        },
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open preprint"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-10",
+          "location": "Cangan et al., arXiv:2009.03976 (2020)；作者arXiv题名、作者、摘要",
+          "supported": "SAR anticipatory路径规划的前序工作",
+          "limit": "与2021五/四作者版本不混写作者、题名或页码；本轮未全文复核前序公式，不用其作细节差异证据",
+          "status": "ABSTRACT_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [
+        "谱系关联Cangan2020Anticipatory / Heintzman2021Anticipatory：不同版本/作品条目保留，不因主题相近合并。"
+      ],
+      "priority": "P2",
+      "topic": "预测搜索责任",
+      "record_id": "EXP-022",
+      "in_current_manuscript": true,
+      "primary_url": "https://arxiv.org/abs/2009.03976"
+    },
+    {
+      "identity": "10.1007/s10514-019-09840-9",
+      "title": "Distributed multi-target search and tracking using the PHD filter",
+      "year": "2020",
+      "authors": "Dames, P. M.",
+      "venue": "Autonomous Robots",
+      "doi": "10.1007/s10514-019-09840-9",
+      "citekeys": [
+        "b7"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b"
+      ],
+      "source_urls": [],
+      "repository_pdf": null,
+      "historical_evidence": [],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-02",
+          "location": "Dames, Autonomous Robots 44:673–689, 2020; DOI 10.1007/s10514-019-09840-9；出版社全文“Sensor model”段、Introduction",
+          "supported": "FoV、false negatives、measurement/clutter及未知目标数的PHD搜索跟踪",
+          "limit": "明示与本稿单静止目标categorical belief不同；不称同一滤波器",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P2",
+      "topic": "PHD多目标搜索基础",
+      "record_id": "EXP-023",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1007/s10514-019-09840-9"
+    },
+    {
+      "identity": "10.1109/icra40945.2020.9196792",
+      "title": "Scaled Autonomy: Enabling Human Operators to Control Robot Fleets",
+      "year": "2020",
+      "authors": "Swamy, G. and Reddy, S. and Levine, S. and Dragan, A.",
+      "venue": "2020 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/icra40945.2020.9196792",
+      "citekeys": [
+        "Swamy2020Scaled"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ICRA40945.2020.9196792"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Swamy2020Scaled.pdf",
+        "sha256": "951fe3bb902193e0b746ab78cfd70abf2d777d7c095aaeb4acd1c38ae2ca4dd4",
+        "bytes": 4702190,
+        "pages": 7,
+        "previous_filename": "Swamy 等 - 2020 - Scaled Autonomy Enabling Human Operators to Control Robot Fleets.pdf",
+        "attachment_key": "78GQM5BD",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Swamy2020Scaled.pdf",
+        "git_blob_sha": "42eac762ae523fb738c106237c76358145c723b7",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "本地 PDF 第 1 页已读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "有限人类注意力",
+      "record_id": "EXP-024",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra40945.2020.9196792"
+    },
+    {
+      "identity": "10.1109/icra48506.2021.9560995",
+      "title": "Human-robot collaborative multi-agent path planning using Monte Carlo tree search and Social Reward Sources",
+      "year": "2021",
+      "authors": "Dalmasso et al.",
+      "venue": "ICRA",
+      "doi": "10.1109/icra48506.2021.9560995",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://www.iri.upc.edu/publications/show/2475"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Institutional full text"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "shared negotiation search plan; MCTS",
+      "record_id": "EXP-025",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra48506.2021.9560995"
+    },
+    {
+      "identity": "10.1007/s10846-022-01642-z",
+      "title": "Risk-aware Decision-making in Human-multi-robot Collaborative Search: A Regret Theory Approach",
+      "year": "2022",
+      "authors": "Jiang and Wang",
+      "venue": "Journal of Intelligent & Robotic Systems",
+      "doi": "10.1007/s10846-022-01642-z",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1007/s10846-022-01642-z"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open abstract/full publisher"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "risk attitudes in collaborative search",
+      "record_id": "EXP-026",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1007/s10846-022-01642-z"
+    },
+    {
+      "identity": "10.1109/icra48891.2023.10161458",
+      "title": "A Task Allocation Framework for Human Multi-Robot Collaborative Settings",
+      "year": "2023",
+      "authors": "Lippi, M. and Di Lillo, P. and Marino, A.",
+      "venue": "2023 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/icra48891.2023.10161458",
+      "citekeys": [
+        "Lippi2023Task"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ICRA48891.2023.10161458"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "仅 Zotero 元数据，本地无 PDF",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "人机任务分配",
+      "record_id": "EXP-027",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra48891.2023.10161458"
+    },
+    {
+      "identity": "10.1109/ro-man57019.2023.10309469",
+      "title": "Spatio-Temporal Avoidance of Predicted Occupancy in Human-Robot Collaboration",
+      "year": "2023",
+      "authors": "Flowers et al.",
+      "venue": "RO-MAN",
+      "doi": "10.1109/ro-man57019.2023.10309469",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://arxiv.org/abs/2307.03909"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open preprint"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "human motion prediction as spatiotemporal occupancy for collision avoidance",
+      "record_id": "EXP-028",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/ro-man57019.2023.10309469"
+    },
+    {
+      "identity": "10.1146/annurev-control-071223-105834",
+      "title": "Inferring Human Intent and Predicting Human Action in Human--Robot Collaboration",
+      "year": "2024",
+      "authors": "Hoffman, G. and Bhattacharjee, T. and Nikolaidis, S.",
+      "venue": "Annual Review of Control, Robotics, and Autonomous Systems",
+      "doi": "10.1146/annurev-control-071223-105834",
+      "citekeys": [
+        "b4"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b"
+      ],
+      "source_urls": [],
+      "repository_pdf": null,
+      "historical_evidence": [],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-18",
+          "location": "Hoffman et al., Annual Review of Control, Robotics, and Autonomous Systems7:73–95,2024; DOI10.1146/annurev-control-071223-105834；出版社摘要/元数据",
+          "supported": "意图推断、动作预测是成熟HRI问题",
+          "limit": "综述只支撑背景，不代替最相近原始方法核查；无数字结论",
+          "status": "ABSTRACT_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P2",
+      "topic": "意图推断综述",
+      "record_id": "EXP-029",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1146/annurev-control-071223-105834"
+    },
+    {
+      "identity": "10.5555/3635637.3662889",
+      "title": "Multi-Robot Allocation of Assistance from a Shared Uncertain Operator",
+      "year": "2024",
+      "authors": "Costen, Clarissa and Gautier, Anna and Hawes, Nick and Lacerda, Bruno",
+      "venue": "Proceedings of the 23rd International Conference on Autonomous Agents and Multiagent Systems",
+      "doi": "10.5555/3635637.3662889",
+      "citekeys": [
+        "costen2024shared"
+      ],
+      "source_records": [
+        "LIBRARY_verified_refs.bib@2026-10-16"
+      ],
+      "source_urls": [
+        "https://www.ifaamas.org/Proceedings/aamas2024/pdfs/p400.pdf"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "01_三篇原文核验_文献谱系与重叠矩阵.md",
+          "scope": "历史矩阵F：正式全文；本轮仅读该记录"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "共享操作员协助分配",
+      "record_id": "EXP-030",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.5555/3635637.3662889"
+    },
+    {
+      "identity": "10.1109/icra55743.2025.11127646",
+      "title": "Adaptive Task Allocation in Multi-Human Multi-Robot Teams Under Team Heterogeneity and Dynamic Information Uncertainty",
+      "year": "2025",
+      "authors": "Yuan, Ziqin and Wang, Ruiqi and Kim, Taehyeon and Zhao, Dezhong and Obi, Ike and Min, Byung-Cheol",
+      "venue": "2025 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/icra55743.2025.11127646",
+      "citekeys": [
+        "yuan2025adaptive"
+      ],
+      "source_records": [
+        "LIBRARY_verified_refs.bib@2026-10-16",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://arxiv.org/abs/2409.13824",
+        "https://arxiv.org/pdf/2409.13824"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open preprint+project"
+        },
+        {
+          "source": "01_三篇原文核验_文献谱系与重叠矩阵.md",
+          "scope": "历史矩阵P：开放预印本全文，正式版未逐字比对；本轮仅读记录"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "不确定状态与任务重分配",
+      "record_id": "EXP-031",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra55743.2025.11127646"
+    },
+    {
+      "identity": "10.1007/s10846-025-02270-z",
+      "title": "Coordinated Informative Path Planning for Multi-Robot Search in Open Fields",
+      "year": "2025",
+      "authors": "Kim, K. and Kim, J.",
+      "venue": "Journal of Intelligent \\& Robotic Systems",
+      "doi": "10.1007/s10846-025-02270-z",
+      "citekeys": [
+        "KimKim2025OpenFields"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1007/s10846-025-02270-z"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/KimKim2025OpenFields.pdf",
+        "sha256": "6dc411a601c3e1d691df5e4dce3c029b6716f7cffa4b61604a7456df3066bc27",
+        "bytes": 2077478,
+        "pages": 16,
+        "previous_filename": "Kim和Kim - 2025 - Coordinated Informative Path Planning for Multi-Robot Search in Open Fields.pdf",
+        "attachment_key": "HKSEQYD2",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/KimKim2025OpenFields.pdf",
+        "git_blob_sha": "aefad7fd6ce5eaf38e8e4deca192bfead1a591db",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据核验，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "信息路径规划",
+      "record_id": "EXP-032",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1007/s10846-025-02270-z"
+    },
+    {
+      "identity": "10.1109/iros60139.2025.11246701",
+      "title": "Efficient Human-Aware Task Allocation for Multi-Robot Systems in Shared Environments",
+      "year": "2025",
+      "authors": "Eskeri et al.",
+      "venue": "IROS",
+      "doi": "10.1109/iros60139.2025.11246701",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://arxiv.org/abs/2508.19731"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open preprint"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "human dynamic motion effects task time",
+      "record_id": "EXP-033",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/iros60139.2025.11246701"
+    },
+    {
+      "identity": "10.48550/arxiv.2512.12717",
+      "title": "HMPCC: Human-Aware Model Predictive Coverage Control",
+      "year": "2025",
+      "authors": "Catellani, M. and Gabbi, M. and Sabattini, L.",
+      "venue": "2025 IEEE International Symposium on Multi-Robot and Multi-Agent Systems (MRS)",
+      "doi": "10.48550/arxiv.2512.12717",
+      "citekeys": [
+        "CatellaniGabbiSabattini2025HMPCC"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.48550/arXiv.2512.12717"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/CatellaniGabbiSabattini2025HMPCC.pdf",
+        "sha256": "508630a374ce72d57f54ad37e07c27a3568424f5ee169a56af14b4e766634666",
+        "bytes": 951244,
+        "pages": 7,
+        "previous_filename": "Catellani 等 - 2025 - HMPCC Human-Aware Model Predictive Coverage Control.pdf",
+        "attachment_key": "685BBHUW",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/CatellaniGabbiSabattini2025HMPCC.pdf",
+        "git_blob_sha": "f54e2ee123f001c3d43472485bf577aadd779769",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "本地 PDF 方法概览已读；公开摘要核对",
+          "legacy_tag": "METADATA_VERIFIED"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "覆盖控制",
+      "record_id": "EXP-034",
+      "in_current_manuscript": false,
+      "primary_url": "https://arxiv.org/abs/2512.12717"
+    },
+    {
+      "identity": "10.1109/icra55743.2025.11127371",
+      "title": "Integrating Field of View in Human-Aware Collaborative Planning",
+      "year": "2025",
+      "authors": "Hsu, Ya-Chuan and Defranco, Michael and Patel, Rutvik and Nikolaidis, Stefanos",
+      "venue": "2025 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/icra55743.2025.11127371",
+      "citekeys": [
+        "hsu2025fov"
+      ],
+      "source_records": [
+        "LIBRARY_verified_refs.bib@2026-10-16",
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://arxiv.org/abs/2505.14805",
+        "https://sophiehsu.github.io/data/papers/2025_ICRA.pdf",
+        "https://github.com/SophieHsu/view-aware-hrc",
+        "https://github.com/SophieHsu/FOV-aware-planner",
+        "https://github.com/SophieHsu/3d-plan-eval"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open preprint"
+        },
+        {
+          "source": "005_Hsu_2025_ICRA_FOV知识缺口与分层POMDP_精读卡.md",
+          "scope": "历史阅读卡原件本轮读取；不等于本轮重读原论文、验证全部数字或运行代码"
+        }
+      ],
+      "current_pass": "PRIMARY_IDENTITY_OR_ABSTRACT_CHECKED; not full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-20",
+          "location": "Hsu et al., arXiv:2505.14805, Integrating Field of View in Human-Aware Collaborative Planning；作者摘要",
+          "supported": "FoV对人的子任务理解/协作规划的背景候选",
+          "limit": "不改变本稿近距encounter终点；本轮不新增正文引文或扩展主贡献",
+          "status": "ABSTRACT_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [
+        "arXiv:2505.14805与正式ICRA条目合并为同一作品的版本入口；作者页本轮核对，不算第二篇。"
+      ],
+      "priority": "P2",
+      "topic": "人类FOV/知识与协作",
+      "reading_card": "005_Hsu_2025_ICRA_FOV知识缺口与分层POMDP_精读卡.md",
+      "record_id": "EXP-035",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra55743.2025.11127371"
+    },
+    {
+      "identity": "10.1109/lra.2025.3551078",
+      "title": "MAC-Planner: A Novel Task Allocation and Path Planning Framework for Multi-Robot Online Coverage Processes",
+      "year": "2025",
+      "authors": "Wang, Zikai and Lyu, Xiaoxu and Zhang, Jiekai and Wang, Pengyu and Zhong, Yuxing and Shi, Ling",
+      "venue": "IEEE Robotics and Automation Letters",
+      "doi": "10.1109/lra.2025.3551078",
+      "citekeys": [
+        "wang2025mac"
+      ],
+      "source_records": [
+        "LIBRARY_verified_refs.bib@2026-10-16"
+      ],
+      "source_urls": [],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "01_三篇原文核验_文献谱系与重叠矩阵.md",
+          "scope": "历史矩阵A：摘要/元数据，全文缺口保留"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P2",
+      "topic": "在线覆盖与任务分配",
+      "record_id": "EXP-036",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/lra.2025.3551078"
+    },
+    {
+      "identity": "10.48550/arxiv.2509.22469",
+      "title": "Uncertainty-Aware Multi-Robot Task Allocation With Strongly Coupled Inter-Robot Rewards",
+      "year": "2026",
+      "authors": "Rossano, Ben and Lim, Jaein and How, Jonathan P.",
+      "venue": "arXiv preprint arXiv:2509.22469",
+      "doi": "10.48550/arxiv.2509.22469",
+      "citekeys": [
+        "rossano2026uncertain"
+      ],
+      "source_records": [
+        "LIBRARY_verified_refs.bib@2026-10-16"
+      ],
+      "source_urls": [
+        "https://arxiv.org/abs/2509.22469",
+        "https://benrossano.com/projects/uncertainty_aware_mrta/"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "01_三篇原文核验_文献谱系与重叠矩阵.md",
+          "scope": "历史矩阵A：作者项目页/摘要；本轮核对作者页与arXiv身份"
+        }
+      ],
+      "current_pass": "PRIMARY_IDENTITY_OR_ABSTRACT_CHECKED; not full-paper audit",
+      "audit_rows": [],
+      "notes": [
+        "arXiv首次提交2025；作者页称IROS2026已接收并要求先引arXiv、示例年份2026；未核实正式论文集DOI。"
+      ],
+      "priority": "P2",
+      "topic": "不确定任务需求与提前配置",
+      "record_id": "EXP-037",
+      "in_current_manuscript": false,
+      "primary_url": "https://arxiv.org/abs/2509.22469"
+    },
+    {
+      "identity": "10.1109/tmc.2007.1022",
+      "title": "Bidding Protocols for Deploying Mobile Sensors",
+      "year": "2007",
+      "authors": "Wang, G. and Cao, G. and Berman, P. and La Porta, T. F.",
+      "venue": "IEEE Transactions on Mobile Computing",
+      "doi": "10.1109/tmc.2007.1022",
+      "citekeys": [
+        "Wang2007Bidding"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/TMC.2007.1022"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Wang2007Bidding.pdf",
+        "sha256": "e5e4b17227aefb8877763dbcd8b0071685a0312b16f2fd992efaf1f3e7f056d6",
+        "bytes": 4875027,
+        "pages": 14,
+        "previous_filename": "Wang 等 - 2007 - Bidding Protocols for Deploying Mobile Sensors.pdf",
+        "attachment_key": "YUBNYTY9",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Wang2007Bidding.pdf",
+        "git_blob_sha": "61c99742a5474afbc995b1d1b5efd07f9b9aef96",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "METADATA_VERIFIED"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P3",
+      "topic": "任务分配",
+      "record_id": "EXP-038",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/tmc.2007.1022"
+    },
+    {
+      "identity": "10.1109/acc.2013.6580919",
+      "title": "Distributed Coverage Optimization in a Network of Static and Mobile Sensors",
+      "year": "2013",
+      "authors": "Mahboubi, H. and Habibi, J. and Aghdam, A. G. and Sayrafian-Pour, K.",
+      "venue": "2013 American Control Conference (ACC)",
+      "doi": "10.1109/acc.2013.6580919",
+      "citekeys": [
+        "Mahboubi2013StaticMobile"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ACC.2013.6580919"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Mahboubi2013StaticMobile.pdf",
+        "sha256": "19286d2b8be96f90caad2b3811e3074dad32ce1d74229f9640d4f9492ae80d57",
+        "bytes": 295700,
+        "pages": 5,
+        "previous_filename": "Mahboubi 等 - 2013 - Distributed Coverage Optimization in a Network of Static and Mobile Sensors.pdf",
+        "attachment_key": "C3EPSCWL",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Mahboubi2013StaticMobile.pdf",
+        "git_blob_sha": "e1b19eb3dc021dea615216342adde76368e7e792",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-06",
+          "location": "Mahboubi et al., ACC 2013; DOI 10.1109/ACC.2013.6580919；PDF第2页§III与后续FWV策略，第3页图1",
+          "supported": "静态传感器与移动传感器覆盖优化、移动资源再分布",
+          "limit": "已实现静态感知资源不同于不确定未来人工责任；不把“固定资源影响可动资源”当本稿首次",
+          "status": "PASSAGE_CHECKED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [],
+      "priority": "P3",
+      "topic": "覆盖控制",
+      "record_id": "EXP-039",
+      "in_current_manuscript": true,
+      "primary_url": "https://doi.org/10.1109/acc.2013.6580919"
+    },
+    {
+      "identity": "10.1109/icra.2018.8460978",
+      "title": "Multi-Robot Coordination in Dynamic Environments Shared with Humans",
+      "year": "2018",
+      "authors": "Talebpour, Z. and Martinoli, A.",
+      "venue": "2018 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/icra.2018.8460978",
+      "citekeys": [
+        "TalebpourMartinoli2018ICRA"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ICRA.2018.8460978"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/TalebpourMartinoli2018ICRA.pdf",
+        "sha256": "f3941dcae04b550c6c2ffd4deb9aed1cd0ee086c912a5adf8ffe19a11d387cf3",
+        "bytes": 1675845,
+        "pages": 8,
+        "previous_filename": "Talebpour和Martinoli - 2018 - Multi-Robot Coordination in Dynamic Environments Shared with Humans.pdf",
+        "attachment_key": "2Y8S6WV2",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/TalebpourMartinoli2018ICRA.pdf",
+        "git_blob_sha": "82b1f798be5965771f9be771b92767f08e60803e",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "METADATA_VERIFIED"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P3",
+      "topic": "人感知安全协调",
+      "record_id": "EXP-040",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra.2018.8460978"
+    },
+    {
+      "identity": "10.1016/j.robot.2021.103753",
+      "title": "Collaborative human-autonomy semantic sensing through structured POMDP planning",
+      "year": "2021",
+      "authors": "Burks et al.",
+      "venue": "Robotics and Autonomous Systems",
+      "doi": "10.1016/j.robot.2021.103753",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://par.nsf.gov/servlets/purl/10222332"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open accepted full text"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P3",
+      "topic": "active human querying and joint sensing/planning",
+      "record_id": "EXP-041",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1016/j.robot.2021.103753"
+    },
+    {
+      "identity": "10.1109/icra48506.2021.9561359",
+      "title": "Spatial Intention Maps for Multi-Agent Mobile Manipulation",
+      "year": "2021",
+      "authors": "Wu, J. and Sun, X. and Zeng, A. and Song, S. and Rusinkiewicz, S. and Funkhouser, T.",
+      "venue": "2021 IEEE International Conference on Robotics and Automation (ICRA)",
+      "doi": "10.1109/icra48506.2021.9561359",
+      "citekeys": [
+        "Wu2021Spatial"
+      ],
+      "source_records": [
+        "PAPER_BIB@f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1109/ICRA48506.2021.9561359"
+      ],
+      "repository_pdf": {
+        "path": "literature/pdfs/Wu2021Spatial.pdf",
+        "sha256": "9cd88e2690a2be53a7c1a3d26dc02d917da13b56df8f21ef01ceae9361295bd6",
+        "bytes": 3168066,
+        "pages": 9,
+        "previous_filename": "Wu 等 - 2021 - Spatial Intention Maps for Multi-Agent Mobile Manipulation.pdf",
+        "attachment_key": "ZFKUSNF2",
+        "url": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/literature/pdfs/Wu2021Spatial.pdf",
+        "git_blob_sha": "ab9320d2c5f0a936f373829b17445c453a3aab20",
+        "present_in_checked_tree": true
+      },
+      "historical_evidence": [
+        {
+          "source": "2026-09-23 catalog",
+          "scope": "元数据初筛，PDF 已提取未精读",
+          "legacy_tag": "FULLY_READ"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P3",
+      "topic": "空间意图表示",
+      "record_id": "EXP-042",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra48506.2021.9561359"
+    },
+    {
+      "identity": "10.1007/s10514-022-10070-9",
+      "title": "Efficiently exploring for human robot interaction: partially observable Poisson processes",
+      "year": "2023",
+      "authors": "Jovan et al.",
+      "venue": "Autonomous Robots",
+      "doi": "10.1007/s10514-022-10070-9",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://doi.org/10.1007/s10514-022-10070-9"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open full text"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [
+        {
+          "id": "RW-19",
+          "location": "Jovan et al., Autonomous Robots47:121–138,2023; DOI10.1007/s10514-022-10070-9；出版社摘要、§1，及Correction入口10.1007/s10514-023-10152-2",
+          "supported": "人活动计数、相关/不可靠传感器下POPP与长期探索",
+          "limit": "原稿泛用来支撑目标搜索，关联过宽；正文删除，不否定文献。勘误具体修改本轮未解析，保留UNRESOLVED，不写其公式",
+          "status": "ABSTRACT/PASSAGE_CHECKED；correction UNRESOLVED",
+          "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
+        }
+      ],
+      "notes": [
+        "正文已删除；关联勘误10.1007/s10514-023-10152-2的内容未解析，作为关联记录不计新研究论文。"
+      ],
+      "priority": "P3",
+      "topic": "长期活动探索，正文已删除",
+      "record_id": "EXP-043",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1007/s10514-022-10070-9"
+    },
+    {
+      "identity": "10.1109/icra57147.2024.10610681",
+      "title": "InteRACT: Transformer Models for Human Intent Prediction Conditioned on Robot Actions",
+      "year": "2024",
+      "authors": "Kedia et al.",
+      "venue": "ICRA",
+      "doi": "10.1109/icra57147.2024.10610681",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://portal-cornell.github.io/interact/"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open project+code"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [],
+      "priority": "P3",
+      "topic": "robot action-conditioned human motion prediction",
+      "record_id": "EXP-044",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1109/icra57147.2024.10610681"
+    },
+    {
+      "identity": "10.48550/arxiv.2603.07822",
+      "title": "Knowing When to Ask: Resolving Uncertainty in Human-Robot Joint Planning via Explicit Dialogue and Implicit Intent Cues",
+      "year": "2026",
+      "authors": "Fang et al.",
+      "venue": "arXiv",
+      "doi": "10.48550/arxiv.2603.07822",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://arxiv.org/abs/2603.07822"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open preprint"
+        }
+      ],
+      "current_pass": "PRIMARY_IDENTITY_OR_ABSTRACT_CHECKED; not full-paper audit",
+      "audit_rows": [],
+      "notes": [
+        "本轮核对arXiv题名/作者/摘要，v2=2026-08-07；只确认预印本，不擅填正式venue。"
+      ],
+      "priority": "P3",
+      "topic": "decision critical questions and implicit intent",
+      "record_id": "EXP-045",
+      "in_current_manuscript": false,
+      "primary_url": "https://arxiv.org/abs/2603.07822"
+    },
+    {
+      "identity": "10.1038/s41467-026-72797-8",
+      "title": "Proactive collaboration via autonomous interaction",
+      "year": "2026",
+      "authors": "Li et al.",
+      "venue": "Nature Communications",
+      "doi": "10.1038/s41467-026-72797-8",
+      "citekeys": [],
+      "source_records": [
+        "LIBRARY_04_related_works_文献台账.csv@2026-10-15"
+      ],
+      "source_urls": [
+        "https://www.nature.com/articles/s41467-026-72797-8"
+      ],
+      "repository_pdf": null,
+      "historical_evidence": [
+        {
+          "source": "2026-10-15 historical ledger",
+          "scope": "Open full text"
+        }
+      ],
+      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "audit_rows": [],
+      "notes": [
+        "出版社搜索结果可定位；本轮打开全文遇认证重定向，未升级为全文核验。"
+      ],
+      "priority": "P3",
+      "topic": "proactive robots adjust team membership and communicate",
+      "record_id": "EXP-046",
+      "in_current_manuscript": false,
+      "primary_url": "https://doi.org/10.1038/s41467-026-72797-8"
+    }
+  ]
+}
