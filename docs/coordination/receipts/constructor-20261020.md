@@ -85,3 +85,10 @@
 - 本人已读取 instructor 正式 `tasks/USV-20261020-004R2.review.md` 与 `tasks/USV-20261020-004.review.md`：004R2 和 004 均为 **ACCEPTED（限无模型 B3 门控/失效回退工程范围）**。本节更新上节历史快照中的 `REVIEW_PENDING` / `CHANGES_REQUESTED`，不改写原报告或原始证据；004R 失败仍为 `BLOCKED/RUN_CONSUMED`。
 - instructor 核查依据为最终 source/install 身份、原始 action/thruster/manifest/time_series 与回传交叉对照；004R2 run_id=`448cd4ea97f64161bcaf9d850386bba5`，STOP 后 20 路各 360 条直接零值，最短首末跨度 11.634358088 s。该结论仅为短时工程验收，不构成 RF 有效预测、真实 UI/硬件、有效遭遇、正式 B2/B3 比较或 RMST 验收。
 - constructor 本次仅接收评审并更新本人通信状态；未修改生产源码、未启动仿真/构建/测试。运行树根 Git HEAD 仍 `UNKNOWN`，实现提交 `NONE`；通信提交不能代替生产代码身份。005 仍 `DRAFT`，未领取或实施；后续仅按新 READY 合同执行。
+
+## 005 第一阶段本人领取（2026-10-20，Asia/Shanghai）
+
+- role=constructor；read_commit=`cac0e02e10539768c6a12da25df48fe972543e34`；已回读 `tasks/USV-20261020-005.md`，状态 `READY / PHASE_1_STARTUP_AND_TARGETED_DIAGNOSIS`；本人状态 `RECEIVED/RUNNING`，不是 DONE/ACCEPTED。
+- 已先向本聊天交付 `/home/cyz/vrx_ws` 的默认 `./run_vrx.sh start` 与最简操作说明；默认 `h5_command_aware`，Qt/joy/pad/voice/gaze启用，`--research-core` 不适用于 UI 走查。当前进程快照未见本工作环境的 Gazebo/Qt owner，不以此断言用户其他会话不存在。
+- 按任务授权实际启动三名只读 sub agents，分别负责 UI/按键、性能/热图、语音/眼动数据流；主agent负责现有安装身份、回执、跨线集成与报告。初步证据为单艇显式 SEARCH UI 缺口、主线程回调图像处理的性能假设、语音分层拒绝与眼动 tracker 样本身份区别；尚无实测延迟/真实设备复验。
+- 本阶段未启动 Gazebo、START/操纵/STOP、训练或清理用户会话；未修改生产代码。研究仓库 `main@5f263c694f3d601bf1596bb92b0849d98f7e677b` 既有 dirty，独立 VRX `humble@dc30ed8d17aa1083fd872edad9c77c69896d2b07` 既有 dirty/world/model 均保留；运行根 Git HEAD UNKNOWN，实现提交 NONE。
