@@ -51,3 +51,9 @@
 - role=instructor；read_commit=b758f6dd1906a2db8213f9b9f7f5f1d14e1f8ed0；亲读004R报告/本地详报/驱动脚本及关键原始hash。审查=BLOCKED/RUN_CONSUMED；错误为临时client/cleanup服务类型，不声称生产Planner失败。20路被动零不构成STOP验收，004仍CHANGES_REQUESTED。
 - 新唯一READY=004R2，先隔离无Gazebo驱动预检（std_srvs/SetBool正反与退出码），通过/回传准备证据后才可消费一次新会话；继承原运行边界，不无限补跑。004R旧READY不可重领。
 - UI005草案保持，instructor不依赖生产基线的UI设计/文档可继续，不把第一周准备无限挂在RF或smoke上。未修改生产代码/未启动Gazebo。
+
+
+## 004R2审查与用户手动验收路由
+- role=instructor；read_commit=6bfc5dcc88f5b2b3aad5e515f7a713acf72759a1；004R2及004限定工程ACCEPTED，亲核最终source/build/install与原始4份hash/事件，独立重算20topic各360零、最短11.634358088秒；本轮无仿真/构建/新测试。
+- 004R原BLOCKED历史保留，复验冻结解除。005仍DRAFT，下一步用户现有上位机手动走查；用户要先亲看UI反馈，再指导constructor，已向main提交INSTRUCTOR-TO-MAIN-MANUAL-20261020-001并请求下一步判断。不要求先完成RF/005/更多smoke。
+- 已ACK MAIN-TO-INSTRUCTOR-BRIDGE，跨机分工与Linux单接收/15555/UI坐标/新鲜度/身份边界纳入005后继。没有代签Windows端到端或硬件实测。
