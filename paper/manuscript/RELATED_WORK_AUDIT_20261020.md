@@ -97,3 +97,13 @@
 - RF-DATA-CONTRACT-v1（blob95ff2a93fdfd5387ccac2d969deafc4103b54113）是本项目方法/数据语义裁决，不是文献结果或实测模型。相关增量为计划协议，无新外部引文。
 - WEEK1_PLATFORM_PREP_20261020（blob4f2af5b739b07db3bf25813afc8240fe3a937c69）是UI/设备/源身份/导出准备计划，不证明已完成、已采志愿者或已训练RF。论文不写工作日历或工程任务清单；只补必要的数据准备/验证边界。
 - 沿用17条实际引文与首次引用顺序，无新文献身份或bib字段变化。新增机制表述的证据范围限上述段落，不扩大新颖性或成果主张。
+
+## 8. Narrative revision under main review (2026-10-20)
+
+User requested a stronger argument with accuracy taking priority over citation volume. Abstract and Introduction now connect the collaboration problem, distinction between target evidence and prospective effort, current/future anchor question, and completed engineering scope. Related Work is organized around probabilistic search/allocation, anticipation of human search, and adaptation to a teleoperated teammate. These synthesis changes use previously checked sources, not additional literature findings.
+
+- Active references reduced from 17 to 15: omit broad survey b4 and preceding Cangan2020Anticipatory preprint from the compiled narrative; retain archival bibliography. Heintzman2021Anticipatory remains. References follow first appearance.
+- Xie: preserve P/P-prime/SAD distinctions and missed-object inhibition limitation; no permanent posterior suppression, isolated prediction-error causality, or guaranteed superiority of full-domain allocation.
+- Prior anticipation, same-team teleoperation, fixed generators and replay are acknowledged as precedents. B2/B3 tests information within one allocation mechanism, not universal superiority over prior mechanisms.
+- Updated bounded no-model fallback status from USV-20261020-004R2.review.md (blob 9f2747621134913fc9beb4fedeb2eb65427bf4fa). No valid learned RF forecast, encounter evaluation, participant dataset, UI completion, or comparative benefit is claimed.
+- No numerical parameter or research-scope decision changed. New prose requires main review; previous acceptance is not automatically extended.
