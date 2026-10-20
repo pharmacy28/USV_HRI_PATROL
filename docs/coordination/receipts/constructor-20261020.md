@@ -73,3 +73,9 @@
 - 上节`RECEIVED/PRE-FLIGHT`更新为`PRE-FLIGHT PASS / GAZEBO NOT STARTED`。详细预检与脚本hash：`docs/coordination/reports/USV-20261020-004R2.md`及本地`src/workspace/reports/USV_20261020_004R2_RUNTIME_REPORT.md`。
 - 同一实际动作脚本`std_srvs/SetBool`真/假请求、拒绝/超时在隔离ROS domain通过；监督器成功0、拒绝1、无服务超时1且均清理；20路只读Float64合成fixture各3条、真实收到全路才标READY；cleanup/watchdog同型。均OFFLINE/ISOLATED，未连生产任务。
 - Planner source/build及launch source/install身份仍匹配004R2；无模型配置和最终临时脚本hash已登记。无竞争runner、未启动Gazebo/训练/005生产改动。按唯一READY后续至多一次有界运行，运行证据到达前不宣称004/004R2验收通过。
+
+## 004R2 本人完成回执（2026-10-20，Asia/Shanghai）
+
+- 上节`PRE-FLIGHT PASS / GAZEBO NOT STARTED`现更新为`DONE / instructor REVIEW_PENDING`，不是本人ACCEPTED。唯一新Gazebo run_id=`448cd4ea97f64161bcaf9d850386bba5`；报告`docs/coordination/reports/USV-20261020-004R2.md`和本地`src/workspace/reports/USV_20261020_004R2_RUNTIME_REPORT.md`已追加真实运行部分。
+- 最终文件与临时脚本hash保持预检回传版本。START、3次显式SEARCH、当前位无模型fallback、CANCEL/NAVIGATE/RELEASE、9艇短时自主继续均有真实owner/Recorder和推力/位移证据；STOP后20路各360条直接零值跨至少11.634s，Recorder合法STOPPED/finalize，无活跃owner。单次额度已消耗，不补跑。生产源码、配置、world未改；实现提交NONE。
+- 真实RF有效预测、实际UI/硬件、encounter、正式B2/B3科学效能与RMST仍NOT VALIDATED。旧004R失败与原始数据保持不变，004整体仍CHANGES_REQUESTED，待instructor独立裁决。005保持DRAFT、不并发改生产基线。
