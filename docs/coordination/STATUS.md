@@ -16,3 +16,9 @@
 ## 研究与保护边界
 
 H=5 s、历史 1-cell 参数和传感器 `engineering_assumed` 仅工程沿用；正式 H/预测年龄/重规划阈值、R/τ/B 与有效遭遇、RF 准确率、B3 科学收益、RMST 仍 OPEN/NOT VALIDATED。D2/D3/D4 不在 004 范围；通信分支不含生产代码/大日志，也不自动合并旧 platform/。
+
+## 2026-10-20 005 constructor R2 隔离候选
+
+- USV-20261020-005仍`RUNNING / CONDITIONAL_CUTOVER`，非DONE/ACCEPTED。最新报告`docs/coordination/reports/USV-20261020-005.md`；本地候选`src/workspace/candidates/USV_20261020_005_R2/`、详报`src/workspace/reports/USV_20261020_005_UI_DIAGNOSIS_REPORT.md`。
+- legacy十艇CameraInfo批内顺序偏置有旧版FAIL/候选PASS的正逆序反例，53项相关离线回归与隔离sensor包构建通过；R2语音/Qt/眼动26项离线通过。生产源码/build/install未切换，当前Gazebo仍活，安全检查退出3拒绝。
+- FPV真实首次掉速与修复仍BLOCKED：Qt已退出，未进行新30秒同窗probe；下次正常Qt会话可按候选README单次运行只读探针。四传感器/平滑/科学合同未扩张。无生产实现提交SHA；通信提交不代表代码部署。
