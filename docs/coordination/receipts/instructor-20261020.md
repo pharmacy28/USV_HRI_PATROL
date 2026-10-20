@@ -87,3 +87,9 @@
 - role=instructor；read_commit=8b6e0b7a0a4e0af54df3e5ef86be64492e7d8674。R3 CANDIDATE_READY/FIELD_PENDING；独立16tests及九文件切换故障注入通过，亲读relay/Qt与wrapper，生产未部署。FPV本人同窗数据及双探针重叠限制见R3 review，源端吞吐仍OPEN。
 - 当前用户新run实际仍R1，08–10仍STALE，没有R2/R3运行恢复证据；不以热图颜色替代资格/贡献。用户不知切换输出位置，新wrapper持久日志并失败不启动。
 - 用户再次明确四传感器未完成、禁真实检测、区分preview与低频观测。已追加R4实际隔离实施并向main发送SENSING-SPLIT交接；未以科学参数待定阻断默认关detector方向。维持ideal0.25simHz/belief4s、video30simHz名义配置，四路参数/相关性与第四路main裁决。当前会话不改不控。
+
+
+## 005R4 detector-off候选核查完成
+- role=instructor；read_commit=fda4406050f657dcdca2060f5f666ebf41f5ddbc。CANDIDATE_READY/USER_CUTOVER_PENDING，非ACCEPTED；正式005R4隔离实施已完成，当前生产仍R1。review详列默认禁算法/订阅/视觉候选、频率分离和安全切换。
+- 本人独立40tests、launch条件求值及11文件假根故障注入PASS，source隔离install实际四模块路径/hash与候选相符；constructor82+GT7、最终5包build通过。根launcher备份映射已核，未部署/未操作仿真。四传感器、源吞吐、现场无框/FPS/08–10贡献仍未验。
+- 已接用户再次纠正，main交接已追加实际完成与真实缺口；未关闭科学事件/Recorder、未改Pd/GT/规划/控制或切profile。constructor跨会话权限争议通过正式READY核验解决，无需用户重复授权；instructor备用副本未编辑已删除，constructor为唯一代码owner。
