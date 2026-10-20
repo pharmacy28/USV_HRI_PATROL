@@ -30,7 +30,7 @@ main发布统筹交接和论文任务，不新增与instructor冲突的工程REA
 - constructor 报告必须区分科学设计、源码存在、离线测试、真实运行、正式比较实验；最终代码/参数改变之后，旧运行只能支持旧版本。
 - instructor 逐项给 ACCEPTED / CHANGES_REQUESTED / BLOCKED；需要修复时发布最小返工或后继任务，不要求违反原任务运行限制。
 - constructor 的 STOP、日志、时间、版本问题首先回 instructor；main 只接收科学口径冲突及完成摘要。
-- 当前工程链按最新原负责人task/review/report/receipt确定，旧STATUS/MAIN_MEMORY不能覆盖较新证据。2026-10-20在0f2c80e7，instructor已将004R2及004判为限定工程ACCEPTED，复验冻结解除；004R历史保持BLOCKED/RUN_CONSUMED。当前005由instructor按main的手动走查优先决定分阶段更新，先现状入口/说明→用户反馈→小批改动/复验→硬件与记录导出。不得重领已消费任务、继续同类smoke阻挡用户看UI，或由main另开竞争工程READY。
+- 当前工程链按最新原负责人task/review/report/receipt确定，旧STATUS/MAIN_MEMORY不能覆盖较新证据。2026-10-20在0f2c80e7，instructor已将004R2及004判为限定工程ACCEPTED，复验冻结解除；004R历史保持BLOCKED/RUN_CONSUMED。当前005已由instructor发布首阶段READY且constructor本人领取；先现状入口/说明→用户反馈→小批改动/复验→硬件与记录导出，最新统筹见MAIN-20261020-004。不得重领已消费任务、继续同类smoke阻挡用户看UI，或由main另开竞争工程READY。
 
 没有新增后台轮询、无限自主运行或跨对话自动唤醒。已授权且已启动的任务内可正常迭代；超出原运行预算由 instructor 写明新的有界任务后继续。用户触发规则仍按 v1，不将协议文件当脚本自动执行。
 
@@ -84,8 +84,8 @@ main统一跨线调度，instructor仍唯一工程任务发布与review。自动
 | Work | 默认模型 / 思考强度 | 何时升级 |
 |---|---|---|
 | main | GPT-6.1 Sol / medium | 科学合同冲突、重要验收用Sol high；仍难裁决的研究取舍才Astra high。单纯状态摘录可Luna low |
-| instructor | GPT-6.1 Sol / medium | 004R2驱动/清理/STOP证据门槛等关键验收用high |
-| constructor | GPT-6.1 Sol / medium | 当前004R2真实驱动、退出码、清理与安全问题用high；范围清楚的UI/配置恢复medium |
+| instructor | GPT-6.1 Sol / medium | 具体源身份、状态因果、安全或合同冲突用high；已收口004R2不重复深审 |
+| constructor | GPT-6.1 Sol / medium | 明确UI/反馈小修保持medium；真实并发、时钟、来源或安全难题临时high |
 | exploration | GPT-6 Luna / medium | 最相近论文原文机制、矛盾论断与新颖性判断交Sol medium/high，不能仅靠小模型摘要 |
 | inspiration | GPT-6.1 Sol / medium | 实质研究分歧/反例推演才Astra high；用户未回复不继续后台深思 |
 | overleaf | GPT-6 Luna / medium（常规LaTeX/引文整理） | 概率、公式、端点/统计论证和跨段大修用Sol high |
@@ -100,3 +100,9 @@ main统一跨线调度，instructor仍唯一工程任务发布与review。自动
 - 不因统筹新增监控子代理、竞争工程任务或运行额度。既有接收器无任务即退出，未登记的不宣称已启用。
 
 模型能力/成本依据：https://learn.chatgpt.com/docs/model-selection 、https://learn.chatgpt.com/docs/models 、https://learn.chatgpt.com/docs/pricing （2026-10-20读取）。模型推荐是角色层面的取舍，不承诺账户账单或固定节省比例；较高思考强度、长上下文与提速均可能增加消耗。
+
+## 10. constructor子agent证据与用户复验交付（2026-10-20用户授权）
+
+005已授权主agent+最多3个子agent，分别UI/按键、性能、语音/眼动数据流；主agent唯一集成，共享文件明确所有权。不要在main或其他主机另造同名agent冒充constructor的子agent。启动回执、当前仍运行、完成产出、代码集成和实测通过分别记录；无法读取远端运行管理器时，main只据本人报告，不能伪称实时查看。
+
+在实际交付节点由constructor合并一次可核对标识/状态/时间/产出/阻塞/整合快照，不高频心跳。完成后停止无任务驻留，不用增加并行数量替代定位。已有证据足够的小修沿005实施，无性能数据不报提速；无新运行许可不自动启动仿真。候选版必须有实际改动身份/必要验证/启动方式/可见改动和少量复验操作，随后由用户亲自评价UI、流畅性及语义。候选版可体验不等于工程/硬件/科学整体ACCEPTED。
