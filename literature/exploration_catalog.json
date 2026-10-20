@@ -55,7 +55,7 @@
           "scope": "Metadata+abstract"
         }
       ],
-      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "current_pass": "FULL_TEXT_REVIEWED; exploration 2026-10-20; 6-page proceedings PDF; key pages 3/5 visually checked; not code reproduction",
       "audit_rows": [
         {
           "id": "RW-07",
@@ -74,12 +74,58 @@
           "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
         }
       ],
-      "notes": [],
+      "notes": [
+        "Exploration亲读原文：P与临时P′需分开；IV-B报告人漏检导致机器人受抑制的退化反例，不等于单独证明预测误差致害。详见本角色证据笔记。"
+      ],
       "priority": "P1",
       "topic": "意图预测协同",
       "record_id": "EXP-001",
       "in_current_manuscript": true,
-      "primary_url": "https://doi.org/10.1109/iros.2011.6094688"
+      "primary_url": "https://doi.org/10.1109/iros.2011.6094688",
+      "exploration_review": {
+        "date": "2026-10-20",
+        "role": "exploration",
+        "read_commit": "5996721fbdf021c60b8b08e01c02d25888e03ca0",
+        "paper_commit": "f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "evidence_level": "FULL_TEXT_REVIEWED",
+        "metadata_status": "METADATA_CHECKED",
+        "abstract_status": "ABSTRACT_CHECKED",
+        "pdf_acquired": true,
+        "pdf_sha256": "a96e68582d1925304c6f93ca039aebb5542510a5a91f1d13681e450ca501a8f3",
+        "pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "visually_checked_pages": [
+          3,
+          5
+        ],
+        "metadata_sources": [
+          "PDF p.1 and printed pp.3349-3354",
+          "https://api.crossref.org/works/10.1109/IROS.2011.6094688"
+        ],
+        "version_status": "Proceedings version identified; Crossref vor link; related versions/corrections not exhaustively resolved",
+        "code_inspected": false,
+        "code_run": false,
+        "note": "literature/related_work_notes/EXPLORATION-20261020-Xie2011.md",
+        "claim_ids": [
+          "EX-XIE-01",
+          "EX-XIE-02",
+          "EX-XIE-03",
+          "EX-XIE-04",
+          "EX-XIE-05"
+        ],
+        "unresolved": [
+          "inhibition implementation details delegated to ref [14]",
+          "participant-independent split not established",
+          "raw data/code replication not performed",
+          "equivalent revocation/fallback not established"
+        ]
+      }
     },
     {
       "identity": "10.1109/icra48506.2021.9562070",

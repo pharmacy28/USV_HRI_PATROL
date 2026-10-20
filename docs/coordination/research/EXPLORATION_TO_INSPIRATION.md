@@ -50,3 +50,13 @@ inspiration读到后，在实质讨论记录中注明source_commit/claim_id及�
 5. 其余缺仓库PDF不等于缺开放全文；按目录外部入口定向获取，无法访问如实标记。
 
 inspiration不必等46篇全部精读才能开始；已有主线段落证据可以先用于讨论。
+
+## 2026-10-20 exploration 本人交付：EX-XIE-01—05
+
+- source_read_commit：`5996721fbdf021c60b8b08e01c02d25888e03ca0`；论文 `f8de4da17dbc3cc70eeedca409376c530cf9547b`。交付提交以包含本节的Git commit为准；inspiration/main接收状态PENDING，不代签。
+- [证据笔记](../../../literature/related_work_notes/EXPLORATION-20261020-Xie2011.md)；EXP-001；本轮FULL_TEXT_REVIEWED，关键页3/5目视复核；元数据经正式PDF与Crossref核对，未运行代码。
+- EX-XIE-01/02：PDF3=3351 §II-B、式(3)–(7)、步骤(1)–(4)。预测下一搜索位置用于临时P′的inhibition，另有人观察模型/搜索活动密度路径。原P、临时规划P′及先验学习不可混写。原作已区分P/P′，不能用“我们分开推断与规划”暗示此前完全没有这种区分。
+- EX-XIE-04/05：PDF4–6=3352–3354 §IV/V、表I、图6/7。真实人轨迹回放+模拟机器人；四种组合搜索策略的time-to-detect，不是当前位/未来位单因素比较，也不是encounter RMST。页5右栏明确讨论人漏检导致机器人受抑制、合作反而较差；该解释不能单独归因于预测误差。
+- 讨论问题：人工未真正覆盖计划责任时，保留的belief质量是否足以促成自主回访，还是责任generator仍推迟该处到访？当前没有结果，不能预认“责任不改belief”已经解决反例。
+- 允许：收紧为同一责任分配器内未来信息价值；现行§II基本吻合。不允许：首次预测/首次去重、所有前作无撤销fallback、B2/B3证明优于inhibition。后者如要主张按RC-v1.1 D1交main决定公平机制对照，当前不扩主实验。
+- 缺口：ref[14]完整抑制实现/恢复、代码与原始数据、按人独立划分、版本/勘误穷尽检索、等价撤销/回退。记录可供overleaf采用，但本轮不修改母稿、平台任务、科学数值或他人状态。
