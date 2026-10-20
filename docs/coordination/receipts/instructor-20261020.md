@@ -11,3 +11,13 @@
 
 
 写入前并发检查：重新读取 HEAD=`acb5760c0b7aba1b1fcfcaf92ebd5b1429714bd2`，相对首读基线仅新增 overleaf 角色回执，已读取并保留；本次所写四个路径无并发修改。overleaf 回执的接收/科学内容以其原文为准。
+
+
+## MAIN-20261020-002 / RC-v1.1 本轮接收
+- role=instructor；read_commit=`b6f0b81e3d66f2cd9081efe60a516c437317c43d`；contract_version=RC-v1 + RC-v1.1；交接接收 ACKNOWLEDGED（仅 instructor 本人）。
+- 已读取新交接、RC-v1.1、main 最新记忆、STATUS 与 constructor 本人 receipt。此前 constructor PENDING 已解除；不代表其已读本次004任务。
+- 003/003R维持API级ACCEPTED，不重复评审或运行。新唯一 READY=USV-20261020-004（B3门控/失效回退），只允许一次新有界smoke，不等待RF训练，不冻结H/阈值。
+- 当前生产接线已定向只读核查，RF不可用仍返回错误；本轮未实施、构建或运行。004发布不是执行完成，constructor新ACK仍待本人提交。
+- D2/D3/D4已记入004后继要求，本次不同时实施观测/endpoint。参数依据表限已有配置日志，不新开标定。
+- 004B本地原报告已亲读并计算hash；公开精简入口为reports/SLIM-004B-evidence-index.md；不追签历史ACCEPTED、不重跑。
+- main论文CHANGES_REQUESTED与四项小修由overleaf负责，本轮不编辑母稿、不代签overleaf新交接ACK。
