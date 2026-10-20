@@ -21,3 +21,12 @@
 - D2/D3/D4已记入004后继要求，本次不同时实施观测/endpoint。参数依据表限已有配置日志，不新开标定。
 - 004B本地原报告已亲读并计算hash；公开精简入口为reports/SLIM-004B-evidence-index.md；不追签历史ACCEPTED、不重跑。
 - main论文CHANGES_REQUESTED与四项小修由overleaf负责，本轮不编辑母稿、不代签overleaf新交接ACK。
+
+
+## 004回传接收与审查
+- read_commit=c9bfa8b484f8e2f2ba5bd565d411fe9a95baa6f5；role=instructor；active_task=004 review；review=CHANGES_REQUESTED，详见tasks/USV-20261020-004.review.md。
+- 亲读本地详报、定向源码/测试和原始manifest/time_series；版本hash及log hash匹配，无新运行或测试。保留无模型fallback/CANCEL/STOP局部运行事实；发现接收时刻绑定当前段不能证明输入来源、同段pose时间倒退未拒绝。20路实际推力缺测，NAVIGATE/RELEASE本run未观察。
+- constructor本人004接收/交付回执已读取，不再PENDING；本review的新接收仍待本人，不代签。
+- 先离线最小修正/测试/构建与身份回传，004运行额度不增加；后续004R需独立READY，当前未发布。不进入endpoint或正式实验。
+
+- 写入前复读HEAD=a9af355be7ed85303a2f99a704ee7eba94ae13f0及角色协议/main记忆新内容；并发变更保留，未触及本次两路径。
