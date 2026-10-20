@@ -25,3 +25,12 @@
 ## 本次核查与边界
 
 只读执行 `git status --short --branch` / `git rev-parse HEAD`（研究树、VRX、运行树）、`sha256sum`（上述 source/install）、读取本地 003R 详报，并经 GitHub fetch/compare 核对 HEAD、review 与任务目录（001/002/003/003R，无新 READY）。没有运行 Gazebo、构建、测试、训练或修改生产源码；本回执不是新的 runtime 证据。后续生产 B3 任务须由 instructor 单独发布；本轮仅确认真实接收，不代替 main/overleaf 的 ACK。
+
+## USV-20261020-004 新任务接收（2026-10-20，Asia/Shanghai）
+
+- role=constructor；read_commit=`a13585080c5e50d38d5ad76d13bc66e378d3453d`；contract_version=`RC-20261020-v1 + RC-20261020-v1.1`；active_task=`USV-20261020-004`，状态=`RECEIVED/RUNNING`，不是 DONE/ACCEPTED。
+- 已读取唯一 READY 004、MAIN_MEMORY、RC-v1.1 D5、MAIN-20261020-002、协议/角色协议与 instructor 新回执；002/003/003R 前置均已 ACCEPTED。通信分支比 instructor 提交仅多 overleaf 回执更新，无竞争工程 READY。
+- 当前生产基线复核：`/home/cyz/vrx_ws` 根无有效 Git HEAD，源码 SHA=UNKNOWN、实现提交 NONE；Planner SHA256 `01f672b16cd8c04a59dc5728df9da100ad8794c8e54f6a7f0cbb918c0e5328ea`，experiment_modes `076a355f5eb1dd616794664854fd99fb8889409af6f4081a556239754a05cede`，source/install launch 均 `b835b65920141d68966cf3d664c08e3d0ecf98553c659ec8be546b2fc5f85f21`。研究 main@5f263c6 有既有决策 dirty；独立 VRX humble@dc30ed8d 有既有修改与 world/model，均保留。
+- 已确认旧说法需纠正：远端 platform 不是运行源码；RF 缺失目前会使 B3 fixed-center 返回错误，尚非已完成回退；H/年龄/位移阈值仍 OPEN。有效 prediction fixture 只能证明工程接线，不能宣称 RF 或正式 B3 已验证。
+- 未决冲突：正式 H/预测年龄及重规划阈值、R/τ/B 与 encounter 终态仍交 main；本任务只做 D5 工程门控与失效回退，不推断这些数值。
+- 本人 ACK 仅表示已经接收任务；后续离线、构建、至多一次 Gazebo smoke 按任务合同执行，另以 004 报告提交实际结果。
