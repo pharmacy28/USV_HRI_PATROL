@@ -30,7 +30,7 @@ main发布统筹交接和论文任务，不新增与instructor冲突的工程REA
 - constructor 报告必须区分科学设计、源码存在、离线测试、真实运行、正式比较实验；最终代码/参数改变之后，旧运行只能支持旧版本。
 - instructor 逐项给 ACCEPTED / CHANGES_REQUESTED / BLOCKED；需要修复时发布最小返工或后继任务，不要求违反原任务运行限制。
 - constructor 的 STOP、日志、时间、版本问题首先回 instructor；main 只接收科学口径冲突及完成摘要。
-- 当前工程链按最新原负责人task/review/report/receipt确定，较早STATUS或MAIN_MEMORY不能覆盖较新证据。2026-10-20当前004R=BLOCKED/RUN_CONSUMED，004整体CHANGES_REQUESTED/RUNTIME_PENDING；独立004R2已READY且constructor本人领取为RECEIVED/PRE-FLIGHT，先隔离预检全部PASS并回传脚本hash等准备证据后才可一次新Gazebo。005仍DRAFT、生产基线串行，第一周独立UI/按键/硬件/记录准备继续。不得重领已消费任务或由main另开竞争工程READY。
+- 当前工程链按最新原负责人task/review/report/receipt确定，旧STATUS/MAIN_MEMORY不能覆盖较新证据。2026-10-20在0f2c80e7，instructor已将004R2及004判为限定工程ACCEPTED，复验冻结解除；004R历史保持BLOCKED/RUN_CONSUMED。当前005由instructor按main的手动走查优先决定分阶段更新，先现状入口/说明→用户反馈→小批改动/复验→硬件与记录导出。不得重领已消费任务、继续同类smoke阻挡用户看UI，或由main另开竞争工程READY。
 
 没有新增后台轮询、无限自主运行或跨对话自动唤醒。已授权且已启动的任务内可正常迭代；超出原运行预算由 instructor 写明新的有界任务后继续。用户触发规则仍按 v1，不将协议文件当脚本自动执行。
 
@@ -75,7 +75,7 @@ exploration负责文献事实与证据载体；inspiration据证据与用户讨�
 
 main已实际创建每小时定时任务，见receipts/automation-main.md；创建不等于已后台运行。当前接口无法替另一个既有Work绑定任务，所以instructor/overleaf/exploration/inspiration在本人会话各启用一次接收器并真实登记；constructor本地runner由instructor指导建立，未验证前不称自动执行。旧角色ACK不等于自动化已启用。
 
-main统一跨线调度，instructor仍唯一工程任务发布与review。自动检查/接续不得重跑DONE任务、绕过CHANGES_REQUESTED、增加Gazebo额度或替用户作科研选择。只有真实发布→ACK→报告→review链条闭合才报告端到端通过。当前004仍CHANGES_REQUESTED/RUNTIME_PENDING；004R已BLOCKED/RUN_CONSUMED，004R2严格先预检再按原独立任务预算执行，不因自动化部署补跑。所有状态按最新原负责人证据核对。
+main统一跨线调度，instructor仍唯一工程任务发布与review。自动检查/接续不得重跑DONE任务、绕过CHANGES_REQUESTED、增加Gazebo额度或替用户作科研选择。只有真实发布→ACK→报告→review链条闭合才报告端到端通过。当前004/004R2已限定ACCEPTED，004R历史仍BLOCKED/RUN_CONSUMED；不因自动化部署重跑已完成任务。005优先用户走查，自动接续不替用户签UI验收。所有状态按最新原负责人证据核对。
 
 ## 9. 工作强度与模型建议（2026-10-20用户要求节省token）
 
@@ -90,7 +90,7 @@ main统一跨线调度，instructor仍唯一工程任务发布与review。自动
 | inspiration | GPT-6.1 Sol / medium | 实质研究分歧/反例推演才Astra high；用户未回复不继续后台深思 |
 | overleaf | GPT-6 Luna / medium（常规LaTeX/引文整理） | 概率、公式、端点/统计论证和跨段大修用Sol high |
 
-当前工作量：instructor/constructor集中004R2及不冲突的平台准备；exploration按一个明确证据缺口推进；inspiration按用户问题推进；overleaf只因实质新证据/修订任务更新。没有待办就停止，不为每角色保持活跃制造任务。
+当前工作量：instructor/constructor集中现有一键入口/说明与用户反馈驱动的005准备，不重复004R2；exploration按一个明确证据缺口推进；inspiration按用户问题推进；overleaf只因实质新证据/修订任务更新。没有待办就停止，不为每角色保持活跃制造任务。
 
 执行规则：
 - 先HEAD/差异；相同合同、已读PDF、历史记忆不反复全文载入。换上下文只带目标、当前任务/基线、关键约束、证据路径、下一步。

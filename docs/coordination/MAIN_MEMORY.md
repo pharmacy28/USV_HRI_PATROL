@@ -2,8 +2,8 @@
 
 更新日期：2026-10-20，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-最新统筹补充：main已核对至8a7322cc：constructor在691d673f本人报告004R2隔离预检PASS，244d230d有驱动/清理/20路fixture及脚本hash报告，8a7322cc STATUS为PRE-FLIGHT PASS / GAZEBO NOT STARTED；这是constructor证据，非main亲跑或instructor最终验收。004R仍BLOCKED/RUN_CONSUMED，004整体CHANGES_REQUESTED/RUNTIME_PENDING。main已本人ACK正式Windows桥接c636b7fd并更新第一周计划、发布instructor链交接；跨主机分工已确认，撤回聊天ID请求。RF/Xie论文增量已由main审阅ACCEPTED，精确源码独立编译7页并目视检查，见第20节；不是实验结果或最终投稿验收。工作强度/模型建议见ROLE_PROTOCOL第9节，main定时提示已优化，各Work模型尚未代改。
-论文验收历史依据：5748cf31的R1修订、main当时精确源码独立编译/局部PDF复审，以及3ef5f2fa的004任务/回执/004B索引，详见第12节。当前事实见第1—9与20节；第10—19节保留相应检查时快照及仍有效的分工。此次检查以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
+最新统筹补充：main本人读入0f2c80e709bf682519b6d7d1352290c2520185c1的手动走查交接、004R2/004正式review。instructor已将004R2与004判为限定工程ACCEPTED，004复验基线冻结解除；004R历史仍BLOCKED/RUN_CONSUMED。main本轮只读远端review，未亲跑或重算本地证据。下一阶段起点为用户一键启动现有上位机并自然反馈：现状入口/说明→用户走查→小批UI/按键修改→用户复验→硬件与记录导出。005阶段方向已决定，具体任务仍由instructor唯一维护和派发；不等待005全量完工、RF或同类smoke。见第21节及handoffs/MAIN-TO-INSTRUCTOR-MANUAL-20261020-001.md。RF/Xie论文增量ACCEPTED保持；真实RF/UI/硬件/科学效能仍未验收。
+论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与21节；第10—20节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
 ## 1. 角色与工作目标
 
@@ -11,9 +11,9 @@
 |---|---|---|
 | exploration | 文献整理、版本/原文证据、直接交付inspiration | Xie已接收；本轮main另读1cea3553的Ishii证据笔记/交付增量，按其证据范围接收，不冒称main复读原文。后续按明确论断缺口推进，不扩大主实验 |
 | inspiration | 向用户解释全貌、讨论反例与研究取舍 | 本人ACK=629062c8；已接收合同/第一周计划/Xie证据，DISCUSSION_READY。当前讨论OPEN、尚无新USER_DECIDED；无实质结论时不建空壳笔记 |
-| main | 科学合同、计划优先级、跨线状态与评审 | 接收004R失败review、004R2本人领取及Windows桥接事实；增量统筹，避免重复全量审查 |
-| instructor | 平台设计、唯一工程派发与验收 | 本人review004R=BLOCKED/RUN_CONSUMED，独立004R2 READY先隔离预检；005保持DRAFT，UI/按键/设备/源身份设计继续；RF/PREP合同已本人ACK |
-| constructor | 实际平台实现、测试、报告与本人STATUS | 004R2本人报告PRE-FLIGHT PASS / GAZEBO NOT STARTED（244d230d/691d673f/8a7322cc）；启动前仍核最终source/hash与无竞争runner，沿原READY至多一次新会话；Windows桥接接口接收/核对另待本人回执 |
+| main | 科学合同、计划优先级、跨线状态与评审 | 已本人ACK 0f2c80e7手动走查交接和限定工程验收；确定005从用户体验现状开始，沿instructor链落实 |
+| instructor | 平台设计、唯一工程派发与验收 | 004R2/004已限定ACCEPTED；已ACK Windows桥接。下一步按main阶段决定更新005，先交付真实一键入口/最短说明，再按用户反馈小批实施；本次新回复接收待本人证据 |
+| constructor | 实际平台实现、测试、报告与本人STATUS | 004R2运行报告已获instructor限定ACCEPTED；后继经instructor核对Linux真实一键入口、profile、UI与停止方式，不先整体改UI；新阶段领取及桥接接口核对仍待本人回执 |
 | overleaf | 唯一论文母稿、引用与论证 | 原PAPER-001/R1保持ACCEPTED；RF/Xie增量@214b2cc9经main内容/编译/视觉审阅ACCEPTED，当前7页。后续按实质证据维护，线上Overleaf未核验 |
 
 exploration提供有来源的文献证据；inspiration据此与用户讨论；main统一有依据的新结论和用户明确决定，工程交instructor、母稿交overleaf。用户已明确的第一周方向无需再次批准，助手候选不能自升为合同。main不向constructor另发竞争工程READY。角色名、仓库发布、本人ACK、后台启用、执行和验收必须分别记录。
@@ -53,21 +53,21 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 
 ## 5. 工程事实快照
 
-本轮main读取instructor的004R.review/004R2/receipt（3229e4b8），并增量核对至8a7322cc的constructor预检报告、本人回执与STATUS；预检PASS归constructor报告，main未独立执行或代instructor最终验收。只读远端工程证据，不声称访问实际/home/cyz/vrx_ws、Windows或独立重跑。最新review/独立任务优先于较早STATUS和历史记忆。
+本轮main读取0f2c80e7下instructor的004R2.review、004.review及INSTRUCTOR-TO-MAIN-MANUAL交接。instructor直接核对本地最终hash/原始事件并重算STOP统计，main按该正式review接收工程结论；main未访问实际Linux/Windows工作区或独立重跑。最新原负责人review优先于旧STATUS与历史记忆。
 
 | 工作 | 当前状态 | 证据与限制 |
 |---|---|---|
 | 001静态审计 | DONE / ACCEPTED | 历史审计，不用旧“缺SEARCH”否定后续实现 |
 | 002 / SLIM-004D | instructor ACCEPTED | 预算/STOP/Recorder工程验收，非正式实验 |
 | 003 / 003R | instructor ACCEPTED，限ROS API SEARCH/B2 | 最终sim clock阻断解除；实际UI未观察，非B3/encounter验收 |
-| 004 | CHANGES_REQUESTED / OFFLINE_FIXES_VERIFIED / RUNTIME_PENDING | f884a8ce中instructor核查两项源码修复并独立26 tests通过；完整166/build依constructor报告。最终Planner source/build SHA256=ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84 |
+| 004 | instructor ACCEPTED（限生产B3门控/无模型回退） | 最终Planner source/build SHA256=ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84；004R2最终运行闭合fallback、撤销、直接STOP与Recorder。不是有效RF/正式效能验收 |
 | 004R | instructor BLOCKED / RUN_CONSUMED | 唯一Gazebo已启动，临时START及cleanup错用example_interfaces/SetBool，真实为std_srvs/SetBool；未START。20路空闲零值不是STOP因果安全，旧额度不能重用 |
-| 004R2 | constructor PRE-FLIGHT PASS / GAZEBO NOT STARTED；最终运行待证据 | 244d230d报告实际驱动True/False、拒绝/响应超时、监督器退出码与cleanup/watchdog、20路隔离采集fixture通过，并给最终脚本hash；691d673f本人准备回执，8a7322cc同步STATUS。启动前仍核最终身份/runner，原READY最多一次新会话，无自动补跑 |
-| 第一周平台准备 / 005 | instructor已本人ACK；005为DRAFT，非READY | 与004R2生产基线串行，独立UI/按键/硬件反馈/记录导出准备可继续；显式SEARCH发布入口仍待补缺。新增Windows Unity/Tobii→UDP→Linux单接收→/tobii/gaze整合，源会话/段身份待补，设备未实测，未新增运行额度 |
+| 004R2 | instructor ACCEPTED（限定工程）；运行已完成、额度已消费 | run=448cd4ea97f64161bcaf9d850386bba5。instructor原始证据复核：STOP前20路均非零；STOP后各360条全零、最短11.634358088s，回执至保守屏障间689条亦零。任务活动约2.2s，非长期性能/预算删失验证 |
+| 第一周平台准备 / 005 | USER_WALKTHROUGH_FIRST；任务文件仍DRAFT，待instructor更新 | 004复验冻结解除。先当前版本入口/已知缺口→用户一键走查/自然反馈→小批修改/复验→硬件与可信记录导出。不等待005全量/RF/额外同类smoke；main不另发constructor READY |
 | RF真实来源与训练 | 最小数据合同已发布；真实来源链/数据/模型未验证 | 无模型不阻断准备；无法核验源身份时仍保守回退 |
 | encounter、正式B2/B3与RMST | 未验证/未报告 | 不用工程验收或文本ACCEPTED升级科学结果 |
 
-004旧run=f87fc7b8a1934a52ada1fbc1fd7d4828只支持修复前SEARCH→当前位fallback/CANCEL/STOP/Recorder局部事实；不支持最终返工版本，20路实际推力和NAVIGATE/RELEASE缺口仍未收口，现由instructor独立004R2按预检门槛推进。有效预测仅离线可信fixture，不是真实RF验证。004R原任务的工程预算不是正式B；本轮不追加运行额度。
+004旧run=f87fc7b8a1934a52ada1fbc1fd7d4828仅支持当时版本局部事实；最终修复版本的无模型fallback、CANCEL/NAVIGATE/RELEASE及20路STOP缺口已由004R2及instructor正式review收口。有效预测仍仅离线可信fixture，真实RF来源/模型未验证。004R原失败与耗用保留；004R2完成后不再重复同类smoke作为用户查看UI的前置，本次不增加无人值守运行额度。
 
 002 run=7904539e7ad44213b4baa971245e3bb9，deadline=82.540s、发布=83.000s；0.460s延迟不能延长分析预算。10/10 path STOPPED、20/20 thruster=0为该次证据，encounter_censoring_validated=false。003R最终run=5c84c3736225450eb5d0759cd1498f59，77条相关记录1—44s；邻近位姿差0.0287m，0.024s是Recorder外层差，源plan差0.172s，非精确同步。行政STOP不替代自然预算验收。
 
@@ -90,7 +90,7 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 | 旧说法或风险 | 当前应记为 |
 |---|---|
 | 004D 一直未验收 | 002 已由 instructor ACCEPTED，限报告支持的预算/停止工程闭环 |
-| 仍无SEARCH实现或003R尚未执行 | 003/003R已API级ACCEPTED；UI/B3/encounter仍未验证 |
+| 仍无SEARCH实现或003R尚未执行 | 003/003R已API级ACCEPTED，004最终无模型B3门控/回退也已ACCEPTED；实际UI、有效RF与encounter仍未验证 |
 | 接管/给导航目的地就获得 fixed center | 只有显式 SEARCH 激活；NAVIGATE 撤销搜索责任 |
 | 论文正文路径未知/仅占位，或PAPER-001仍待四项返修 | 母稿已在论文分支；R1已main ACCEPTED，本轮线上Overleaf未同步、线上具体版本未核验 |
 | “少量预测/多模态 + Bayes + 规划”就是创新 | 核验最相近工作的已实现机制，收紧责任层的问题与可检验区别 |
@@ -100,14 +100,14 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 | verified_refs.bib 或 FULLY_READ 代表所有新论断已验证 | 必须记录真实原文版本、页/节/公式、支持范围和不能推出的结论 |
 | 自动通信已经建立跨对话持续调度 | 用户新授权已使main每小时统筹启用；各Work接收器/本地runner仍待真实登记与端到端验证，见AUTOMATION.md |
 | GT只能在评价器使用；b是包含全部人类行为信息的真实后验 | GT仅允许生成器/独立评价器两用途；b是给定几何且忽略动作选择likelihood的sensor-evidence模型 |
-| 离线修复/空闲零值即代表004完成，或004R额度可重用 | 004仍CHANGES_REQUESTED/RUNTIME_PENDING；004R已BLOCKED/RUN_CONSUMED，未START。004R2本人领取不等于预检PASS或运行；STOP安全需原任务规定的有效直接证据 |
+| 离线修复/空闲零值即代表004完成，或004R额度可重用 | 004R仍BLOCKED/RUN_CONSUMED；004R2已实际运行并获instructor限定ACCEPTED，004据最终证据转ACCEPTED。不能倒改旧失败、重用额度或外推UI/有效RF/科学结论 |
 
 本轮只审计可见的记忆载体/产物，不能读取或改写其他对话内部记忆。各角色需提交自己读取的 commit、纠正条目和当前任务回执。旧 idea/研究决策状态.md 的“人工目的地可作固定中心”、旧传感器第二贡献等，与本轮已确认语义冲突时，按用户较新指令与 RC-20261020-v1 处理；不恢复旧语义。原文献结论则不能被研究偏好覆盖，必须回原文核查。
 
 ## 8. 当前优先级与开放事项
 
-1. **平台准备优先**。用户已明确第一周重心为UI、统一按键、现有手柄/眼动/语音及桥接的连接反馈、会话源身份、记录导出和参数化训练入口。计划plans/WEEK1_PLATFORM_PREP_20261020.md、回复handoffs/MAIN-TO-INSTRUCTOR-PREP-20261020-001.md已发布；志愿者数据、RF训练和全部数值冻结不是准备工作的前置。
-2. **004R2先预检，满足门槛后一次有界运行**。004R已BLOCKED/RUN_CONSUMED。constructor已本人报告004R2无Gazebo隔离预检PASS并回传实际驱动/失败退出/清理/采集fixture与脚本hash；8a7322cc快照尚未启动Gazebo。按原READY启动前仍核最终source/hash与无竞争runner，之后至多一次新会话。任何新Gazebo启动即消耗该次额度，无自动补跑。其间继续不依赖生产基线的UI设计、文档与隔离准备，不漂移待复验source/install、不无限加smoke。
+1. **用户手动现状走查优先**。采用用户明确方向：先现有版本精确一键入口/模式/已知缺口和最短说明，让用户现在看UI并自然反馈；不等005全部改完、RF模型/数据或再做同类smoke。第一周仍以UI、按键、设备反馈、源身份、记录导出和训练入口为目标，按反馈分批完成。
+2. **005按阶段推进，004冻结解除**。004R2/004已由instructor限定ACCEPTED；不继续领取已完成任务。instructor唯一更新005的旧PRODUCTION_BLOCKED_BY_004R状态并安排最小入口核对/说明，先不整体改UI。用户走查已获授权，无需重复批准；自动运行与主动联调仍按工程实际范围安排，不把现有验收当新增无人值守预算。
 3. **依赖顺序**。可操作/可记录/可导出平台→后续志愿者实际采样→RF开发训练/按组验证→模型与参数冻结→另行安排pilot/正式B2/B3评价。当前不招募、不启动正式采集/训练；工程联调样例不称志愿者数据或效能证据。
 4. **RF接口已有合同**。decisions/RF-DATA-CONTRACT-v1.md明确人控艇t+H二维位置、最少运动状态/当前操纵、因果可用性和源身份、先按会话/参与者分组再造窗口、开发与正式评估分离。instructor不需等main再次给同一数据语义；具体接口/键位按实际资产设计。硬件联动不把眼动/语音自动扩为主实验特征。Windows Unity/Tobii桥接按第19节现有单接收链纳入准备，先核实真实收包/发布/记录与来源身份，不能用Linux接收时刻补写成Windows采样身份。
 5. **文献与论文**。exploration的Xie证据已由main接收，inspiration也已本人ACK接收，当前讨论OPEN、无新增研究决定。保留B2/B3信息价值主线，不因文献包新增机制对照。PAPER-001 R1已ACCEPTED，不重做返修/全文审计；overleaf据后续真实工程证据增量维护。
@@ -115,9 +115,9 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 
 ## 9. 当前交接与本人接收
 
-- main统筹入口：handoffs/MAIN-20261020-003.md；本轮增量读入至8a7322cc，新增当前统筹见第19节。instructor与inspiration对MAIN-003均已有本人ACK；不一概称全角色接收完成。
+- main统筹入口：handoffs/MAIN-20261020-003.md；本轮增量读入0f2c80e7，当前决定见第21节及MAIN-TO-INSTRUCTOR-MANUAL-20261020-001。main本人ACK已在该回复合并登记；新回复的instructor接收/constructor领取尚无本人证据，不因发布称送达执行。
 - instructor RF请求f884a8ce：main已本人ACK于receipts/main-rf-20261020-001.md，合同及MAIN-TO-INSTRUCTOR-RF回复已发布；PREP请求8cb9879f：main已本人ACK于MAIN-TO-INSTRUCTOR-PREP，计划已发布。instructor已在848965a1本人ACK两份回复、RF-DATA-CONTRACT-v1、第一周计划及MAIN-003；不再待重复合同。005草案也在同提交发布，保持DRAFT。
-- constructor已完成004离线返工，004R已报告BLOCKED/RUN_CONSUMED并获instructor对应review；c7a95345已更正原manifest hash转录，未改原记录。7ce60e3c本人ACK独立004R2（read_commit=3229e4b8），87364b3b将STATUS同步RECEIVED/PRE-FLIGHT；随后244d230d/691d673f/8a7322cc已报告并本人回执预检PASS，快照未启动新Gazebo。Windows桥接消息接收另待其本人ACK，main未代写其文件。
+- constructor已完成004离线返工及004R2最终运行，0f2c80e7包含instructor对004R2/004的限定ACCEPTED；004R历史失败保留。此前PRE-FLIGHT PASS / GAZEBO NOT STARTED是旧快照。instructor在本次手动交接中确认已ACK Windows桥接并纳入005；constructor的Linux单接收接口核对仍以本人报告为准。
 - overleaf在c3c75966本人ACK PAPER-001最终ACCEPTED、MAIN-003、RF合同、第一周计划与Xie证据（通信read_commit=87364b3b）；不再标该接收缺口。其RF/Xie新增论文内容已在本轮审查ACCEPTED，见第20节；线上Overleaf版本仍未核实。
 - exploration本人ACK及交付=1b5067ea，main本轮已实际读取并接收；不再标“exploration待本人ACK”。inspiration在629062c8已本人记录接收EX-XIE-01—05；overleaf亦已在c3c75966本人记录读入。
 - inspiration：receipts/inspiration-20261020.md已由本人在629062c8提交，read_commit=c821fbb9；main已读并确认BASELINE_RECEIVED / DISCUSSION_READY。当前问题OPEN、无新增USER_DECIDED，因此尚无INSPIRATION_NOTES是符合协议的停止点，不再作为接收缺口。其本人声明本次由用户消息触发，未建立/验证定时接收器。
@@ -254,3 +254,17 @@ main已读paper@214b2cc96bfb4fec68388322d46b901ed8378b4a的报告、精确main.t
 写前已读1cea3553的Ishii新增证据与交付：main接收其已搜/未来区域/问答改变候选、组合实验及对话增量限制的报告，不冒称本轮亲读该原PDF或代inspiration ACK，不扩主实验、不另派全文审计。按工作强度规则到此停止扩查。
 
 写前读入244d230d预检报告、691d673f本人准备回执及8a7322cc STATUS：004R2为constructor报告PRE-FLIGHT PASS / GAZEBO NOT STARTED。隔离实际驱动/退出码/cleanup/watchdog与20路合成fixture证据不能升级成真实START/STOP或004最终验收；仍按唯一READY启动前核最终身份与runner、至多一次新会话、无自动补跑。main未运行仿真或代instructor签工程ACCEPTED。
+
+## 21. main本人ACK：先由用户走查现有上位机（2026-10-20）
+
+read_commit=0f2c80e709bf682519b6d7d1352290c2520185c1；contract_version=RC-v1 + RC-v1.1 + RF-DATA-CONTRACT-v1（均不变）；本次active_task为跨线阶段裁决，不是constructor工程READY。
+
+已读instructor手动走查交接及004R2/004正式review。接受用户本轮明确要求：由用户一键启动现有仿真平台、判断上位机是否合理并给反馈，再让instructor指导constructor。纠正旧理解：不是先完成005/训练RF/继续smoke才允许用户看到UI；004复验串行冻结现已解除。限定工程ACCEPTED归instructor本地审查，main只核对远端文件。
+
+执行次序及交付见handoffs/MAIN-TO-INSTRUCTOR-MANUAL-20261020-001.md。constructor经instructor先核实用户已有桌面入口或脚本的精确命令、实际profile、显示环境与设备启停、停止/退出方式并保留版本标识；当前用户要求的是现状走查，不先更换模式或大改界面。已知run_vrx.sh start包含Qt；--research-core排除UI/硬件，不作上位机走查；--headless只关Gazebo窗口；历史默认h5_command_aware不冒称当前SEARCH/B2/B3模式。
+
+用户可先不按全局START评价布局、地图/文字、选艇/状态/按钮语义与设备反馈；缺失SEARCH入口如实说明，不以CLI代点。截图或自然文字即可，instructor统一整理并小批实施，用户复验后推进手柄/Windows桥接/语音与记录导出。主动操纵联调说明所选模式、停止收尾与实际范围；不把简单查看UI变成长审批或自动增加无人值守Gazebo次数。硬件/源身份缺口继续保留，不扩科学模态。
+
+main本轮仅更新自有记忆/计划/统筹回复及协议中的过时快照，不改instructor的005任务/review或constructor STATUS，不运行平台。005文件仍DRAFT，instructor按本决定维护阶段和必要工程发布，不需再向用户申请同一方向批准。新回复发布不等于instructor/constructor已收到或执行。
+
+写前并发核对：HEAD已推进至aa9e8e3f3c051907af95ba7bf02280d4c1410e53；相对0f2c80e7仅constructor的STATUS与本人receipt变化，已读并保留。constructor已本人接收004R2/004正式ACCEPTED，005仍DRAFT未领取；该回执不等于收到本次main阶段回复或已核对用户启动入口。本次四个目标路径无并发改动。

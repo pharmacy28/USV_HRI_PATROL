@@ -8,6 +8,17 @@
 
 原计划第一周的观测简化/搜索流程整合仍保留；已验收的底层/API工作作为基础复用，不重做整个平台审计。API通过不能替代实际UI点击和设备验证。第一周完成度按操作与记录流程验收，不按“测试数越来越多”代替交付。
 
+## 当前第一步：用户手动走查现有版本（main已决定）
+
+依据INSTRUCTOR-TO-MAIN-MANUAL-20261020-001及004R2/004正式review@0f2c80e709bf682519b6d7d1352290c2520185c1。用户希望现在一键启动现有上位机、自然反馈，再指导建设；main本人接受，回复见handoffs/MAIN-TO-INSTRUCTOR-MANUAL-20261020-001.md。以下整周交付不是首次查看UI的前置。
+
+1. **现状入口与最短说明**：instructor安排constructor核实用户实际桌面/脚本入口、精确命令/profile/显示与设备参数、版本标识、停止/退出方式及已知缺口。先说明当前版本，不先重做UI、不暗换模式。
+2. **用户一键走查**：先看布局、地图/字号、选艇、控制权/SEARCH/mission状态、按钮语义和设备反馈，可先不START。截图或文字自然反馈即可，不要求长表、不要求向多个角色重复转述。
+3. **小批修改与用户复验**：instructor把反馈整理为缺陷、使用偏好、需解释项，按理解清楚的优先问题指导constructor；只在真实歧义时追问。每批给改动与复验入口，避免第一次展示前整体大改。
+4. **硬件与记录导出**：随后逐项联调实体按键、手柄、Windows眼动单接收链、语音、可信记录/导出和训练入口。可继续不冲突的只读核对；真实联调按instructor的具体范围与停止收尾进行。
+
+不等待RF数据/模型、005全量完成或额外同类smoke；用户手动走查已有本轮授权，不要求重复批准。run_vrx.sh start含Qt，但真实用户入口须本地核对；--research-core会关闭UI/硬件，不能用来走查；--headless只关闭Gazebo窗口，默认h5_command_aware须如实说明，不冒称新的SEARCH/B2/B3模式。缺失SEARCH按钮列明，不用ROS CLI代替用户点击。
+
 ## 本周最小交付
 
 | 工作 | 必须交付 | 验收证据/当前限制 |
@@ -23,11 +34,11 @@
 
 硬件接入/可记录不改变RF主线输入：当前最小候选是运动状态与当前操纵，眼动/语音不自动升级为主实验必需特征。可选设备失效要如实显示和记录，不能让模型或UI暗中补值。
 
-## 与当前004R2的衔接
+## 与004R2收口后的衔接
 
-004离线两项修复已instructor核查，26项直接测试为其亲跑，完整166/build依constructor报告；整体仍CHANGES_REQUESTED / OFFLINE_FIXES_VERIFIED / RUNTIME_PENDING。
-004R已因临时START/cleanup服务类型错误BLOCKED/RUN_CONSUMED，未START；20路空闲零值不等于STOP安全。独立004R2由instructor发布READY，constructor在7ce60e3c本人领取为RECEIVED/PRE-FLIGHT；全部无Gazebo隔离实际驱动预检PASS并回传脚本hash等准备证据后，才可按原任务至多一次新会话，无自动补跑。
-004R2在途时可进行UI/键位/硬件资产核对与设计、隔离离线导出工具；不同时改动其待复验生产source/install。收尾后工程重心转向本计划。若有运行阻塞，由instructor记录并安排互不冲突的准备工作，不能无限加smoke或让所有UI设计等待RF。
+004R2与004已由instructor正式ACCEPTED（限定无模型B3门控/回退工程），review在0f2c80e7；其直接核最终hash与原始事件、重算20路STOP后各360条零值，最短11.634358088s。main读取review，不冒称独立本地复验。004复验冻结解除；004R历史失败/额度耗用保留，004R2额度已消费且完成，不再将同类smoke设为用户看UI的前置。
+
+005原文件仍DRAFT且旧PRODUCTION_BLOCKED_BY_004R文字已过时，由instructor本人按本阶段决定更新；main不覆盖工程任务或新增竞争READY。用户当前查看现状已授权，constructor后继具体工程工作沿instructor链安排；本次不新增无人值守运行预算，不把底层通过等同UI/硬件/真实RF/科学效能已验收。
 
 ## 后续依赖
 
@@ -46,7 +57,7 @@ H、有效年龄/缺测/重规划阈值、R/tau/B、具体人数/会话数和正
 
 ## Windows Unity/Tobii桥接纳入（main本人ACK，2026-10-20）
 
-依据：reports/WINDOWS-BRIDGE-20261020-001.md@c636b7fd11c6daabb5c1287ff823b2c0b1251fe7。main已读完整报告；接受其LOCAL_AUDIT_COMPLETE / LINUX_INTEGRATION_PENDING边界，不将本地文件存在或进程可见记为设备/端到端通过。工程接口交接见handoffs/MAIN-TO-INSTRUCTOR-BRIDGE-20261020-001.md，沿instructor→constructor原链；005仍DRAFT，不新增竞争READY或运行额度。
+依据：reports/WINDOWS-BRIDGE-20261020-001.md@c636b7fd11c6daabb5c1287ff823b2c0b1251fe7。main已读完整报告；接受其LOCAL_AUDIT_COMPLETE / LINUX_INTEGRATION_PENDING边界，不将本地文件存在或进程可见记为设备/端到端通过。工程接口交接见handoffs/MAIN-TO-INSTRUCTOR-BRIDGE-20261020-001.md，沿instructor→constructor原链；005阶段按上述用户走查优先落实，instructor已在0f2c80e7手动交接中本人ACK桥接；constructor接口核对仍待本人证据。不新增竞争READY或无人值守运行额度。
 
 生产整合目标：Windows Unity/Tobii采集→UDP 15555→Linux现有单接收→/tobii/gaze→UI/Recorder。仓库旧双LSL链仅作历史参考，不恢复或复制覆盖生产环境。Linux实际接收器路径/source-install身份/消息字段及发布者数量由constructor按instructor安排核对。
 
@@ -58,4 +69,4 @@ H、有效年龄/缺测/重规划阈值、R/tau/B、具体人数/会话数和正
 | 来源与记录 | 包缺可信session/epoch/vehicle/authority等源身份，不接收端倒填成RF证据；保留代码/DLL hash、配置、无效/缺测/重复/重启与身份缺失状态 |
 | 分层联调证据 | 同次会话逐层核对Windows→UDP→ROS→UI→Recorder及失效/恢复和导出；当前有效采样、Linux实时接收、映射和完整导出均未验证 |
 
-眼动接入不自动成为RF主实验必需特征；硬件/UI/记录框架准备继续，不等待志愿者数据、训练模型或最终H。只读核对/设计可先进行，生产变更与004R2串行，现场运行仍由instructor明确范围。
+眼动接入不自动成为RF主实验必需特征；硬件/UI/记录框架准备继续，不等待志愿者数据、训练模型或最终H。004R2复验冻结已解除；只读核对可继续，生产改动按用户反馈分批进行，现场主动联调仍由instructor明确范围，不阻塞首次查看现状。
