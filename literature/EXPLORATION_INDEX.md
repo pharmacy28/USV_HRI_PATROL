@@ -109,3 +109,9 @@ P1/P2/P3是本次整理的讨论优先级，不是创新性分数、全文核验
 EXP-002本轮升级 **FULL_TEXT_REVIEWED**：7页已读，第2/3/6页目视复核，正式PDF与Crossref元数据匹配；代码未检查/未运行。通信读入 `c821fbb92c3e3cd6d422f8c68a1a34e0952c74ac`；论文仍 `f8de4da17dbc3cc70eeedca409376c530cf9547b`。见[EX-HEI-01—06证据笔记](related_work_notes/EXPLORATION-20261020-Heintzman2021.md)。
 
 预计地面搜索者路径进入GP风险/测量模型、优化UAV整条轨迹；另有独立失踪者运动模型。opt/sweep/rc比较组合策略，未隔离本项目current/future-anchor因素；图6实线是式(6)综合目标，不是纯风险或encounter时间。本项目B2/B3也不能证明优于该GP规划。2020前序版不混写；[19]完整模型/代码、原始统计与等价撤销fallback缺口保留。46作品/22PDF/17正文引文不变，已有Xie核验不覆盖，其余记录不升级。
+
+## Ishii2023 增量核验（2026-10-20，exploration）
+
+EXP-004升级 **FULL_TEXT_REVIEWED**：正式版8页亲读，页4/5/7目视；元数据/哈希匹配，代码未检查或运行。通信 `b758f6dd1906a2db8213f9b9f7f5f1d14e1f8ed0`，论文 `f8de4da17dbc3cc70eeedca409376c530cf9547b`。见[EX-ISH-01—07证据笔记](related_work_notes/EXPLORATION-20261020-Ishii2023.md)。
+
+已搜路线估计、未来桌/frontier序列、歧义问答共同更新标签并排除机器人候选目标。组合对照不隔离当前/未来位信息；对话增量未显著且有接近成本。B2/B3的全域责任generator是机制比较轴，不证明优于原作。IEEE页1841–1848与CVF开放版1849–1856分开；恢复/取消实现、原始统计和代码仍有缺口。46/22/17计数不变，其他作品状态不升级。

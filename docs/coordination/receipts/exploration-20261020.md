@@ -35,3 +35,19 @@
 最终发布前读取 `15eaba47faef09d9bfcfe39be18fa8d60bcd44f1`：相对fc99afb仅constructor自有STATUS刷新，已读并保留，确认004R仍RECEIVED/PREPARING、无新运行；本轮五路径无冲突。发布以该树为父，不覆盖其STATUS。
 
 接口首次更新失败后重新核对HEAD=`90f7cac2f9f3920dbc55b5ff116b4094bc9d5b9e`；新增仅main自有MAIN_MEMORY和MAIN-003的接收状态同步，已读相关增量，无本轮路径冲突。研究合同不变，main现已确认instructor/inspiration ACK及004R PREPARING；最终以90f7cac树为父保留发布，取代上条拟定父提交。首次未发布的Git对象不当作成功交付。
+
+## Ishii2023 接续ACK与实质交付
+
+- role=exploration；read_commit=`b758f6dd1906a2db8213f9b9f7f5f1d14e1f8ed0`；paper_read_commit=`f8de4da17dbc3cc70eeedca409376c530cf9547b`。已读最新MAIN_MEMORY/相关协议差异、004R新报告/STATUS/constructor回执及现行论文Ishii段，沿RC-v1/v1.1、RF数据合同和MAIN-003职责；本轮用户授权Ishii原文核验。
+- 状态纠偏：MAIN_MEMORY仍有004R准备快照，较新004R报告为BLOCKED/RUN_CONSUMED，临时动作脚本服务类型错误、未START，空闲推进器被动零不证明活动→STOP因果；不代instructor验收、不补跑。第一周准备优先、005 DRAFT，所有科研OPEN保持。
+- 本轮EXP-004 FULL_TEXT_REVIEWED：正式8页含参考文献；页4/5/7目视，元数据/哈希核对；CVF开放版只补版本声明/首末页，页码不同已区分。EX-ISH-01—07亲读证据不冒充历史RW-11或阅读卡。
+- 结论：已搜路线估计、未来区域序列和问答消歧共同改变标签/候选目标；组合实验未隔离B2/B3因素。对话额外收益未显著、接近移动15.6s，不能宣称已提速。本稿全域责任分区与原作候选排除有机制区别，但未证明优越性。现行母稿§II-B基本一致，不改稿。
+- 缺口：标签几何/恢复/中断、代码/原始数据/统计与重叠归一化、两版diff/勘误；没有代码检查/运行或复现实验。只更新索引/catalog/新笔记/交付入口/本人ACK五路径。旧Xie已由main和inspiration接收，本轮Ishii及Heintzman包的他方接收尚无新本人证据。
+
+### Ishii包写前并发核对
+
+写前读取 `87364b3ba616ab4925634a2d45d9fec4a3a0ae4f`，相对首读六个他人路径变更已读完整diff并保留，五个目标路径无冲突。004R已instructor正式BLOCKED/RUN_CONSUMED；新004R2为先隔离预检的READY，constructor本人RECEIVED/PRE-FLIGHT、尚无新运行，原manifest转录更正已读，不据旧记忆扩权或称通过。005仍DRAFT。46唯一ID/22PDF计数、原PDF哈希、七项claim与8页读取范围及diff空白检查通过。
+
+首次接口更新期间HEAD前进至 `c3c75966e5bcb85cc81c3f17fe195d04628430e5`；已读新增Windows桥接报告与overleaf本人ACK两路径，未改本轮五路径。桥接仅接口审计/现场待验，overleaf已本人接收Xie；不据此声称新Ishii/Heintzman包已接收。以c3c7596完整树为父保留其内容后发布，首次候选未发布不记交付成功。
+
+再次并发复核至 `f093537abb1abea2c2d0b73b9f3a010a656308dc`：新增main统筹/桥接计划和ROLE_PROTOCOL§9增量，五个本轮目标路径无变。按新节约规则仅核对差异/相关内容，不扩检索、子代理或定时任务；本次具体原文核验仍按用户请求完成。保留其完整树，最终父提交改为f093537；研究定义与本证据结论不变。

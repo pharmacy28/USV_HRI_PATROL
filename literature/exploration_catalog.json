@@ -324,7 +324,8 @@
         "REPO_CATALOG@c98bbc71a5e3d3d75b612163c7a6d26f5eb8447d"
       ],
       "source_urls": [
-        "https://doi.org/10.1109/ICCVW60793.2023.00199"
+        "https://doi.org/10.1109/ICCVW60793.2023.00199",
+        "https://openaccess.thecvf.com/content/ICCV2023W/ACVR/papers/Ishii_Enhancing_Human-Robot_Collaborative_Object_Search_Through_Human_Behavior_Observation_and_ICCVW_2023_paper.pdf"
       ],
       "repository_pdf": {
         "path": "literature/pdfs/Ishii2023Enhancing.pdf",
@@ -344,7 +345,7 @@
           "legacy_tag": "FULLY_READ"
         }
       ],
-      "current_pass": "CATALOG_RECONCILED; no new full-paper audit",
+      "current_pass": "FULL_TEXT_REVIEWED; exploration 2026-10-20; 8-page IEEE proceedings PDF; pages 4/5/7 visually checked; no code inspection or execution",
       "audit_rows": [
         {
           "id": "RW-11",
@@ -355,12 +356,63 @@
           "source": "https://github.com/pharmacy28/USV_HRI_PATROL/blob/f8de4da17dbc3cc70eeedca409376c530cf9547b/paper/manuscript/RELATED_WORK_AUDIT_20261020.md"
         }
       ],
-      "notes": [],
+      "notes": [
+        "Exploration亲读：过去/未来路线标签影响自身候选搜索目标；问答消歧后更新地图/行动。过去估计+未来预测的组合对照不隔离B2/B3信息因素；对话增量未显著、接近平均15.6s有成本。正式与CVF页码分开记录，不推断永久belief删除。"
+      ],
       "priority": "P1",
       "topic": "行为与主动询问",
       "record_id": "EXP-004",
       "in_current_manuscript": true,
-      "primary_url": "https://doi.org/10.1109/iccvw60793.2023.00199"
+      "primary_url": "https://doi.org/10.1109/iccvw60793.2023.00199",
+      "exploration_review": {
+        "date": "2026-10-20",
+        "role": "exploration",
+        "read_commit": "b758f6dd1906a2db8213f9b9f7f5f1d14e1f8ed0",
+        "paper_commit": "f8de4da17dbc3cc70eeedca409376c530cf9547b",
+        "evidence_level": "FULL_TEXT_REVIEWED",
+        "metadata_status": "METADATA_CHECKED",
+        "abstract_status": "ABSTRACT_CHECKED",
+        "pdf_acquired": true,
+        "pdf_sha256": "c86fc333d347d6ae9eddc21f236cc4f188ce039621cdb0622a657e79b398a359",
+        "pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "visually_checked_pages": [
+          4,
+          5,
+          7
+        ],
+        "metadata_sources": [
+          "IEEE PDF pp.1841-1848",
+          "https://api.crossref.org/works/10.1109/ICCVW60793.2023.00199",
+          "https://openaccess.thecvf.com/content/ICCV2023W/ACVR/papers/Ishii_Enhancing_Human-Robot_Collaborative_Object_Search_Through_Human_Behavior_Observation_and_ICCVW_2023_paper.pdf"
+        ],
+        "version_status": "IEEE proceedings pp.1841-1848; CVF accepted open version pp.1849-1856; no full text diff or exhaustive correction audit",
+        "code_inspected": false,
+        "code_run": false,
+        "note": "literature/related_work_notes/EXPLORATION-20261020-Ishii2023.md",
+        "claim_ids": [
+          "EX-ISH-01",
+          "EX-ISH-02",
+          "EX-ISH-03",
+          "EX-ISH-04",
+          "EX-ISH-05",
+          "EX-ISH-06",
+          "EX-ISH-07"
+        ],
+        "unresolved": [
+          "predicted-label geometry and invalidation/recovery implementation not code-checked",
+          "raw data, counterbalancing, statistical methods and overlap normalization",
+          "full version diff/correction audit; no code execution"
+        ]
+      }
     },
     {
       "identity": "10.1007/s12369-023-01067-0",
