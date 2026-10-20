@@ -111,3 +111,10 @@
 - `RUNNING / R3_CANDIDATE_NOT_DEPLOYED`；本地`src/workspace/candidates/USV_20261020_005_R3/`九文件/安全切换/README，报告`docs/coordination/reports/USV-20261020-005.md`。生产仍R1；本轮未停止/重启或改写用户进程，运行树根Git HEAD UNKNOWN，实现提交NONE。
 - 授权同艇FPV窗口如报告：源、relay、Qt都有墙钟降速且源仿真Hz低于生成30Hz；另一个探针重叠约17秒。R3 relay/Qt burst/latest与33ms相位直接反例旧FAIL新PASS，17项离线测试、隔离两包构建PASS；九文件fake-root切换故障注入PASS。源Gazebo/bridge性能、R3真实FPS、08–10恢复仍OPEN/NOT_VALIDATED。
 - 条件切换一条命令及持久日志见README；当前仍活跃会话不部署。后继独立核默认detector关闭与四传感器真实接口，不把黄色候选或占位图作为科学探测。
+
+
+## 005R4 Constructor 本人隔离交付回执（2026-10-20 Asia/Shanghai）
+
+- role=constructor；read_commit=`c29cbfa7cc942c4ab3ebe36cd89aba9f513c5984`；合同`USV-20261020-005R4 READY / RC-20261020-v1/v1.1`。本人状态`ISOLATED_READY / RUNTIME_NOT_VALIDATED`，不是自签DONE/ACCEPTED。详情在`docs/coordination/reports/USV-20261020-005.md`及本地`src/workspace/candidates/USV_20261020_005_R4/README.md`。
+- 11文件R1→R4精确候选与安全切换已持久化；两项旧版直接反例FAIL、新候选PASS，隔离相关82+GT7 PASS、最终5包隔离构建PASS、假根live/哈希/失败回滚/成功回退PASS。生产root Git HEAD UNKNOWN、实现提交NONE；research main与VRX humble既有dirty/world/model/录制保留，生产仍R1，无Gazebo或用户会话改动。
+- 四真实传感器与科学概率合同仍待main；R4只默认禁视觉detector，不将视频30仿真Hz当0.25仿真Hz科学机会/4秒belief更新。真实UI黄色候选消失、FPV、10艇资格、硬件和正式试验均NOT_VALIDATED。需用户正常结束会话后按README受控切换，再由instructor安排有界复验；当前不自动部署。
