@@ -2,18 +2,18 @@
 
 更新日期：2026-10-20，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-最新统筹补充：main本人读入0f2c80e709bf682519b6d7d1352290c2520185c1的手动走查交接、004R2/004正式review。instructor已将004R2与004判为限定工程ACCEPTED，004复验基线冻结解除；004R历史仍BLOCKED/RUN_CONSUMED。main本轮只读远端review，未亲跑或重算本地证据。下一阶段起点为用户一键启动现有上位机并自然反馈：现状入口/说明→用户走查→小批UI/按键修改→用户复验→硬件与记录导出。005阶段方向已决定，具体任务仍由instructor唯一维护和派发；不等待005全量完工、RF或同类smoke。见第21节及handoffs/MAIN-TO-INSTRUCTOR-MANUAL-20261020-001.md。RF/Xie论文增量ACCEPTED保持；真实RF/UI/硬件/科学效能仍未验收。
-论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与21节；第10—20节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
+最新统筹补充：main已本人读取cac0e02e10539768c6a12da25df48fe972543e34的005第一阶段READY与首轮UI反馈交接，并增量核对至4e1fcdf2dd0840e722eeb42b8516c1d84635e468；79226670已有005阶段性RUNNING报告。constructor已本人领取RECEIVED/RUNNING，报告先向本聊天交付默认启动说明并实际启动三名只读子agent（UI/按键、性能、语音/眼动数据流）；尚无实测延迟/真实设备复验，未改生产代码或自动运行Gazebo/START/操纵/STOP。用户总体严重卡顿优先于热图平滑，语音易失败/眼动延迟先分层定位，小修后用户复验。inspiration已获解释请求的发送/送达报告，但本人接收与解释完成待证据；按RF合同直接解释训练链，不先反问扩线。004/004R2限定ACCEPTED保持；UI/硬件可用、真实RF数据模型、科学效能不随之升级。见第22节；本轮只更新主记忆，不重复工程派发。
+论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与22节；第10—21节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
 ## 1. 角色与工作目标
 
 | 角色 | 负责 | 当前状态与下一步 |
 |---|---|---|
 | exploration | 文献整理、版本/原文证据、直接交付inspiration | Xie已接收；本轮main另读1cea3553的Ishii证据笔记/交付增量，按其证据范围接收，不冒称main复读原文。后续按明确论断缺口推进，不扩大主实验 |
-| inspiration | 向用户解释全貌、讨论反例与研究取舍 | 本人ACK=629062c8；已接收合同/第一周计划/Xie证据，DISCUSSION_READY。当前讨论OPEN、尚无新USER_DECIDED；无实质结论时不建空壳笔记 |
-| main | 科学合同、计划优先级、跨线状态与评审 | 已本人ACK 0f2c80e7手动走查交接和限定工程验收；确定005从用户体验现状开始，沿instructor链落实 |
-| instructor | 平台设计、唯一工程派发与验收 | 004R2/004已限定ACCEPTED；已ACK Windows桥接。下一步按main阶段决定更新005，先交付真实一键入口/最短说明，再按用户反馈小批实施；本次新回复接收待本人证据 |
-| constructor | 实际平台实现、测试、报告与本人STATUS | 004R2运行报告已获instructor限定ACCEPTED；后继经instructor核对Linux真实一键入口、profile、UI与停止方式，不先整体改UI；新阶段领取及桥接接口核对仍待本人回执 |
+| inspiration | 向用户解释全貌、讨论反例与研究取舍 | 用户/instructor报告已发送并送达训练用途解释请求；新请求本人接收/解释完成待证据。下一次直接按RF合同讲清操纵→标签→训练→预测→责任比较，不先反问或扩线 |
+| main | 科学合同、计划优先级、跨线状态与评审 | 已本人ACK cac0e02e UI交接与005 READY，并核对bf78ed55 constructor领取；只同步记忆和当前优先级，不重复派发 |
+| instructor | 平台设计、唯一工程派发与验收 | 已ACK前次main手动走查决定；cac0e02e正式发布005首阶段READY：先启动说明、只读分层定位/小修；无自动Gazebo/START/操纵/STOP，保持唯一工程派发 |
+| constructor | 实际平台实现、测试、报告与本人STATUS | bf78ed55本人领取，79226670已交005阶段性RUNNING报告；启动说明/3只读子agent有回执。当前源码线索/性能假设，实测指标UNKNOWN，无生产修复；非DONE/ACCEPTED |
 | overleaf | 唯一论文母稿、引用与论证 | 原PAPER-001/R1保持ACCEPTED；RF/Xie增量@214b2cc9经main内容/编译/视觉审阅ACCEPTED，当前7页。后续按实质证据维护，线上Overleaf未核验 |
 
 exploration提供有来源的文献证据；inspiration据此与用户讨论；main统一有依据的新结论和用户明确决定，工程交instructor、母稿交overleaf。用户已明确的第一周方向无需再次批准，助手候选不能自升为合同。main不向constructor另发竞争工程READY。角色名、仓库发布、本人ACK、后台启用、执行和验收必须分别记录。
@@ -63,7 +63,7 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 | 004 | instructor ACCEPTED（限生产B3门控/无模型回退） | 最终Planner source/build SHA256=ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84；004R2最终运行闭合fallback、撤销、直接STOP与Recorder。不是有效RF/正式效能验收 |
 | 004R | instructor BLOCKED / RUN_CONSUMED | 唯一Gazebo已启动，临时START及cleanup错用example_interfaces/SetBool，真实为std_srvs/SetBool；未START。20路空闲零值不是STOP因果安全，旧额度不能重用 |
 | 004R2 | instructor ACCEPTED（限定工程）；运行已完成、额度已消费 | run=448cd4ea97f64161bcaf9d850386bba5。instructor原始证据复核：STOP前20路均非零；STOP后各360条全零、最短11.634358088s，回执至保守屏障间689条亦零。任务活动约2.2s，非长期性能/预算删失验证 |
-| 第一周平台准备 / 005 | USER_WALKTHROUGH_FIRST；任务文件仍DRAFT，待instructor更新 | 004复验冻结解除。先当前版本入口/已知缺口→用户一键走查/自然反馈→小批修改/复验→硬件与可信记录导出。不等待005全量/RF/额外同类smoke；main不另发constructor READY |
+| 第一周平台准备 / 005 | READY / PHASE_1_STARTUP_AND_TARGETED_DIAGNOSIS；constructor RECEIVED/RUNNING | cac0e02e任务、bf78ed55本人回执。启动说明先交；总体卡顿优先于热图，语音/眼动分层诊断。主agent统合三只读子agent，阶段无自动新Gazebo/START/操纵/STOP，用户已有会话只读监测一次≤15分钟；尚无真实改善证据 |
 | RF真实来源与训练 | 最小数据合同已发布；真实来源链/数据/模型未验证 | 无模型不阻断准备；无法核验源身份时仍保守回退 |
 | encounter、正式B2/B3与RMST | 未验证/未报告 | 不用工程验收或文本ACCEPTED升级科学结果 |
 
@@ -106,21 +106,21 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 
 ## 8. 当前优先级与开放事项
 
-1. **用户手动现状走查优先**。采用用户明确方向：先现有版本精确一键入口/模式/已知缺口和最短说明，让用户现在看UI并自然反馈；不等005全部改完、RF模型/数据或再做同类smoke。第一周仍以UI、按键、设备反馈、源身份、记录导出和训练入口为目标，按反馈分批完成。
-2. **005按阶段推进，004冻结解除**。004R2/004已由instructor限定ACCEPTED；不继续领取已完成任务。instructor唯一更新005的旧PRODUCTION_BLOCKED_BY_004R状态并安排最小入口核对/说明，先不整体改UI。用户走查已获授权，无需重复批准；自动运行与主动联调仍按工程实际范围安排，不把现有验收当新增无人值守预算。
+1. **首轮反馈已到，先现状说明与总体可操作性**。用户总体严重卡顿、语音稍偏差即识别/执行不了、眼动延迟大；热图不丝滑其次。constructor本人报告已先给真实启动说明，后续分层定位总体响应/输入真实性、按证据小修/用户复验，不先整体改UI。截图只支持静态布局/profile，不证明帧率、延迟或根因。
+2. **005首阶段已READY且本人领取，不重复派工**。instructor在cac0e02e发布唯一任务；constructor在bf78ed55本人报告RECEIVED/RUNNING、三只读子agent已启动，分别UI/按键、性能、语音/眼动数据流。主agent先说明/后统合，避免共享文件覆盖；无自动Gazebo/START/操纵/STOP、无训练或清理用户会话。任务允许既有用户会话一次≤15分钟低开销只读监测；正式运行/实测结论仍须证据。
 3. **依赖顺序**。可操作/可记录/可导出平台→后续志愿者实际采样→RF开发训练/按组验证→模型与参数冻结→另行安排pilot/正式B2/B3评价。当前不招募、不启动正式采集/训练；工程联调样例不称志愿者数据或效能证据。
 4. **RF接口已有合同**。decisions/RF-DATA-CONTRACT-v1.md明确人控艇t+H二维位置、最少运动状态/当前操纵、因果可用性和源身份、先按会话/参与者分组再造窗口、开发与正式评估分离。instructor不需等main再次给同一数据语义；具体接口/键位按实际资产设计。硬件联动不把眼动/语音自动扩为主实验特征。Windows Unity/Tobii桥接按第19节现有单接收链纳入准备，先核实真实收包/发布/记录与来源身份，不能用Linux接收时刻补写成Windows采样身份。
-5. **文献与论文**。exploration的Xie证据已由main接收，inspiration也已本人ACK接收，当前讨论OPEN、无新增研究决定。保留B2/B3信息价值主线，不因文献包新增机制对照。PAPER-001 R1已ACCEPTED，不重做返修/全文审计；overleaf据后续真实工程证据增量维护。
+5. **inspiration先直接解释当前训练用途**。真人在VRX操纵艇→记录运动状态/当前命令→同艇同控制段且SEARCH连续有效的t+H位置标签→按参与者/完整会话分组训练→预测人控艇未来位置→B2当前位/B3有效未来位责任比较。不是训练语音、眼动、底层驾驶或目标探测器。眼动/语音非本版RF必需，但影响行为/时序的卡顿与输入失真须先修；不以反问/新文献扩线代替解释。文献/论文保持既定边界。
 6. **仍OPEN**。H、源/预测年龄、缺测/标签插值、刷新/重规划阈值，R/tau/正式B，正式predictor、采样人数/会话数/预算及统计方案仍需依据。框架参数化准备可先做，不能把旧5s/1-cell/smoke预算当正式设置。
 
 ## 9. 当前交接与本人接收
 
-- main统筹入口：handoffs/MAIN-20261020-003.md；本轮增量读入0f2c80e7，当前决定见第21节及MAIN-TO-INSTRUCTOR-MANUAL-20261020-001。main本人ACK已在该回复合并登记；新回复的instructor接收/constructor领取尚无本人证据，不因发布称送达执行。
-- instructor RF请求f884a8ce：main已本人ACK于receipts/main-rf-20261020-001.md，合同及MAIN-TO-INSTRUCTOR-RF回复已发布；PREP请求8cb9879f：main已本人ACK于MAIN-TO-INSTRUCTOR-PREP，计划已发布。instructor已在848965a1本人ACK两份回复、RF-DATA-CONTRACT-v1、第一周计划及MAIN-003；不再待重复合同。005草案也在同提交发布，保持DRAFT。
-- constructor已完成004离线返工及004R2最终运行，0f2c80e7包含instructor对004R2/004的限定ACCEPTED；004R历史失败保留。此前PRE-FLIGHT PASS / GAZEBO NOT STARTED是旧快照。instructor在本次手动交接中确认已ACK Windows桥接并纳入005；constructor的Linux单接收接口核对仍以本人报告为准。
+- main统筹入口：handoffs/MAIN-20261020-003.md及MAIN-TO-INSTRUCTOR-MANUAL-20261020-001.md；本轮本人读入cac0e02e新交接和005任务，增量核对bf78ed55回执/STATUS，当前见第22节。按用户最新要求只更新MAIN_MEMORY，不新发工程/研究交接或重复任务。
+- instructor RF请求f884a8ce、PREP请求8cb9879f均已由main回复且instructor本人ACK；合同不再待重复批准。instructor在cac0e02e本人ACK main手动走查决定，并发布005第一阶段READY，原DRAFT/PRODUCTION_BLOCKED_BY_004R已由任务所有者更正。
+- constructor已完成004离线返工/004R2最终运行并本人接收限定ACCEPTED。当前bf78ed55本人回执read_commit=cac0e02e：005 RECEIVED/RUNNING，启动说明已向本聊天交付，3个只读子agent实际启动；这些是constructor报告，不冒称main进入本地主机亲验。当前无生产修改、新Gazebo或实测延迟证据。
 - overleaf在c3c75966本人ACK PAPER-001最终ACCEPTED、MAIN-003、RF合同、第一周计划与Xie证据（通信read_commit=87364b3b）；不再标该接收缺口。其RF/Xie新增论文内容已在本轮审查ACCEPTED，见第20节；线上Overleaf版本仍未核实。
 - exploration本人ACK及交付=1b5067ea，main本轮已实际读取并接收；不再标“exploration待本人ACK”。inspiration在629062c8已本人记录接收EX-XIE-01—05；overleaf亦已在c3c75966本人记录读入。
-- inspiration：receipts/inspiration-20261020.md已由本人在629062c8提交，read_commit=c821fbb9；main已读并确认BASELINE_RECEIVED / DISCUSSION_READY。当前问题OPEN、无新增USER_DECIDED，因此尚无INSPIRATION_NOTES是符合协议的停止点，不再作为接收缺口。其本人声明本次由用户消息触发，未建立/验证定时接收器。
+- inspiration：原基线本人ACK=629062c8、read_commit=c821fbb9保持。当前用户/instructor称训练用途解释请求已发送/送达；尚无该新请求的本人ACK/解释结果，不假报已解释或已改研究笔记。未验证其自动接收器。
 - 自动化：main工具当前enabled=true；last_run_time为2026-10-20 16:17:24.761501+08:00，仅为运行记录时间，无成功/交付证据，next_run_time未给明确值。其他四个Work接收器无本人automation登记，constructor本地runner未验证。完整自动闭环未通过。
 
 ## 10. instructor 历史审计更新（2026-10-20；用户授权追加）
@@ -268,3 +268,21 @@ read_commit=0f2c80e709bf682519b6d7d1352290c2520185c1；contract_version=RC-v1 + 
 main本轮仅更新自有记忆/计划/统筹回复及协议中的过时快照，不改instructor的005任务/review或constructor STATUS，不运行平台。005文件仍DRAFT，instructor按本决定维护阶段和必要工程发布，不需再向用户申请同一方向批准。新回复发布不等于instructor/constructor已收到或执行。
 
 写前并发核对：HEAD已推进至aa9e8e3f3c051907af95ba7bf02280d4c1410e53；相对0f2c80e7仅constructor的STATUS与本人receipt变化，已读并保留。constructor已本人接收004R2/004正式ACCEPTED，005仍DRAFT未领取；该回执不等于收到本次main阶段回复或已核对用户启动入口。本次四个目标路径无并发改动。
+
+## 22. 首轮UI反馈、005 READY与constructor本人领取（2026-10-20）
+
+main本人ACK：已读取handoffs/INSTRUCTOR-TO-MAIN-UI-FEEDBACK-20261020-001.md与tasks/USV-20261020-005.md@cac0e02e10539768c6a12da25df48fe972543e34，并读8d145cf5→bf78ed55c74052aa4077af18d2b36868f38df6a5差异。RF-DATA-CONTRACT-v1本轮已复读；科学合同和OPEN参数不变。按用户最后要求只统一主记忆，不发布准备中的重复交接、不另发READY。
+
+首轮实际反馈：总体严重卡顿，热图不丝滑其次；语音稍偏差就识别/执行不了；眼动延迟大；用户不明白平台能训练什么。instructor报告两张静态截图可见FPV/overview与COMMAND_AWARE模式，main本轮未亲看这两图；静态图不能测时延/帧率。上述使用问题真实报告与根因已证明/修复已验证分别记录。
+
+GitHub先前传输失败已被后续cac0e02e成功发布与本轮回读更新，不再记005未READY；报错根因未诊断。instructor保持唯一派发。后续c0bed277更新STATUS，bf78ed55有constructor本人领取：RECEIVED/RUNNING，read_commit=cac0e02e，非DONE/ACCEPTED。其报告已先在本聊天交付/home/cyz/vrx_ws下默认./run_vrx.sh start说明，h5_command_aware且Qt/joy/pad/voice/gaze启用，--research-core不适合UI走查；main未验证其桌面入口或本地进程。不要将Space清键盘输入当全局STOP，或Ctrl+Shift+S当前页导出当训练会话导出。
+
+constructor本人报告实际启动3个只读子agent：UI/按键、性能/热图、语音/眼动数据流；主agent负责基线、说明、整合和报告。初步SEARCH UI缺口、主线程图像处理性能假设、语音分层拒绝和tracker样本身份区别，仍是线索/假设，无实测延迟/真实设备复验。无生产代码修改、仿真/START/操纵/STOP/训练或清理用户会话。后续只按已发布005的允许范围定位、小修与验证，不因并行新开执行会话或耗尽用户UI资源。
+
+当前优先级：启动说明立即先交；总体响应与输入真实性先定位，热图平滑次之。语音拆采音/PTT、ASR文本、解析、策略拒绝和执行反馈；眼动沿Windows→UDP15555→Linux现有单接收→/tobii/gaze→UI/Recorder分层，重复tracker_us、时钟域、坐标映射与接收/采样新鲜度分开。Windows Codex与Linux constructor各守本机，现有桥接交接继续有效，不恢复旧双LSL。只读定位→小修→用户复验，不先大改UI。
+
+inspiration解释请求：用户最新消息称已实际送达，正式交接亦列明说明要求；本人ACK/回复未见，不称解释已完成。解释内容直接按RF合同：当前准备从真人控制仿真船的运动/操纵记录训练未来位置回归（RF为首个候选）；输入在请求前因果可用、标签由同艇同段连续SEARCH后续轨迹离线生成，先按参与者/会话分组再制样本。预测未来人控艇位置用于B3人工责任中心，与B2当前位比较；预测准确不等于协同收益。H/数值保持OPEN，不跨段补标签、滑窗不当独立参与者。眼动/语音非RF必需，但严重卡顿/输入失真若影响行为和时序须先修，不能因模态可选忽略体验。
+
+004/004R2限定工程ACCEPTED不代表UI/硬件可用、合格RF训练数据/模型或科学效能已具备。既有原始日志与通过来源/时间/标签/分组检查的训练集是不同状态。主线不扩为ASR、眼动或底层驾驶训练，不新增科学实验。
+
+写前并发增量：main另读792266700ccb15021a2215b6dc5696ac894629af阶段报告与4e1fcdf2dd0840e722eeb42b8516c1d84635e468 STATUS，保留全部他人路径；MAIN_MEMORY无同路径并发改动。005报告仍RUNNING/未生产修复：启动命令`cd /home/cyz/vrx_ws && ./run_vrx.sh start`，默认headless Gazebo+Qt/joy/pad/voice/gaze、h5_command_aware，脚本SHA256=5cce36b2ce82b65e90ca93cf2487b148e27b51c2718fdfe2f1f2bc15499e7b0c，未找到可核实专用desktop。constructor报告当前无单艇显式SEARCH/CANCEL UI入口、缺parser错误展示；主线程ROS回调/相机转换/重绘与热图逐格绘制仍是待计时候选，不能升级为卡顿根因。当前FPS/CPU/RTF、语音失败层比例、眼动跨机延迟均UNKNOWN，无build/仿真/操纵/训练。本轮只同步记忆，不替instructor审签005或新增任务。
