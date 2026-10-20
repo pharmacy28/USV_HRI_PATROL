@@ -67,3 +67,12 @@ exploration负责文献事实与证据载体；inspiration据证据与用户讨�
 母稿main.tex、canonical references.bib、正文RELATED_WORK_AUDIT仍由overleaf维护；exploration不直接覆盖这些文件，不向constructor下发工程任务。历史FULLY_READ、阅读卡结题、已存PDF与某条新主张的核验分别记录。文献结果不随本项目偏好改变；没有某个词不等于不存在等价机制。
 
 新Work由用户创建/命名并启动；本人ACK前保持接收PENDING。已建立文件交付链不等于后台自动对话。旧主线/已在途004不因新增角色而重启或扩张。
+
+
+## 8. main定时统筹与角色接收器（2026-10-20用户追加授权）
+
+用户本轮要求main成为中心任务触发器：定时检查GitHub、向各Work派发、角色回传、复审后继续。执行细则见AUTOMATION.md和handoffs/MAIN-AUTO-20261020-001.md。本节定向更新前述“没有新增后台轮询/仅用户启动”的旧限制；其余所有权、科研边界、预算及证据规则继续有效。
+
+main已实际创建每小时定时任务，见receipts/automation-main.md；创建不等于已后台运行。当前接口无法替另一个既有Work绑定任务，所以instructor/overleaf/exploration/inspiration在本人会话各启用一次接收器并真实登记；constructor本地runner由instructor指导建立，未验证前不称自动执行。旧角色ACK不等于自动化已启用。
+
+main统一跨线调度，instructor仍唯一工程任务发布与review。自动检查/接续不得重跑DONE任务、绕过CHANGES_REQUESTED、增加Gazebo额度或替用户作科研选择。只有真实发布→ACK→报告→review链条闭合才报告端到端通过。当前004新review为CHANGES_REQUESTED，先离线最小修正；004R未READY，不因自动化部署补跑。
