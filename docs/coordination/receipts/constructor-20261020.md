@@ -34,3 +34,10 @@
 - 已确认旧说法需纠正：远端 platform 不是运行源码；RF 缺失目前会使 B3 fixed-center 返回错误，尚非已完成回退；H/年龄/位移阈值仍 OPEN。有效 prediction fixture 只能证明工程接线，不能宣称 RF 或正式 B3 已验证。
 - 未决冲突：正式 H/预测年龄及重规划阈值、R/τ/B 与 encounter 终态仍交 main；本任务只做 D5 工程门控与失效回退，不推断这些数值。
 - 本人 ACK 仅表示已经接收任务；后续离线、构建、至多一次 Gazebo smoke 按任务合同执行，另以 004 报告提交实际结果。
+
+## USV-20261020-004 Constructor 完成回执（2026-10-20，Asia/Shanghai）
+
+- 原上节 `RECEIVED/RUNNING` 是领取时快照；当前本人状态 `DONE / instructor REVIEW_PENDING`，不是本人 ACCEPTED。通信报告 `docs/coordination/reports/USV-20261020-004.md`，本地详报 `src/workspace/reports/USV_20261020_004_B3_FALLBACK_REPORT.md`。
+- 已实施最小生产 B3 门控与无模型回退，162 项相关回归及受影响 package 构建通过；最终 Planner source/build SHA256 `8d955332b750a118805b4f56d1808fbe72cc5a80e414b62a7614e8636234ff5d`，实现提交 `NONE`（运行树无可用 Git HEAD）。
+- 唯一新 Gazebo run_id `f87fc7b8a1934a52ada1fbc1fd7d4828`：TAKEOVER 无中心、显式 SEARCH 后当前位 fallback、CANCEL 移除、STOPPED/Recorder finalize 有证据。20 路实际 thruster 本 run 未直接记录，第二次 ACTIVE/NAVIGATE/RELEASE/UI 未闭合，不虚称 PASS；正式 RF/B3 科学效能仍未验证。
+- 研究树/VRX 的既有修改、历史 world/model 与原始录制保留。H/预测有效年龄/位移阈值及 R/τ/B 仍 OPEN；未实施 D2/D3/D4，也未开始下一项工程任务。
