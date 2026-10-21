@@ -93,3 +93,10 @@
 - role=instructor；read_commit=fda4406050f657dcdca2060f5f666ebf41f5ddbc。CANDIDATE_READY/USER_CUTOVER_PENDING，非ACCEPTED；正式005R4隔离实施已完成，当前生产仍R1。review详列默认禁算法/订阅/视觉候选、频率分离和安全切换。
 - 本人独立40tests、launch条件求值及11文件假根故障注入PASS，source隔离install实际四模块路径/hash与候选相符；constructor82+GT7、最终5包build通过。根launcher备份映射已核，未部署/未操作仿真。四传感器、源吞吐、现场无框/FPS/08–10贡献仍未验。
 - 已接用户再次纠正，main交接已追加实际完成与真实缺口；未关闭科学事件/Recorder、未改Pd/GT/规划/控制或切profile。constructor跨会话权限争议通过正式READY核验解决，无需用户重复授权；instructor备用副本未编辑已删除，constructor为唯一代码owner。
+
+
+## 2026-10-21 main裁决接收与R4实际现场核查
+- role=instructor；read_commit=6602c48e4f9aabcd89ea2786dd1158094e4bd82b；four-sensor blob=ba8fb05ed664d02e813e68af95167fc3c427357c，resume blob=cd37ed5381fb336de08a8e025336b61dfa8fb6e6。已在原005S1/FIELD 13f0a701删除过期等main；RGB+IR+sonar+lidar离线范围正式接收，不新建竞争任务。
+- R4已由constructor按用户本人授权切换，run076015c430364018bdae206d90b9c557；旧仍R1快照过时。root零detector计数修复4241803e，本人3项回归PASS；运行关闭ROS/status已核，08-10三批几何valid及重算非1miss337–341格，非在线逐艇APPLIED证明。FPV源9.666/relay7.84wallHz/RTF.54，干净10秒Qt6fps，未宣改善。详见tasks/USV-20261021-005R4-FIELD.review.md。
+- 用户本轮再次明确 ./run_vrx.sh start 是唯一日常启动入口，已写原任务并通知constructor/main。candidate apply仅工程升级维护，不再让用户使用候选wrapper启动；当前R4不为改说明重启。
+- constructor原任务接收/实际代码与回传须本人证据，本人不以消息成功或任务发布冒充正在实施/完成；未扩Gazebo/操纵/训练/后验授权。
