@@ -2,7 +2,8 @@
 
 更新日期：2026-10-21，本轮人工统筹。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-当前快照（2026-10-21，005S1维护已完成）：main已亲读constructor最终候选b685e083、instructor review2288608b5b9e9e8b379197c0a6321231f0b60050，并在写前读到constructor维护回执655b5d7a7eee175f32a79b4382e9476af3acdb05和005报告最新维护段。又读instructor d090c61fa79d3ea86e28ef0069f7f4a6bf794b5f独立生产setup/import与registry六hash核验全部匹配，原任务正式更新为SIX_FILES_DEPLOYED / USER_CHECK_READY / FOUR_SENSOR_INTEGRATION_CONTINUES（USER_CHECK_READY仅六文件）。不再仅候选/等待维护，现场运行效果仍待复验。constructor独立读取用户原话授权后，用根入口正常结束R4 run076015c430364018bdae206d90b9c557，核基线/adapter ABSENT、备份并复制六文件；11/28/23门禁、三包merged/symlink build及安装后28+23通过，生产加载六hash匹配候选。未自动start；维护后现场运行复验未完成。Recorder仅维护finalize，SEARCHING/termination_reason null/T_end_ns null保留，不冒充任务STOP验收。四路单艇SDF/bridge/source-monitor与小UI已有实际候选/代码，但真实输出默认off且未接日常启动图，六文件升级不等于四路上线/后验融合。LOS离线中位0.33079→0.10357s不是现场FPS/RTF改善；005整体RUNNING、FPV_UNRESOLVED。用户唯一日常入口仍为/home/cyz/vrx_ws下 ./run_vrx.sh start。原Work消息入口存在，constructor已本人回执确认读原userMessage核授权；不再笼统说无入口或重复索要已给授权。main只核正式报告，未亲入运行机代操作。
+当前增量（2026-10-21，005S1后继门槛已发布）：coordination HEAD `ffd6d7c61d5790eaf602fc96f7ad1f765375735e` 仅在原 `USV-20261021-005S1` 追加用户新授权后的工程门槛：接通根入口opt-in与单艇四路physical启动/bridge/profile，先做离线预检；在用户本轮复验结束、候选完成且经instructor核查后，才允许一次最多180秒、只spawn `wamv_10` 的有界Gazebo验证。另允许constructor在满足窗口条件时执行一次不超过30秒的同艇FPV被动计数，不保存图像、不控制。该提交是instructor任务发布，不等于constructor本人ACK、代码完成、部署或运行PASS；仓库尚无这一增量的constructor新回执。默认十艇根入口、默认关闭、四路不入Bayes及用户唯一 `./run_vrx.sh start` 均保持。论文HEAD仍为`8f8eab66598ddadb4f22a760a221b0bca3beb9eb`，无增量。
+当前快照（2026-10-21，005S1六文件维护已完成）：main已亲读constructor最终候选b685e083、instructor review2288608b5b9e9e8b379197c0a6321231f0b60050，并在写前读到constructor维护回执655b5d7a7eee175f32a79b4382e9476af3acdb05和005报告最新维护段。又读instructor d090c61fa79d3ea86e28ef0069f7f4a6bf794b5f独立生产setup/import与registry六hash核验全部匹配，原任务正式更新为SIX_FILES_DEPLOYED / USER_CHECK_READY / FOUR_SENSOR_INTEGRATION_CONTINUES（USER_CHECK_READY仅六文件）。不再仅候选/等待维护，现场运行效果仍待复验。constructor独立读取用户原话授权后，用根入口正常结束R4 run076015c430364018bdae206d90b9c557，核基线/adapter ABSENT、备份并复制六文件；11/28/23门禁、三包merged/symlink build及安装后28+23通过，生产加载六hash匹配候选。未自动start；维护后现场运行复验未完成。Recorder仅维护finalize，SEARCHING/termination_reason null/T_end_ns null保留，不冒充任务STOP验收。四路单艇SDF/bridge/source-monitor与小UI已有实际候选/代码，但真实输出默认off且未接日常启动图，六文件升级不等于四路上线/后验融合。LOS离线中位0.33079→0.10357s不是现场FPS/RTF改善；005整体RUNNING、FPV_UNRESOLVED。用户唯一日常入口仍为/home/cyz/vrx_ws下 ./run_vrx.sh start。原Work消息入口存在，constructor已本人回执确认读原userMessage核授权；不再笼统说无入口或重复索要已给授权。main只核正式报告，未亲入运行机代操作。
 上一统筹补充（保留历史）：main已接收instructor本轮本人回报：已读FIELD2 blob f9120401471c876df9ed610f04b905f923f25fc0，接受FPV+08/09/10优先、四路三层/radar-lidar待裁决及暂不平滑；已沿005续派隔离补丁、测试与下一版切换准备。写前已读新提交7495731013d3d9dce0c4c0b13a0271b84be02d2d及005追加条款：续派已正式发布，constructor本批新领取/候选完成仍待本人证据。legacy逐艇动态monotonic freshness=2s与昂贵LOS可能造成同批后排超时，仍是instructor源码线索，待旧版反例证实；不能放宽TTL。FPV须定位源/relay/Qt最早瓶颈，不拿30Hz配置上限充实测。R1生产/用户会话保持，候选经instructor核查后再统一切换；005仍RUNNING、未称修复或部署完成。原只读总额度不续时，无新增Gazebo/操纵。见第29节；第27—28节保留R2/Windows和FIELD2证据边界。
 论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实以顶部快照、当前表格和最新原负责人报告/review为准；第27—29节为历史；第10—26节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
@@ -13,8 +14,8 @@
 | exploration | 文献整理、版本/原文证据、直接交付inspiration | Xie已接收；本轮main另读1cea3553的Ishii证据笔记/交付增量，按其证据范围接收，不冒称main复读原文。后续按明确论断缺口推进，不扩大主实验 |
 | inspiration | 向用户解释全貌、讨论反例与研究取舍 | 已本人 ACK 并完成月计划组会解释准备；main 已按最新 FIELD review 刷新组会稿，不把旧“仍待切换”继续转述 |
 | main | 科学合同、计划优先级、跨线状态与评审 | 已核005S1候选review与维护完成回执，更新当前状态/原交接；不代运行、不重复派工 |
-| instructor | 平台设计、唯一工程派发与验收 | d090c61f已独立核生产setup/import及registry六hash匹配，六文件USER_CHECK_READY；原S1接续单艇opt-in启动/bridge/profile隔离连接与离线预检，不新开任务/部署/运行 |
-| constructor | 实际平台实现、测试、报告与本人STATUS | b685e083候选已完成；655b5d7a本人维护回执MAINTENANCE_APPLIED / RUNTIME_REVALIDATION_PENDING，六文件生产加载hash/三包build/门禁通过；已停R4、未自动start |
+| instructor | 平台设计、唯一工程派发与验收 | d090c61f已独立核生产六hash；ffd6d7c6在原S1追加physical启动接通、离线预检、条件化单艇验证与有界FPV诊断门槛；仍由instructor唯一核查，不把任务发布当实施 |
+| constructor | 实际平台实现、测试、报告与本人STATUS | b685e083候选与655b5d7a六文件维护已完成；维护未自动start。对ffd6d7c6新增physical连接/单艇验证增量尚无本人ACK、代码或运行回执，不能称四路上线 |
 | Windows本地Codex（既有桥接agent） | C:\bridge / C:\EyeTrackerBridge本机采集与发送；沿instructor/005协作 | 原LOCAL_AUDIT_COMPLETE及Work入口存在不等于Windows本轮执行；新源链证据/候选patch及本人ACK仍按实际回传记录 |
 | overleaf | 唯一论文母稿、引用与论证 | 论文HEAD8f8eab66；本轮不因工程候选新增正式结果。按组会稿只核实关键主张边界，已有正确稿无须重复编译/改写 |
 
@@ -109,7 +110,7 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 
 ## 8. 当前优先级与开放事项
 
-1. **005S1维护已完成，现场复验待运行**。constructor 655b5d7a回执已正常结束R4、六文件升级/构建/加载hash通过，未自动start。R4此前detector关闭和08–10三批geometry/重算贡献是旧运行基线；FPV源9.666/relay7.84 wallHz、RTF≈0.54、干净10秒Qt约6FPS不外推005S1。新LOS只有离线CPU等价加速，现场FPV仍未验证；不复用已消费图像窗口自动补采。
+1. **005S1六文件维护已完成；physical接通与维护后现场效果仍待证据**。constructor 655b5d7a回执已正常结束R4、完成六文件升级/构建/加载hash核对且未自动start。R4 detector关闭、08–10三批geometry/离线重算及FPV源9.666/relay7.84 wallHz、RTF≈0.54、干净Qt十秒约6FPS均是维护前基线，不外推005S1。ffd6d7c6已在原S1发布后继门槛：先完成默认关闭的单艇physical启动/bridge/profile离线连接；constructor有条件可做一次≤30秒被动FPV窗口，候选经instructor核查且用户复验结束后才可做一次≤180秒、仅wamv_10的有界验证。当前尚无constructor对该增量的本人ACK或结果，不称四路上线、FPV改善或单艇PASS。
 2. **语音/眼动真实效果继续按当前版本验证**。R4已部署，原R2隔离阶段不再作为当前未切换状态；现有采音机制/队列测试不等于现场识别率或端到端改善。Windows既有具名交接保留，源tracker/重复、队列、构建/15555和真实本人ACK按后续证据更新；未对齐跨机时钟仍UNALIGNED。不改原始采样/记录/时间，不以提示诊断代替真实修复；热图美化、大布局、路径优化后置。
 3. **依赖顺序**。可操作/可记录/可导出平台→后续志愿者实际采样→RF开发训练/按组验证→模型与参数冻结→另行安排pilot/正式B2/B3评价。当前不招募、不启动正式采集/训练；工程联调样例不称志愿者数据或效能证据。
 4. **RF接口已有合同**。decisions/RF-DATA-CONTRACT-v1.md明确人控艇t+H二维位置、最少运动状态/当前操纵、因果可用性和源身份、先按会话/参与者分组再造窗口、开发与正式评估分离。instructor不需等main再次给同一数据语义；具体接口/键位按实际资产设计。硬件联动不把眼动/语音自动扩为主实验特征。Windows Unity/Tobii桥接按第19节现有单接收链纳入准备，先核实真实收包/发布/记录与来源身份，不能用Linux接收时刻补写成Windows采样身份。
