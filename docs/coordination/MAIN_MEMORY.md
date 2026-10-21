@@ -2,7 +2,7 @@
 
 更新日期：2026-10-21，本轮人工统筹。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-当前快照（2026-10-21，本轮人工统筹）：已亲读R4 review与005R4-FIELD/005S1，并由本轮两个临时子agent分别完成工程交付核查和组会月计划汇报整理。R4=CANDIDATE_READY/USER_CUTOVER_PENDING；最近constructor现场检查（14:34—14:37）仍R1，不能把旧版运行当R4复验。正确切换入口为候选目录USV_20261020_005_R4/apply_and_start.sh，用户正常结束旧会话后执行；旧run_vrx.sh start不负责安装候选。005S1已READY，但其“main裁决未到”已过时：四路RGB+IR+sonar+lidar的裁决已发布于c8985593；本轮统一handoff要求instructor更新原任务，constructor在原授权与顺序下继续离线实施，不重复工程READY。原Work接收器和constructor/Windows runner仍无登记，不能声称本轮已唤醒原会话；本轮临时子agent已实际执行并完成，身份不混同。今日汇报已明确为10/15—11/15月计划下的组会进展汇报，交付briefings/GROUP_MEETING_20261021.md。main自动化当前enabled=true，提示已纠正今日汇报语义；接口有非空最近结果、送达仍UNKNOWN。
+当前快照（2026-10-21，本轮自动统筹）：已亲读 instructor 最新 `USV-20261021-005R4-FIELD.review.md` 与本人回执。用户在 constructor 线程明确授权结束旧 R1 并切换，R4 已实际部署并启动（run_id=`076015c430364018bdae206d90b9c557`）；apply 的 89 项测试与 5 包构建通过。instructor 现场只读核查确认 detector 节点/发布者为空、Search 状态关闭且源码门控一致；08/09/10 在 sim 44/48/52 秒三批 geometry 均 valid，基于记录几何的离线重算每艇每批有 337—341 个非 1 miss 项。正式结论为 `PARTIAL_ENGINEERING_PASS / FPV_UNRESOLVED`，005 整体非 ACCEPTED：FPV 同窗源 9.666 wallHz、relay 7.84 wallHz、RTF 0.539960，唯一干净 Qt 10 秒窗约 6 wallFPS，不能宣称 R4 相对 R1 已改善。005S1 已解除等待并保持 READY：RGB+IR+simulated geometric sonar+lidar，radar 禁用、单艇可选默认关闭、三层隔离；constructor 的实际代码/测试/本人回执仍待证据。用户唯一日常启动入口恢复为 `/home/cyz/vrx_ws` 下 `./run_vrx.sh start`；候选 apply 仅是工程升级工具，当前 R4 不为说明更正重启。论文 HEAD 仍为 `8f8eab66`，无新增正式结果。
 上一统筹补充（保留历史）：main已接收instructor本轮本人回报：已读FIELD2 blob f9120401471c876df9ed610f04b905f923f25fc0，接受FPV+08/09/10优先、四路三层/radar-lidar待裁决及暂不平滑；已沿005续派隔离补丁、测试与下一版切换准备。写前已读新提交7495731013d3d9dce0c4c0b13a0271b84be02d2d及005追加条款：续派已正式发布，constructor本批新领取/候选完成仍待本人证据。legacy逐艇动态monotonic freshness=2s与昂贵LOS可能造成同批后排超时，仍是instructor源码线索，待旧版反例证实；不能放宽TTL。FPV须定位源/relay/Qt最早瓶颈，不拿30Hz配置上限充实测。R1生产/用户会话保持，候选经instructor核查后再统一切换；005仍RUNNING、未称修复或部署完成。原只读总额度不续时，无新增Gazebo/操纵。见第29节；第27—28节保留R2/Windows和FIELD2证据边界。
 论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实以顶部快照、当前表格和最新原负责人报告/review为准；第27—29节为历史；第10—26节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
@@ -11,10 +11,10 @@
 | 角色 | 负责 | 当前状态与下一步 |
 |---|---|---|
 | exploration | 文献整理、版本/原文证据、直接交付inspiration | Xie已接收；本轮main另读1cea3553的Ishii证据笔记/交付增量，按其证据范围接收，不冒称main复读原文。后续按明确论断缺口推进，不扩大主实验 |
-| inspiration | 向用户解释全貌、讨论反例与研究取舍 | 今日优先按月计划组会口径讲清问题/本周实际进展/未完成/下一步，参考本轮GROUP_MEETING稿；原本人新接收/解释回执仍待证据 |
-| main | 科学合同、计划优先级、跨线状态与评审 | 已完成R4/005S1核查、月计划组会稿和统一接续交接；本轮临时两子agent完成，不冒称原Work已被唤醒 |
-| instructor | 平台设计、唯一工程派发与验收 | R4候选已review；005R4-FIELD等待实际切换。005S1已READY，需将已发布四路裁决补入原任务并继续离线实施，不重复请示main |
-| constructor | 实际平台实现、测试、报告与本人STATUS | R4 11文件候选已完成；最新14:34—14:37现场仍R1，等待用户切换后按唯一FIELD任务取证。005S1无本人新ACK/代码证据；本人摘要需更新以免旧R1顶栏误导 |
+| inspiration | 向用户解释全貌、讨论反例与研究取舍 | 已本人 ACK 并完成月计划组会解释准备；main 已按最新 FIELD review 刷新组会稿，不把旧“仍待切换”继续转述 |
+| main | 科学合同、计划优先级、跨线状态与评审 | 已读最新 FIELD review，正在同步主记忆、组会稿、第一周计划与启动说明；不改原负责人任务/报告，不新增竞争工程 READY |
+| instructor | 平台设计、唯一工程派发与验收 | 005R4-FIELD=`PARTIAL_ENGINEERING_PASS / FPV_UNRESOLVED`；已在原005S1接收四路裁决并解除等待，下一步评审 constructor 的实际隔离代码/测试/构建 |
+| constructor | 实际平台实现、测试、报告与本人STATUS | 已按用户明确授权切换并启动 R4；现场 detector-off 与08—10三批恢复由 instructor review 支持，FPV仍未解决。005S1尚无本人新ACK/代码回传，需更新本人报告/回执 |
 | Windows本地Codex（既有桥接agent） | C:\bridge / C:\EyeTrackerBridge本机采集与发送；沿instructor/005协作 | 原LOCAL_AUDIT_COMPLETE不等于本轮接收。main已发R2跨线交接；本人ACK/实际源链证据/候选patch待回传，无可调用接收入口证据 |
 | overleaf | 唯一论文母稿、引用与论证 | 论文HEAD8f8eab66；本轮不因工程候选新增正式结果。按组会稿只核实关键主张边界，已有正确稿无须重复编译/改写 |
 
@@ -65,7 +65,7 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 | 004 | instructor ACCEPTED（限生产B3门控/无模型回退） | 最终Planner source/build SHA256=ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84；004R2最终运行闭合fallback、撤销、直接STOP与Recorder。不是有效RF/正式效能验收 |
 | 004R | instructor BLOCKED / RUN_CONSUMED | 唯一Gazebo已启动，临时START及cleanup错用example_interfaces/SetBool，真实为std_srvs/SetBool；未START。20路空闲零值不是STOP因果安全，旧额度不能重用 |
 | 004R2 | instructor ACCEPTED（限定工程）；运行已完成、额度已消费 | run=448cd4ea97f64161bcaf9d850386bba5。instructor原始证据复核：STOP前20路均非零；STOP后各360条全零、最短11.634358088s，回执至保守屏障间689条亦零。任务活动约2.2s，非长期性能/预算删失验证 |
-| 第一周平台准备 / 005 | 整体RUNNING；R4候选已审查、用户切换待完成；005S1离线READY | 最近现场仍R1；R4现场无检测、08–10恢复、FPV改善尚未观察。四路裁决已发布，尚无005S1实际代码/本人ACK证据；不把候选当现场通过 |
+| 第一周平台准备 / 005 | 整体RUNNING；R4已部署并获FIELD局部工程通过；FPV未解决；005S1离线READY | detector关闭与08—10所查三批恢复已有同版本证据，但非长期在线逐艇APPLIED审计；FPV无改善结论，四路尚无constructor实际实现回传，不能把局部通过升级为005完成 |
 | RF真实来源与训练 | 最小数据合同已发布；真实来源链/数据/模型未验证 | 无模型不阻断准备；无法核验源身份时仍保守回退 |
 | encounter、正式B2/B3与RMST | 未验证/未报告 | 不用工程验收或文本ACCEPTED升级科学结果 |
 
@@ -109,12 +109,12 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 
 ## 8. 当前优先级与开放事项
 
-1. **当前run FPV与08/09/10观测资格缺口优先，R1保持稳定**。4579f89a报告legacy链08/09/10在所查123次均CAMERA_INFO_STALE、01—07有效，源stamp/CameraInfo与consumer时间/参数根因待定位；不降低freshness掩盖，不用视觉帧或旧sampler PASS替代当前新binary/APPLIED。FPV源Hz/年龄/RTF仍缺，5.4—6.5回调/s和Qt均值不足以定唯一瓶颈。眼动主观快、手柄正向保留，无R2因果归属；现有R1进程/hash不动，无新smoke/渲染/部署，总只读额度不续时。
+1. **当前实际运行 R4，优先收口 FPV 与长期观测可靠性**。instructor 已在同版本现场核到 detector 关闭，08/09/10 于 sim 44/48/52 秒三批 geometry 均 valid；记录几何离线重算显示每艇每批 337—341 个非 1 miss 项，支持所查窗口后排贡献恢复，但不是在线逐艇 APPLIED 审计，也不外推长期可靠。FPV 仍未解决：源 9.666 wallHz、relay 7.84 wallHz、RTF 0.539960，唯一干净 Qt 10 秒窗约 6 wallFPS；Gazebo 渲染与 bridge 首个瓶颈未分离，不宣称 R4 相对 R1 改善，不追加图像采样。
 2. **继续实际语音/眼动修复**。原005 R2隔离实施，不仅提示诊断。语音逐块sd.rec/parec重开是已查源码机制，现场根因尚未证明；constructor已报连续PTT流候选。眼动UI既有depth1/latest_pending不重复当优化，需实际burst/队列年龄前后证据。main具名中转Windows新tracker/重复发包、本机单调分段/阻塞、UUV构建/15555及兼容候选要求；仅真用Windows音频15556才核该音频链。原始采样/记录/时间保留，跨机时钟未对齐仍UNALIGNED。热图美化/大布局/SEARCH大功能/轨迹优化后置。
 3. **依赖顺序**。可操作/可记录/可导出平台→后续志愿者实际采样→RF开发训练/按组验证→模型与参数冻结→另行安排pilot/正式B2/B3评价。当前不招募、不启动正式采集/训练；工程联调样例不称志愿者数据或效能证据。
 4. **RF接口已有合同**。decisions/RF-DATA-CONTRACT-v1.md明确人控艇t+H二维位置、最少运动状态/当前操纵、因果可用性和源身份、先按会话/参与者分组再造窗口、开发与正式评估分离。instructor不需等main再次给同一数据语义；具体接口/键位按实际资产设计。硬件联动不把眼动/语音自动扩为主实验特征。Windows Unity/Tobii桥接按第19节现有单接收链纳入准备，先核实真实收包/发布/记录与来源身份，不能用Linux接收时刻补写成Windows采样身份。
 5. **inspiration先直接解释当前训练用途**。真人在VRX操纵艇→记录运动状态/当前命令→同艇同控制段且SEARCH连续有效的t+H位置标签→按参与者/完整会话分组训练→预测人控艇未来位置→B2当前位/B3有效未来位责任比较。不是训练语音、眼动、底层驾驶或目标探测器。眼动/语音非本版RF必需，但影响行为/时序的卡顿与输入失真须先修；不以反问/新文献扩线代替解释。文献/论文保持既定边界。
-6. **四路与路径后继已给main判断**。当前注册表camera/sonar/infrared/radar仅camera启用；用户新增lidar候选与radar不同，先并列用途/接口/负载，不暗换第四路。每路分别标展示占位/传感仿真/后验观测实际或缺失，binary不取消四路也不自动批准独立融合。先FPV/观测问题再逐路方案。路径已有163次generation证据但未分离同generation实际摆动，复杂优化无必要性结论、最小净空简化仅候选，未授权本轮实施/变成本。H等科学数值与人数/时长仍OPEN，原采样与显示/记录/训练重采样分开。
+6. **四路工程范围已冻结，科学融合仍保持 OPEN**。005S1 当前正式范围为 RGB+IR+simulated geometric sonar+lidar，radar 独立禁用；单艇可选、默认关闭，preview/物理模型/posterior 三层分离。sonar 几何近似仅作工程链，IR 仅认兼容原生 thermal；未裁决 likelihood、标定与相关性前不得接 Bayes。constructor 的实际代码/测试/构建与本人回执仍待；路径平滑与大 UI 后置，H 等科学数值及人数/时长继续 OPEN。
 
 ## 9. 当前交接与本人接收
 
