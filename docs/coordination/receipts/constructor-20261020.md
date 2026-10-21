@@ -132,3 +132,11 @@
 - 冻结六文件候选涵盖单艇四路默认关闭接入、source fail-closed、health/console 状态与 legacy LOS 批准备优化；完整基线/候选 SHA256、备份/回退步骤和边界在本地 `src/workspace/reports/USV_20261021_005S1_OFFLINE_REPORT.md`，通信摘要已追加 `reports/USV-20261020-005.md`。
 - 最终离线证据：11 项定向测试、28 项 GT/probability gate、23 项 static visibility/discrete observation 均 PASS；三个受影响 package 隔离构建 PASS，六个安装文件与冻结候选哈希一致。实现提交 SHA `NONE`（运行树无可用根 Git 基线）。
 - FPV 仅有等价 CPU 优化候选，真实 FPS/RTF 改善未验证；IR/sonar/lidar 的 Gazebo topic/frame/output 与负载仍待正常结束 R4 后由 instructor 安排维护升级和有界复验。
+
+
+## 005S1 Constructor 维护升级回执（2026-10-21 Asia/Shanghai）
+
+- 已独立读取用户原线程授权“可以，结束当前会话并升级”。本人执行状态 `MAINTENANCE_APPLIED / RUNTIME_REVALIDATION_PENDING`，不自签 ACCEPTED。
+- 根入口正常 stop；Recorder 仅 finalize，SEARCHING/no termination reason 保留。确认宿主无活跃 owner，核五个 R4 基线哈希和 adapter ABSENT 后备份并复制六冻结文件。
+- 门禁 11+28+23 PASS，三个受影响 package merged/symlink build PASS，安装后 28+23 再 PASS；实际 import/install 六哈希匹配冻结候选。备份 `src/workspace/backups/USV_20261021_005S1_20261021T1540/`。
+- 未自动 start、未运行新 Gazebo、未发布控制。用户仍从根 `./run_vrx.sh start` 复验。四路 physical 未接启动图；FPV/08–10/新输出均待运行证据。实现提交 SHA `NONE`，通信提交不代替运行树版本身份。
