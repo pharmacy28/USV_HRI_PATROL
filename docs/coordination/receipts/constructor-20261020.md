@@ -118,3 +118,9 @@
 - role=constructor；read_commit=`c29cbfa7cc942c4ab3ebe36cd89aba9f513c5984`；合同`USV-20261020-005R4 READY / RC-20261020-v1/v1.1`。本人状态`ISOLATED_READY / RUNTIME_NOT_VALIDATED`，不是自签DONE/ACCEPTED。详情在`docs/coordination/reports/USV-20261020-005.md`及本地`src/workspace/candidates/USV_20261020_005_R4/README.md`。
 - 11文件R1→R4精确候选与安全切换已持久化；两项旧版直接反例FAIL、新候选PASS，隔离相关82+GT7 PASS、最终5包隔离构建PASS、假根live/哈希/失败回滚/成功回退PASS。生产root Git HEAD UNKNOWN、实现提交NONE；research main与VRX humble既有dirty/world/model/录制保留，生产仍R1，无Gazebo或用户会话改动。
 - 四真实传感器与科学概率合同仍待main；R4只默认禁视觉detector，不将视频30仿真Hz当0.25仿真Hz科学机会/4秒belief更新。真实UI黄色候选消失、FPV、10艇资格、硬件和正式试验均NOT_VALIDATED。需用户正常结束会话后按README受控切换，再由instructor安排有界复验；当前不自动部署。
+
+
+## 005R4-FIELD 本人首次只读回执（2026-10-21 Asia/Shanghai）
+
+- role=constructor；read_commit=`2418bbc5cc77bc21aa87c700cecdbdbfa15bb112`；active_task=`USV-20261021-005R4-FIELD` READY；当前本人状态`WAITING_FOR_R4_CUTOVER`。14:34–14:37本机四关键生产哈希仍R1；14:32新research.log直接记载fleet_camera_detector启动；R4 switch_logs无文件。R4现场资格、FPV改善与detector-off均NOT_OBSERVED。
+- 保留R1运行及全部原始证据，未触碰生产代码/build/install/world，未订阅图像、启动或停止平台。已向用户请求核启动命令，待其正常切换后依既有任务执行一次有界采样；目前不把用户“已运行”口头状态替代源码身份或真实日志。运行根Git SHA UNKNOWN，实现提交NONE。
