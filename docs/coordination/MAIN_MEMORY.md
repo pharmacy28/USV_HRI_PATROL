@@ -110,7 +110,7 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 ## 8. 当前优先级与开放事项
 
 1. **当前实际运行 R4，优先收口 FPV 与长期观测可靠性**。instructor 已在同版本现场核到 detector 关闭，08/09/10 于 sim 44/48/52 秒三批 geometry 均 valid；记录几何离线重算显示每艇每批 337—341 个非 1 miss 项，支持所查窗口后排贡献恢复，但不是在线逐艇 APPLIED 审计，也不外推长期可靠。FPV 仍未解决：源 9.666 wallHz、relay 7.84 wallHz、RTF 0.539960，唯一干净 Qt 10 秒窗约 6 wallFPS；Gazebo 渲染与 bridge 首个瓶颈未分离，不宣称 R4 相对 R1 改善，不追加图像采样。
-2. **继续实际语音/眼动修复**。原005 R2隔离实施，不仅提示诊断。语音逐块sd.rec/parec重开是已查源码机制，现场根因尚未证明；constructor已报连续PTT流候选。眼动UI既有depth1/latest_pending不重复当优化，需实际burst/队列年龄前后证据。main具名中转Windows新tracker/重复发包、本机单调分段/阻塞、UUV构建/15555及兼容候选要求；仅真用Windows音频15556才核该音频链。原始采样/记录/时间保留，跨机时钟未对齐仍UNALIGNED。热图美化/大布局/SEARCH大功能/轨迹优化后置。
+2. **语音/眼动真实效果继续按当前版本验证**。R4已部署，原R2隔离阶段不再作为当前未切换状态；现有采音机制/队列测试不等于现场识别率或端到端改善。Windows既有具名交接保留，源tracker/重复、队列、构建/15555和真实本人ACK按后续证据更新；未对齐跨机时钟仍UNALIGNED。不改原始采样/记录/时间，不以提示诊断代替真实修复；热图美化、大布局、路径优化后置。
 3. **依赖顺序**。可操作/可记录/可导出平台→后续志愿者实际采样→RF开发训练/按组验证→模型与参数冻结→另行安排pilot/正式B2/B3评价。当前不招募、不启动正式采集/训练；工程联调样例不称志愿者数据或效能证据。
 4. **RF接口已有合同**。decisions/RF-DATA-CONTRACT-v1.md明确人控艇t+H二维位置、最少运动状态/当前操纵、因果可用性和源身份、先按会话/参与者分组再造窗口、开发与正式评估分离。instructor不需等main再次给同一数据语义；具体接口/键位按实际资产设计。硬件联动不把眼动/语音自动扩为主实验特征。Windows Unity/Tobii桥接按第19节现有单接收链纳入准备，先核实真实收包/发布/记录与来源身份，不能用Linux接收时刻补写成Windows采样身份。
 5. **inspiration先直接解释当前训练用途**。真人在VRX操纵艇→记录运动状态/当前命令→同艇同控制段且SEARCH连续有效的t+H位置标签→按参与者/完整会话分组训练→预测人控艇未来位置→B2当前位/B3有效未来位责任比较。不是训练语音、眼动、底层驾驶或目标探测器。眼动/语音非本版RF必需，但影响行为/时序的卡顿与输入失真须先修；不以反问/新文献扩线代替解释。文献/论文保持既定边界。
@@ -118,12 +118,12 @@ SLIM-004B历史索引reports/SLIM-004B-evidence-index.md：instructor亲读原�
 
 ## 9. 当前交接与本人接收
 
-- main统筹入口：已本人接收9e8bc6c7 R2及8e03631b FIELD2、读取3796d83f隔离候选；两份main交接分别中转Windows协作和回复四路/路径判断，均沿原005、非新READY。Windows无可调用入口及本人ACK/执行证据，不把仓库发布当即时通知。
+- main统筹入口：已本人读取4c2e48b7正式FIELD review/instructor回执与13f0a701原任务修订；撤回用户候选wrapper启动指引，固定唯一根入口。历史R2/FIELD2/Windows交接保留，Windows本人ACK/执行仍待真实证据。此次仅更新main自有文件，不另派工程任务。
 - instructor RF请求f884a8ce、PREP请求8cb9879f均已由main回复且instructor本人ACK；合同不再待重复批准。instructor在cac0e02e本人ACK main手动走查决定，并发布005第一阶段READY，原DRAFT/PRODUCTION_BLOCKED_BY_004R已由任务所有者更正。
-- constructor已完成004/004R2且限定ACCEPTED保留；R1第二轮反馈及4579f89a同run取证已回传，005仍RUNNING未整体ACCEPTED。R2隔离候选@3796d83f已报、未部署/未见R2 review。不把当前legacy资格缺口写成已解决或将R2fixture当现场麦克风/Windows数据。
+- constructor已完成004/004R2且限定ACCEPTED保留；据正式FIELD review，R4已在用户授权下实际apply/89测试/5包构建并运行，不再标R1/待切换。005整体仍RUNNING；当前legacy三批恢复证据不外推新binary、长期可靠性或RF效能。005S1新ACK/代码另按本人回执记录。
 - overleaf在c3c75966本人ACK PAPER-001最终ACCEPTED、MAIN-003、RF合同、第一周计划与Xie证据（通信read_commit=87364b3b）；不再标该接收缺口。其RF/Xie新增论文内容已在本轮审查ACCEPTED，见第20节；线上Overleaf版本仍未核实。
 - exploration本人ACK及交付=1b5067ea，main本轮已实际读取并接收；不再标“exploration待本人ACK”。inspiration在629062c8已本人记录接收EX-XIE-01—05；overleaf亦已在c3c75966本人记录读入。
-- inspiration：原基线本人ACK=629062c8、read_commit=c821fbb9保持。当前用户/instructor称训练用途解释请求已发送/送达；尚无该新请求的本人ACK/解释结果，不假报已解释或已改研究笔记。未验证其自动接收器。
+- inspiration：已本人读取receipts/inspiration-20261021.md（blob a2525d583c953349abb46ce74176df24a1ec856f），ACKNOWLEDGED / GROUP_MEETING_EXPLANATION_PREPARED；不再标无新ACK。又读67cb317f新增research/INSPIRATION_NOTES.md：用户要求面向后续志愿者采样与实验的平台建设和模块展示；不是版本/测试流水账。该交付方向已接收，模块组织仍为CANDIDATE，实际端到端采样就绪、代码与展示成果待证，不将记录当实现完成。
 - 自动化：本轮peek核现有main任务enabled=true，last_run_time仍2026-10-20T09:34:08.095942+00:00、next_run_time=null，不是运行成功/交付证明；本轮未另建或修改自动化。可见登记中无Windows接收器，constructor本地runner及其余Work接收闭环仍未验证。
 
 ## 10. instructor 历史审计更新（2026-10-20；用户授权追加）
@@ -373,4 +373,15 @@ inspiration应直接解释责任是未来任务分配、不是已感知证明；
 - 统一跨线接续见handoffs/MAIN-20261021-RESUME-001.md；instructor维持唯一工程派发/验收，main不覆盖其任务。005S1中main裁决待到已被正式四路handoff解除；等待用户R4现场窗口不应阻塞不冲突的隔离离线工作，仍不并发改同文件、不自动切换。
 - 本轮实际启动engineering_audit、meeting_brief两个临时只读子agent，均返回完整结果，随后结束。不是constructor的旧子agent，也不等于既有Work被唤醒。原角色无接收器/runner入口是实际调度缺口，仓库handoff不冒充执行回执。
 - 自动化6ad720ead3cc8191abc79a66100726cc当前已启用；本轮只修正prompt中组会语义。最近run 416d3c0f-8d5c-832c-a7a8-5c7877422601有匹配非空结果，delivery_status=unknown。不能继续笼统称当前结果为空，也不能据此否认用户未看到回复。未额外创建循环任务或触发重复main运行。
-- R4正确切换命令与review/constructor报告一致；本轮未代运行仿真、停机、部署、录音或训练。所有现场结论留给当前版本真实证据。
+- 历史更正：本节当时给用户候选wrapper启动指引，现撤回；唯一日常入口固定为 `./run_vrx.sh start`。R4已经部署运行；最新FIELD结论优先。main未代运行、停止、部署、录音或训练。
+
+
+## 31. 本人接收唯一入口与R4现场更正（2026-10-21）
+
+本轮亲读4c2e48b7正式FIELD review（blob e812ecafc505f6805b963d6ae6087c4524156613）、instructor回执及13f0a701原005S1/FIELD修订。写前发现并保留8784f676自动统筹已更新的四个main文件与67cb317f新增inspiration讨论记录，仅补残留过时口径；不覆盖并发更新、不重复派工。
+
+用户唯一日常仿真启动入口为/home/cyz/vrx_ws下 `./run_vrx.sh start`；candidate apply仅工程升级维护，不再让用户换wrapper。当前R4 run=076015c430364018bdae206d90b9c557，89测试/5包构建由constructor执行、instructor review记载；根/候选launcher SHA256=4241803ebc3d826706e39452e8986cd450d26edb285a8db3d24371c8d23023d8，零detector pgrep/pipefail最小修复未因此重启，instructor独立3项回归PASS。main未亲入运行机重测。
+
+08/09/10于44/48/52 sim秒三批geometry有效；非1miss重算格数08=341/338/339，09=340/339/339，10=338/337/339。证据是OFFLINE_RECOMPUTATION_FROM_RECORDED_GEOMETRY，不是在线逐艇APPLIED审计或新binary合同验收。detector运行图/status关闭证据与用户视觉无框反馈分开。
+
+FPV唯一有效探针由instructor接管完成；源9.666/relay7.84 wallHz、RTF=0.539960，唯一干净10秒Qt窗60次paint≈6FPS；另一窗切总览不得合算，旧R1无严格配对基线，源/relay差值不直接证明因果丢帧。维持PARTIAL_ENGINEERING_PASS / FPV_UNRESOLVED、005整体RUNNING，未宣改善，不新增采样或重启。005S1已在原任务解除等待，实际代码/本人回执继续按证据更新，不新建竞争READY。
