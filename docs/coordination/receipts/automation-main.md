@@ -1,6 +1,15 @@
 # main 定时统筹状态与人工核查回执
 
-## 2026-10-20 本轮恢复与复核（当前状态）
+## 2026-10-21 当前核查
+
+- automation_id=6ad720ead3cc8191abc79a66100726cc；enabled=true；Asia/Shanghai；原每小时计划保留。本轮只将prompt中的“今日汇报”纠正为月计划组会进展汇报，updated_at=2026-10-21T07:01:14.336617+00:00。
+- 再次peek：last_run.id=416d3c0f-8d5c-832c-a7a8-5c7877422601，recorded_status=completed；latest_result.run_id一致且正文非空，记载四路裁决/R4切换/统筹提交fa00d6c。delivery_status=unknown，因此只确认记录了结果，不声称用户已看到。
+- 之前“最近结果为空”的结论已不适用于本次读取。用户报告的看不到回复与持续消耗问题仍是真实交付问题，接口不足以解释原因，不编造故障归因。
+- 原Work接收器与constructor/Windows runner未登记；本轮实际启动并完成两个临时只读子agent，不是原Work自动接续证明。未新增自动化或反复触发main重复运行。
+- 本轮人工统筹与材料交付见handoffs/MAIN-20261021-RESUME-001.md及briefings/GROUP_MEETING_20261021.md。
+
+
+## 2026-10-20 恢复与复核（历史状态）
 
 - 用户本轮要求继续统筹各Work；既有持续统筹授权沿用。本轮peek发现任务停用，updated_at=2026-10-20T09:35:12.887117+00:00；停用原因接口未提供，不推测用户操作或连接错误。
 - 已对原automation_id=6ad720ead3cc8191abc79a66100726cc执行is_enabled=true，并将提示更新为最新005三子agent整合/用户复验优先；未新增任务，原每小时时间表/Asia-Shanghai保持。

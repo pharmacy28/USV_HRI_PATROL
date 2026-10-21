@@ -1,22 +1,22 @@
 # main 共享工作记忆 — USV 研究统筹
 
-更新日期：2026-10-21 14:54，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
+更新日期：2026-10-21，本轮人工统筹。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-当前快照（2026-10-21 14:54）：coordination HEAD在main写前为4c92bab0，instructor于14:42发布005S1离线实现READY；发布不等于constructor本人ACK，当前无005S1代码、报告或验收。005R4仍是已review的CANDIDATE_READY/USER_CUTOVER_PENDING；constructor 14:34—14:37本人实查生产source/build/install和日志仍为R1，detector仍启动，因此R4 detector-off、08/09/10几何/负证据与FPV改善均NOT_OBSERVED，不能记作R4现场失败。等待用户正常结束旧会话后，按R4 apply_and_start受控切换，再执行005R4-FIELD唯一有界检查。main已在handoffs/MAIN-TO-INSTRUCTOR-FOUR-SENSOR-BUILD-20261021-001.md正式裁决：四路为RGB+IR+sonar+lidar，radar保留禁用；sonar几何近似仅限工程链，IR只认兼容原生thermal，先单艇可选默认关闭；预览/物理模型/posterior三层分离，未经likelihood/标定/相关性裁决不接Bayes、不把四路当独立证据。该handoff已发布于c8985593，但instructor/constructor接收仍待本人回执。paper/overleaf-20261020 HEAD仍8f8eab66，无本轮增量。
+当前快照（2026-10-21，本轮人工统筹）：已亲读R4 review与005R4-FIELD/005S1，并由本轮两个临时子agent分别完成工程交付核查和组会月计划汇报整理。R4=CANDIDATE_READY/USER_CUTOVER_PENDING；最近constructor现场检查（14:34—14:37）仍R1，不能把旧版运行当R4复验。正确切换入口为候选目录USV_20261020_005_R4/apply_and_start.sh，用户正常结束旧会话后执行；旧run_vrx.sh start不负责安装候选。005S1已READY，但其“main裁决未到”已过时：四路RGB+IR+sonar+lidar的裁决已发布于c8985593；本轮统一handoff要求instructor更新原任务，constructor在原授权与顺序下继续离线实施，不重复工程READY。原Work接收器和constructor/Windows runner仍无登记，不能声称本轮已唤醒原会话；本轮临时子agent已实际执行并完成，身份不混同。今日汇报已明确为10/15—11/15月计划下的组会进展汇报，交付briefings/GROUP_MEETING_20261021.md。main自动化当前enabled=true，提示已纠正今日汇报语义；接口有非空最近结果、送达仍UNKNOWN。
 上一统筹补充（保留历史）：main已接收instructor本轮本人回报：已读FIELD2 blob f9120401471c876df9ed610f04b905f923f25fc0，接受FPV+08/09/10优先、四路三层/radar-lidar待裁决及暂不平滑；已沿005续派隔离补丁、测试与下一版切换准备。写前已读新提交7495731013d3d9dce0c4c0b13a0271b84be02d2d及005追加条款：续派已正式发布，constructor本批新领取/候选完成仍待本人证据。legacy逐艇动态monotonic freshness=2s与昂贵LOS可能造成同批后排超时，仍是instructor源码线索，待旧版反例证实；不能放宽TTL。FPV须定位源/relay/Qt最早瓶颈，不拿30Hz配置上限充实测。R1生产/用户会话保持，候选经instructor核查后再统一切换；005仍RUNNING、未称修复或部署完成。原只读总额度不续时，无新增Gazebo/操纵。见第29节；第27—28节保留R2/Windows和FIELD2证据边界。
-论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与27—29节；第10—26节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
+论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实以顶部快照、当前表格和最新原负责人报告/review为准；第27—29节为历史；第10—26节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
 ## 1. 角色与工作目标
 
 | 角色 | 负责 | 当前状态与下一步 |
 |---|---|---|
 | exploration | 文献整理、版本/原文证据、直接交付inspiration | Xie已接收；本轮main另读1cea3553的Ishii证据笔记/交付增量，按其证据范围接收，不冒称main复读原文。后续按明确论断缺口推进，不扩大主实验 |
-| inspiration | 向用户解释全貌、讨论反例与研究取舍 | 用户/instructor称已通知继续解释FIELD2：AUTO10/HUMAN0未展示B2/B3；责任≠覆盖，收益是假设，讲平台→SEARCH采样→按组RF→replay/live→encounter。本人新ACK/回复待证据，不先反问或扩线 |
-| main | 科学合同、计划优先级、跨线状态与评审 | 接收instructor本轮FIELD2本人ACK与005隔离补丁/测试续派回报；同步记忆/计划，不重复工程READY。候选、核查、切换和现场效果分别记录；Windows接收/执行仍待证据 |
-| instructor | 平台设计、唯一工程派发与验收 | 本轮本人报告已读FIELD2并续派005隔离实现/测试及下一版切换准备；优先FPV+08/09/10，动态freshness/LOS线索待反例。候选由其核查、统一切换；续派已在74957310发布，候选回传待证据 |
-| constructor | 实际平台实现、测试、报告与本人STATUS | R2@3796d83f隔离候选26离线tests、未部署；4579f89a回传当前run 08/09/10 CAMERA_INFO_STALE、FPV约5.4—6.5回调/s及163次generation，根因/源Hz-RTF/同generation轨迹仍缺；生产R1保持 |
+| inspiration | 向用户解释全貌、讨论反例与研究取舍 | 今日优先按月计划组会口径讲清问题/本周实际进展/未完成/下一步，参考本轮GROUP_MEETING稿；原本人新接收/解释回执仍待证据 |
+| main | 科学合同、计划优先级、跨线状态与评审 | 已完成R4/005S1核查、月计划组会稿和统一接续交接；本轮临时两子agent完成，不冒称原Work已被唤醒 |
+| instructor | 平台设计、唯一工程派发与验收 | R4候选已review；005R4-FIELD等待实际切换。005S1已READY，需将已发布四路裁决补入原任务并继续离线实施，不重复请示main |
+| constructor | 实际平台实现、测试、报告与本人STATUS | R4 11文件候选已完成；最新14:34—14:37现场仍R1，等待用户切换后按唯一FIELD任务取证。005S1无本人新ACK/代码证据；本人摘要需更新以免旧R1顶栏误导 |
 | Windows本地Codex（既有桥接agent） | C:\bridge / C:\EyeTrackerBridge本机采集与发送；沿instructor/005协作 | 原LOCAL_AUDIT_COMPLETE不等于本轮接收。main已发R2跨线交接；本人ACK/实际源链证据/候选patch待回传，无可调用接收入口证据 |
-| overleaf | 唯一论文母稿、引用与论证 | 论文HEAD214b2cc9无增量；原R1/RF-Xie ACCEPTED保持。下一次仅校正确有过时的工程当前状态，勿把UI候选/四传感器待对齐写成已实现或扩科学合同 |
+| overleaf | 唯一论文母稿、引用与论证 | 论文HEAD8f8eab66；本轮不因工程候选新增正式结果。按组会稿只核实关键主张边界，已有正确稿无须重复编译/改写 |
 
 exploration提供有来源的文献证据；inspiration据此与用户讨论；main统一有依据的新结论和用户明确决定，工程交instructor、母稿交overleaf。用户已明确的第一周方向无需再次批准，助手候选不能自升为合同。main不向constructor另发竞争工程READY。角色名、仓库发布、本人ACK、后台启用、执行和验收必须分别记录。
 
@@ -55,7 +55,7 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 
 ## 5. 工程事实快照
 
-004/004R2依据main已读取的0f2c80e7下instructor正式review及INSTRUCTOR-TO-MAIN-MANUAL交接。当前005依据1ae7932f下R1 review和constructor报告。instructor直接核对本地最终hash/原始事件并重算STOP统计，main按该正式review接收工程结论；main未访问实际Linux/Windows工作区或独立重跑。最新原负责人review优先于旧STATUS与历史记忆。
+004/004R2依据main已读取的0f2c80e7下instructor正式review及INSTRUCTOR-TO-MAIN-MANUAL交接。当前005依据R4 review（blob a267e5fe7655e062dbdb92657bcc49275aeb2a6e）、005R4-FIELD和constructor最新报告。instructor有独立离线测试/版本核查，constructor有实施/现场报告；main未访问实际Linux/Windows工作区或独立重跑。最新原负责人review优先于旧STATUS与历史记忆。
 
 | 工作 | 当前状态 | 证据与限制 |
 |---|---|---|
@@ -65,7 +65,7 @@ R、tau、正式 B 仍 OPEN。main新补充已冻结：主实验正常成功仅e
 | 004 | instructor ACCEPTED（限生产B3门控/无模型回退） | 最终Planner source/build SHA256=ad6b320e4ac9753019dcc84dc613e74d05fa3e53d6e9f3501b7dacb5f0541e84；004R2最终运行闭合fallback、撤销、直接STOP与Recorder。不是有效RF/正式效能验收 |
 | 004R | instructor BLOCKED / RUN_CONSUMED | 唯一Gazebo已启动，临时START及cleanup错用example_interfaces/SetBool，真实为std_srvs/SetBool；未START。20路空闲零值不是STOP因果安全，旧额度不能重用 |
 | 004R2 | instructor ACCEPTED（限定工程）；运行已完成、额度已消费 | run=448cd4ea97f64161bcaf9d850386bba5。instructor原始证据复核：STOP前20路均非零；STOP后各360条全零、最短11.634358088s，回执至保守屏障间689条亦零。任务活动约2.2s，非长期性能/预算删失验证 |
-| 第一周平台准备 / 005 | 整体RUNNING；R1第二轮反馈取证、R2隔离未部署 | 4579f89a同run legacy链08/09/10 CAMERA_INFO_STALE 123/123，当前新事件0；FPV仍卡、眼动主观改善。R1离线证据有效但非现场整体通过；R2未部署/未有新review，Windows本人ACK待回传 |
+| 第一周平台准备 / 005 | 整体RUNNING；R4候选已审查、用户切换待完成；005S1离线READY | 最近现场仍R1；R4现场无检测、08–10恢复、FPV改善尚未观察。四路裁决已发布，尚无005S1实际代码/本人ACK证据；不把候选当现场通过 |
 | RF真实来源与训练 | 最小数据合同已发布；真实来源链/数据/模型未验证 | 无模型不阻断准备；无法核验源身份时仍保守回退 |
 | encounter、正式B2/B3与RMST | 未验证/未报告 | 不用工程验收或文本ACCEPTED升级科学结果 |
 
@@ -365,3 +365,12 @@ inspiration应直接解释责任是未来任务分配、不是已感知证明；
 - 下一交付应为隔离补丁及基线/候选hash、旧版失败→候选通过的直接证据、必要回归/隔离构建与source/install一致性、剩余现场项，以及持久可取候选/备份/切换/回退说明；由主agent唯一集成已有R2语音/眼动候选与本批修复。先由instructor核查，部署程序在用户会话仍存活时必须拒绝且不杀进程，用户保存退出后再统一切换。R1源码/build/install、用户进程及Windows当前exe保持稳定；本轮未实际切换、未运行仿真/操纵/录音/训练。005仍RUNNING，补丁完成、部署完成与现场效果均未被本回报证明。
 
 本轮main只更新自有记忆和阶段计划，既有Windows中转和未部署语音/眼动R2证据保持；不产生ACK套ACK或另行催派。后续有实际候选/review/切换证据再增量更新。
+
+
+## 30. 2026-10-21 本轮统筹与组会交付
+
+- 用户再次要求立即执行统筹，并纠正“今日汇报”为月计划下的今天组会，不是另开论文教学。已准备可直接使用的三分钟讲稿、月计划进展表和现场复验分工，见briefings/GROUP_MEETING_20261021.md。
+- 统一跨线接续见handoffs/MAIN-20261021-RESUME-001.md；instructor维持唯一工程派发/验收，main不覆盖其任务。005S1中main裁决待到已被正式四路handoff解除；等待用户R4现场窗口不应阻塞不冲突的隔离离线工作，仍不并发改同文件、不自动切换。
+- 本轮实际启动engineering_audit、meeting_brief两个临时只读子agent，均返回完整结果，随后结束。不是constructor的旧子agent，也不等于既有Work被唤醒。原角色无接收器/runner入口是实际调度缺口，仓库handoff不冒充执行回执。
+- 自动化6ad720ead3cc8191abc79a66100726cc当前已启用；本轮只修正prompt中组会语义。最近run 416d3c0f-8d5c-832c-a7a8-5c7877422601有匹配非空结果，delivery_status=unknown。不能继续笼统称当前结果为空，也不能据此否认用户未看到回复。未额外创建循环任务或触发重复main运行。
+- R4正确切换命令与review/constructor报告一致；本轮未代运行仿真、停机、部署、录音或训练。所有现场结论留给当前版本真实证据。
