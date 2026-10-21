@@ -1,8 +1,9 @@
 # main 共享工作记忆 — USV 研究统筹
 
-更新日期：2026-10-20，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
+更新日期：2026-10-21 14:54，Asia/Shanghai。维护者：main。研究语义：RC-20261020-v1 + decisions/RC-20261020-v1.1.md。
 用途：六角色共同读取的研究和事实基线；不是平台完成证明，也不代表其他对话已经接收。
-最新统筹补充：main已接收instructor本轮本人回报：已读FIELD2 blob f9120401471c876df9ed610f04b905f923f25fc0，接受FPV+08/09/10优先、四路三层/radar-lidar待裁决及暂不平滑；已沿005续派隔离补丁、测试与下一版切换准备。写前已读新提交7495731013d3d9dce0c4c0b13a0271b84be02d2d及005追加条款：续派已正式发布，constructor本批新领取/候选完成仍待本人证据。legacy逐艇动态monotonic freshness=2s与昂贵LOS可能造成同批后排超时，仍是instructor源码线索，待旧版反例证实；不能放宽TTL。FPV须定位源/relay/Qt最早瓶颈，不拿30Hz配置上限充实测。R1生产/用户会话保持，候选经instructor核查后再统一切换；005仍RUNNING、未称修复或部署完成。原只读总额度不续时，无新增Gazebo/操纵。见第29节；第27—28节保留R2/Windows和FIELD2证据边界。
+当前快照（2026-10-21 14:54）：coordination HEAD在main写前为4c92bab0，instructor于14:42发布005S1离线实现READY；发布不等于constructor本人ACK，当前无005S1代码、报告或验收。005R4仍是已review的CANDIDATE_READY/USER_CUTOVER_PENDING；constructor 14:34—14:37本人实查生产source/build/install和日志仍为R1，detector仍启动，因此R4 detector-off、08/09/10几何/负证据与FPV改善均NOT_OBSERVED，不能记作R4现场失败。等待用户正常结束旧会话后，按R4 apply_and_start受控切换，再执行005R4-FIELD唯一有界检查。main已在handoffs/MAIN-TO-INSTRUCTOR-FOUR-SENSOR-BUILD-20261021-001.md正式裁决：四路为RGB+IR+sonar+lidar，radar保留禁用；sonar几何近似仅限工程链，IR只认兼容原生thermal，先单艇可选默认关闭；预览/物理模型/posterior三层分离，未经likelihood/标定/相关性裁决不接Bayes、不把四路当独立证据。该handoff已发布于c8985593，但instructor/constructor接收仍待本人回执。paper/overleaf-20261020 HEAD仍8f8eab66，无本轮增量。
+上一统筹补充（保留历史）：main已接收instructor本轮本人回报：已读FIELD2 blob f9120401471c876df9ed610f04b905f923f25fc0，接受FPV+08/09/10优先、四路三层/radar-lidar待裁决及暂不平滑；已沿005续派隔离补丁、测试与下一版切换准备。写前已读新提交7495731013d3d9dce0c4c0b13a0271b84be02d2d及005追加条款：续派已正式发布，constructor本批新领取/候选完成仍待本人证据。legacy逐艇动态monotonic freshness=2s与昂贵LOS可能造成同批后排超时，仍是instructor源码线索，待旧版反例证实；不能放宽TTL。FPV须定位源/relay/Qt最早瓶颈，不拿30Hz配置上限充实测。R1生产/用户会话保持，候选经instructor核查后再统一切换；005仍RUNNING、未称修复或部署完成。原只读总额度不续时，无新增Gazebo/操纵。见第29节；第27—28节保留R2/Windows和FIELD2证据边界。
 论文验收历史依据：5748cf31的R1修订及当时独立编译/局部PDF复审见第12节；RF/Xie增量及7页检查见第20节。当前事实见第1—9与27—29节；第10—26节保留相应检查时快照及仍有效分工。本次以当前仓库和用户指令为准，不声称读取所有历史对话或其他角色内部记忆。
 
 ## 1. 角色与工作目标
