@@ -5,11 +5,11 @@
 ## 当前执行快照（2026-10-21，优先于下方历史阶段）
 
 1. **今天组会**按原10/15—11/15月计划汇报第一周实际进展，稿件与计划对照表见 `../briefings/GROUP_MEETING_20261021.md`。第一周未整体验收，不将第二周RF训练或后续正式实验写成完成。
-2. **R4已实际受控切换并启动。** 用户在constructor线程明确授权结束旧R1；R4 apply的89项测试与5包构建通过，run_id=`076015c430364018bdae206d90b9c557`。instructor FIELD review为`PARTIAL_ENGINEERING_PASS / FPV_UNRESOLVED`，005整体非ACCEPTED。用户唯一日常入口是`cd /home/cyz/vrx_ws && ./run_vrx.sh start`；候选apply/check仅用于工程升级维护，当前R4不为说明更正重启。
+2. **005S1六文件维护已完成并经独立生产核验。** constructor655b5d7a确认正常结束R4、备份USV_20261021_005S1_20261021T1540、三包生产build/11+28+23门禁及安装后28+23通过；instructor d090c61f实际source生产setup/import五模块和registry六hash全部匹配。正式SIX_FILES_DEPLOYED / USER_CHECK_READY / FOUR_SENSOR_INTEGRATION_CONTINUES，仅六文件可供复验。维护未自动start，用户仍唯一 ./run_vrx.sh start；用户新run不受本次离线工作干扰。
 3. **005R4-FIELD本轮唯一现场探针已由instructor收口，不再追加图像采样**：detector节点/发布者为空且Search状态关闭；08—10在三个真实更新批次geometry均valid，记录几何离线重算每艇每批有337—341个非1 miss项。FPV仍未解决，源9.666/relay7.84 wallHz、RTF0.539960、唯一干净Qt十秒窗约6 wallFPS，未证明R4相对R1改善。
-4. **005S1离线READY继续推进**：instructor已在原任务接收RGB+IR+simulated geometric sonar+lidar、radar禁用、单艇可选默认关闭和三层隔离，不再等待main。constructor须交实际隔离代码/必要测试/构建及本人回执；当前无此证据，不把任务发布称为已领取或完成。
+4. **四路代码已落地，physical启动图仍未接/默认off**：模型/bridge/source-monitor/小UI与LOS批内CPU优化已有实际代码。独立候选11项、64000格等价与六hash通过；LOS离线0.33079→0.10357s不冒称FPS改善。instructor已在原S1续派单艇opt-in连接及默认false/仅一艇/原入口离线预检，不动冻结六文件/生产/用户新run，不新Gazebo、部署、默认负载或后验；完成后再给单艇运行门槛。
 5. **当前完成边界**：R4现场detector关闭及08—10所查三批恢复有局部工程证据；FPV、长期在线逐艇贡献、语音准确率、眼动跨机延迟和完整搜索闭环未整体验收。真实RF数据/模型及B2/B3效能仍未验证；路径平滑与大UI继续后置。
-6. **协作接续**：instructor与inspiration已有本人ACK/交付；constructor执行R4切换由instructor review确认，但其005S1本人ACK/代码回传仍待，Windows/其他接收器也未登记。仓库发布、执行、本人回执与验收继续分开记录，不伪称所有Work持续运行。
+6. **协作接续**：constructor候选实际代码b685e083、review2288608b和维护完成655b5d7a均已核，不再写仅通知/代码待交/维护待授权。原Work消息入口存在，constructor独立读用户原话已获本人回执支持；无须重复授权。后续现场效果/四路physical与整体验收按实际证据，不新增竞争任务、不自动start或追加采样。
 
 ## 本周目标与当前重心
 
