@@ -39,3 +39,11 @@ H=5 s、历史 1-cell 参数和传感器 `engineering_assumed` 仅工程沿用�
 ## 2026-10-21 005R4-FIELD 首次检查
 
 - 当前 `USV-20261021-005R4-FIELD` READY 已领取，现场首次只读检查为 `WAITING_FOR_R4_CUTOVER`，不是R4 FAIL：14:32新会话加载的根launcher/Search/Qt/launch均R1哈希，同run日志明确fleet_camera_detector启动；R4 switch_logs目录不存在。constructor没有部署、停机、订阅FPV或操纵。R4探测关闭、08–10恢复和FPV改善均NOT_OBSERVED，等待用户核实际命令并正常切换。证据见`docs/coordination/reports/USV-20261020-005.md`末节。
+
+
+## Constructor 005S1 offline freeze — 2026-10-21 15:36 Asia/Shanghai
+
+- Constructor 状态：`RUNNING / ISOLATED_OFFLINE_READY_FOR_REVIEW`；当前 R4 未停止、重启、部署或热替换，无新 Gazebo。
+- 冻结候选：单艇 RGB/IR/几何 sonar/3D lidar 默认关闭接入、source identity fail-closed、health/console 状态、legacy LOS 每批准备优化；六文件精确清单与完整哈希在本地 `src/workspace/reports/USV_20261021_005S1_OFFLINE_REPORT.md`，通信摘要在 `reports/USV-20261020-005.md`。
+- 验证：候选定向 11 PASS；GT/probability 28 PASS；static visibility/discrete observation 23 PASS；三个受影响包隔离 build PASS，install/source 六文件哈希一致。
+- 仍未验收：真实四路 Gazebo 输出、thermal 物理量、sonar 声学真实性、资源负载、FPV/RTF 改善。后续由 instructor 在用户正常结束 R4 后安排维护升级与单次运行复验；日常入口不变。
