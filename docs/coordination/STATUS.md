@@ -34,3 +34,8 @@ H=5 s、历史 1-cell 参数和传感器 `engineering_assumed` 仅工程沿用�
 
 - 当前唯一READY后继 `USV-20261020-005R4` 已由constructor实施为 `ISOLATED_READY / RUNTIME_NOT_VALIDATED`，非DONE/ACCEPTED。报告 `docs/coordination/reports/USV-20261020-005.md`，本地11文件候选及安全切换 `src/workspace/candidates/USV_20261020_005_R4/README.md`。生产仍R1，未apply/start/改原始资产。
 - 默认真实detector节点、Search/Qt检测消费与黄色候选可视化已在隔离候选中门控；显式opt-in保留。旧反例FAIL→R4 PASS，相关82+GT7 PASS，隔离5包build PASS，假根切换及失败回滚PASS。真实Gazebo/UI未复验；源相机吞吐、08–10几何资格、四真实传感器仍OPEN。旧0.25仿真Hz假设与4秒belief不变，正式科学结果未验收。
+
+
+## 2026-10-21 005R4-FIELD 首次检查
+
+- 当前 `USV-20261021-005R4-FIELD` READY 已领取，现场首次只读检查为 `WAITING_FOR_R4_CUTOVER`，不是R4 FAIL：14:32新会话加载的根launcher/Search/Qt/launch均R1哈希，同run日志明确fleet_camera_detector启动；R4 switch_logs目录不存在。constructor没有部署、停机、订阅FPV或操纵。R4探测关闭、08–10恢复和FPV改善均NOT_OBSERVED，等待用户核实际命令并正常切换。证据见`docs/coordination/reports/USV-20261020-005.md`末节。
