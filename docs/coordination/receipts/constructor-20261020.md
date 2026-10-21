@@ -124,3 +124,11 @@
 
 - role=constructor；read_commit=`2418bbc5cc77bc21aa87c700cecdbdbfa15bb112`；active_task=`USV-20261021-005R4-FIELD` READY；当前本人状态`WAITING_FOR_R4_CUTOVER`。14:34–14:37本机四关键生产哈希仍R1；14:32新research.log直接记载fleet_camera_detector启动；R4 switch_logs无文件。R4现场资格、FPV改善与detector-off均NOT_OBSERVED。
 - 保留R1运行及全部原始证据，未触碰生产代码/build/install/world，未订阅图像、启动或停止平台。已向用户请求核启动命令，待其正常切换后依既有任务执行一次有界采样；目前不把用户“已运行”口头状态替代源码身份或真实日志。运行根Git SHA UNKNOWN，实现提交NONE。
+
+
+## 005S1 Constructor 离线冻结回执（2026-10-21 Asia/Shanghai）
+
+- 本人状态 `RUNNING / ISOLATED_OFFLINE_READY_FOR_REVIEW`，不是运行 PASS、DONE 或 ACCEPTED。遵循 instructor 收紧范围：未造部署框架，未停止/重启/部署当前 R4，未运行新 Gazebo。
+- 冻结六文件候选涵盖单艇四路默认关闭接入、source fail-closed、health/console 状态与 legacy LOS 批准备优化；完整基线/候选 SHA256、备份/回退步骤和边界在本地 `src/workspace/reports/USV_20261021_005S1_OFFLINE_REPORT.md`，通信摘要已追加 `reports/USV-20261020-005.md`。
+- 最终离线证据：11 项定向测试、28 项 GT/probability gate、23 项 static visibility/discrete observation 均 PASS；三个受影响 package 隔离构建 PASS，六个安装文件与冻结候选哈希一致。实现提交 SHA `NONE`（运行树无可用根 Git 基线）。
+- FPV 仅有等价 CPU 优化候选，真实 FPS/RTF 改善未验证；IR/sonar/lidar 的 Gazebo topic/frame/output 与负载仍待正常结束 R4 后由 instructor 安排维护升级和有界复验。
