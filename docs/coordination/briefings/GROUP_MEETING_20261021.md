@@ -121,4 +121,6 @@ cd /home/cyz/vrx_ws
 - R4 review：docs/coordination/tasks/USV-20261020-005R4.review.md，blob a267e5fe7655e062dbdb92657bcc49275aeb2a6e。
 - 当前现场：`docs/coordination/tasks/USV-20261021-005R4-FIELD.review.md`（R4 run `076015c430364018bdae206d90b9c557`，结论PARTIAL_ENGINEERING_PASS / FPV_UNRESOLVED）；旧14:34—14:37仍R1记录仅作切换前历史。
 - 四路裁决：docs/coordination/handoffs/MAIN-TO-INSTRUCTOR-FOUR-SENSOR-BUILD-20261021-001.md。
+- 六文件维护：docs/coordination/tasks/USV-20261021-005S1.review.md与reports/USV-20261020-005.md最新维护段；生产六hash一致、未自动start。
+- 后继门槛：docs/coordination/tasks/USV-20261021-005S1.md@ffd6d7c6；只是instructor任务发布，尚无constructor对该增量的本人ACK或结果。
 - 本稿为基于已读证据的组会表述，不是新实验报告。未把离屏基准写成现场FPS，未宣称RF或正式B2/B3效能已通过。
