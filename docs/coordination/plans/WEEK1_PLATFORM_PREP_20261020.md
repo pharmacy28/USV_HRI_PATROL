@@ -7,9 +7,9 @@
 1. **今天组会**按原10/15—11/15月计划汇报第一周实际进展，稿件与计划对照表见 `../briefings/GROUP_MEETING_20261021.md`。第一周未整体验收，不将第二周RF训练或后续正式实验写成完成。
 2. **005S1六文件维护已完成并经独立生产核验。** constructor655b5d7a确认正常结束R4、备份USV_20261021_005S1_20261021T1540、三包生产build/11+28+23门禁及安装后28+23通过；instructor d090c61f实际source生产setup/import五模块和registry六hash全部匹配。正式SIX_FILES_DEPLOYED / USER_CHECK_READY / FOUR_SENSOR_INTEGRATION_CONTINUES，仅六文件可供复验。维护未自动start，用户仍唯一 ./run_vrx.sh start；用户新run不受本次离线工作干扰。
 3. **005R4-FIELD本轮唯一现场探针已由instructor收口，不再追加图像采样**：detector节点/发布者为空且Search状态关闭；08—10在三个真实更新批次geometry均valid，记录几何离线重算每艇每批有337—341个非1 miss项。FPV仍未解决，源9.666/relay7.84 wallHz、RTF0.539960、唯一干净Qt十秒窗约6 wallFPS，未证明R4相对R1改善。
-4. **四路代码已落地，physical启动图仍未接/默认off**：模型/bridge/source-monitor/小UI与LOS批内CPU优化已有实际代码。独立候选11项、64000格等价与六hash通过；LOS离线0.33079→0.10357s不冒称FPS改善。instructor已在原S1续派单艇opt-in连接及默认false/仅一艇/原入口离线预检，不动冻结六文件/生产/用户新run，不新Gazebo、部署、默认负载或后验；完成后再给单艇运行门槛。
+4. **四路代码资产已落地，physical启动图仍未验收**：模型/bridge/source-monitor/小UI与LOS批内CPU优化已有实际候选；独立候选11项、64000格等价与六hash通过，LOS离线0.33079→0.10357s不冒称FPS改善。instructor已在原S1追加门槛：先接通根入口opt-in、仅spawn wamv_10的profile及bridge并做离线唯一性/错误配置预检；默认十艇入口与默认false不变。仅当候选完成、instructor核查且用户复验结束，才允许一次最多180秒的单艇Gazebo验证；当前没有constructor对这一增量的本人ACK或结果，不称四路上线。
 5. **当前完成边界**：R4现场detector关闭及08—10所查三批恢复有局部工程证据；FPV、长期在线逐艇贡献、语音准确率、眼动跨机延迟和完整搜索闭环未整体验收。真实RF数据/模型及B2/B3效能仍未验证；路径平滑与大UI继续后置。
-6. **协作接续**：constructor候选实际代码b685e083、review2288608b和维护完成655b5d7a均已核，不再写仅通知/代码待交/维护待授权。原Work消息入口存在，constructor独立读用户原话已获本人回执支持；无须重复授权。后续现场效果/四路physical与整体验收按实际证据，不新增竞争任务、不自动start或追加采样。
+6. **协作接续**：constructor候选实际代码b685e083、review2288608b和维护完成655b5d7a均已核，不再写仅通知/维护待授权。新增ffd6d7c6只是instructor在原S1中的后继任务发布，尚不能写constructor已领取或完成；不另发竞争任务。其有界FPV窗口与条件化单艇验证按原任务预算执行，不自动start、不扰用户会话、不接后验。
 
 ## 本周目标与当前重心
 
