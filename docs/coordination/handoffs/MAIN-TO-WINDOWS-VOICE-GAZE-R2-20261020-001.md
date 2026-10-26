@@ -1,3 +1,37 @@
+## 2026-10-27 main 接收 windows 本人回执，并转达现有 constructor
+
+- 收件人：**现有 constructor 对话**；抄送现有 windows / instructor。本段是用户明确要求的跨线接口转达，沿原任务，不新建对话、替代agent或工程READY。
+- main read_commit：`fd681b494ec67987652f78de04cbd7d8d1f19551`。依据：本轮收到的 windows 本人汇报；下列本机结果均归属 windows 报告，main 未独立重测。
+- windows 已本人读入本文件 blob `5c90b2140939b21ea275231a692b08bb8bd5181e` 和 MAIN_MEMORY blob `fa697156dbf1832d1bdada3e3ef053c815910c9f`，其 read_commit=`e31d235d21418c5b707a96616550ab2857b2328c`。**WINDOWS_ACK_RECEIVED**，旧“仅截图/ACK_PENDING”不再是当前状态。
+- windows 报告本机现已能用 list_threads/read_thread/send_message_to_thread 定位并发送到 main。main 本轮工具发现未暴露对应接口、可见agent仅/root，插件搜索亦未找到对应能力。这只描述本轮main的能力，不否定windows或constructor已有接口。精确windows线程标识已在用户私有原文提供，不在公开报告重复。
+- 本次传输状态：**RELAY_PUBLISHED / CONSTRUCTOR_ACK_PENDING**。仓库发布、聊天直发、对方本人读取分别记录；没有constructor本人回执前不称其已接收或启动工作。
+
+### 请 constructor 先回传当前归档说明，再对齐眼动接口
+
+1. **归档优先。** 提供你所称“现有说明（line179）”的准确仓库路径、可读文件、版本/hash与对应段落；若只存在本机，发布去标识接口说明。明确当前传输方向、服务在哪端、传输方式/协议/端口、文件清单与manifest、完成条件、完整性校验、重复/中断处理，以及已实现与待实现项。windows 已具备目录和venv基础，但没有传输服务，不能按“已能归档”联调；不要猜测line179属于哪个文件。
+2. **源码与构建目标。** 提供与当前Linux接收器匹配的新眼动发送端源码入口/版本与构建目标、所需Unity Editor/Windows Build Support（Mono）等要求，区分现有UUV.exe基线与隔离新候选。不能用通信分支旧platform覆盖当前生产，不把Unity“安装完成”当新发送端已构建。
+3. **Linux当前接口。** 提供现行UDP接收字段、类型/单位、valid/null、tracker_us及可选source/session/序号的兼容规则、坐标约定、当前端口与接收器启动/依赖方式；明确配置预期和实际绑定的区别。UDP15555仍未验证跨机收包；7729/7799只是旧Unity默认值，不作为当前VRX接口。用户唯一日常仿真入口保持 `./run_vrx.sh start`。
+4. **实际显示与校准。** 与windows对齐操作员实际注视哪台机器的哪块屏幕、Tobii校准对应哪块屏幕、VRX画面实际显示位置，以及窗口内容区/DPI/黑边/Y方向映射。看Windows屏与看Linux屏不是同一坐标验证；未完成映射不得把归一化合法坐标写成任务画面命中。
+5. **本人回执。** constructor 在既有本人回执/报告或原对话合并返回读取的commit、上述可读入口、实际已完成项与阻塞；如本人跨线程接口可用，可直接回复现有windows并向main回传发送结果。发出成功与windows本人ACK仍需区分。无须再向用户索要已在私有原文给出的地址/线程信息；不得在GitHub复制私有网络地址、个人路径或原始眼动。
+
+以上是现有工程接口澄清和原工作接续，不授权新Gazebo、录音、生产部署、改科学合同或启动设备。用户准备重启；windows本轮不再启动设备/发送器，先完成重启后环境核对。Linux用户说明尚未start，用户要求“暂不用操作Linux，先Windows归档后眼动”；不因本回执要求其启动或改Linux。
+
+### windows 本人报告的状态与证据边界
+
+| 项目 | 当前可记录结论 |
+|---|---|
+| Unity | 用户报告“安装完成，准备重启”（USER_REPORTED）；重启后的Editor版本、Windows Build Support（Mono）和新构建均未验收。 |
+| 设备与驱动 | Windows枚举识别Tobii Eye Tracker 5，非Pro Spark；驱动INF 1.133.0.30004。用户报告驱动安装与校准完成，windows观察Tobii Experience运行；校准质量未独立验证。 |
+| 基线文件 | 原UUV.exe、Assembly-CSharp.dll、GazeUdpSender.cs的SHA256与本交接历史三项完全匹配；未替换源代码或生产发送端。 |
+| 普通桌面本机UDP | 15.045秒收到893包：134有效、759无效；58唯一tracker_us；134有时间戳包中76重复（56.7%），0倒退/格式错误/有效点坐标越界/无效点保留非null坐标。用户期间部分时间看Linux屏，不能据此推固定注视有效率或设备质量。 |
+| 计数与时延 | 上述是接收统计，设备回调、Unity Update、socket发送次数仍UNKNOWN；跨机时钟UNALIGNED，无端到端延迟结论。沙箱仅无效点窗口单独保留，不与正常桌面混算。测试进程已结束，未向Linux发送真实眼动。 |
+| 归档准备 | Python 3.12.14 venv可运行，但依赖本机Codex bundled Python，非独立可移植安装；HRI-Archive目录创建/读取/删除检查通过，检查时剩余856.3GiB。个人绝对路径留私有原文；归档传输服务/协议/校验尚未实现。 |
+| 双机网络 | 两台可同时运行的电脑，地址已记录本地配置；配置/路由事实不代表UDP15555实际收包。TCP22 connection refused，SSH未建立，不要求用户传密码。 |
+| 整体边界 | 双机联调、坐标映射、实际采样完整验收尚未完成；本回执不构成研究数据合格、RF训练或运行平台验收。 |
+
+---
+> 下文2026-10-26及2026-10-20条目保留历史。当前状态以上方2026-10-27本人回执为准；旧“Unity尚未安装”“设备待识别”“Windows无接口/ACK_PENDING”等不再作为当前结论。
+
 ## 收件身份更正与最新可见进度（2026-10-26，用户截图）
 
 用户明确：`windows` 是 **Codex 应用内已有聊天的名称**，不是新的子 agent、Windows 系统服务或待查的 ChatGPT 网页聊天。main 不具备该独立聊天的直接发送接口；不能据此否定 windows 本身拥有本机操作能力，也不能把历史 Windows 审计作者与此新会话未经核对地视为同一实例。
