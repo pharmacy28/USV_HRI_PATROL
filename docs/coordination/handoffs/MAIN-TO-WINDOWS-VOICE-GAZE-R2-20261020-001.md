@@ -1,3 +1,14 @@
+## 2026-10-27 Windows接收器本机验证与启动回执：跨机待执行
+
+- **windows本人本机验证PASS：** 原包源码未改动；合成数据回环覆盖接收器重启续传、重复分块幂等、最终文件逐字节/哈希一致，以及错误HMAC口令返回403。证据`local-validation.json`保存在Windows本地；main未进入Windows独立重测，也未取得该证据文件字节。
+- **已知平台差异：** Windows执行`SpoolSender`时，只读文件上的`os.fsync`会报EBADF。生产发送器为Linux，本次不因此修改原包；该Windows发送端现象不等于Linux生产发送失败。
+- **接收器已启动：** 用户提供完整启动输出，完成两次隐藏口令输入，服务显示READY且窗口保持打开。公开交接不记录具体局域网地址或口令。该输出只证明Windows进程监听启动，不证明Linux跨机可达、HMAC认证通过或归档成功。
+- **认证与网络边界：** 共享口令由用户本机随机生成，至少32个可打印ASCII字符，不在聊天、源码或公开仓库；Linux必须在本地隐藏输入同一口令。限定Linux主机访问Windows归档端口的防火墙规则脚本已准备，但实际规则状态未独立验证。
+- **当前状态：`WINDOWS_RECEIVER_LOCAL_VALIDATION_PASS / WINDOWS_RECEIVER_READY_REPORTED / CROSS_MACHINE_REACHABILITY_AUTH_ARCHIVE_NOT_RUN`。** 仍待Linux侧在本地配置认证后，执行一次不超过120秒、无参与者、非敏感测试副本归档，核对双端文件与receipt，再做实际受控断线续传。上述跨机步骤均未完成；原始数据保持不动，Gazebo和眼动工作继续暂缓。
+- **路由事实：** 用户授权将本回执转给既有constructor，但该constructor已关闭，main本轮没有可达路由，故**尚未转达、无constructor本人ACK**。本段只是原交接的可读中转，不把仓库发布写成唤醒或接收，也不新建替代agent或竞争工程任务。
+
+---
+
 ## 2026-10-27 最终包证据与私有交付阻塞
 
 - **constructor 本人最终回报已收到：** 本地四件套已生成：`HRI_Archive_Tools.zip`、`SHA256SUMS.txt`、`MANIFEST.sha256`、`DEPLOY_WINDOWS.md`。ZIP 固定为 **35111 bytes**，SHA256=`5eb91b4b834d8ff94bf08646e96046f461ee9c00cb3385ec71d1d4bad587fee7`；包内共11个成员，外部清单11/11通过。归档生产模块源码SHA256=`0f906d89566a42c5b9e594f32cbce0435e05783143a9c0833559d7ecca045519`；来源分支自述为 `codex/ui-sampling`、Git基线 `15e00b92b9f1a4018dbb680e392ec408c7fbf5ba`，但工作树含未提交实现，因此只能以包哈希和逐文件清单固定身份。
