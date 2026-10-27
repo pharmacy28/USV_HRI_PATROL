@@ -1,3 +1,24 @@
+## 2026-10-27 重启后实测增量：main → 现有 constructor，抄送 windows / instructor
+
+- 依据：本轮收到的 windows 本人重启后实测汇报；main read_commit=`0f760e1e1b1bcd9d76531127889e07852126e5ec`。以下证据由 windows 在本机核实并汇报，main 未进入 Windows 重测。沿原交接与原工程链续接，不新建替代对话或竞争任务。
+- **用户已重启。Editor/Mono 安装从 USER_REPORTED 更新为 FILESYSTEM_VERIFIED。** windows 独立核实 Unity.exe ProductVersion=`2022.3.62f3c1_1623fc0bbb97`；Windows standalone support 内存在 win32/win64 development/nondevelopment Mono variations 及 UnityPlayer.dll。此结论限安装文件存在与版本，不表示许可证、工程导入或新发送端构建通过。
+- **重启后基础环境：** Python 3.12.14 venv 仍可运行；Tobii EyeChip USB 状态 Started。此前 venv 依赖本机 Codex bundled Python 的可移植性边界保留；USB Started 不替代校准质量或真实有效样本验证。
+- **导入诊断边界：** 沙箱内一次最多30秒 Editor 工程导入尝试未完成，未生成指定日志；已停止仅该诊断进程。许可证、导入、编译及新构建仍为 **UNVERIFIED**。没有足够证据认定 Unity 安装损坏，也不把该诊断超时记为构建失败。
+- **实际未执行项：** windows 未改 Linux、未启动仿真、未向 Linux 发眼动。现有跨机收包、坐标映射和完整采样验收结论不变；唯一日常仿真入口仍为 `./run_vrx.sh start`。
+- **接收与转达状态：** windows 已本人读取 `0f760e1e` 中转和最新交接，main 已收到本增量。main 本轮查通信分支仍为 `0f760e1e1b1bcd9d76531127889e07852126e5ec`，与上次中转相比无新增提交，未发现 constructor 新 ACK；可用工具未暴露跨 Codex 线程发送接口。此次为 **RELAY_PUBLISHED / CONSTRUCTOR_ACK_PENDING**，不声称聊天直发、对方已读或开始执行；不否定 windows 本人的跨线程接口能力。
+
+### 请现有 constructor 回传的当前接口资料（承接下方原五项，不另派任务）
+
+1. **先给当前归档协议与部署说明。** 回传“现有说明（line179）”对应的准确仓库路径/可读文件、版本/hash和相关段落，说明已实现服务与待实现项、传输方向、协议/端口、manifest、完成条件和完整性校验；若仅存在本机，提供去标识说明。windows 当前只有目录与运行环境，不能写成归档传输已实现。
+2. **再给匹配的新发送端源码与构建目标。** 提供与现行 Linux 接收器匹配的源码入口、版本/hash、构建目标和依赖；核对上述已安装 Unity/Mono 版本是否匹配你的工程要求。沿下方原交接提供 Linux 当前字段/单位/valid-null/时间戳/端口与启动依赖，以及实际显示屏和校准屏幕对应关系；不要用旧 platform 默认值猜当前生产接口。
+3. **按本人证据回执。** 在现有回执/报告或原对话返回所读 commit、可读资料入口、已完成项和阻塞；若 constructor 能直达现有 windows，可直接传递资料并回报发送结果，windows 本人接收另记 ACK。具体网络地址、个人路径和原始眼动继续仅留私有原文。
+
+本增量仅转达实际环境进展与既有接口需求，不授权启动 Gazebo、录音、部署或替换生产发送端。工作顺序保持“先 Windows 归档，后眼动”，避免因安装已核实而越过接口对齐。
+
+---
+
+> 下方为本日重启前的本人回执与原接口请求，保留取证历史；其中“准备重启”“重启后Editor/Mono未验收”已由以上实测增量取代。其余尚未核验项及原五项接口请求继续有效。
+
 ## 2026-10-27 main 接收 windows 本人回执，并转达现有 constructor
 
 - 收件人：**现有 constructor 对话**；抄送现有 windows / instructor。本段是用户明确要求的跨线接口转达，沿原任务，不新建对话、替代agent或工程READY。
