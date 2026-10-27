@@ -1,3 +1,14 @@
+## 2026-10-27 最终包证据与私有交付阻塞
+
+- **constructor 本人最终回报已收到：** 本地四件套已生成：`HRI_Archive_Tools.zip`、`SHA256SUMS.txt`、`MANIFEST.sha256`、`DEPLOY_WINDOWS.md`。ZIP 固定为 **35111 bytes**，SHA256=`5eb91b4b834d8ff94bf08646e96046f461ee9c00cb3385ec71d1d4bad587fee7`；包内共11个成员，外部清单11/11通过。归档生产模块源码SHA256=`0f906d89566a42c5b9e594f32cbce0435e05783143a9c0833559d7ecca045519`；来源分支自述为 `codex/ui-sampling`、Git基线 `15e00b92b9f1a4018dbb680e392ec408c7fbf5ba`，但工作树含未提交实现，因此只能以包哈希和逐文件清单固定身份。
+- **验证边界：** constructor 报告 Linux 归档与打包回归47项通过，ZIP CRC、11成员SHA256、源码与安装归档模块一致性及帮助入口通过；Windows 文件系统、网络、防火墙、实际归档与硬件均 NOT RUN。包状态为 PYTHON_TOOLS_ONLY；不证明眼动对齐、显示绑定、Unity新构建或科学实验有效。
+- **公开上传未发生：** constructor 尝试 `github.create_blob` 时权限审核拒绝，原因是用户只授权经main私下交给现有windows，未批准完整源码公开写入GitHub。没有上传blob、创建提交或更新分支；main不得绕过该拒绝。上方原定公开附件路径现仅保留历史，不能再当当前可执行交付路由。
+- **main 本轮私有取件核查：** 当前工作区没有该ZIP，ChatGPT Library按精确名与简化名均未找到；本轮继承的外部消息只保留了被截断的Base64尾部，无法还原或验证完整35111字节。main因此不能创建可信附件，也不能把constructor的本机校验冒充main已验包。
+- **当前状态：`PACKAGE_PREPARED_BY_CONSTRUCTOR / PUBLIC_UPLOAD_REJECTED / PRIVATE_BYTES_UNAVAILABLE_TO_MAIN / WINDOWS_DOWNLOAD_ACK_PENDING`。** 部署文档文本与协议摘要已收到，但没有完整二进制就不能交付给windows，更不能取得windows本人ZIP及11成员校验ACK。恢复条件仅是把上述固定哈希的完整ZIP作为私有附件交到当前main可读取的位置；取得后仍先核ZIP哈希/CRC/11成员，再给现有windows，不执行包内代码。
+- 顺序与边界不变：先归档联调，后眼动校时/屏幕绑定；不启动Gazebo、远端归档服务或眼动，不传密钥、地址、个人路径及原始数据，不新增会话或另建一批报告。
+
+---
+
 ## 2026-10-27 归档工具包交付路由确认：constructor → main → 现有 windows
 
 - **用户明确授权已收到。** constructor 转述用户要求：“把当前归档协议和源码工具包准备好，通过main交给windows端，明确版本、校验和部署步骤。授权回传必要接口信息，不含密钥和原始眼动，先归档联调，再眼动校时/绑定”。本轮仅确认交付路由并准备转达，不据此启动远端服务或眼动。
@@ -11,7 +22,7 @@
 - **公开附件范围：** 本次只含小型归档接口源码、说明与校验清单；不含 Unity SDK、exe、凭据/密钥、个人路径、具体局域网地址、原始眼动或其他采样数据。必须从待发布ZIP实际内容核对清单，不能只审目录名称。必要配置提供占位值，现场私有值仍通过既有私有对话传递。
 - **发布与转交：** constructor 核验后在上述原分支原子提交本版本附件及清单，先读远端、保留并发更新、不force push；回传附件仓库相对路径、提交SHA、包大小、最终版本/ZIP SHA256及本机验证范围。main读回后在本原交接向现有windows给出固定提交的附件链接和校验/部署说明。可从固定提交附件页下载；windows实际取得文件并核对ZIP及逐文件hash后，将下载/校验结果合并到下一份实质回执。不以GitHub发布替代Windows已下载、服务已部署或双机联调通过。
 - **源码隔离与所有权：** 这是用户本次授权的通信附件特例，已在PROTOCOL.md追加限定条款；不迁移/合并 `platform/`、HRI_ws 或整个平台，不创建Release、额外分支、托管服务或新发布体系。附件只做交付载体，不从通信分支自动执行脚本。constructor负责包、清单和本机事实，main负责本交接的路由及转达；既有instructor工程验收分工保持。
-- **当前状态：ROUTE_CONFIRMED / PACKAGE_PREPARING / DELIVERY_PENDING。** “正在使用既有打包器、核验逐文件SHA256及部署步骤”为constructor本轮本人进度，最终包/版本/hash/命令尚未回传，main未验包，windows尚未下载或校验本包。先完成归档联调，再眼动校时/绑定；本轮不启动远端服务、Gazebo、录音或眼动，不宣称部署完成。
+- **历史状态已被顶部最终包证据取代。** 路由曾确认、包当时仍准备中；当前应读作 `PACKAGE_PREPARED_BY_CONSTRUCTOR / PUBLIC_UPLOAD_REJECTED / PRIVATE_BYTES_UNAVAILABLE_TO_MAIN / WINDOWS_DOWNLOAD_ACK_PENDING`。
 
 ---
 
