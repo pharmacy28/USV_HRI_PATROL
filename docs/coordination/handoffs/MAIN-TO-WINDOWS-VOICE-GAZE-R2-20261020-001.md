@@ -1,3 +1,33 @@
+## 2026-10-27 归档工具包交付路由确认：constructor → main → 现有 windows
+
+- **用户明确授权已收到。** constructor 转述用户要求：“把当前归档协议和源码工具包准备好，通过main交给windows端，明确版本、校验和部署步骤。授权回传必要接口信息，不含密钥和原始眼动，先归档联调，再眼动校时/绑定”。本轮仅确认交付路由并准备转达，不据此启动远端服务或眼动。
+- **原位置核查：** main 读取 PROTOCOL.md v1、ROLE_PROTOCOL_v1_1.md 及当前通信分支完整目录，未找到既有工具包附件位置或下载约定。windows 已能读取本仓库的交接文档；附件ZIP的实际下载/校验仍待本包发布后验证。
+- **确认路由：** 仓库 `pharmacy28/USV_HRI_PATROL`，分支 `coordination/work-20261020`；仅在 `docs/coordination/handoffs/attachments/WINDOWS-HRI-ARCHIVE-20261027/<version>/` 发布本次小型源码附件。由 constructor 给出实际版本号，`<version>`不是已确定版本，也不创建占位包。本机绝对路径不作为交付地址。
+- **每个版本最小交付：**
+  - `HRI_Archive_Tools.zip`：基于当前 HRI_ws 既有打包器生成、仅包含本次归档接口所需源码工具与说明。
+  - `SHA256SUMS.txt`：ZIP文件的SHA256及其文件名。
+  - `MANIFEST.sha256`：包内文件的逐文件SHA256，使用包内相对路径；核验对象为展开后的同一版本内容。
+  - `DEPLOY_WINDOWS.md`：实际版本、源码/打包器来源与身份（无commit时如实记录文件hash）、依赖、必要接口字段、下载与校验、解压/配置/部署/回退步骤，以及本机实际验证命令、结果和未验证边界。命令由constructor按当前实现给出，main不猜端口或启动方式。
+- **公开附件范围：** 本次只含小型归档接口源码、说明与校验清单；不含 Unity SDK、exe、凭据/密钥、个人路径、具体局域网地址、原始眼动或其他采样数据。必须从待发布ZIP实际内容核对清单，不能只审目录名称。必要配置提供占位值，现场私有值仍通过既有私有对话传递。
+- **发布与转交：** constructor 核验后在上述原分支原子提交本版本附件及清单，先读远端、保留并发更新、不force push；回传附件仓库相对路径、提交SHA、包大小、最终版本/ZIP SHA256及本机验证范围。main读回后在本原交接向现有windows给出固定提交的附件链接和校验/部署说明。可从固定提交附件页下载；windows实际取得文件并核对ZIP及逐文件hash后，将下载/校验结果合并到下一份实质回执。不以GitHub发布替代Windows已下载、服务已部署或双机联调通过。
+- **源码隔离与所有权：** 这是用户本次授权的通信附件特例，已在PROTOCOL.md追加限定条款；不迁移/合并 `platform/`、HRI_ws 或整个平台，不创建Release、额外分支、托管服务或新发布体系。附件只做交付载体，不从通信分支自动执行脚本。constructor负责包、清单和本机事实，main负责本交接的路由及转达；既有instructor工程验收分工保持。
+- **当前状态：ROUTE_CONFIRMED / PACKAGE_PREPARING / DELIVERY_PENDING。** “正在使用既有打包器、核验逐文件SHA256及部署步骤”为constructor本轮本人进度，最终包/版本/hash/命令尚未回传，main未验包，windows尚未下载或校验本包。先完成归档联调，再眼动校时/绑定；本轮不启动远端服务、Gazebo、录音或眼动，不宣称部署完成。
+
+---
+
+## 2026-10-27 constructor 本人接收确认：ACK 已闭环，交付仍待完成
+
+- **状态：CONSTRUCTOR_ACK_RECEIVED。** main 本轮收到现有 constructor 的本人消息：用户在 constructor 对话明确要求确认接收后，constructor 已实际读取 main 最新回合及此前 Windows 本人回执，确认收到重启后增量。消息/回合标识留私有原文；本ACK不冒称constructor已回读某个仓库commit/blob。main本次记录前读取通信HEAD=`c41656c22444ba7d3a637594f79ac0b4c23cbe37`。
+- **确认的事实与归属：** Unity Editor 2022.3.62f3c1 与 Mono 模块为 windows 本机 FILESYSTEM_VERIFIED；Python venv 重启后可运行，EyeChip USB Started。证据归属 windows；constructor 未独立访问 Windows 硬件。
+- **保留未验证项：** 许可证、工程导入、编译和新发送端构建仍 UNVERIFIED；双机联调、时钟对齐、屏幕映射未验收。诊断超时不能据此解读为安装损坏。
+- **constructor 已理解的后续顺序：** 先交付当前归档协议与源码工具包，再提供匹配 Linux 接口的新眼动发送端和构建目标；准确路径、版本/hash、当前接口等仍按下方原请求提供，不从旧 platform 猜测。
+- **本ACK仅证明接收。** 当前协议/源码工具包尚未交付，部署和跨机测试未完成；不写成已开始实施、已完成源码包或平台验收。constructor 本轮报告未启动仿真、录音或眼动发送，未传密钥、网络地址、个人路径及原始眼动。唯一日常入口仍为 `./run_vrx.sh start`。
+- 本次为 main 对本人ACK的记录，不冒写 constructor 的本人receipt，不新建替代对话/竞争工程任务。后续沿原链返回实际资料交付入口及证据；接收闭环与工程交付分别跟踪。
+
+---
+
+> 下方保留先前转达时的历史快照；其中 CONSTRUCTOR_ACK_PENDING 已由上方本人ACK取代。资料交付需求和未验证边界继续有效。
+
 ## 2026-10-27 重启后实测增量：main → 现有 constructor，抄送 windows / instructor
 
 - 依据：本轮收到的 windows 本人重启后实测汇报；main read_commit=`0f760e1e1b1bcd9d76531127889e07852126e5ec`。以下证据由 windows 在本机核实并汇报，main 未进入 Windows 重测。沿原交接与原工程链续接，不新建替代对话或竞争任务。
