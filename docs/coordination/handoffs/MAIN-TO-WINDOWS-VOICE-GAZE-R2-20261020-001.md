@@ -1,3 +1,13 @@
+## 2026-11-22 net增量：Windows地址已确认，物理网卡绑定连接仍超时
+
+- 用户已确认Windows仍使用既有归档目标地址，发送器在名为windows的对话。net当前list_threads最近50条可见结果没有windows，尚未联系到该对话；已向用户请求对话链接及Windows所连Wi-Fi名称。未找到最近50条中的对话不等于该对话不存在。
+- Linux已实测当前Wi-Fi、wlp130s0地址与网关；准确网络信息仅留私有回执。额外诊断仅对一个测试socket设置SO_BINDTODEVICE绑定wlp130s0，经该物理接口网关连接Windows TCP8765仍超时，没有修改路由或切网。
+- 此前经Mihomo的TCP_OK不足以证明直达Windows。当前跨机HTTP/HMAC与归档均未通过，NO_COMPLETED_ARCHIVES不变；不由这次超时擅自断言故障根因。UDP15555仍无监听，收包/显示未验收。
+- net未操作任何口令、未覆盖活跃会话。继续由net分别推进UDP与TCP，归档不是眼动前置；constructor此前核查请求已发送但尚无新回应/ACK。本轮main只按net增量更新记录，未独立重测。
+- 用户目前只需向net提供windows对话链接及Windows所连Wi-Fi名称；已确认的Windows地址无需重复索取。
+
+---
+
 ## 2026-11-22 net实测回报：UDP接口已查证、当前未监听；TCP握手不能替代HTTP验收
 
 - **来源与职责：** 用户转交net本轮实测回报，main未独立进入两端重测。通信由net集中推进，UDP实时联调与TCP HTTP/HMAC归档并行，归档不是眼动前置条件；constructor保留生产集成所有权，instructor仍为唯一工程派发/验收负责人，main维护跨线状态。沿用原工程、原启动入口及UI，不处理dot授权。
@@ -6,7 +16,7 @@
 - **constructor路由更新：** net报告已成功向现有constructor聊天提交核查请求，尚无回应或本人ACK；状态为请求已发送、核验待回执。具体聊天标识留私有原文。该事实更新了此前仅有main无法转达的状态，但不表示main已直发，也不证明此前关闭的子agent恢复存活。
 - **TCP实际结果：** 访问既有Windows归档目标的当前路由经Mihomo table2022，源地址为代理路由地址。TCP connect成功，但禁用应用层代理的无凭据`POST /archive`在4秒超时；只能报告握手现象，不能认定已直达Windows HTTP/HMAC服务。具体网络地址留私有回执。未读取/使用旧口令、未传真实数据；认证、跨机完成receipt及断线续传均未验收，Windows原`NO_COMPLETED_ARCHIVES`未被新证据改变。TCP仅为归档，不是新的实时控制通道。
 - **本机验证与样本：** net加载ROS 2 Humble环境后，`test_protocol.py`、`test_clock_display.py`、`test_receiver_diagnostics.py`、`test_archive_transfer.py`共43 passed；仅为本机测试，不是真实Windows验收。已在本机临时目录创建纯合成样本，467370 bytes、清单哈希已核对，无参与者/传感器/任务数据，未使用原demo、未发送。准确临时路径留私有net回执；仅供后续正常传输与多块续传，完成后可清理，无自动删除，不再称无可用合成样本。
-- **当前依赖：** net正等待用户确认Windows当前地址是否仍与既有归档目标一致，以及可操作既有Windows发送器的对话/远程会话位置；无需提供口令。下一步由net沿两条链分别继续，constructor核查现有接收启动与活跃会话条件。两端防火墙关闭是用户报告，不替代连通验收。归档就绪与否不阻塞UDP接口对齐；不以本机测试或请求发送替代跨机结果。
+- **当时依赖（已由顶部增量更新）：** 本段回报时Windows地址与发送器会话位置待确认；随后用户已确认Windows地址及windows对话名称，当前仅待该对话链接与Windows所连Wi-Fi名称，无需提供口令。下一步由net沿两条链分别继续，constructor核查现有接收启动与活跃会话条件。两端防火墙关闭是用户报告，不替代连通验收。归档就绪与否不阻塞UDP接口对齐；不以本机测试或请求发送替代跨机结果。
 
 ---
 
