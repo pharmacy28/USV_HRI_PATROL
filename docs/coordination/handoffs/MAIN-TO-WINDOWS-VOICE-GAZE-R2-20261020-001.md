@@ -1,4 +1,15 @@
-## 2026-10-27 Windows接收器本机验证与启动回执：跨机待执行
+## 2026-11-22 Windows续建回执：当前无监听证据、无已完成归档
+
+- **来源与授权：** 用户转交Windows本次续建回执，沿用此前通过main汇报的继续建设授权；windows已读最新Linux `BUDGET_EXPIRED`工程闭环记录。下列Windows本机事实归属本次回执，main未进入Windows独立核验。
+- **当前服务与落盘状态：** 本次`netstat`未检测到TCP8765监听，`HRI-Archive`目录为空。10月READY只是当时启动记录，不作为当前服务证据；本次观测也不推断其他时段的运行状态。具体局域网地址随私有回执提供，不复制到公开仓库。
+- **新增本机校验入口：** windows报告已新增独立的`Check-Archives.cmd`，检查receipt、文件大小/SHA256及结束manifest一致性；当前结果`NO_COMPLETED_ARCHIVES`。新增入口不等于已有跨机归档，main也未独立检查脚本字节或重跑校验。
+- **下一本地动作：** 由用户重启既有`Start-Archive.cmd`，在本地输入已保存共享口令。本次回执未包含重启成功或恢复监听证据；不在对话/仓库收集或保存口令，不再处理dot授权，不启动仿真。
+- **后续边界与分工：** Linux仍需在本地使用同一口令，完成跨机非敏感归档和真正断线恢复后，再验Windows监管与完整T1。Windows READY、Linux三文件校验一致、真正跨机归档/Windows监管通过分别记账；Linux的30仿真秒`BUDGET_EXPIRED`仅证明自主搜索超时工程闭环，不证明目标驻留成功或完整T1。constructor仍为Linux生产集成负责人，instructor仍为唯一工程派发/验收负责人；本段记录既有依赖，不另派竞争任务。
+- **转达结果：** 既有constructor子agent已关闭；main当前可用工具没有到该对话的跨线程消息路由。故本回执为**已记录原交接、未直接转达、无constructor本人ACK**。没有新建替代agent，不把仓库发布当作唤醒、已读、开始执行或验收。
+
+---
+
+## 历史：2026-10-27 Windows接收器本机验证与启动回执（当前服务状态见顶部）
 
 - **windows本人本机验证PASS：** 原包源码未改动；合成数据回环覆盖接收器重启续传、重复分块幂等、最终文件逐字节/哈希一致，以及错误HMAC口令返回403。证据`local-validation.json`保存在Windows本地；main未进入Windows独立重测，也未取得该证据文件字节。
 - **已知平台差异：** Windows执行`SpoolSender`时，只读文件上的`os.fsync`会报EBADF。生产发送器为Linux，本次不因此修改原包；该Windows发送端现象不等于Linux生产发送失败。
