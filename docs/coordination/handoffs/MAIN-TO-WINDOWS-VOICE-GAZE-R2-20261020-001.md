@@ -1,4 +1,16 @@
-## 2026-11-22 Windows后续实测：监听与本机连接成功，跨机仍待验
+## 2026-11-22 net实测回报：UDP接口已查证、当前未监听；TCP握手不能替代HTTP验收
+
+- **来源与职责：** 用户转交net本轮实测回报，main未独立进入两端重测。通信由net集中推进，UDP实时联调与TCP HTTP/HMAC归档并行，归档不是眼动前置条件；constructor保留生产集成所有权，instructor仍为唯一工程派发/验收负责人，main维护跨线状态。沿用原工程、原启动入口及UI，不处理dot授权。
+- **UDP源码接口：** 原工程`run_vrx.sh`源码默认`WITH_GAZE=true`，通过`eyetracker_bridge/gaze.launch.py`绑定`0.0.0.0:15555`，发布`/tobii/gaze`与`/tobii/status`；现有控制台代码已订阅gaze并具备热图显示。UTF-8 JSON支持`valid+x_norm/y_norm`（左上角原点、0..1）、旧`vx/vy`（默认翻转Y）及像素字段。未把历史7729/7799或Windows本机测试15557当生产端口。Linux当前接口为wlp130s0，地址已变化；历史Linux地址不再适用，准确地址只留私有net回执。
+- **UDP运行边界：** 本次`ss`未发现UDP15555监听，存在constructor的独立`--no-gaze`实验；net未重启、停止或覆盖它。源码接收/热图能力不是当前实际收包、解析或显示成功证据。Windows源码支持`--gaze-host/--gaze-port`和exe同目录`gaze_udp_config.json`，但实际Windows发送器尚未操作，二进制版本未核实。
+- **constructor路由更新：** net报告已成功向现有constructor聊天提交核查请求，尚无回应或本人ACK；状态为请求已发送、核验待回执。具体聊天标识留私有原文。该事实更新了此前仅有main无法转达的状态，但不表示main已直发，也不证明此前关闭的子agent恢复存活。
+- **TCP实际结果：** 访问既有Windows归档目标的当前路由经Mihomo table2022，源地址为代理路由地址。TCP connect成功，但禁用应用层代理的无凭据`POST /archive`在4秒超时；只能报告握手现象，不能认定已直达Windows HTTP/HMAC服务。具体网络地址留私有回执。未读取/使用旧口令、未传真实数据；认证、跨机完成receipt及断线续传均未验收，Windows原`NO_COMPLETED_ARCHIVES`未被新证据改变。TCP仅为归档，不是新的实时控制通道。
+- **本机验证与样本：** net加载ROS 2 Humble环境后，`test_protocol.py`、`test_clock_display.py`、`test_receiver_diagnostics.py`、`test_archive_transfer.py`共43 passed；仅为本机测试，不是真实Windows验收。已在本机临时目录创建纯合成样本，467370 bytes、清单哈希已核对，无参与者/传感器/任务数据，未使用原demo、未发送。准确临时路径留私有net回执；仅供后续正常传输与多块续传，完成后可清理，无自动删除，不再称无可用合成样本。
+- **当前依赖：** net正等待用户确认Windows当前地址是否仍与既有归档目标一致，以及可操作既有Windows发送器的对话/远程会话位置；无需提供口令。下一步由net沿两条链分别继续，constructor核查现有接收启动与活跃会话条件。两端防火墙关闭是用户报告，不替代连通验收。归档就绪与否不阻塞UDP接口对齐；不以本机测试或请求发送替代跨机结果。
+
+---
+
+## 历史：2026-11-22 Windows本机监听回执（最新跨机状态见顶部net回报）
 
 - **最新回执：** 用户已再次更换共享口令并保持接收器运行。windows报告`Get-NetTCPConnection`确认TCP8765为`LISTEN`、PID23792，本机TCP连接返回0成功；限定指定Linux主机的入站规则已存在。Windows/Linux具体局域网地址已随私有回执提供，不写公开仓库。证据归属Windows本次回执，main未进入本机独立重测。
 - **归档状态：** `Check-Archives.cmd`独立校验仍为`NO_COMPLETED_ARCHIVES`。本次监听/本机连接证据取代下方同日较早“未检出监听”的当前状态；本机可达、入站规则存在不等于Linux跨机可达或认证成功，不能提前验收。
